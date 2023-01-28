@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
-                .font(.graphikBlackItalic(90))
+                .font(.graphikBlack(90))
 
             Button(
                 action: {
@@ -30,7 +30,7 @@ struct ContentView: View {
                 gradient: Gradient(
                     colors: [
                         Color.primaryBlue,
-                        Color.tertiaryBlue
+                        Color.black
                     ]
                 ),
                 startPoint: .topLeading,
