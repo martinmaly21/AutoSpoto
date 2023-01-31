@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingContainerView: View {
     enum CurrentView {
         case getStarted
-        case howDoesItWork
+        case whatIsAutoSpoto
     }
     @State private var currentView: CurrentView = .getStarted
 
@@ -39,8 +39,8 @@ struct OnboardingContainerView: View {
                     currentView: $currentView,
                     topLeftLogoOpacity: $topLeftLogoOpacity
                 )
-            case .howDoesItWork:
-                HowDoesItWorkView(currentView: $currentView)
+            case .whatIsAutoSpoto:
+                WhatIsAutoSpotoView(currentView: $currentView)
             }
 
             //Made with LOVE footer
@@ -54,7 +54,7 @@ struct OnboardingContainerView: View {
             //TODO: add tool bar
         }
         .padding(.horizontal, 16.5)
-        .padding(.vertical, 10)
+        .padding(.bottom, 10)
         .frame(
             width: AutoSpotoConstants.Dimensions.onboardingWindowWidth,
             height: AutoSpotoConstants.Dimensions.onboardingWindowHeight

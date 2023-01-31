@@ -63,7 +63,7 @@ struct GetStartedView: View {
             for: elementTransitionOpacity,
             completion: {
                 topLeftLogoOpacity = 1
-                currentView = .howDoesItWork
+                currentView = .whatIsAutoSpoto
             }
         )
     }
