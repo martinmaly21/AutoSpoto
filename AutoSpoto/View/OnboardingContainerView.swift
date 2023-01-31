@@ -17,6 +17,9 @@ struct OnboardingContainerView: View {
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
 
+    private let defaultHorizontalPadding: CGFloat = 16.5
+    private let defaultBottomPadding: CGFloat = 10
+
     var body: some View {
         ZStack {
             VStack {
@@ -51,10 +54,36 @@ struct OnboardingContainerView: View {
                     .font(.josefinSansRegular(15))
             }
 
-            //TODO: add tool bar
+            //tool bar
+            VStack {
+                Spacer()
+
+                HStack {
+                    Spacer()
+
+                    Button(
+                        action: {
+                            //todo
+                        },
+                        label: {
+                            Text(AutoSpotoConstants.Strings.CONTINUE)
+                                .font(.josefinSansRegular(18))
+                        }
+                    )
+                    .customButton(foregroundColor: .black, backgroundColor: .white)
+                    .padding(.trailing, defaultHorizontalPadding)
+                }
+                .frame(height: 70)
+                .frame(maxWidth: .infinity)
+                .background(.thinMaterial)
+                .padding(.horizontal, -defaultHorizontalPadding)
+                .padding(.bottom, -defaultBottomPadding)
+            }
+            .opacity(topLeftLogoOpacity)
+
         }
-        .padding(.horizontal, 16.5)
-        .padding(.bottom, 10)
+        .padding(.horizontal, defaultHorizontalPadding)
+        .padding(.bottom, defaultBottomPadding)
         .frame(
             width: AutoSpotoConstants.Dimensions.onboardingWindowWidth,
             height: AutoSpotoConstants.Dimensions.onboardingWindowHeight
