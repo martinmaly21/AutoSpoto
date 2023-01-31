@@ -13,4 +13,6 @@ extension Color {
     static let primaryBlue = Color("Primary Blue")
     static let secondaryBlue = Color("Secondary Blue")
     static let tertiaryBlue = Color("Tertiary Blue")
+    static let spotifyGreen = Color("Spotify Green")
+    static let appleMusicOragne = Color("Apple Music Orange")
 }

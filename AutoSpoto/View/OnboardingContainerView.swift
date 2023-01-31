@@ -10,7 +10,8 @@ import SwiftUI
 struct OnboardingContainerView: View {
     enum CurrentView {
         case getStarted
-        case whatIsAutoSpoto
+        case diskAccessIntroductionView
+        case chooseMusicStreamingServiceView
     }
     @State private var currentView: CurrentView = .getStarted
 
@@ -48,8 +49,10 @@ struct OnboardingContainerView: View {
                     shouldAnimateLogoToTopLeft: $shouldAnimateLogoToTopLeft,
                     elementTransitionOpacity: $elementTransitionOpacity
                 )
-            case .whatIsAutoSpoto:
-                WhatIsAutoSpotoView()
+            case .diskAccessIntroductionView:
+                DiskAccessIntroductionView()
+            case .chooseMusicStreamingServiceView:
+                ChooseMusicStreamingServiceView()
             }
 
             //tool bar
@@ -67,9 +70,10 @@ struct OnboardingContainerView: View {
                                     shouldAnimateLogoToTopLeft = true
                                     elementTransitionOpacity = 0
                                 }
-
-                            case .whatIsAutoSpoto:
-                                currentView = .getStarted
+                            case .diskAccessIntroductionView:
+                                currentView = .chooseMusicStreamingServiceView
+                            case .chooseMusicStreamingServiceView:
+                                break //TODO
                             }
                         },
                         label: {
