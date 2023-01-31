@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct WhatIsAutoSpotoView: View {
-    @Binding var currentView: OnboardingContainerView.CurrentView
-
     @State private var elementTransitionOpacity: CGFloat = 0
     
     var body: some View {
@@ -20,13 +18,6 @@ struct WhatIsAutoSpotoView: View {
                 .padding(.bottom, 120)
                 .opacity(elementTransitionOpacity)
 
-//            Divider()
-
-            Text(AutoSpotoConstants.Strings.WHAT_IS_AUTOSPOTO_ANSWER)
-                .font(.josefinSansRegular(18))
-                .foregroundColor(.white)
-                .padding(.bottom, 120)
-                .opacity(elementTransitionOpacity)
         }
         .onAppear {
             withAnimation {

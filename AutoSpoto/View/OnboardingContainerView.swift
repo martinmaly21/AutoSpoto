@@ -17,6 +17,10 @@ struct OnboardingContainerView: View {
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
 
+    @State private var shouldAnimateLogoToTopLeft = false
+    @State private var elementTransitionOpacity: CGFloat = 1.0
+
+
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
 
@@ -40,18 +44,12 @@ struct OnboardingContainerView: View {
             case .getStarted:
                 GetStartedView(
                     currentView: $currentView,
-                    topLeftLogoOpacity: $topLeftLogoOpacity
+                    topLeftLogoOpacity: $topLeftLogoOpacity,
+                    shouldAnimateLogoToTopLeft: $shouldAnimateLogoToTopLeft,
+                    elementTransitionOpacity: $elementTransitionOpacity
                 )
             case .whatIsAutoSpoto:
-                WhatIsAutoSpotoView(currentView: $currentView)
-            }
-
-            //Made with LOVE footer
-            VStack {
-                Spacer()
-                Text(AutoSpotoConstants.Strings.MADE_WITH_LOVE)
-                    .foregroundColor(.white)
-                    .font(.josefinSansRegular(15))
+                WhatIsAutoSpotoView()
             }
 
             //tool bar
@@ -63,7 +61,16 @@ struct OnboardingContainerView: View {
 
                     Button(
                         action: {
-                            //todo
+                            switch currentView {
+                            case .getStarted:
+                                withAnimation {
+                                    shouldAnimateLogoToTopLeft = true
+                                    elementTransitionOpacity = 0
+                                }
+
+                            case .whatIsAutoSpoto:
+                                currentView = .getStarted
+                            }
                         },
                         label: {
                             Text(AutoSpotoConstants.Strings.CONTINUE)
@@ -79,8 +86,14 @@ struct OnboardingContainerView: View {
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
             }
-            .opacity(topLeftLogoOpacity)
 
+            //Made with LOVE footer
+            VStack {
+                Spacer()
+                Text(AutoSpotoConstants.Strings.MADE_WITH_LOVE)
+                    .foregroundColor(.white)
+                    .font(.josefinSansRegular(15))
+            }
         }
         .padding(.horizontal, defaultHorizontalPadding)
         .padding(.bottom, defaultBottomPadding)
