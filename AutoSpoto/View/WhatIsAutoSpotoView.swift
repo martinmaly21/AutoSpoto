@@ -12,8 +12,10 @@ struct WhatIsAutoSpotoView: View {
     
     var body: some View {
         VStack {
-
-
+            Image("GenericFolderIcon")
+                .resizable()
+                .frame(width: 200, height: 200)
+                .opacity(elementTransitionOpacity)
         }
         .onAppear {
             withAnimation {
