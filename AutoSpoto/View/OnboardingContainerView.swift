@@ -86,14 +86,6 @@ struct OnboardingContainerView: View {
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
             }
-
-            //Made with LOVE footer
-            VStack {
-                Spacer()
-                Text(AutoSpotoConstants.Strings.MADE_WITH_LOVE)
-                    .foregroundColor(.white)
-                    .font(.josefinSansRegular(15))
-            }
         }
         .padding(.horizontal, defaultHorizontalPadding)
         .padding(.bottom, defaultBottomPadding)

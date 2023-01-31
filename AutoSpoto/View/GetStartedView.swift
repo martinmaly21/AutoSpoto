@@ -50,12 +50,17 @@ struct GetStartedView: View {
             Text(AutoSpotoConstants.Strings.WHAT_IS_AUTOSPOTO_ANSWER)
                 .font(.josefinSansRegular(18))
                 .foregroundColor(.white)
-                .padding(.bottom, 120)
+                .padding(.bottom, 80)
                 .padding(.horizontal, 35)
+                .opacity(elementTransitionOpacity)
+
+            //Made with LOVE footer
+            Text(AutoSpotoConstants.Strings.MADE_WITH_LOVE)
+                .foregroundColor(.white)
+                .font(.josefinSansRegular(14))
                 .opacity(elementTransitionOpacity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(Color.red)
         .onAnimationCompleted(
             for: elementTransitionOpacity,
             completion: {
