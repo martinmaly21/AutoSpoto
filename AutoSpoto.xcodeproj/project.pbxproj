@@ -11,7 +11,7 @@
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
-		50CFCE2929896983009C3F4A /* HowDoesItWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */; };
+		50CFCE2929896983009C3F4A /* WhatIsAutoSpotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* WhatIsAutoSpotoView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
 		50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */; };
 		50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */; };
@@ -38,7 +38,7 @@
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
-		50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowDoesItWorkView.swift; sourceTree = "<group>"; };
+		50CFCE2829896983009C3F4A /* WhatIsAutoSpotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsAutoSpotoView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
 		50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Dimensions.swift"; sourceTree = "<group>"; };
 		50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			children = (
 				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
 				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
-				50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */,
+				50CFCE2829896983009C3F4A /* WhatIsAutoSpotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
-				50CFCE2929896983009C3F4A /* HowDoesItWorkView.swift in Sources */,
+				50CFCE2929896983009C3F4A /* WhatIsAutoSpotoView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

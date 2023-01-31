@@ -22,7 +22,7 @@ extension AutoSpotoConstants.Strings {
 
     static let AUTO_SPOTO_SPLASH_MOTTO = NSLocalizedString(
         "AUTO_SPOTO_SPLASH_MOTTO",
-        value: "Never lose a reccomended song again.",
+        value: "Never lose a recommended song again.",
         comment: "AutoSpoto motto."
     )
 
@@ -36,6 +36,18 @@ extension AutoSpotoConstants.Strings {
         "MADE_WITH_LOVE",
         value: "Made with ❤️ in 🇨🇦",
         comment: "Text that's displayed at bottom of splash screen."
+    )
+
+    static let WHAT_IS_AUTOSPOTO = NSLocalizedString(
+        "WHAT_IS_AUTOSPOTO",
+        value: "What is it?",
+        comment: "Title question on WhatIsAutoSpotoView."
+    )
+
+    static let WHAT_IS_AUTOSPOTO_ANSWER = NSLocalizedString(
+        "MADE_WITH_LOVE",
+        value: "AutoSpoto is a fully offline tool that converts your iMessage chats and groupchats into live updating playlists in your favourite streaming services.  You’ll be guided through the set up process in the coming pages.",
+        comment: "Answer text to 'What is AutoSpoto?' on WhatIsAutoSpotoView."
     )
 }
 
