@@ -11,6 +11,18 @@ struct HowDoesItWorkView: View {
     @Binding var currentView: OnboardingContainerView.CurrentView
     
     var body: some View {
-        Text("Testing").foregroundColor(.white)
+        VStack {
+            Text("Testing").foregroundColor(.white)
+//            Text("Testing").foregroundColor(.white)
+
+//            Text("Testing").foregroundColor(.white)
+//                .frame(height: 40)
+//            Text("Testing").foregroundColor(.white)
+//                .frame(height: 40)
+//            Text("Testing").foregroundColor(.white)
+//                .frame(height: 40)
+//            Text("Testing").foregroundColor(.white)
+//                .frame(height: 40)
+        }
     }
 }
