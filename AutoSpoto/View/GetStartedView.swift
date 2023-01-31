@@ -1,13 +1,15 @@
 //
-//  ContentView.swift
+//  GetStartedView.swift
 //  AutoSpoto
 //
-//  Created by Martin Maly on 2022-09-03.
+//  Created by Martin Maly on 2023-01-31.
 //
 
 import SwiftUI
 
-struct AppEntryView: View {
+struct GetStartedView: View {
+    @Binding var currentView: OnboardingContainerView.CurrentView
+
     var body: some View {
         ZStack(alignment: .center) {
             VStack(spacing: 0) {
@@ -23,7 +25,7 @@ struct AppEntryView: View {
 
                 Button(
                     action: {
-                        //TODO
+                        currentView = .howDoesItWork
                     },
                     label: {
                         Text(AutoSpotoConstants.Strings.GET_STARTED)
@@ -40,19 +42,5 @@ struct AppEntryView: View {
                     .font(.josefinSansRegular(15))
             }
         }
-        .padding()
-        .frame(width: 1000, height: 600)
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        Color.primaryBlue,
-                        Color.black
-                    ]
-                ),
-                startPoint: .topLeading,
-                endPoint: .bottom
-            )
-        )
     }
 }

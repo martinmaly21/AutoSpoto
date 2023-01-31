@@ -13,9 +13,9 @@ struct AutoSpotoApp: App {
         WindowGroup {
             //TODO: check if user has went through "Onboarding" process
             //IF so, show messages UI
-            //If not, show AppEntryView
+            //If not, show OnboardingContainerView
 
-            AppEntryView()
+            OnboardingContainerView()
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
                     for window in NSApplication.shared.windows {
                         //hide title bar
