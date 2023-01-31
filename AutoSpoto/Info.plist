@@ -6,24 +6,14 @@
 	<string>.</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>GraphikBlack.otf</string>
-		<string>GraphikBlackItalic.otf</string>
-		<string>GraphikBold.otf</string>
-		<string>GraphikBoldItalic.otf</string>
-		<string>GraphikExtraLight.otf</string>
-		<string>GraphikExtraLightItalic.otf</string>
-		<string>GraphikLight.otf</string>
-		<string>GraphikLightItalic.otf</string>
-		<string>GraphikMedium.otf</string>
-		<string>GraphikMediumItalic.otf</string>
-		<string>GraphikRegular.otf</string>
-		<string>GraphikRegularItalic.otf</string>
-		<string>GraphikSemibold.otf</string>
-		<string>GraphikSemiboldItalic.otf</string>
-		<string>GraphikSuper.otf</string>
-		<string>GraphikSuperItalic.otf</string>
-		<string>GraphikThin.otf</string>
-		<string>GraphikThinItalic.otf</string>
+		<string>JosefinSansBold.ttf</string>
+		<string>JosefinSansBoldItalic.ttf</string>
+		<string>JosefinSansLight.ttf</string>
+		<string>JosefinSansLightItalic.ttf</string>
+		<string>JosefinSansRegular.ttf</string>
+		<string>JosefinSansSemibold.ttf</string>
+		<string>JosefinSansThin.ttf</string>
+		<string>JosefinSansThinItalic.ttf</string>
 	</array>
 </dict>
 </plist>
