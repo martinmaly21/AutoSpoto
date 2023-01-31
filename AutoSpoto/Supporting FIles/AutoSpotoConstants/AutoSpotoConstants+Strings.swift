@@ -49,5 +49,11 @@ extension AutoSpotoConstants.Strings {
         value: "AutoSpoto is a fully offline tool that converts your iMessage chats and groupchats into live updating playlists in your favourite streaming services.  You’ll be guided through the set up process in the coming pages.",
         comment: "Answer text to 'What is AutoSpoto?' on WhatIsAutoSpotoView."
     )
+
+    static let CONTINUE = NSLocalizedString(
+        "CONTINUE",
+        value: "Continue",
+        comment: "Generic 'Continue' string"
+    )
 }
 
