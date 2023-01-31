@@ -27,7 +27,7 @@ struct AppEntryView: View {
                     },
                     label: {
                         Text(AutoSpotoConstants.Strings.GET_STARTED)
-                            .font(.josefinSansRegular(16))
+                            .font(.josefinSansRegular(18))
                     }
                 )
                 .customButton(foregroundColor: .black, backgroundColor: .white)
