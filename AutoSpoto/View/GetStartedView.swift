@@ -13,8 +13,8 @@ struct GetStartedView: View {
     //animation parameters
     @Binding var topLeftLogoOpacity: CGFloat
 
-    @State private var shouldAnimateLogoToTopLeft = false
-    @State private var elementTransitionOpacity = 1.0
+    @Binding var shouldAnimateLogoToTopLeft: Bool
+    @Binding var elementTransitionOpacity: CGFloat
 
     var body: some View {
         VStack {
@@ -39,23 +39,20 @@ struct GetStartedView: View {
             Text(AutoSpotoConstants.Strings.AUTO_SPOTO_SPLASH_MOTTO)
                 .font(.josefinSansRegular(30))
                 .foregroundColor(.white)
-                .padding(.bottom, 120)
+                .padding(.bottom, 40)
                 .opacity(elementTransitionOpacity)
 
-            Button(
-                action: {
-                    withAnimation {
-                        elementTransitionOpacity = 0
-                        shouldAnimateLogoToTopLeft = true
-                    }
-                },
-                label: {
-                    Text(AutoSpotoConstants.Strings.GET_STARTED)
-                        .font(.josefinSansRegular(18))
-                }
-            )
-            .customButton(foregroundColor: .black, backgroundColor: .white)
-            .opacity(elementTransitionOpacity)
+            Divider()
+                .overlay(.white)
+                .padding(.bottom, 40)
+                .opacity(elementTransitionOpacity)
+
+            Text(AutoSpotoConstants.Strings.WHAT_IS_AUTOSPOTO_ANSWER)
+                .font(.josefinSansRegular(18))
+                .foregroundColor(.white)
+                .padding(.bottom, 120)
+                .padding(.horizontal, 35)
+                .opacity(elementTransitionOpacity)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
 //        .background(Color.red)
