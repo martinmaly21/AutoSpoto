@@ -12,6 +12,17 @@ struct AutoSpotoApp: App {
     var body: some Scene {
         WindowGroup {
             //TODO: check if user has went through "Onboarding" process
+
+            //TODO: check if user has granted disk access. if so:
+
+            //IF so, check if user has logged in to streaming service
+            //if yes, bring them to main app screen
+
+            //IF not, show stream service shit
+
+            //if no disk access, show them splash screen again
+
+
             //IF so, show messages UI
             //If not, show OnboardingContainerView
 

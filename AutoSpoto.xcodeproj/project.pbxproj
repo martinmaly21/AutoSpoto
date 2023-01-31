@@ -14,6 +14,7 @@
 		50CFCE2929896983009C3F4A /* WhatIsAutoSpotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* WhatIsAutoSpotoView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
 		50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */; };
+		50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */; };
 		50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */; };
 		50D43F602985EAD5000DC525 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5F2985EAD5000DC525 /* View.swift */; };
 		50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */; };
@@ -41,6 +42,7 @@
 		50CFCE2829896983009C3F4A /* WhatIsAutoSpotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsAutoSpotoView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
 		50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Dimensions.swift"; sourceTree = "<group>"; };
+		50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+URL.swift"; sourceTree = "<group>"; };
 		50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		50D43F5F2985EAD5000DC525 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThin.ttf; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */,
 				50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */,
 				50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */,
+				50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */,
 			);
 			path = AutoSpotoConstants;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
+				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
 				50CFCE2929896983009C3F4A /* WhatIsAutoSpotoView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 			);
