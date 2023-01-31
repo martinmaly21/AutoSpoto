@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
-		50AA277328C3FE69002FFC3F /* AppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* AppEntryView.swift */; };
+		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
+		50CFCE2929896983009C3F4A /* HowDoesItWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */; };
 		50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */; };
 		50D43F602985EAD5000DC525 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5F2985EAD5000DC525 /* View.swift */; };
 		50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */; };
@@ -30,9 +32,11 @@
 /* Begin PBXFileReference section */
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
-		50AA277228C3FE69002FFC3F /* AppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryView.swift; sourceTree = "<group>"; };
+		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
+		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowDoesItWorkView.swift; sourceTree = "<group>"; };
 		50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		50D43F5F2985EAD5000DC525 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThin.ttf; sourceTree = "<group>"; };
@@ -132,7 +136,9 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50AA277228C3FE69002FFC3F /* AppEntryView.swift */,
+				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
+				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
+				50CFCE2829896983009C3F4A /* HowDoesItWorkView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,11 +231,13 @@
 			files = (
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,
-				50AA277328C3FE69002FFC3F /* AppEntryView.swift in Sources */,
+				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
 				50F34C6829765DC00059516B /* Font.swift in Sources */,
+				50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
+				50CFCE2929896983009C3F4A /* HowDoesItWorkView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
