@@ -12,11 +12,7 @@ struct WhatIsAutoSpotoView: View {
     
     var body: some View {
         VStack {
-            Text(AutoSpotoConstants.Strings.WHAT_IS_AUTOSPOTO)
-                .font(.josefinSansSemibold(60))
-                .foregroundColor(.white)
-                .padding(.bottom, 120)
-                .opacity(elementTransitionOpacity)
+
 
         }
         .onAppear {
