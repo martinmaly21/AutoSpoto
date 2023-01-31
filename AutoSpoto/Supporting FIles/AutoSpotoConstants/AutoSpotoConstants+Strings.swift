@@ -41,7 +41,7 @@ extension AutoSpotoConstants.Strings {
     static let WHAT_IS_AUTOSPOTO_ANSWER = NSLocalizedString(
         "MADE_WITH_LOVE",
         value: "AutoSpoto is a fully offline tool that converts your iMessage chats and groupchats into live updating playlists in your favourite music streaming services.  You’ll be guided through the set up process in the coming pages.",
-        comment: "Answer text to 'What is AutoSpoto?' on WhatIsAutoSpotoView."
+        comment: "Answer text to 'What is AutoSpoto?' on DiskAccessIntroductionView."
     )
 
     static let CONTINUE = NSLocalizedString(
@@ -72,6 +72,24 @@ extension AutoSpotoConstants.Strings {
         value: "Open settings",
         
         comment: "Button title that allows user to open settings"
+    )
+
+    static let CHOOSE_MUSIC_STREAMING_SERVICE = NSLocalizedString(
+        "CHOOSE_MUSIC_STREAMING_SERVICE",
+        value: "Choose your preferred music streaming service",
+        comment: "Title for screen to allow the user to choose their streaming service"
+    )
+
+    static let CONNECT_WITH_SPOTIFY = NSLocalizedString(
+        "CONNECT_WITH_SPOTIFY",
+        value: "Connect with Spotify",
+        comment: "Title for button to allow the user to connect to Spotify"
+    )
+
+    static let CONNECT_WITH_APPLE_MUSIC = NSLocalizedString(
+        "CONNECT_WITH_SPOTIFY",
+        value: "Connect with Apple Music",
+        comment: "Title for button to allow the user to connect to Apple Music"
     )
 }
 
