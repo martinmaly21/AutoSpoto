@@ -87,6 +87,7 @@ struct OnboardingContainerView: View {
                 .padding(.bottom, -defaultBottomPadding)
             }
         }
+        .multilineTextAlignment(.center)
         .padding(.horizontal, defaultHorizontalPadding)
         .padding(.bottom, defaultBottomPadding)
         .frame(

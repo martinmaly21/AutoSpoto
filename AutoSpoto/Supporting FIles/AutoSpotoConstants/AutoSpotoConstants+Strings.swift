@@ -49,5 +49,29 @@ extension AutoSpotoConstants.Strings {
         value: "Continue",
         comment: "Generic 'Continue' string"
     )
+
+    static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
+        "FULL_DISK_ACCESS_PERMISSION_TITLE",
+        value: "AutoSpoto needs full disk access to continue.",
+        comment: "Generic 'Continue' string"
+    )
+
+    static let FULL_DISK_ACCESS_PERMISSION_SUBTITLE = NSLocalizedString(
+        "FULL_DISK_ACCESS_PERMISSION_TITLE",
+        value: """
+        Full disk access is required to access your iMessages.
+        Once access has been granted, you will be able to progress to logging in with your preferred music streaming service.
+
+        Note: a restart may be required.
+        """,
+        comment: "Generic 'Continue' string"
+    )
+
+    static let OPEN_SETTINGS = NSLocalizedString(
+        "OPEN_SETTINGS",
+        value: "Open settings",
+        
+        comment: "Button title that allows user to open settings"
+    )
 }
 
