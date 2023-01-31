@@ -73,7 +73,7 @@ struct OnboardingContainerView: View {
                     .customButton(foregroundColor: .black, backgroundColor: .white)
                     .padding(.trailing, defaultHorizontalPadding)
                 }
-                .frame(height: 70)
+                .frame(height: 60)
                 .frame(maxWidth: .infinity)
                 .background(.thinMaterial)
                 .padding(.horizontal, -defaultHorizontalPadding)
