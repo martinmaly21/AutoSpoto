@@ -13,7 +13,7 @@ import os
 def split_it(url_l):
 
     if not url_l:
-        return none
+        return None
 
         
     url_l = url_l.decode("utf-8", "ignore")

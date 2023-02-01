@@ -3,32 +3,32 @@ import extract_script #import the script that accesses the chat.db
 import db
 import spotify_apis
 import os
+
+
+#This is the script for automatically updating the spotify playlists
+#Each row from the DB will be queried and then the chat corresponding to the playlist will be read
+#If there are new songs since the last update, they will be added to spotify
         
 #instatiate spotify class
 spot = spotify_apis.Spotiy()
 
-################################################ This section of the code will be updated to access the stored values from swift
+conn = db.db() #connection to the databse
 
-#Right now we are using an sqlite3 db with hardcoded records to simulate the real action
-# conn = db.db() #connection to the databse
+rows = conn.connection.cursor().execute("Select * From Playlists") #Query the database for records
+rows = rows.fetchall()
 
-# row = conn.connection.cursor().execute("Select * From Playlists") #Query the database for records
-# row = row.fetchone()
+for row in rows:
+    playlist_id = row['playlist_id']
+    chat_id = row['chat_id']
+    last_updated = row['last_updated']
 
-# playlist_id = row['playlist_id']
-# chat_id = row['chat_id']
-# last_updated = row['last_updated']
+    tracks = extract_script.get_songs(chat_id,last_updated) #calling the getSongs function from the extract_script module
 
-################################################
-# tracks = []
-# for x in range(0,149):
-#     tracks.append('spotify:track:4EN8bvbrouNrylrTucVkdb')
-playlist_id = '3dJEOULxyXEyDhHZD25W8E'
-#tracks = extract_script.get_songs(10,last_updated) #calling the getSongs function from the extract_script module
-tracks = ['7nycFVsC616uen7TOxhOQb']
-if tracks: #if the getSongs function returns none it means that no new songs have been sent in the chat
-    spot.update_playlist(playlist_id, tracks)   
+    if tracks: #if the getSongs function returns none it means that no new songs have been sent in the chat
+        spot.update_playlist(playlist_id, tracks)
+        conn.update_time_playlist(playlist_id)  
+    else:
+        print('no new songs from playlist')
+        print(last_updated)
 
-else:
-    print('no new songs')
-    print(last_updated)
+conn.close_connection()
