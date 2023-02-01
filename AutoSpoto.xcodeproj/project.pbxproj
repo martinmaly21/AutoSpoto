@@ -19,6 +19,13 @@
 		50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */; };
 		50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */; };
 		50D43F602985EAD5000DC525 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5F2985EAD5000DC525 /* View.swift */; };
+		50D7A416298B333700943731 /* unload_plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A40F298B333700943731 /* unload_plist.sh */; };
+		50D7A417298B333700943731 /* extract_script.py in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A410298B333700943731 /* extract_script.py */; };
+		50D7A418298B333700943731 /* spotipy_example.py in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A411298B333700943731 /* spotipy_example.py */; };
+		50D7A419298B333800943731 /* load_plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A412298B333700943731 /* load_plist.sh */; };
+		50D7A41A298B333800943731 /* com.auto.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A413298B333700943731 /* com.auto.plist */; };
+		50D7A41B298B333800943731 /* spotify_apis.py in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A414298B333700943731 /* spotify_apis.py */; };
+		50D7A41C298B333800943731 /* db.py in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A415298B333700943731 /* db.py */; };
 		50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */; };
 		50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079F2984B6A000BC5864 /* JosefinSansRegular.ttf */; };
 		50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A02984B6A000BC5864 /* JosefinSansSemibold.ttf */; };
@@ -49,6 +56,13 @@
 		50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicStreamingServiceView.swift; sourceTree = "<group>"; };
 		50D43F5D2985EAC9000DC525 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		50D43F5F2985EAD5000DC525 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		50D7A40F298B333700943731 /* unload_plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = unload_plist.sh; sourceTree = "<group>"; };
+		50D7A410298B333700943731 /* extract_script.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = extract_script.py; sourceTree = "<group>"; };
+		50D7A411298B333700943731 /* spotipy_example.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = spotipy_example.py; sourceTree = "<group>"; };
+		50D7A412298B333700943731 /* load_plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_plist.sh; sourceTree = "<group>"; };
+		50D7A413298B333700943731 /* com.auto.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.auto.plist; sourceTree = "<group>"; };
+		50D7A414298B333700943731 /* spotify_apis.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = spotify_apis.py; sourceTree = "<group>"; };
+		50D7A415298B333700943731 /* db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = db.py; sourceTree = "<group>"; };
 		50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThin.ttf; sourceTree = "<group>"; };
 		50DB079F2984B6A000BC5864 /* JosefinSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansRegular.ttf; sourceTree = "<group>"; };
 		50DB07A02984B6A000BC5864 /* JosefinSansSemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansSemibold.ttf; sourceTree = "<group>"; };
@@ -80,6 +94,13 @@
 			isa = PBXGroup;
 			children = (
 				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
+				50D7A413298B333700943731 /* com.auto.plist */,
+				50D7A415298B333700943731 /* db.py */,
+				50D7A410298B333700943731 /* extract_script.py */,
+				50D7A412298B333700943731 /* load_plist.sh */,
+				50D7A414298B333700943731 /* spotify_apis.py */,
+				50D7A411298B333700943731 /* spotipy_example.py */,
+				50D7A40F298B333700943731 /* unload_plist.sh */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -240,15 +261,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D7A41B298B333800943731 /* spotify_apis.py in Resources */,
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
+				50D7A418298B333700943731 /* spotipy_example.py in Resources */,
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
+				50D7A417298B333700943731 /* extract_script.py in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
 				50DB07A92984B6A000BC5864 /* JosefinSansBold.ttf in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
+				50D7A41A298B333800943731 /* com.auto.plist in Resources */,
+				50D7A419298B333800943731 /* load_plist.sh in Resources */,
+				50D7A41C298B333800943731 /* db.py in Resources */,
+				50D7A416298B333700943731 /* unload_plist.sh in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
