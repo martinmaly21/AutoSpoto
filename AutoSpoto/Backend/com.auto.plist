@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>EnvironmentVariables</key>
+        <dict>
+            <key>SPOTIPY_CLIENT_ID</key>
+            <string>some_key</string>
+            <key>SPOTIPY_CLIENT_SECRET</key>
+            <string>some_key</string>
+            <key>SPOTIPY_REDIRECT_URI</key>
+            <string>http://localhost:8888</string>
+        </dict>
+        <key>Label</key>
+        <string>com.auto</string>
+        <key>Program</key>
+        <string>/Users/andrewcaravaggio/SideProjects/songs/spotipy_example.py</string>
+        <key>StartInterval</key>
+        <integer>120</integer>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>StandardErrorPath</key>
+        <string>/Users/andrewcaravaggio/SideProjects/error.txt</string>
+        <key>StandardOutPath</key>
+        <string>/Users/andrewcaravaggio/SideProjects/output.txt</string>
+    </dict>
+</plist>
