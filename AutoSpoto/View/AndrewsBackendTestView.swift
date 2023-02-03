@@ -13,14 +13,14 @@ struct AndrewsBackendTestView: View {
     var body: some View {
         VStack{
             Button(action:{
-                SwiftPythonInterface()
+                AddSongsToPlaylist()
                 showResult.toggle()
             },
                    label:{
                 Text("My Button")
             })
             if showResult{
-                Text(String("\(SwiftPythonInterface())"))
+                Text(String("\(AddSongsToPlaylist())"))
             }
         }
     }
