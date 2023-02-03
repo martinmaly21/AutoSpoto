@@ -24,8 +24,9 @@ def split_it(url_l):
         return results.group()
     return None
 
-def get_songs(chat_id, last_updated):
+def get_songs(chat_id, **kwargs):
 
+    last_updated = kwargs.get('last_updated', None)
 
     conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db')
     cur = conn.cursor()
@@ -48,10 +49,10 @@ def get_songs(chat_id, last_updated):
     
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
     
-
     # The part of the code where we can use the last updated field in the database to sync the playlist
-    houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
-    houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
+    if last_updated:
+        houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
+        houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
 
     spotifyTrackText = 'https://open.spotify.com/track/'
 

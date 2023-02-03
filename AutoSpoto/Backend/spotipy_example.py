@@ -11,9 +11,7 @@ import os
         
 #instatiate spotify class
 spot = spotify_apis.Spotiy()
-
 conn = db.db() #connection to the databse
-
 rows = conn.connection.cursor().execute("Select * From Playlists") #Query the database for records
 rows = rows.fetchall()
 
