@@ -13,14 +13,14 @@ struct AndrewsBackendTestView: View {
     var body: some View {
         VStack{
             Button(action:{
-                AddSongsToPlaylist()
+                CacheSave()
                 showResult.toggle()
             },
                    label:{
                 Text("My Button")
             })
             if showResult{
-                Text(String("\(AddSongsToPlaylist())"))
+                Text(String("\(ViewSingleChat())"))
             }
         }
     }

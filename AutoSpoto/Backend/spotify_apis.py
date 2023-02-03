@@ -45,7 +45,7 @@ class Spotiy:
                     break
                 self.conn.playlist_add_items(playlist_id, tracks[99*i: 99 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
         else:
-            response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
+            self.conn.playlist_add_items(playlist_id, tracks, position=None)
         
         #After the songs are updated we update the time in the last updated column of the database
         db_object.update_time_playlist(playlist_id)

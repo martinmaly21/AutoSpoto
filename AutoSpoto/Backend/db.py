@@ -39,6 +39,7 @@ class db:
     def retrieve_group_chat(self):
         rows = pd.read_sql(("select ROWID as chat_id, display_name from cdb.chat where display_name not like'';"), self.connection)
         rows.dropna(subset=['display_name'], inplace=True)
+        rows = rows.to_json(orient='records')
         return rows
 
     #Here the select before the join is filtering out all of the groupchats.
