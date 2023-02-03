@@ -25,7 +25,7 @@ class Spotiy:
     def create_playlist(self, user_id, name, description, chat_id, db_object):   
 
         response = self.conn.user_playlist_create(user_id, name= name, public=True, collaborative=False, description= description)
-        
+        #if the playlist is succesfully created we will create a record in the sqlite db
         if response['id']:
             db_object.add_playlist(chat_id, response['id'])
         else:

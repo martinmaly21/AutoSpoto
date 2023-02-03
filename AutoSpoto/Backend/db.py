@@ -22,7 +22,7 @@ class db:
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
     def add_playlist(self, chat_id, playlist_id):
-        self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, datetime('1776-07-04') )", (chat_id, playlist_id))
+        self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat_id, playlist_id,None))
         self.connection.commit()
 
     #For the same reason we need to update the row when songs have been uploaded to spotify    
@@ -48,7 +48,7 @@ class db:
     def retrieve_single_chat(self):
         rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from  adb.ZABCDPHONENUMBER right join (SELECT * from cdb.chat where guid not like'%chat%') as temp on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
         rows.dropna(subset=['Phone_Number'], inplace= True)
-        #rows = rows.to_json(orient='records')
+        rows = rows.to_json(orient='records')
         return rows
 
     def close_connection(self):
@@ -57,3 +57,7 @@ class db:
 
 
 
+#conn = db()
+
+#print(conn.retrieve_single_chat())
+#print(conn.retrieve_group_chat())
