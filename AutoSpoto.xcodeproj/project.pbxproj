@@ -39,6 +39,8 @@
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
 		50F34C66297659950059516B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F34C65297659950059516B /* Colors.xcassets */; };
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
+		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
+		92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,7 @@
 		50F34C65297659950059516B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50F34C6729765DC00059516B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndrewsBackendTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +97,6 @@
 		500610F2298ADDBA00A50DA1 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
 				50D7A413298B333700943731 /* com.auto.plist */,
 				50D7A415298B333700943731 /* db.py */,
 				50D7A410298B333700943731 /* extract_script.py */,
@@ -186,6 +189,8 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
+				92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */,
 				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
 				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
 				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
@@ -219,6 +224,9 @@
 			dependencies = (
 			);
 			name = AutoSpoto;
+			packageProductDependencies = (
+				92F05DF7298D894600796C4C /* PythonKit */,
+			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
 			productType = "com.apple.product-type.application";
@@ -247,6 +255,9 @@
 				Base,
 			);
 			mainGroup = 50AA276428C3FE69002FFC3F;
+			packageReferences = (
+				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
+			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -302,6 +313,7 @@
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
 				50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */,
+				92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoSpoto/AutoSpoto.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -456,6 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoSpoto/AutoSpoto.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -500,6 +514,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pvieito/PythonKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		92F05DF7298D894600796C4C /* PythonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */;
+			productName = PythonKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50AA276528C3FE69002FFC3F /* Project object */;
 }

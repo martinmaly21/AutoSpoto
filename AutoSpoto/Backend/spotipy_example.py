@@ -23,8 +23,7 @@ for row in rows:
     tracks = extract_script.get_songs(chat_id,last_updated) #calling the getSongs function from the extract_script module
 
     if tracks: #if the getSongs function returns none it means that no new songs have been sent in the chat
-        spot.update_playlist(playlist_id, tracks)
-        conn.update_time_playlist(playlist_id)  
+        spot.update_playlist(playlist_id, tracks, conn)
     else:
         print('no new songs from playlist')
         print(last_updated)
