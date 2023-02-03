@@ -41,6 +41,7 @@
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 		92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */; };
+		92F05E28298DB04900796C4C /* songs.py in Resources */ = {isa = PBXBuildFile; fileRef = 92F05E27298DB04900796C4C /* songs.py */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		50F34C6729765DC00059516B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndrewsBackendTestView.swift; sourceTree = "<group>"; };
+		92F05E27298DB04900796C4C /* songs.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = songs.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				50D7A410298B333700943731 /* extract_script.py */,
 				50D7A412298B333700943731 /* load_plist.sh */,
 				50D7A414298B333700943731 /* spotify_apis.py */,
+				92F05E27298DB04900796C4C /* songs.py */,
 				50D7A411298B333700943731 /* spotipy_example.py */,
 				50D7A40F298B333700943731 /* unload_plist.sh */,
 			);
@@ -189,8 +192,8 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
 				92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */,
+				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
 				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
 				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
 				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
@@ -279,6 +282,7 @@
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
 				50D7A417298B333700943731 /* extract_script.py in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
+				92F05E28298DB04900796C4C /* songs.py in Resources */,
 				50DB07A92984B6A000BC5864 /* JosefinSansBold.ttf in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,

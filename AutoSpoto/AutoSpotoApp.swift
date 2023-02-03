@@ -26,7 +26,7 @@ struct AutoSpotoApp: App {
             //IF so, show messages UI
             //If not, show OnboardingContainerView
 
-            OnboardingContainerView()
+            AndrewsBackendTestView()
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
                     for window in NSApplication.shared.windows {
                         //hide title bar
