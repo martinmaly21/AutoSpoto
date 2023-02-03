@@ -11,18 +11,28 @@ import Foundation
 
 import PythonKit
 
+//Call this function to sign the user in and save the cache
 
-func SwiftPythonInterface() ->PythonObject{
+func CacheSave()->PythonObject{
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let spotify_api = Python.import("spotify_apis")
+    let user_id = spotify_api.Spotiy().user_id
+    return user_id
+}
+
+func ExtractScript(chat_id: Int) ->PythonObject{
     let sys = Python.import("sys")
     sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
     let file = Python.import("extract_script")
-    let response = file.get_songs(10)
-    return(response)
+    let tracks = file.get_songs(chat_id)
+    return(tracks)
     
     
 }
 
-func AddSongsToPlaylist()->PythonObject{
+//maybe playlist_id can be string. Will need to see what the best way to pass objects/variables between functions
+func AddSongsToPlaylist(playlist_id: PythonObject, tracks: PythonObject)->PythonObject{
     
     let sys = Python.import("sys")
     sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
@@ -30,7 +40,7 @@ func AddSongsToPlaylist()->PythonObject{
     let DB = Python.import("db")
     
     //Hard coded values right now for testing
-    let response = spotify_api.Spotiy().update_playlist("7b4HXoeUVaJtItb3DdmFVD", ["spotify:track:1T1s83GwCXB8aAhqlmhjGM"], DB.db())
+    let response = spotify_api.Spotiy().update_playlist(playlist_id, tracks, DB.db())
     
     DB.db().close_connection()
     print(response)
@@ -39,6 +49,54 @@ func AddSongsToPlaylist()->PythonObject{
    // return(response)
     
 }
+
+func CreatePlaylist(name: String, description: String, chat_id: Int)-> PythonObject{
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let spotify_api = Python.import("spotify_apis")
+    let DB = Python.import("db")
+    let response = spotify_api.Spotiy().create_playlist(spotify_api.Spotiy().user_id, name, description, chat_id, DB.db())
+    
+    DB.db().close_connection()
+    print(response)
+    return(response)
+    
+}
+
+func DeletePlaylist(playlist_id: String){
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let spotify_api = Python.import("spotify_apis")
+    let DB = Python.import("db")
+    spotify_api.Spotiy().current_user_unfollow_playlist(playlist_id, DB.db())
+    DB.db().close_connection()
+}
+
+func ViewGroupChat()->PythonObject{
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let DB = Python.import("db")
+    
+    let response = DB.db().retrieve_group_chat()
+    
+    return response
+}
+
+func ViewSingleChat()->PythonObject{
+    
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let DB = Python.import("db")
+    
+    let response = DB.db().retrieve_single_chat()
+    
+    return response
+    
+}
+
+
+
+
 
 
 //TODO
