@@ -16,7 +16,15 @@ class Spotiy:
 
         self.conn = spotipy.Spotify(auth_manager=auth_manager)
 
-        self.user_id = self.conn.current_user()['id']
+    
+    def login(self):
+
+        user_info = self.conn.current_user()
+        if user_info['id']:
+            return user_info
+        else:
+            raise Exception(response['error'])
+
 
         
     #method that creates a playlist
@@ -28,8 +36,9 @@ class Spotiy:
         #if the playlist is succesfully created we will create a record in the sqlite db
         if response['id']:
             db_object.add_playlist(chat_id, response['id'])
+            return(response['id'], response)
         else:
-            return('error something went wrong')
+            raise Exception(response['error'])
     
     #Updates playlist method
     def update_playlist(self, playlist_id, tracks, db_object):
@@ -41,21 +50,27 @@ class Spotiy:
             num_of_spot_posts = int(len(tracks) / 100) # need to divide list if the tracks are more than 100
             for i in range(num_of_spot_posts+1):
                 if i == (num_of_spot_posts):
-                    self.conn.playlist_add_items(playlist_id, tracks[99*i:], position=None)
+                    response = self.conn.playlist_add_items(playlist_id, tracks[99*i:], position=None)
                     break
                 self.conn.playlist_add_items(playlist_id, tracks[99*i: 99 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
         else:
-            self.conn.playlist_add_items(playlist_id, tracks, position=None)
+            response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
         
         #After the songs are updated we update the time in the last updated column of the database
-        db_object.update_time_playlist(playlist_id)
+        if response['snapshot_id']:
+            db_object.update_time_playlist(playlist_id)
+        else:
+            raise Exception(response['error'])
 
     #Delete playlist
 
     def delete_playlist(self, playlist_id, db_object):
         
         response = self.conn.current_user_unfollow_playlist(playlist_id)
-        db_object.delete_playlist(playlist_id)
-        return response
+        if response is None:
+            db_object.delete_playlist(playlist_id)
+        else:
+            raise Exception(response['error'])
+        
 
     
