@@ -13,11 +13,11 @@ import PythonKit
 
 //Call this function to sign the user in and save the cache
 
-func CacheSave()->PythonObject{
+func Login()->PythonObject{
     let sys = Python.import("sys")
     sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
     let spotify_api = Python.import("spotify_apis")
-    let user_id = spotify_api.Spotiy().user_id
+    let user_id = spotify_api.Spotiy().login()
     return user_id
 }
 
