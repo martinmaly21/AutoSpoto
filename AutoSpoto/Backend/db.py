@@ -31,7 +31,7 @@ class db:
         self.connection.commit()
 
     def delete_playlist(self, playlist_id):
-        self.cursor().execute("DELETE from playlists WHERE playlist_id =?", (playlist_id,))
+        self.connection.cursor().execute("DELETE from playlists WHERE playlist_id =?", (playlist_id,))
         self.connection.commit()
 
     # This is getting all groupchats and their chat ids that have a name
@@ -58,7 +58,7 @@ class db:
 
 
 
-#conn = db()
+conn = db()
 
 #print(conn.retrieve_single_chat())
 #print(conn.retrieve_group_chat())
