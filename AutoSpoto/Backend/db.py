@@ -33,6 +33,12 @@ class db:
     def delete_playlist(self, playlist_id):
         self.connection.cursor().execute("DELETE from playlists WHERE playlist_id =?", (playlist_id,))
         self.connection.commit()
+    
+    def display_playlists(self):
+        rows = pd.read_sql(("Select * From Playlists"), self.connection) #Query the database for records
+        rows = rows.to_json(orient='records')
+        return rows
+
 
     # This is getting all groupchats and their chat ids that have a name
     #The display_name field is blank if there is no name which is what the not like'' is doing
@@ -58,7 +64,6 @@ class db:
 
 
 
-conn = db()
 
 #print(conn.retrieve_single_chat())
 #print(conn.retrieve_group_chat())
