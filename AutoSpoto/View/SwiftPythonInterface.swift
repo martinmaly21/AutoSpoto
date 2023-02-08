@@ -72,6 +72,14 @@ func DeletePlaylist(playlist_id: String){
     DB.db().close_connection()
 }
 
+func DisplayPlaylists() ->PythonObject{
+    let sys = Python.import("sys")
+    sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
+    let DB = Python.import("db")
+    let response = DB.db().display_playlists()
+    return response
+}
+
 func ViewGroupChat()->PythonObject{
     let sys = Python.import("sys")
     sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
