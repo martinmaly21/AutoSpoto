@@ -44,7 +44,7 @@ def get_songs(chat_id, **kwargs):
     chatMessagesJoined = pd.read_sql_query("select chat_id, message_id from chat_message_join", conn)
 
     chatMessagesAndHandlesJoined = pd.merge(messagesAndHandlesJoined, chatMessagesJoined, on = 'message_id', how='left')
-
+   
     houseMusicChat = chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id]
     
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
@@ -60,12 +60,14 @@ def get_songs(chat_id, **kwargs):
     
 
     houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
-    print(houseMusicChat)
     trackIDs = []
 
     for url in houseMusicChat['decoded_blob'].to_numpy():
         path = parse.urlparse(url).path
         trackIDs.append(path.rpartition('/')[2])
 
-    trackIdsWithoutDuplicates = sam_list = list(set(trackIDs)) #No duplicates
+    trackIdsWithoutDuplicates = list(set(trackIDs)) #No duplicates
     return trackIdsWithoutDuplicates
+
+
+print(get_songs(10))
