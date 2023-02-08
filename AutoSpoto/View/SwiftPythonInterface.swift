@@ -17,8 +17,8 @@ func Login()->PythonObject{
     let sys = Python.import("sys")
     sys.path.append("/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/")
     let spotify_api = Python.import("spotify_apis")
-    let user_id = spotify_api.Spotiy().login()
-    return user_id
+    let user_info = spotify_api.Spotiy().login()
+    return user_info
 }
 
 func ExtractScript(chat_id: Int) ->PythonObject{
