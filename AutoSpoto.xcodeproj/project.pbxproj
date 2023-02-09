@@ -34,6 +34,12 @@
 		50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */; };
 		50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */; };
 		50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */; };
+		50DFB9742994A84500E9A3D9 /* spotipy in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9732994A84500E9A3D9 /* spotipy */; };
+		50DFB9762994A8A000E9A3D9 /* requests in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9752994A8A000E9A3D9 /* requests */; };
+		50DFB9782994A8C600E9A3D9 /* urllib3 in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9772994A8C600E9A3D9 /* urllib3 */; };
+		50DFB97A2994A8E600E9A3D9 /* charset_normalizer in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9792994A8E600E9A3D9 /* charset_normalizer */; };
+		50DFB97C2994A90400E9A3D9 /* idna in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB97B2994A90400E9A3D9 /* idna */; };
+		50DFB97E2994A95900E9A3D9 /* certifi in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB97D2994A95900E9A3D9 /* certifi */; };
 		50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
 		50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
@@ -73,6 +79,12 @@
 		50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansBoldItalic.ttf; sourceTree = "<group>"; };
 		50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThinItalic.ttf; sourceTree = "<group>"; };
 		50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansLight.ttf; sourceTree = "<group>"; };
+		50DFB9732994A84500E9A3D9 /* spotipy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spotipy; sourceTree = "<group>"; };
+		50DFB9752994A8A000E9A3D9 /* requests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = requests; sourceTree = "<group>"; };
+		50DFB9772994A8C600E9A3D9 /* urllib3 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = urllib3; sourceTree = "<group>"; };
+		50DFB9792994A8E600E9A3D9 /* charset_normalizer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = charset_normalizer; sourceTree = "<group>"; };
+		50DFB97B2994A90400E9A3D9 /* idna */ = {isa = PBXFileReference; lastKnownFileType = folder; path = idna; sourceTree = "<group>"; };
+		50DFB97D2994A95900E9A3D9 /* certifi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = certifi; sourceTree = "<group>"; };
 		50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoConstants.swift; sourceTree = "<group>"; };
 		50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Strings.swift"; sourceTree = "<group>"; };
 		50F34C63297657DB0059516B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -97,6 +109,12 @@
 		500610F2298ADDBA00A50DA1 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				50DFB97D2994A95900E9A3D9 /* certifi */,
+				50DFB97B2994A90400E9A3D9 /* idna */,
+				50DFB9792994A8E600E9A3D9 /* charset_normalizer */,
+				50DFB9772994A8C600E9A3D9 /* urllib3 */,
+				50DFB9752994A8A000E9A3D9 /* requests */,
+				50DFB9732994A84500E9A3D9 /* spotipy */,
 				50D7A413298B333700943731 /* com.auto.plist */,
 				50D7A415298B333700943731 /* db.py */,
 				50D7A410298B333700943731 /* extract_script.py */,
@@ -272,13 +290,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DFB97E2994A95900E9A3D9 /* certifi in Resources */,
+				50DFB9782994A8C600E9A3D9 /* urllib3 in Resources */,
 				50D7A41B298B333800943731 /* spotify_apis.py in Resources */,
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
+				50DFB9742994A84500E9A3D9 /* spotipy in Resources */,
 				50D7A418298B333700943731 /* spotipy_example.py in Resources */,
+				50DFB97A2994A8E600E9A3D9 /* charset_normalizer in Resources */,
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
 				50D7A417298B333700943731 /* extract_script.py in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
+				50DFB97C2994A90400E9A3D9 /* idna in Resources */,
 				50DB07A92984B6A000BC5864 /* JosefinSansBold.ttf in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
@@ -286,6 +309,7 @@
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50D7A41A298B333800943731 /* com.auto.plist in Resources */,
 				50D7A419298B333800943731 /* load_plist.sh in Resources */,
+				50DFB9762994A8A000E9A3D9 /* requests in Resources */,
 				50D7A41C298B333800943731 /* db.py in Resources */,
 				50D7A416298B333700943731 /* unload_plist.sh in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
