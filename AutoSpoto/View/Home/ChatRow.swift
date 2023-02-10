@@ -37,7 +37,7 @@ struct ChatRow: View {
                 if chat.playlistExists {
                     Image(systemName: "music.note.list")
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(maxWidth: 20, maxHeight: 20)
                         .foregroundColor(.green)
                 }
             }
@@ -46,5 +46,6 @@ struct ChatRow: View {
             Divider()
         }
         .padding([.leading, .trailing], 16)
+        .frame(maxHeight: 80)
     }
 }
