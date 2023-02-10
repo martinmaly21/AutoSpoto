@@ -9,30 +9,32 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var chats: [Chat] = []
-    @Published var chatTracks: [URL] = []
 
     public func fetchChats() {
         //TODO: fetch from SwiftPythonInterface
         self.chats = [
-            Chat(image: "", name: "Family 🏠", chatID: 0, playlistExists: true),
-            Chat(image: "", name: "House music", chatID: 1, playlistExists: true),
-            Chat(image: "", name: "Johnny Sins 👨🏼‍🦲", chatID: 2, playlistExists: true),
-            Chat(image: "", name: "Yerd Yanson", chatID: 3, playlistExists: false),
-            Chat(image: "", name: "Adrian Bilic", chatID: 4, playlistExists: false),
-            Chat(image: "", name: "Andrew Caravaggio", chatID: 5, playlistExists: true),
-            Chat(image: "", name: "Mike Hunt 🍑", chatID: 6, playlistExists: true),
-            Chat(image: "", name: "Alexander Shulgin 🍬", chatID: 7, playlistExists: false),
-            Chat(image: "", name: "Tiger Woods", chatID: 8, playlistExists: false),
-            Chat(image: "", name: "Dad", chatID: 9, playlistExists: true),
-            Chat(image: "", name: "Barney", chatID: 10, playlistExists: true),
-            Chat(image: "", name: "Moby 🐳", chatID: 11, playlistExists: false),
+            Chat(image: "", name: "Family 🏠", id: 0, playlistExists: true),
+            Chat(image: "", name: "House music", id: 1, playlistExists: true),
+            Chat(image: "", name: "Johnny Sins 👨🏼‍🦲", id: 2, playlistExists: true),
+            Chat(image: "", name: "Yerd Yanson", id: 3, playlistExists: false),
+            Chat(image: "", name: "Adrian Bilic", id: 4, playlistExists: false),
+            Chat(image: "", name: "Andrew Caravaggio", id: 5, playlistExists: true),
+            Chat(image: "", name: "Mike Hunt 🍑", id: 6, playlistExists: true),
+            Chat(image: "", name: "Alexander Shulgin 🍬", id: 7, playlistExists: false),
+            Chat(image: "", name: "Tiger Woods", id: 8, playlistExists: false),
+            Chat(image: "", name: "Dad", id: 9, playlistExists: true),
+            Chat(image: "", name: "Barney", id: 10, playlistExists: true),
+            Chat(image: "", name: "Moby 🐳", id: 11, playlistExists: false),
         ]
     }
 
-    public func fetchTracks(for chatID: Int) {
+    public func fetchTracks(for chat: Chat) {
+        var chatToUpdate = chat
+
         //TODO: fetch from SwiftPythonInterface
-        switch chatID {
-        case 0:
+        let chatTracks: [URL]
+        switch chat.id {
+        case 1:
             chatTracks = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/3UyM4nviJQhxibP1O1f5FD?si=251fd138d78f409a")!,
@@ -53,7 +55,7 @@ class HomeViewModel: ObservableObject {
                 URL(string: "https://open.spotify.com/track/1EWsVHU4FNAdtN4R8FETag?si=9832c723114e4c50")!,
                 URL(string: "https://open.spotify.com/track/4PCIUCi6kRm91LRwWYHWYY?si=0c81d6b4a2d2421d")!,
             ]
-        case 1:
+        case 2:
             chatTracks = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/4odwbuSOiv6KEv6uAEZl4x?si=78e5956ac45245f4")!,
@@ -77,5 +79,14 @@ class HomeViewModel: ObservableObject {
         default:
             chatTracks = []
         }
+
+        chatToUpdate.tracks = chatTracks
+
+        guard let chatIndex = chats.firstIndex(of: chat) else {
+            fatalError("Could not get chat index")
+        }
+
+        chats[chatIndex] = chatToUpdate
+        self.chats = chats
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatRow: View {
     let chat: Chat
+    let isSelected: Bool
 
     var body: some View {
         VStack {
@@ -47,5 +48,7 @@ struct ChatRow: View {
         }
         .padding([.leading, .trailing], 16)
         .frame(maxHeight: 80)
+        .contentShape(Rectangle())
+        .background(isSelected ? Color.primaryBlue : Color.clear)
     }
 }

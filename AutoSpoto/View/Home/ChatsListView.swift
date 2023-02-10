@@ -9,12 +9,16 @@ import SwiftUI
 
 struct ChatsListView: View {
     let chats: [Chat]
+    @Binding var selectedChat: Chat?
 
     var body: some View {
         ScrollView {
             VStack {
                 ForEach(chats, id: \.self) { chat in
-                    ChatRow(chat: chat)
+                    ChatRow(chat: chat, isSelected: chat == selectedChat)
+                        .onTapGesture {
+                            selectedChat = chat
+                        }
                 }
             }
         }
