@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct HomeContainerView: View {
+    @StateObject var homeViewModel = HomeViewModel()
+
     var body: some View {
         NavigationView {
-            ChatsListView()
+            ChatsListView(chats: homeViewModel.chats)
 
             ChatView()
         }
-    }
-}
-
-struct HomeContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeContainerView()
+        .onAppear {
+            homeViewModel.fetchChats()
+        }
     }
 }
