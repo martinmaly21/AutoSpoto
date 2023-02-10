@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ChatView: View {
-    var body: some View {
-        Text("ChatView")
-    }
-}
+    @EnvironmentObject var homeViewModel: HomeViewModel
 
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
+    @Binding var selectedChat: Chat?
+
+    var body: some View {
+        if let selectedChat = selectedChat {
+            VStack {
+                ForEach(selectedChat.tracks, id: \.self) { url in
+                    Text(url.absoluteString)
+                }
+            }
+        } else {
+            ProgressView()
+        }
     }
 }
