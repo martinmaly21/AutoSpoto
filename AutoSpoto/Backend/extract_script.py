@@ -59,9 +59,6 @@ def get_songs(chat_id, **kwargs):
     spotifyTrackText = 'https://open.spotify.com/track/'
 
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
-    print(houseMusicChat.columns.tolist())
-
-    
 
     houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
     
@@ -79,4 +76,4 @@ def get_songs(chat_id, **kwargs):
     return trackIdsWithoutDuplicates
 
 
-print(get_songs(10, display_view= True))
+#print(get_songs(10, display_view= True))
