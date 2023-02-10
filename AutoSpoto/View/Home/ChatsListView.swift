@@ -14,7 +14,7 @@ struct ChatsListView: View {
         ScrollView {
             VStack {
                 ForEach(chats, id: \.self) { chat in
-                    Text(chat.name)
+                    ChatRow(chat: chat)
                 }
             }
         }

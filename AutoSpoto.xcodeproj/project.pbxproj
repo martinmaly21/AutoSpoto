@@ -46,6 +46,8 @@
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
 		50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789A2995EE0B002AFC1C /* Chat.swift */; };
 		50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789D2995F092002AFC1C /* HomeViewModel.swift */; };
+		50F178A02995F441002AFC1C /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789F2995F441002AFC1C /* ChatRow.swift */; };
+		50F178A62995FA0F002AFC1C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 50F178A52995FA0F002AFC1C /* Introspect */; };
 		50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
 		50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
@@ -97,6 +99,7 @@
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		50F1789A2995EE0B002AFC1C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		50F1789D2995F092002AFC1C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		50F1789F2995F441002AFC1C /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoConstants.swift; sourceTree = "<group>"; };
 		50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Strings.swift"; sourceTree = "<group>"; };
 		50F34C63297657DB0059516B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
+				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +203,7 @@
 				50F178922995EAFF002AFC1C /* HomeContainerView.swift */,
 				50F178942995ECEB002AFC1C /* ChatsListView.swift */,
 				50F178972995ED11002AFC1C /* ChatView.swift */,
+				50F1789F2995F441002AFC1C /* ChatRow.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			name = AutoSpoto;
 			packageProductDependencies = (
 				92F05DF7298D894600796C4C /* PythonKit */,
+				50F178A52995FA0F002AFC1C /* Introspect */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -325,6 +331,7 @@
 			mainGroup = 50AA276428C3FE69002FFC3F;
 			packageReferences = (
 				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
+				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -374,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,
@@ -596,6 +604,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pvieito/PythonKit";
@@ -607,6 +623,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		50F178A52995FA0F002AFC1C /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		92F05DF7298D894600796C4C /* PythonKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */;
