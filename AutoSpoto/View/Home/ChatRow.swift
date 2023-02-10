@@ -12,39 +12,39 @@ struct ChatRow: View {
 
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment: .center, spacing: 15) {
                 ZStack {
-
                     Image(systemName: "person.crop.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-
                 }
-
                 .frame(width: 60, height: 60)
                 .background(Color.gray)
                 .clipShape(Circle())
 
-                VStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(chat.name)
-                        .font(.josefinSansBold(18))
+                        .font(.josefinSansRegular(18))
                         .foregroundColor(.white)
 
                     Text("18 days ago")
                         .font(.josefinSansLight(18))
-                        .foregroundColor(.white)
-                }
-
-                if chat.playlistExists {
-                    //add indicator that chat is currently tracked
+                        .foregroundColor(.gray)
                 }
 
                 Spacer()
+
+                if chat.playlistExists {
+                    Image(systemName: "music.note.list")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.green)
+                }
             }
             .multilineTextAlignment(.leading)
 
             Divider()
         }
-        .padding()
+        .padding([.leading, .trailing], 16)
     }
 }
