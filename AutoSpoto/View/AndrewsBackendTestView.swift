@@ -13,14 +13,14 @@ struct AndrewsBackendTestView: View {
     var body: some View {
         VStack{
             Button(action:{
-                Login()
+                let _ = SwiftPythonInterface.login()
                 showResult.toggle()
             },
                    label:{
                 Text("My Button")
             })
             if showResult{
-                Text(String("\(ViewSingleChat())"))
+                Text(String("\(SwiftPythonInterface.viewSingleChat())"))
             }
         }
     }
