@@ -12,6 +12,9 @@ struct Chat: Hashable {
     let name: String
     let chatID: Int
 
+    //this indicates whether a playlist already exists for this chat
+    var playlistExists: Bool
+
 //    let mostRecentSongTime?
 //    let mostRecentSong?
 //    let numberOfSongs?

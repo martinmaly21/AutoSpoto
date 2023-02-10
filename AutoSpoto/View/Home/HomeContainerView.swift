@@ -19,5 +19,8 @@ struct HomeContainerView: View {
         .onAppear {
             homeViewModel.fetchChats()
         }
+        .introspectSplitView { controller in
+            (controller.delegate as? NSSplitViewController)?.splitViewItems.first?.canCollapse = false
+        }
     }
 }
