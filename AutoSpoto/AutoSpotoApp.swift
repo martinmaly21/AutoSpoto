@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct AutoSpotoApp: App {
+    let testingHomeView = true
+
     var body: some Scene {
         WindowGroup {
             //TODO: check if user has went through "Onboarding" process
@@ -26,18 +28,22 @@ struct AutoSpotoApp: App {
             //IF so, show messages UI
             //If not, show OnboardingContainerView
 
-            AndrewsBackendTestView()
-                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
-                    for window in NSApplication.shared.windows {
-                        //hide title bar
-                        window.titlebarAppearsTransparent = true
-                        window.titleVisibility = .hidden
+            if testingHomeView {
+                HomeContainerView()
+            } else {
+                AndrewsBackendTestView()
+                    .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
+                        for window in NSApplication.shared.windows {
+                            //hide title bar
+                            window.titlebarAppearsTransparent = true
+                            window.titleVisibility = .hidden
 
-                        //hide minimize (yellow) and expand (green) buttons
-                        window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-                        window.standardWindowButton(.zoomButton)?.isHidden = true
-                    }
-                })
+                            //hide minimize (yellow) and expand (green) buttons
+                            window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+                            window.standardWindowButton(.zoomButton)?.isHidden = true
+                        }
+                    })
+            }
         }
         //disable resizing of the window
         .windowResizability(.contentSize)
