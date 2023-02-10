@@ -9,6 +9,7 @@ import re
 import os
 
 
+
 #Helper function for decoding blob located withing the attributedBody column in chat.db
 def split_it(url_l):
 
@@ -27,6 +28,7 @@ def split_it(url_l):
 def get_songs(chat_id, **kwargs):
 
     last_updated = kwargs.get('last_updated', None)
+    display_view = kwargs.get('display_view', None)
 
     conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db')
     cur = conn.cursor()
@@ -53,13 +55,20 @@ def get_songs(chat_id, **kwargs):
     if last_updated:
         houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
         houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
-
+   
     spotifyTrackText = 'https://open.spotify.com/track/'
 
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
+    print(houseMusicChat.columns.tolist())
+
     
 
     houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
+    
+    if display_view:
+        return(houseMusicChat[['decoded_blob', 'date_utc']])
+        
+
     trackIDs = []
 
     for url in houseMusicChat['decoded_blob'].to_numpy():
@@ -70,4 +79,4 @@ def get_songs(chat_id, **kwargs):
     return trackIdsWithoutDuplicates
 
 
-print(get_songs(10))
+print(get_songs(10, display_view= True))
