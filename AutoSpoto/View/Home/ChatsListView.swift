@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct ChatsListView: View {
+    let chats: [Chat]
+
     var body: some View {
-        Text("ChatsListView")
+        ScrollView {
+            VStack {
+                ForEach(chats, id: \.self) { chat in
+                    Text(chat.name)
+                }
+            }
+        }
     }
 }
