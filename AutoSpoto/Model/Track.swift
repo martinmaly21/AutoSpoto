@@ -41,21 +41,9 @@ class Track: Hashable {
             }
 
             title = og[.title]
-            artist = og[.musicCreator]
-
-            /*
-             case musicDuration    = "music:duration"
-             case musicAlbum       = "music:album"
-             case musicAlbumDisc   = "music:album:disc"
-             case musicAlbumMusic  = "music:album:track"
-             case musicMusician    = "music:musician"
-             case musicSong        = "music:song"
-             case musicSongDisc    = "music:song:disc"
-             case musicSongTrack   = "music:song:track"
-             case musicReleaseDate = "music:release_date"
-             case musicCreator     = "music:creator"
-             */
-        } catch {
+            artist = og[.description]
+        } catch let error {
+            print("Error: \(error)")
             isFetchingMetadata = false
             errorFetchingMetadata = true
         }

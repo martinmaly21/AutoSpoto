@@ -22,6 +22,9 @@ struct Chat: Hashable {
 
     var tracks: [Track] = []
 
+    var tracksAreBeingFetched = false
+    var tracksHaveBeenFetched = false
+
     var displayName: String {
         switch type {
         case .individual(let firstName, let lastName):
@@ -41,6 +44,22 @@ struct Chat: Hashable {
                 fatalError("Group chat has no name")
             }
         }
+    }
+
+    mutating func fetchTracks() async {
+        guard !tracksHaveBeenFetched && !tracksAreBeingFetched else { return }
+
+        tracksAreBeingFetched = true
+
+        //this allows all of these tasks to be run in parallel
+        await withTaskGroup(of: Void.self) { group in
+            for track in tracks {
+                group.addTask { await track.getTrackMetadata() }
+            }
+        }
+
+        tracksHaveBeenFetched = true
+        tracksAreBeingFetched = false
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {

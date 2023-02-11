@@ -116,5 +116,10 @@ extension AutoSpotoConstants.Strings {
         comment: "Text displayed when there's an error fetching metadata for a track"
     )
 
+    static let NO_TRACKS_EMPTY_STATE = NSLocalizedString(
+        "NO_TRACKS_EMPTY_STATE",
+        value: "This chat does not appear to have any tracks yet",
+        comment: "Text displayed when a chat has no tracks yet"
+    )
 }
 
