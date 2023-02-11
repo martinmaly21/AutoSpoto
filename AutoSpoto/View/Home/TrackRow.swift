@@ -30,12 +30,15 @@ struct TrackRow: View {
                         content: { image in
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(maxWidth: 60, maxHeight: 60)
+                                .frame(width: 60, height: 60)
                                 .background(Color.gray)
                                 .cornerRadius(12)
                         },
                         placeholder: {
                             ProgressView()
+                                .frame(width: 60, height: 60)
+                                .background(Color.gray)
+                                .cornerRadius(12)
                         }
                     )
 
