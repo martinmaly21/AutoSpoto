@@ -48,6 +48,7 @@
 		50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789D2995F092002AFC1C /* HomeViewModel.swift */; };
 		50F178A02995F441002AFC1C /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789F2995F441002AFC1C /* ChatRow.swift */; };
 		50F178A62995FA0F002AFC1C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 50F178A52995FA0F002AFC1C /* Introspect */; };
+		50F178A829960B40002AFC1C /* TrackRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178A729960B40002AFC1C /* TrackRow.swift */; };
 		50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
 		50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
@@ -100,6 +101,7 @@
 		50F1789A2995EE0B002AFC1C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		50F1789D2995F092002AFC1C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		50F1789F2995F441002AFC1C /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		50F178A729960B40002AFC1C /* TrackRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRow.swift; sourceTree = "<group>"; };
 		50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoConstants.swift; sourceTree = "<group>"; };
 		50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Strings.swift"; sourceTree = "<group>"; };
 		50F34C63297657DB0059516B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				50F178942995ECEB002AFC1C /* ChatsListView.swift */,
 				50F178972995ED11002AFC1C /* ChatView.swift */,
 				50F1789F2995F441002AFC1C /* ChatRow.swift */,
+				50F178A729960B40002AFC1C /* TrackRow.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
+				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
