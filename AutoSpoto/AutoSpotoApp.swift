@@ -47,5 +47,7 @@ struct AutoSpotoApp: App {
         }
         //disable resizing of the window
         .windowResizability(.contentSize)
+        .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
+        .windowStyle(HiddenTitleBarWindowStyle())
     }
 }

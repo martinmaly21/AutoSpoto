@@ -121,5 +121,11 @@ extension AutoSpotoConstants.Strings {
         value: "This chat does not appear to have any tracks yet",
         comment: "Text displayed when a chat has no tracks yet"
     )
+
+    static let NUMBER_OF_SONGS = NSLocalizedString(
+        "NUMBER_OF_SONGS",
+        value: "%d songs",
+        comment: "Number of songs in the chat"
+    )
 }
 
