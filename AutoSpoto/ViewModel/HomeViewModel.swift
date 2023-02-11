@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class HomeViewModel: ObservableObject {
     @Published var chats: [Chat] = []
 
@@ -88,14 +89,14 @@ class HomeViewModel: ObservableObject {
         ]
     }
 
-    public func fetchTracks(for chat: Chat) {
+    public func fetchTracks(for chat: Chat) async {
         var chatToUpdate = chat
 
         //TODO: fetch from SwiftPythonInterface
-        let chatTracks: [URL]
+        let chatTrackURLs: [URL]
         switch chat.id {
         case 0:
-            chatTracks = [
+            chatTrackURLs = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/3UyM4nviJQhxibP1O1f5FD?si=251fd138d78f409a")!,
                 URL(string: "https://open.spotify.com/track/6cB6vtflgNQYaC8JDrxUps?si=e8efcdf2a404420c")!,
@@ -116,7 +117,7 @@ class HomeViewModel: ObservableObject {
                 URL(string: "https://open.spotify.com/track/4PCIUCi6kRm91LRwWYHWYY?si=0c81d6b4a2d2421d")!,
             ]
         case 1:
-            chatTracks = [
+            chatTrackURLs = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/4odwbuSOiv6KEv6uAEZl4x?si=78e5956ac45245f4")!,
                 URL(string: "https://open.spotify.com/track/6SiDlN4LfZNqm9ZrWHltrO?si=7ea2a82498604dd1")!,
@@ -137,11 +138,22 @@ class HomeViewModel: ObservableObject {
                 URL(string: "https://open.spotify.com/track/1YzEaZWQHeEGAQADZFA1of?si=2619369cfd344986")!,
             ]
         default:
-            chatTracks = []
+            chatTrackURLs = []
         }
 
-        chatToUpdate.tracks = chatTracks
+        chatToUpdate.tracks = chatTrackURLs.map { Track(url: $0, timeStamp: 0)}
 
+        updateChats(chat: chat, chatToUpdate: chatToUpdate)
+
+        for track in chatToUpdate.tracks {
+            await track.getTrackMetadata()
+        }
+
+        updateChats(chat: chat, chatToUpdate: chatToUpdate)
+    }
+
+
+    private func updateChats(chat: Chat, chatToUpdate: Chat) {
         guard let chatIndex = chats.firstIndex(of: chat) else {
             fatalError("Could not get chat index")
         }

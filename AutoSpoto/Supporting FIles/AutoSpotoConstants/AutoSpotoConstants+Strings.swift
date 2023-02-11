@@ -97,5 +97,24 @@ extension AutoSpotoConstants.Strings {
         value: "Create playlist",
         comment: "Title for button to allow the user to create a playlist from a group chat"
     )
+
+    static let TRACK_NAME_METADATA_PLACEHOLDER = NSLocalizedString(
+        "TRACK_NAME",
+        value: "Track Name",
+        comment: "Placeholder for track name metadata"
+    )
+
+    static let TRACK_ARTIST_METADATA_PLACEHOLDER = NSLocalizedString(
+        "TRACK_ARTIST",
+        value: "Track Artist",
+        comment: "Placeholder for tracka artist metadata"
+    )
+
+    static let ERROR_FETCHING_TRACK_METADATA = NSLocalizedString(
+        "ERROR_FETCHING_TRACK_METADATA",
+        value: "Error fetching track information for: %@",
+        comment: "Text displayed when there's an error fetching metadata for a track"
+    )
+
 }
 
