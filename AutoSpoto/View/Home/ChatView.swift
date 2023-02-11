@@ -40,7 +40,7 @@ struct ChatView: View {
                                     }
 
                                     Spacer()
-                                        .frame(height: bottomPadding + buttonHeight + 16)
+                                        .frame(height: bottomPadding + buttonHeight + 30)
                                         .id(bottomID)
                                 }
                                 .frame(minHeight: proxy.size.height)
