@@ -40,6 +40,17 @@ struct ChatsListView: View {
                     .padding(.bottom, 10)
 
                 Spacer()
+
+                Button(
+                    action: {
+                        //TODO: fetch chats
+                    },
+                    label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                )
+                .frame(width: 30, height: 30)
+                .padding(.trailing, 18)
             }
             .background(.ultraThinMaterial)
         }
