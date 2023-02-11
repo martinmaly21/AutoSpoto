@@ -16,7 +16,7 @@ struct ChatView: View {
     var body: some View {
         let bottomPadding: CGFloat = 25
         let buttonHeight: CGFloat = 40
-        let heightOfToolbar: CGFloat = 30
+        let heightOfToolbar: CGFloat = 80
 
         if let selectedChat = selectedChat {
             ZStack(alignment: .top) {
@@ -81,16 +81,16 @@ struct ChatView: View {
                     }
                 }
 
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 14) {
                     Image(systemName: "person.crop.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 35, height: 35)
+                        .frame(width: 45, height: 45)
                         .background(Color.gray)
                         .clipShape(Circle())
 
                     Text(selectedChat.displayName)
-                        .font(.josefinSansRegular(18))
+                        .font(.josefinSansRegular(20))
                         .foregroundColor(.white)
 
                     Spacer()
