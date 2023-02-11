@@ -13,18 +13,78 @@ class HomeViewModel: ObservableObject {
     public func fetchChats() {
         //TODO: fetch from SwiftPythonInterface
         self.chats = [
-            Chat(image: "", name: "Family 🏠", id: 0, playlistExists: true),
-            Chat(image: "", name: "House music", id: 1, playlistExists: true),
-            Chat(image: "", name: "Johnny Sins 👨🏼‍🦲", id: 2, playlistExists: true),
-            Chat(image: "", name: "Yerd Yanson", id: 3, playlistExists: false),
-            Chat(image: "", name: "Adrian Bilic", id: 4, playlistExists: false),
-            Chat(image: "", name: "Andrew Caravaggio", id: 5, playlistExists: true),
-            Chat(image: "", name: "Mike Hunt 🍑", id: 6, playlistExists: true),
-            Chat(image: "", name: "Alexander Shulgin 🍬", id: 7, playlistExists: false),
-            Chat(image: "", name: "Tiger Woods", id: 8, playlistExists: false),
-            Chat(image: "", name: "Dad", id: 9, playlistExists: true),
-            Chat(image: "", name: "Barney", id: 10, playlistExists: true),
-            Chat(image: "", name: "Moby 🐳", id: 11, playlistExists: false),
+            Chat(
+                type: .group(name: "Family 🏠"),
+                image: "",
+                id: 0,
+                playlistExists: true
+            ),
+            Chat(
+                type: .group(name: "House music"),
+                image: "",
+                id: 1,
+                playlistExists: true
+            ),
+            Chat(
+                type: .individual(firstName: "Johnny", lastName: "Sins"),
+                image: "",
+                id: 2,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Yerd", lastName: "Yanson"),
+                image: "",
+                id: 3,
+                playlistExists: true
+            ),
+            Chat(
+                type: .individual(firstName: "Andrew", lastName: "Caravaggio"),
+                image: "",
+                id: 4,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Adrian", lastName: "Bilic"),
+                image: "",
+                id: 5,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Mike", lastName: "Hunt 🍑"),
+                image: "",
+                id: 6,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Alexander", lastName: "Shulgin 🍬"),
+                image: "",
+                id: 7,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Tiger", lastName: "Woods"),
+                image: "",
+                id: 8,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Dad", lastName: nil),
+                image: "",
+                id: 9,
+                playlistExists: false
+            ),
+            Chat(
+                type: .individual(firstName: "Barney", lastName: "Maly 🐶"),
+                image: "",
+                id: 10,
+                playlistExists: false
+            ),
+            Chat(
+                type: .group(name: "Colombia Crew"),
+                image: "",
+                id: 11,
+                playlistExists: false
+            )
         ]
     }
 
@@ -34,7 +94,7 @@ class HomeViewModel: ObservableObject {
         //TODO: fetch from SwiftPythonInterface
         let chatTracks: [URL]
         switch chat.id {
-        case 1:
+        case 0:
             chatTracks = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/3UyM4nviJQhxibP1O1f5FD?si=251fd138d78f409a")!,
@@ -55,7 +115,7 @@ class HomeViewModel: ObservableObject {
                 URL(string: "https://open.spotify.com/track/1EWsVHU4FNAdtN4R8FETag?si=9832c723114e4c50")!,
                 URL(string: "https://open.spotify.com/track/4PCIUCi6kRm91LRwWYHWYY?si=0c81d6b4a2d2421d")!,
             ]
-        case 2:
+        case 1:
             chatTracks = [
                 URL(string: "https://open.spotify.com/track/786ymAh5BmHoIpvjyrvjXk?si=803ddae92ebb468a")!,
                 URL(string: "https://open.spotify.com/track/4odwbuSOiv6KEv6uAEZl4x?si=78e5956ac45245f4")!,

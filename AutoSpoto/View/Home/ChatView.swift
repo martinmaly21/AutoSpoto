@@ -14,9 +14,11 @@ struct ChatView: View {
 
     var body: some View {
         if let selectedChat = selectedChat {
-            VStack {
-                ForEach(selectedChat.tracks, id: \.self) { url in
-                    Text(url.absoluteString)
+            ScrollView {
+                VStack {
+                    ForEach(selectedChat.tracks, id: \.self) { url in
+                        TrackRow(track: url)
+                    }
                 }
             }
         } else {

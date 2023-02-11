@@ -24,7 +24,7 @@ struct ChatRow: View {
                 .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(chat.name)
+                    Text(chat.displayName)
                         .font(.josefinSansRegular(18))
                         .foregroundColor(.white)
 
