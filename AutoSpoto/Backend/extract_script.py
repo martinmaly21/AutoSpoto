@@ -7,7 +7,7 @@ import numpy as np
 from urllib import parse
 import re
 import os
-
+import json
 
 
 #Helper function for decoding blob located withing the attributedBody column in chat.db
@@ -19,7 +19,7 @@ def split_it(url_l):
         
     url_l = url_l.decode("utf-8", "ignore")
     url_l = ''.join(url_l.split())
-    results =  re.search('https.+?(?=[?])', url_l)
+    results =  re.search('https[^=]+=', url_l)
 
     if results != None:
         return results.group()
@@ -57,15 +57,13 @@ def get_songs(chat_id, **kwargs):
         houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
    
     spotifyTrackText = 'https://open.spotify.com/track/'
-
+    
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
-
     houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
     
     if display_view:
-        return(houseMusicChat[['decoded_blob', 'date_utc']])
-        
-
+        return(houseMusicChat[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
+    
     trackIDs = []
 
     for url in houseMusicChat['decoded_blob'].to_numpy():
@@ -74,6 +72,3 @@ def get_songs(chat_id, **kwargs):
 
     trackIdsWithoutDuplicates = list(set(trackIDs)) #No duplicates
     return trackIdsWithoutDuplicates
-
-
-#print(get_songs(10, display_view= True))
