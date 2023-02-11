@@ -18,7 +18,7 @@ struct ChatsListView: View {
             ScrollView {
                 Spacer()
                     .frame(height: topInset)
-                VStack {
+                VStack(spacing: 0) {
                     ForEach(chats, id: \.self) { chat in
                         ChatRow(chat: chat, isSelected: chat == selectedChat)
                             .onTapGesture {

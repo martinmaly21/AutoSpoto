@@ -12,7 +12,7 @@ struct ChatRow: View {
     let isSelected: Bool
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 15) {
                 ZStack {
                     Image(systemName: "person.crop.circle")
@@ -38,17 +38,18 @@ struct ChatRow: View {
                 if chat.playlistExists {
                     Image(systemName: "music.note.list")
                         .resizable()
-                        .frame(maxWidth: 20, maxHeight: 20)
+                        .frame(width: 20, height: 20)
+                        .aspectRatio(contentMode: .fit)
                         .foregroundColor(.green)
                 }
             }
             .multilineTextAlignment(.leading)
-
-            Divider()
+            .padding([.leading, .trailing], 16)
+            .padding([.top, .bottom], 15)
         }
-        .padding([.leading, .trailing], 16)
         .frame(maxHeight: 80)
         .contentShape(Rectangle())
         .background(isSelected ? Color.primaryBlue : Color.clear)
+        .cornerRadius(6)
     }
 }
