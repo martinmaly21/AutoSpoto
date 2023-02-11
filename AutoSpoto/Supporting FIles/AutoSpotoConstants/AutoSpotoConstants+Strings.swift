@@ -91,5 +91,11 @@ extension AutoSpotoConstants.Strings {
         value: "Connect with Apple Music",
         comment: "Title for button to allow the user to connect to Apple Music"
     )
+
+    static let CREATE_PLAYLIST = NSLocalizedString(
+        "CREATE_PLAYLIST",
+        value: "Create playlist",
+        comment: "Title for button to allow the user to create a playlist from a group chat"
+    )
 }
 
