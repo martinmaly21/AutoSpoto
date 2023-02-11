@@ -20,7 +20,7 @@ struct Chat: Hashable {
     //this indicates whether a playlist already exists for this chat
     var playlistExists: Bool
 
-    var tracks: [URL] = []
+    var tracks: [Track] = []
 
     var displayName: String {
         switch type {

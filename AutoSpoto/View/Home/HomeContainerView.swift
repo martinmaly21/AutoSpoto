@@ -29,7 +29,9 @@ struct HomeContainerView: View {
             of: selectedChat,
             perform: { _ in
                 if let selectedChat = selectedChat {
-                    homeViewModel.fetchTracks(for: selectedChat)
+                    Task {
+                        await homeViewModel.fetchTracks(for: selectedChat)
+                    }
                 }
             }
         )

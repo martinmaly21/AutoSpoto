@@ -11,6 +11,8 @@
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50C1790A29980D68009CD58F /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 50C1790929980D68009CD58F /* OpenGraph */; };
+		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -65,6 +67,7 @@
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
+		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessIntroductionView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
+				50C1790A29980D68009CD58F /* OpenGraph in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				50F1789A2995EE0B002AFC1C /* Chat.swift */,
+				50C1790B29980ED8009CD58F /* Track.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			packageProductDependencies = (
 				92F05DF7298D894600796C4C /* PythonKit */,
 				50F178A52995FA0F002AFC1C /* Introspect */,
+				50C1790929980D68009CD58F /* OpenGraph */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -335,6 +341,7 @@
 			packageReferences = (
 				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -395,6 +402,7 @@
 				50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */,
 				50F34C6829765DC00059516B /* Font.swift in Sources */,
 				50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */,
+				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
@@ -608,6 +616,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/satoshi-takano/OpenGraph";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -627,6 +643,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		50C1790929980D68009CD58F /* OpenGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */;
+			productName = OpenGraph;
+		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
