@@ -137,6 +137,12 @@ class HomeViewModel: ObservableObject {
                 URL(string: "https://open.spotify.com/track/1WsHKAuN9vDthcmimdqqaY?si=4f04137a124e47e2")!,
                 URL(string: "https://open.spotify.com/track/1YzEaZWQHeEGAQADZFA1of?si=2619369cfd344986")!,
             ]
+        case 2:
+            chatTrackURLs = [
+                URL(string: "https://open.spotify.com/track/5ih10ZfcZ2J0tml5xaKsZR?si=b4382f6f42e2441b")!,
+                URL(string: "https://open.spotify.com/track/1WsHKAuN9vDthcmimdqqaY?si=4f04137a124e47e2")!,
+                URL(string: "https://open.spotify.com/track/1YzEaZWQHeEGAQADZFA1of?si=2619369cfd344986")!,
+            ]
         default:
             chatTrackURLs = []
         }
@@ -145,9 +151,7 @@ class HomeViewModel: ObservableObject {
 
         updateChats(chat: chat, chatToUpdate: chatToUpdate)
 
-        for track in chatToUpdate.tracks {
-            await track.getTrackMetadata()
-        }
+        await chatToUpdate.fetchTracks()
 
         updateChats(chat: chat, chatToUpdate: chatToUpdate)
     }

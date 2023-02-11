@@ -22,6 +22,7 @@ struct TrackRow: View {
                 Text(errorString)
                     .font(.josefinSansRegular(18))
                     .foregroundColor(.red)
+                    .fixedSize(horizontal: false, vertical: true)
             } else {
                 HStack(alignment: .center, spacing: 15) {
                     AsyncImage(
