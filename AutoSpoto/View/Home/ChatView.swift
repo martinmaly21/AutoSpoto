@@ -55,19 +55,19 @@ struct ChatView: View {
                                     }
                                     .frame(minHeight: proxy.size.height)
                                 }
-                                .introspectScrollView { scrollView in
-                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)
-                                }
-
-                                .frame(width: proxy.size.width)
                                 .onChange(
-                                    of: selectedChat,
+                                    of: homeViewModel.isFetchingChats,
                                     perform: { _ in
+                                        print("Testing")
                                         //may need to change this when track fetching is async
                                         //since the number of chats won't be determined until the query is finished
                                         reader.scrollTo(bottomID)
                                     }
                                 )
+                                .frame(width: proxy.size.width)
+                                .introspectScrollView { scrollView in
+                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)
+                                }
                             }
 
                             Button(
