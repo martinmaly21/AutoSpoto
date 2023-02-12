@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 class HomeViewModel: ObservableObject {
     @Published var chats: [Chat] = []
-    @Published var selectedChat: Chat?
+    @Published var selectedChatIndex: Int?
 
     public func fetchChats() {
         //TODO: fetch from SwiftPythonInterface
@@ -89,7 +89,7 @@ class HomeViewModel: ObservableObject {
             )
         ]
 
-        selectedChat = chats.first
+        selectedChatIndex = 0
     }
 
     public func fetchTracks(for chat: Chat) async {
@@ -167,6 +167,5 @@ class HomeViewModel: ObservableObject {
 
         chats[chatIndex] = chatToUpdate
         self.chats = chats
-        self.selectedChat = chatToUpdate
     }
 }

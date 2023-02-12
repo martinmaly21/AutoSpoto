@@ -16,7 +16,8 @@ struct ChatView: View {
         let buttonHeight: CGFloat = 40
         let heightOfToolbar: CGFloat = 80
 
-        if let selectedChat = homeViewModel.selectedChat {
+        if let selectedChatIndex = homeViewModel.selectedChatIndex {
+            let selectedChat = homeViewModel.chats[selectedChatIndex]
             ZStack(alignment: .center) {
                 if selectedChat.tracks.isEmpty && selectedChat.tracksHaveBeenFetched {
                     VStack(spacing: 20) {

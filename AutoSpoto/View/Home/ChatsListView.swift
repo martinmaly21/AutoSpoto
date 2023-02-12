@@ -18,10 +18,11 @@ struct ChatsListView: View {
                 Spacer()
                     .frame(height: topInset)
                 VStack(spacing: 0) {
-                    ForEach(homeViewModel.chats, id: \.self) { chat in
-                        ChatRow(chat: chat, isSelected: chat == homeViewModel.selectedChat)
+                    ForEach(homeViewModel.chats.indices, id: \.self) { index in
+                        let chat = homeViewModel.chats[index]
+                        ChatRow(chat: chat, isSelected: index == homeViewModel.selectedChatIndex)
                             .onTapGesture {
-                                homeViewModel.selectedChat = chat
+                                homeViewModel.selectedChatIndex = index
                             }
                     }
                 }

@@ -20,9 +20,10 @@ struct HomeContainerView: View {
             homeViewModel.fetchChats()
         }
         .onChange(
-            of: homeViewModel.selectedChat,
+            of: homeViewModel.selectedChatIndex,
             perform: { _ in
-                if let selectedChat = homeViewModel.selectedChat {
+                if let selectedChatIndex = homeViewModel.selectedChatIndex {
+                    let selectedChat = homeViewModel.chats[selectedChatIndex]
                     Task {
                         await homeViewModel.fetchTracks(for: selectedChat)
                     }
