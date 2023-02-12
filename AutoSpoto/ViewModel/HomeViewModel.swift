@@ -17,6 +17,8 @@ class HomeViewModel: ObservableObject {
 
     @Published var filterSelection: FilterChatType = .individual
 
+    @Published var scrollToBottom = false
+
     var selectedChatIndex: Int? {
         get {
             switch filterSelection {
@@ -34,6 +36,8 @@ class HomeViewModel: ObservableObject {
             case .group:
                 selectedGroupChatIndex = newValue
             }
+
+            scrollToBottom = true
         }
     }
 
