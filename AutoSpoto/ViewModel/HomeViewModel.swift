@@ -167,5 +167,6 @@ class HomeViewModel: ObservableObject {
 
         chats[chatIndex] = chatToUpdate
         self.chats = chats
+        self.selectedChat = chatToUpdate
     }
 }
