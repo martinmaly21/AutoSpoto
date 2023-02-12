@@ -44,6 +44,7 @@ class Track: Hashable {
                 case .failure(let failure):
                     print("Error: \(failure.localizedDescription)")
                     self.errorFetchingMetadata = true
+                    completion(self)
                 case .success(let og):
                     if let imageURLString = og[.image] {
                         self.imageURL = URL(string: imageURLString)
