@@ -47,7 +47,9 @@ struct ChatsListView: View {
 
                     Button(
                         action: {
-                            //TODO: fetch chats
+                            Task {
+                               await homeViewModel.resetModel()
+                            }
                         },
                         label: {
                             Image(systemName: "arrow.clockwise")
