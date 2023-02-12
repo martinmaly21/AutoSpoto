@@ -17,7 +17,9 @@ struct HomeContainerView: View {
         }
         .environmentObject(homeViewModel)
         .onAppear {
-            homeViewModel.fetchChats()
+            Task {
+                await homeViewModel.fetchChats()
+            }
         }
         .onChange(
             of: homeViewModel.selectedChatIndex,
