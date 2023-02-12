@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChooseMusicStreamingServiceView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
+
+    @State private var showSpotifyLoginSheet: Bool = false
     
     var body: some View {
         VStack {
@@ -19,7 +21,7 @@ struct ChooseMusicStreamingServiceView: View {
 
             VStack(spacing: 12) {
                 Button {
-                    print("pressed spotify")
+                    showSpotifyLoginSheet = true
                 } label: {
                     HStack {
                         Image("spotify-logo")
@@ -71,5 +73,11 @@ struct ChooseMusicStreamingServiceView: View {
                 elementTransitionOpacity = 1
             }
         }
+        .sheet(
+            isPresented: $showSpotifyLoginSheet,
+            content: {
+                SpotifyLoginView(isVisible: $showSpotifyLoginSheet)
+            }
+        )
     }
 }

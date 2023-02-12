@@ -11,6 +11,8 @@
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
+		5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */; };
+		5069BF6F2999AC24007F4037 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6E2999AC24007F4037 /* WebView.swift */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
@@ -68,6 +70,8 @@
 		500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPythonInterface.swift; sourceTree = "<group>"; };
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
 		5069BF6929999504007F4037 /* FilterChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChatType.swift; sourceTree = "<group>"; };
+		5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginView.swift; sourceTree = "<group>"; };
+		5069BF6E2999AC24007F4037 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,14 @@
 			path = Backend;
 			sourceTree = "<group>";
 		};
+		5069BF6D2999AC0A007F4037 /* NSViewRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				5069BF6E2999AC24007F4037 /* WebView.swift */,
+			);
+			path = NSViewRepresentable;
+			sourceTree = "<group>";
+		};
 		50AA276428C3FE69002FFC3F = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +219,7 @@
 				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
 				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
 				50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */,
+				5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -282,6 +295,7 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5069BF6D2999AC0A007F4037 /* NSViewRepresentable */,
 				50F34C8F297662B00059516B /* View Modifiers */,
 				92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */,
 				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
@@ -423,6 +437,7 @@
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
+				5069BF6F2999AC24007F4037 /* WebView.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
@@ -431,6 +446,7 @@
 				50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */,
 				92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
+				5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
