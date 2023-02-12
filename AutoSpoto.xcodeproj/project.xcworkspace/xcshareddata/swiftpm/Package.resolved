@@ -1,12 +1,39 @@
 {
   "pins" : [
     {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "branch" : "master",
+        "revision" : "2db469112fbcfd83ff0a96c4546772d283f317f5"
+      }
+    },
+    {
+      "identity" : "opengraph",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/satoshi-takano/OpenGraph",
+      "state" : {
+        "revision" : "3ef2b8b9b4972b57e9e78c91c26be770c0110057",
+        "version" : "1.5.0"
+      }
+    },
+    {
       "identity" : "pythonkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pvieito/PythonKit",
       "state" : {
         "branch" : "master",
         "revision" : "060e1c8b0d14e4d241b3623fdbe83d0e3c81a993"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect",
+      "state" : {
+        "branch" : "master",
+        "revision" : "63a079f102964a6987eaaf70f8fdc39b84feeece"
       }
     }
   ],

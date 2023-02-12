@@ -91,5 +91,77 @@ extension AutoSpotoConstants.Strings {
         value: "Connect with Apple Music",
         comment: "Title for button to allow the user to connect to Apple Music"
     )
+
+    static let CREATE_PLAYLIST = NSLocalizedString(
+        "CREATE_PLAYLIST",
+        value: "Create playlist",
+        comment: "Title for button to allow the user to create a playlist from a group chat"
+    )
+
+    static let TRACK_NAME_METADATA_PLACEHOLDER = NSLocalizedString(
+        "TRACK_NAME",
+        value: "Track Name",
+        comment: "Placeholder for track name metadata"
+    )
+
+    static let TRACK_ARTIST_METADATA_PLACEHOLDER = NSLocalizedString(
+        "TRACK_ARTIST",
+        value: "Track Artist",
+        comment: "Placeholder for tracka artist metadata"
+    )
+
+    static let ERROR_FETCHING_TRACK_METADATA = NSLocalizedString(
+        "ERROR_FETCHING_TRACK_METADATA",
+        value: "Error fetching track information for: %@",
+        comment: "Text displayed when there's an error fetching metadata for a track"
+    )
+
+    static let NO_TRACKS_EMPTY_STATE = NSLocalizedString(
+        "NO_TRACKS_EMPTY_STATE",
+        value: "This chat does not appear to have any tracks yet",
+        comment: "Text displayed when a chat has no tracks yet"
+    )
+
+    static let NUMBER_OF_TRACKS = NSLocalizedString(
+        "NUMBER_OF_SONGS",
+        value: "%d tracks",
+        comment: "Number of tracks in the chat"
+    )
+
+    static let ENTER_PLAYLIST_DETAILS = NSLocalizedString(
+        "ENTER_PLAYLIST_DETAILS",
+        value: "Enter details for your playlist",
+        comment: "Prompt for user to enter details about their plylist"
+    )
+
+    static let ENTER_PLAYLIST_NAME = NSLocalizedString(
+        "ENTER_PLAYLIST_NAME",
+        value: "Enter your playlist name",
+        comment: "Prompt for user to enter playlist name"
+    )
+
+    static let PLAYLIST_PLACEHOLDER_NAME = NSLocalizedString(
+        "PLAYLIST_PLACEHOLDER_NAME",
+        value: "My playlist",
+        comment: "Placeholder name for playlist"
+    )
+
+    static let CREATE = NSLocalizedString(
+        "CREATE",
+        value: "Create",
+        comment: "Generic 'Create' string"
+    )
+
+    static let INDIVIDUAL_PICKER_OPTION = NSLocalizedString(
+        "INDIVIDUAL_PICKER_OPTION",
+        value: "Individual",
+        comment: "Title for segmented control option to filter singular chats"
+    )
+
+    static let GROUP_PICKER_OPTION = NSLocalizedString(
+        "GROUP_PICKER_OPTION",
+        value: "Group",
+        comment: "Title for segmented control option to filter group chats"
+    )
 }
 

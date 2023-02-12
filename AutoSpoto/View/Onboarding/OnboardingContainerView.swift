@@ -21,7 +21,6 @@ struct OnboardingContainerView: View {
     @State private var shouldAnimateLogoToTopLeft = false
     @State private var elementTransitionOpacity: CGFloat = 1.0
 
-
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
 
