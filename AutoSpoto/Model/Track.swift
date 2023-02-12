@@ -34,14 +34,14 @@ class Track: Hashable {
 
             let og = try await OpenGraph.fetch(url: url)
 
-            isFetchingMetadata = false
-
             if let imageURLString = og[.image] {
                 imageURL = URL(string: imageURLString)
             }
 
             title = og[.title]
             artist = og[.description]
+
+            isFetchingMetadata = false
         } catch let error {
             print("Error: \(error)")
             isFetchingMetadata = false

@@ -122,10 +122,10 @@ extension AutoSpotoConstants.Strings {
         comment: "Text displayed when a chat has no tracks yet"
     )
 
-    static let NUMBER_OF_SONGS = NSLocalizedString(
+    static let NUMBER_OF_TRACKS = NSLocalizedString(
         "NUMBER_OF_SONGS",
-        value: "%d songs",
-        comment: "Number of songs in the chat"
+        value: "%d tracks",
+        comment: "Number of tracks in the chat"
     )
 }
 

@@ -19,7 +19,11 @@ struct ChatView: View {
         if let selectedChatIndex = homeViewModel.selectedChatIndex {
             let selectedChat = homeViewModel.chats[selectedChatIndex]
             ZStack(alignment: .center) {
-                if selectedChat.tracks.isEmpty && selectedChat.tracksHaveBeenFetched {
+                let tracksAreLoading = (!selectedChat.isFetchingTracks && !selectedChat.hasFetchedTracks) || selectedChat.isFetchingTracks
+
+                if tracksAreLoading {
+                    ProgressView()
+                } else if selectedChat.tracks.isEmpty && selectedChat.hasFetchedTracks {
                     VStack(spacing: 20) {
                         Image(systemName: "headphones")
                             .resizable()
@@ -39,8 +43,8 @@ struct ChatView: View {
 
                                         Spacer()
 
-                                        ForEach(selectedChat.tracks, id: \.self) { url in
-                                            TrackRow(track: url)
+                                        ForEach(selectedChat.tracks, id: \.self) { track in
+                                            TrackRow(track: track)
                                         }
 
                                         Spacer()
@@ -96,12 +100,13 @@ struct ChatView: View {
 
                         Text(
                             String.localizedStringWithFormat(
-                                AutoSpotoConstants.Strings.NUMBER_OF_SONGS,
+                                AutoSpotoConstants.Strings.NUMBER_OF_TRACKS,
                                 selectedChat.tracks.count
                             )
                         )
                         .font(.josefinSansRegular(18))
                         .foregroundColor(.white)
+                        .redacted(reason: tracksAreLoading ? .placeholder : [])
                     }
                     .padding(.horizontal, 16.5)
                     .frame(height: heightOfToolbar)
