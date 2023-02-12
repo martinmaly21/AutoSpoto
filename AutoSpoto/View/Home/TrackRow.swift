@@ -14,6 +14,8 @@ struct TrackRow: View {
     let track: Track
 
     var body: some View {
+        let trackMetadataIsLoading = (!track.isFetchingMetadata && !track.hasFetchedMetadata) || track.isFetchingMetadata
+
         VStack {
             if track.errorFetchingMetadata {
                 let errorString = String.localizedStringWithFormat(
@@ -59,7 +61,7 @@ struct TrackRow: View {
         }
         .padding([.leading, .trailing], 16)
         .frame(maxHeight: 80)
-        .redacted(reason: track.isFetchingMetadata ? .placeholder : [])
+        .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
     }
 
 }
