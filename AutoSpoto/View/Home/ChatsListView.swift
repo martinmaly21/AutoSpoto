@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ChatsListView: View {
-    let chats: [Chat]
-    @Binding var selectedChat: Chat?
+    @EnvironmentObject var homeViewModel: HomeViewModel
 
     var body: some View {
         let topInset: CGFloat = 45
@@ -19,10 +18,10 @@ struct ChatsListView: View {
                 Spacer()
                     .frame(height: topInset)
                 VStack(spacing: 0) {
-                    ForEach(chats, id: \.self) { chat in
-                        ChatRow(chat: chat, isSelected: chat == selectedChat)
+                    ForEach(homeViewModel.chats, id: \.self) { chat in
+                        ChatRow(chat: chat, isSelected: chat == homeViewModel.selectedChat)
                             .onTapGesture {
-                                selectedChat = chat
+                                homeViewModel.selectedChat = chat
                             }
                     }
                 }

@@ -11,14 +11,12 @@ struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Namespace var bottomID
 
-    @Binding var selectedChat: Chat?
-
     var body: some View {
         let bottomPadding: CGFloat = 25
         let buttonHeight: CGFloat = 40
         let heightOfToolbar: CGFloat = 80
 
-        if let selectedChat = selectedChat {
+        if let selectedChat = homeViewModel.selectedChat {
             ZStack(alignment: .center) {
                 if selectedChat.tracks.isEmpty && selectedChat.tracksHaveBeenFetched {
                     VStack(spacing: 20) {

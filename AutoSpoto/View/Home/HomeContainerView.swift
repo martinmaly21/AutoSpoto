@@ -10,25 +10,19 @@ import SwiftUI
 struct HomeContainerView: View {
     @StateObject var homeViewModel = HomeViewModel()
 
-    @State private var selectedChat: Chat?
-
     var body: some View {
         NavigationView {
-            ChatsListView(
-                chats: homeViewModel.chats,
-                selectedChat: $selectedChat
-            )
-
-            ChatView(selectedChat: $selectedChat)
+            ChatsListView()
+            ChatView()
         }
+        .environmentObject(homeViewModel)
         .onAppear {
             homeViewModel.fetchChats()
-            selectedChat = homeViewModel.chats.first
         }
         .onChange(
-            of: selectedChat,
+            of: homeViewModel.selectedChat,
             perform: { _ in
-                if let selectedChat = selectedChat {
+                if let selectedChat = homeViewModel.selectedChat {
                     Task {
                         await homeViewModel.fetchTracks(for: selectedChat)
                     }
