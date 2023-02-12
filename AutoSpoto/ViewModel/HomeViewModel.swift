@@ -13,6 +13,7 @@ class HomeViewModel: ObservableObject {
     @Published var selectedChatIndex: Int?
 
     @Published var isFetchingChats = false
+    @Published var isFetchingTracks = false
 
     public func fetchChats() async {
         defer {
@@ -101,9 +102,15 @@ class HomeViewModel: ObservableObject {
     }
 
     public func fetchTracks() async {
+        defer {
+            isFetchingTracks = false
+        }
+
         guard let selectedChatIndex = selectedChatIndex else {
             fatalError("Could not get selectedChatIndex")
         }
+
+        isFetchingTracks = true
 
         await chats[selectedChatIndex].fetchTracks()
 
