@@ -24,11 +24,8 @@ struct HomeContainerView: View {
         .onChange(
             of: homeViewModel.selectedChatIndex,
             perform: { _ in
-                if let selectedChatIndex = homeViewModel.selectedChatIndex {
-                    let selectedChat = homeViewModel.chats[selectedChatIndex]
-                    Task {
-                        await homeViewModel.fetchTracks(for: selectedChat)
-                    }
+                Task {
+                    await homeViewModel.fetchTracks()
                 }
             }
         )

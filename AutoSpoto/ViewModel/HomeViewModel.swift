@@ -100,25 +100,12 @@ class HomeViewModel: ObservableObject {
         selectedChatIndex = 0
     }
 
-    public func fetchTracks(for chat: Chat) async {
-        var chatToUpdate = chat
-
-        await chatToUpdate.fetchTracks()
-
-        updateChats(chat: chat, chatToUpdate: chatToUpdate)
-
-        await chatToUpdate.fetchMetadataForTracks()
-
-        updateChats(chat: chat, chatToUpdate: chatToUpdate)
-    }
-
-
-    private func updateChats(chat: Chat, chatToUpdate: Chat) {
-        guard let chatIndex = chats.firstIndex(of: chat) else {
-            fatalError("Could not get chat index")
+    public func fetchTracks() async {
+        guard let selectedChatIndex = selectedChatIndex else {
+            fatalError("Could not get selectedChatIndex")
         }
 
-        chats[chatIndex] = chatToUpdate
-        self.chats = chats
+        await chats[selectedChatIndex].fetchTracks()
+        await chats[selectedChatIndex].fetchMetadataForTracks()
     }
 }
