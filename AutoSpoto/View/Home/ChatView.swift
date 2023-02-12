@@ -11,6 +11,8 @@ struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Namespace var bottomID
 
+    @State private var showCreatePlaylistSheeet = false
+
     var body: some View {
         let bottomPadding: CGFloat = 25
         let buttonHeight: CGFloat = 40
@@ -70,7 +72,7 @@ struct ChatView: View {
 
                             Button(
                                 action: {
-                                    //TODO: User pressed 'Create playlist'
+                                    showCreatePlaylistSheeet = true
                                 },
                                 label: {
                                     //TODO: add shadow on button
@@ -116,6 +118,15 @@ struct ChatView: View {
                     Spacer()
                 }
             }
+            .sheet(
+                isPresented: $showCreatePlaylistSheeet,
+                content: {
+                    CreatePlaylistView(
+                        showCreatePlaylistSheeet: $showCreatePlaylistSheeet,
+                        chat: selectedChat
+                    )
+                }
+            )
         } else {
             ProgressView()
         }
