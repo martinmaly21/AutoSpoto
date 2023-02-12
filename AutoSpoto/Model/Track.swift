@@ -49,11 +49,20 @@ class Track: Hashable {
         }
     }
 
-    static func == (lhs: Track, rhs: Track) -> Bool {
-        return lhs.url.absoluteString == rhs.url.absoluteString
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(url)
+        hasher.combine(timeStamp)
+
+        hasher.combine(hasFetchedMetadata)
+        hasher.combine(isFetchingMetadata)
+        hasher.combine(errorFetchingMetadata)
+
+        hasher.combine(imageURL)
+        hasher.combine(title)
+        hasher.combine(artist)
     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(url.absoluteString)
+    static func == (lhs: Track, rhs: Track) -> Bool {
+        return lhs.url.absoluteString == rhs.url.absoluteString
     }
 }

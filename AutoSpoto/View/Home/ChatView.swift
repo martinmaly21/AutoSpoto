@@ -45,7 +45,7 @@ struct ChatView: View {
 
                                         Spacer()
 
-                                        ForEach(selectedChat.tracks, id: \.self) { track in
+                                        ForEach(selectedChat.tracks, id: \.hashValue) { track in
                                             TrackRow(track: track)
                                         }
 
