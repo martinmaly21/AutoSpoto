@@ -18,8 +18,7 @@ struct ChatView: View {
         let buttonHeight: CGFloat = 40
         let heightOfToolbar: CGFloat = 80
 
-        if let selectedChatIndex = homeViewModel.selectedChatIndex {
-            let selectedChat = homeViewModel.chats[selectedChatIndex]
+        if let selectedChat = homeViewModel.selectedChat {
             ZStack(alignment: .center) {
                 let tracksAreLoading = (!selectedChat.isFetchingTracks && !selectedChat.hasFetchedTracks) || selectedChat.isFetchingTracks
 
@@ -55,11 +54,11 @@ struct ChatView: View {
                                     }
                                     .frame(minHeight: proxy.size.height)
                                 }
-                                .onReceive(homeViewModel.$isFetchingTracks, perform: { publish in
-                                    //may need to change this when track fetching is async
-                                    //since the number of chats won't be determined until the query is finished
-                                    reader.scrollTo(bottomID)
-                                })
+//                                .onReceive(homeViewModel.$isFetchingTracks, perform: { publish in
+//                                    //may need to change this when track fetching is async
+//                                    //since the number of chats won't be determined until the query is finished
+//                                    reader.scrollTo(bottomID)
+//                                })
                                 .frame(width: proxy.size.width)
                                 .introspectScrollView { scrollView in
                                     scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)

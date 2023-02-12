@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct Chat: Hashable {
-    enum ChatType {
-        case individual(firstName: String?, lastName: String?)
-        case group(name: String?)
-    }
-
     let type: ChatType
     let image: String //base 64 string I believe
     let id: Int
