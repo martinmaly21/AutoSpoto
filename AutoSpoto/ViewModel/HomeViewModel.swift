@@ -150,7 +150,7 @@ class HomeViewModel: ObservableObject {
             chatTrackURLs = []
         }
 
-        chatToUpdate.tracks = chatTrackURLs.map { Track(url: $0, timeStamp: 0)}
+        chatToUpdate.tracks = chatTrackURLs.map { Track(url: $0, timeStamp: 0) }
 
         updateChats(chat: chat, chatToUpdate: chatToUpdate)
 
