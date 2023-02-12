@@ -163,5 +163,11 @@ extension AutoSpotoConstants.Strings {
         value: "Group",
         comment: "Title for segmented control option to filter group chats"
     )
+
+    static let CANCEL = NSLocalizedString(
+        "CANCEL",
+        value: "Cancel",
+        comment: "Generic 'Cancel' string"
+    )
 }
 
