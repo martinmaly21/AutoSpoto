@@ -118,7 +118,7 @@ struct Chat: Hashable {
     }
 
     func fetchMetadataForTracks(completion: @escaping (Track) -> Void) {
-        for (index, track) in tracks.enumerated() {
+        for (index, track) in tracks.reversed().enumerated() {
             DispatchQueue.main.asyncAfter(
                 //is this enough of a delay to avoid 'Too many requests' errors?
                 deadline: .now() + (0.01 * Double(index)) ,
