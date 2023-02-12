@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */; };
+		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
+		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
+		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50C1790A29980D68009CD58F /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 50C1790929980D68009CD58F /* OpenGraph */; };
+		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
+		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -41,6 +47,14 @@
 		50DFB97E2994A95900E9A3D9 /* certifi in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB97D2994A95900E9A3D9 /* certifi */; };
 		50DFB9842994AB4400E9A3D9 /* chardet in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9832994AB4400E9A3D9 /* chardet */; };
 		50DFB9862994AD3100E9A3D9 /* urllib3 in Resources */ = {isa = PBXBuildFile; fileRef = 50DFB9852994AD3100E9A3D9 /* urllib3 */; };
+		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
+		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
+		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
+		50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789A2995EE0B002AFC1C /* Chat.swift */; };
+		50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789D2995F092002AFC1C /* HomeViewModel.swift */; };
+		50F178A02995F441002AFC1C /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789F2995F441002AFC1C /* ChatRow.swift */; };
+		50F178A62995FA0F002AFC1C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 50F178A52995FA0F002AFC1C /* Introspect */; };
+		50F178A829960B40002AFC1C /* TrackRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178A729960B40002AFC1C /* TrackRow.swift */; };
 		50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
 		50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
@@ -52,11 +66,15 @@
 
 /* Begin PBXFileReference section */
 		500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPythonInterface.swift; sourceTree = "<group>"; };
+		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
+		5069BF6929999504007F4037 /* FilterChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChatType.swift; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
+		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessIntroductionView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
@@ -87,6 +105,13 @@
 		50DFB97D2994A95900E9A3D9 /* certifi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = certifi; sourceTree = "<group>"; };
 		50DFB9832994AB4400E9A3D9 /* chardet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chardet; sourceTree = "<group>"; };
 		50DFB9852994AD3100E9A3D9 /* urllib3 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = urllib3; sourceTree = "<group>"; };
+		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
+		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
+		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		50F1789A2995EE0B002AFC1C /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		50F1789D2995F092002AFC1C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		50F1789F2995F441002AFC1C /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		50F178A729960B40002AFC1C /* TrackRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRow.swift; sourceTree = "<group>"; };
 		50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoConstants.swift; sourceTree = "<group>"; };
 		50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Strings.swift"; sourceTree = "<group>"; };
 		50F34C63297657DB0059516B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -101,7 +126,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
+				50C1790A29980D68009CD58F /* OpenGraph in Frameworks */,
+				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +183,8 @@
 				50F34C62297657BF0059516B /* Extensions */,
 				50F34C5B2976526C0059516B /* Supporting FIles */,
 				50F34C8E297662A80059516B /* View */,
-				50F34C8F297662B00059516B /* View Modifiers */,
+				50F178992995EDF9002AFC1C /* Model */,
+				50F1789C2995F05C002AFC1C /* ViewModel */,
 			);
 			path = AutoSpoto;
 			sourceTree = "<group>";
@@ -169,6 +198,49 @@
 				50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */,
 			);
 			path = AutoSpotoConstants;
+			sourceTree = "<group>";
+		};
+		50F178902995EAA9002AFC1C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
+				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
+				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
+				50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		50F178912995EAB8002AFC1C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				50F178922995EAFF002AFC1C /* HomeContainerView.swift */,
+				50F178942995ECEB002AFC1C /* ChatsListView.swift */,
+				50F178972995ED11002AFC1C /* ChatView.swift */,
+				50F1789F2995F441002AFC1C /* ChatRow.swift */,
+				50F178A729960B40002AFC1C /* TrackRow.swift */,
+				50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		50F178992995EDF9002AFC1C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50F1789A2995EE0B002AFC1C /* Chat.swift */,
+				50C1790B29980ED8009CD58F /* Track.swift */,
+				5069BF67299994BC007F4037 /* ChatType.swift */,
+				5069BF6929999504007F4037 /* FilterChatType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		50F1789C2995F05C002AFC1C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				50F1789D2995F092002AFC1C /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
@@ -210,12 +282,11 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				50F34C8F297662B00059516B /* View Modifiers */,
 				92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */,
 				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
-				50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */,
-				50CFCE2629896004009C3F4A /* GetStartedView.swift */,
-				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
-				50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */,
+				50F178902995EAA9002AFC1C /* Onboarding */,
+				50F178912995EAB8002AFC1C /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +318,9 @@
 			name = AutoSpoto;
 			packageProductDependencies = (
 				92F05DF7298D894600796C4C /* PythonKit */,
+				50F178A52995FA0F002AFC1C /* Introspect */,
+				50C1790929980D68009CD58F /* OpenGraph */,
+				5069BF6529994BDF007F4037 /* Kingfisher */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -278,6 +352,9 @@
 			mainGroup = 50AA276428C3FE69002FFC3F;
 			packageReferences = (
 				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
+				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */,
+				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -327,18 +404,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
+				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
 				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
+				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */,
+				50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */,
 				50F34C6829765DC00059516B /* Font.swift in Sources */,
 				50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */,
+				5069BF68299994BC007F4037 /* ChatType.swift in Sources */,
+				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
+				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
+				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
+				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
+				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
+				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
 				50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */,
 				92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */,
@@ -544,6 +632,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/satoshi-takano/OpenGraph";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pvieito/PythonKit";
@@ -555,6 +667,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5069BF6529994BDF007F4037 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		50C1790929980D68009CD58F /* OpenGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */;
+			productName = OpenGraph;
+		};
+		50F178A52995FA0F002AFC1C /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		92F05DF7298D894600796C4C /* PythonKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */;

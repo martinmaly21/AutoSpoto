@@ -1,0 +1,73 @@
+//
+//  TrackRow.swift
+//  AutoSpoto
+//
+//  Created by Martin Maly on 2023-02-10.
+//
+
+import SwiftUI
+import Kingfisher
+
+
+struct TrackRow: View {
+    //for now this track will always be a spotify URL
+    let track: Track
+
+    var body: some View {
+        let trackMetadataIsLoading = (!track.isFetchingMetadata && !track.hasFetchedMetadata) || track.isFetchingMetadata
+
+        VStack {
+            if track.errorFetchingMetadata {
+                let errorString = String.localizedStringWithFormat(
+                    AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
+                    track.url.absoluteString
+                )
+                HStack {
+                    Text(errorString)
+                        .font(.josefinSansRegular(18))
+                        .foregroundColor(.red)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+
+                    Spacer()
+                }
+            } else {
+                HStack(alignment: .center, spacing: 15) {
+                    KFImage(track.imageURL)
+                        .placeholder {
+                            Color.gray
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(12)
+                        }
+                        .cacheOriginalImage(true)
+                        .fade(duration: 0.25)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(12)
+                        .aspectRatio(contentMode: .fill)
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(track.title ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
+                            .font(.josefinSansRegular(18))
+                            .foregroundColor(.white)
+
+                        Text(track.artist ?? AutoSpotoConstants.Strings.TRACK_ARTIST_METADATA_PLACEHOLDER)
+                            .font(.josefinSansLight(18))
+                            .foregroundColor(.gray)
+                    }
+
+                    Spacer()
+                }
+                .multilineTextAlignment(.leading)
+            }
+
+
+            Divider()
+        }
+        .padding([.leading, .trailing], 16)
+        .frame(maxHeight: 80)
+        .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
+    }
+
+}
