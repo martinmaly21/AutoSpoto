@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 class HomeViewModel: ObservableObject {
     @Published var chats: [Chat] = []
+    @Published var selectedChat: Chat?
 
     public func fetchChats() {
         //TODO: fetch from SwiftPythonInterface
@@ -87,6 +88,8 @@ class HomeViewModel: ObservableObject {
                 playlistExists: false
             )
         ]
+
+        selectedChat = chats.first
     }
 
     public func fetchTracks(for chat: Chat) async {
