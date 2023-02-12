@@ -22,10 +22,16 @@ struct TrackRow: View {
                     AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
                     track.url.absoluteString
                 )
-                Text(errorString)
-                    .font(.josefinSansRegular(18))
-                    .foregroundColor(.red)
-                    .fixedSize(horizontal: false, vertical: true)
+                HStack {
+                    Text(errorString)
+                        .font(.josefinSansRegular(18))
+                        .foregroundColor(.red)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+
+                    Spacer()
+                }
             } else {
                 HStack(alignment: .center, spacing: 15) {
                     KFImage(track.imageURL)
