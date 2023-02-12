@@ -127,5 +127,29 @@ extension AutoSpotoConstants.Strings {
         value: "%d tracks",
         comment: "Number of tracks in the chat"
     )
+
+    static let ENTER_PLAYLIST_DETAILS = NSLocalizedString(
+        "ENTER_PLAYLIST_DETAILS",
+        value: "Enter details for your playlist",
+        comment: "Prompt for user to enter details about their plylist"
+    )
+
+    static let ENTER_PLAYLIST_NAME = NSLocalizedString(
+        "ENTER_PLAYLIST_NAME",
+        value: "Enter your playlist name",
+        comment: "Prompt for user to enter playlist name"
+    )
+
+    static let PLAYLIST_PLACEHOLDER_NAME = NSLocalizedString(
+        "PLAYLIST_PLACEHOLDER_NAME",
+        value: "My playlist",
+        comment: "Placeholder name for playlist"
+    )
+
+    static let CREATE = NSLocalizedString(
+        "CREATE",
+        value: "Create",
+        comment: "Generic 'Create' string"
+    )
 }
 

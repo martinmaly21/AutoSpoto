@@ -13,6 +13,7 @@
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
 		50C1790A29980D68009CD58F /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 50C1790929980D68009CD58F /* OpenGraph */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
+		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -68,6 +69,7 @@
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessIntroductionView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				50F178972995ED11002AFC1C /* ChatView.swift */,
 				50F1789F2995F441002AFC1C /* ChatRow.swift */,
 				50F178A729960B40002AFC1C /* TrackRow.swift */,
+				50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
+				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
