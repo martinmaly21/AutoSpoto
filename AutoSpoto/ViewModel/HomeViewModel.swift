@@ -12,7 +12,15 @@ class HomeViewModel: ObservableObject {
     @Published var chats: [Chat] = []
     @Published var selectedChatIndex: Int?
 
-    public func fetchChats() {
+    @Published var isFetchingChats = false
+
+    public func fetchChats() async {
+        defer {
+            isFetchingChats = false
+        }
+
+        isFetchingChats = true
+
         //TODO: fetch from SwiftPythonInterface
         self.chats = [
             Chat(
