@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct AutoSpotoApp: App {
-    let testingHomeView = true
+    let testingOnboarding = true
 
     var body: some Scene {
         WindowGroup {
@@ -28,8 +28,8 @@ struct AutoSpotoApp: App {
             //IF so, show messages UI
             //If not, show OnboardingContainerView
 
-            if testingHomeView {
-                HomeContainerView()
+            if testingOnboarding {
+                OnboardingContainerView()
             } else {
                 AndrewsBackendTestView()
                     .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
