@@ -109,7 +109,9 @@ class HomeViewModel: ObservableObject {
 
         chats[selectedChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
             if let indexOfTrack = self.chats[selectedChatIndex].tracks.firstIndex(of: updatedTrack) {
-                self.chats[selectedChatIndex].tracks[indexOfTrack] = updatedTrack
+                DispatchQueue.main.sync {
+                    self.chats[selectedChatIndex].tracks[indexOfTrack] = updatedTrack
+                }
             }
         })
     }
