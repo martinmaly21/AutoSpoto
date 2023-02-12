@@ -151,5 +151,17 @@ extension AutoSpotoConstants.Strings {
         value: "Create",
         comment: "Generic 'Create' string"
     )
+
+    static let INDIVIDUAL_PICKER_OPTION = NSLocalizedString(
+        "INDIVIDUAL_PICKER_OPTION",
+        value: "Individual",
+        comment: "Title for segmented control option to filter singular chats"
+    )
+
+    static let GROUP_PICKER_OPTION = NSLocalizedString(
+        "GROUP_PICKER_OPTION",
+        value: "Group",
+        comment: "Title for segmented control option to filter group chats"
+    )
 }
 
