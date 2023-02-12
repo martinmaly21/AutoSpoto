@@ -21,7 +21,7 @@ struct ChatView: View {
         if let selectedChat = selectedChat {
             ZStack(alignment: .center) {
                 if selectedChat.tracks.isEmpty && selectedChat.tracksHaveBeenFetched {
-                    VStack(spacing: 20){
+                    VStack(spacing: 20) {
                         Image(systemName: "headphones")
                             .resizable()
                             .frame(width: 60, height: 60)
