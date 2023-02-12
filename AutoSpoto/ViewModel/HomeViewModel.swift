@@ -197,4 +197,14 @@ class HomeViewModel: ObservableObject {
             }
         })
     }
+
+    func resetModel() async {
+        individualChats = []
+        groupChats = []
+
+        selectedIndividualChatIndex = nil
+        selectedGroupChatIndex = nil
+
+        await fetchChats()
+    }
 }
