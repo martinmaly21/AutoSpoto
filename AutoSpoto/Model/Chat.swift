@@ -110,8 +110,6 @@ struct Chat: Hashable {
 
             tracks = trackURLs.map { Track(url: $0, timeStamp: 0) }
 
-            await fetchMetadataForTracks()
-
             isFetchingTracks = false
         } catch let error {
             isFetchingTracks = false

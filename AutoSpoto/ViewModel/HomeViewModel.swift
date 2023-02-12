@@ -106,6 +106,10 @@ class HomeViewModel: ObservableObject {
         await chatToUpdate.fetchTracks()
 
         updateChats(chat: chat, chatToUpdate: chatToUpdate)
+
+        await chatToUpdate.fetchMetadataForTracks()
+
+        updateChats(chat: chat, chatToUpdate: chatToUpdate)
     }
 
 
