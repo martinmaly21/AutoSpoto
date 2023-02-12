@@ -9,21 +9,71 @@ import Foundation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published var chats: [Chat] = []
-    @Published var selectedChatIndex: Int?
+    @Published var individualChats: [Chat] = []
+    @Published var groupChats: [Chat] = []
 
-    @Published var isFetchingChats = false
-    @Published var isFetchingTracks = false
+    @Published var selectedIndividualChatIndex: Int?
+    @Published var selectedGroupChatIndex: Int?
 
-    public func fetchChats() async {
-        defer {
-            isFetchingChats = false
+    @Published var filterSelection: FilterChatType = .individual
+
+    var selectedChatIndex: Int? {
+        get {
+            switch filterSelection {
+            case .individual:
+                return selectedIndividualChatIndex
+            case .group:
+                return selectedGroupChatIndex
+            }
         }
 
-        isFetchingChats = true
+        set {
+            switch filterSelection {
+            case .individual:
+                selectedIndividualChatIndex = newValue
+            case .group:
+                selectedGroupChatIndex = newValue
+            }
+        }
+    }
+
+    var selectedChat: Chat? {
+        guard let selectedChatIndex = selectedChatIndex else {
+            return nil
+        }
+
+        switch filterSelection {
+        case .individual:
+            return individualChats[selectedChatIndex]
+        case .group:
+            return groupChats[selectedChatIndex]
+        }
+    }
+
+    var chats: [Chat] {
+        switch filterSelection {
+        case .individual:
+            return individualChats
+        case .group:
+            return groupChats
+        }
+    }
+
+    public func fetchChats() async {
+        switch filterSelection {
+        case .individual:
+            await fetchIndividualChats()
+        case .group:
+            await fetchGroupChats()
+        }
+    }
+
+    private func fetchGroupChats() async {
+        //only fetch if group chats have not already been fetched (groupChats.isEmpty)
+        guard groupChats.isEmpty else { return }
 
         //TODO: fetch from SwiftPythonInterface
-        self.chats = [
+        groupChats = [
             Chat(
                 type: .group(name: "Family 🏠"),
                 image: "",
@@ -36,6 +86,23 @@ class HomeViewModel: ObservableObject {
                 id: 1,
                 playlistExists: true
             ),
+            Chat(
+                type: .group(name: "Colombia Crew"),
+                image: "",
+                id: 11,
+                playlistExists: false
+            )
+        ]
+
+        selectedGroupChatIndex = 0
+    }
+
+    private func fetchIndividualChats() async {
+        //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
+        guard individualChats.isEmpty else { return }
+
+        //TODO: fetch from SwiftPythonInterface
+        individualChats = [
             Chat(
                 type: .individual(firstName: "Johnny", lastName: "Sins"),
                 image: "",
@@ -90,34 +157,38 @@ class HomeViewModel: ObservableObject {
                 id: 10,
                 playlistExists: false
             ),
-            Chat(
-                type: .group(name: "Colombia Crew"),
-                image: "",
-                id: 11,
-                playlistExists: false
-            )
         ]
 
-        selectedChatIndex = 0
+        selectedIndividualChatIndex = 0
     }
 
-    public func fetchTracks() async {
-        defer {
-            isFetchingTracks = false
+    public func fetchTracksForIndividualChat() async {
+        guard let selectedIndividualChatIndex = selectedIndividualChatIndex else {
+            return
         }
 
-        guard let selectedChatIndex = selectedChatIndex else {
-            fatalError("Could not get selectedChatIndex")
-        }
+        await individualChats[selectedIndividualChatIndex].fetchTracks()
 
-        isFetchingTracks = true
-
-        await chats[selectedChatIndex].fetchTracks()
-
-        chats[selectedChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
-            if let indexOfTrack = self.chats[selectedChatIndex].tracks.firstIndex(of: updatedTrack) {
+        individualChats[selectedIndividualChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
+            if let indexOfTrack = self.individualChats[selectedIndividualChatIndex].tracks.firstIndex(of: updatedTrack) {
                 DispatchQueue.main.async {
-                    self.chats[selectedChatIndex].tracks[indexOfTrack] = updatedTrack
+                    self.individualChats[selectedIndividualChatIndex].tracks[indexOfTrack] = updatedTrack
+                }
+            }
+        })
+    }
+
+    public func fetchTracksForGroupChat() async {
+        guard let selectedGroupChatIndex = selectedGroupChatIndex else {
+            return
+        }
+
+        await groupChats[selectedGroupChatIndex].fetchTracks()
+
+        groupChats[selectedGroupChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
+            if let indexOfTrack = self.groupChats[selectedGroupChatIndex].tracks.firstIndex(of: updatedTrack) {
+                DispatchQueue.main.async {
+                    self.groupChats[selectedGroupChatIndex].tracks[indexOfTrack] = updatedTrack
                 }
             }
         })

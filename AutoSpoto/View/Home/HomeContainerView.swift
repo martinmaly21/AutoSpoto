@@ -21,11 +21,27 @@ struct HomeContainerView: View {
                 await homeViewModel.fetchChats()
             }
         }
-        .onChange(
-            of: homeViewModel.selectedChatIndex,
+        .onReceive(
+            homeViewModel.$selectedIndividualChatIndex,
             perform: { _ in
                 Task {
-                    await homeViewModel.fetchTracks()
+                    await homeViewModel.fetchTracksForIndividualChat()
+                }
+            }
+        )
+        .onReceive(
+            homeViewModel.$selectedGroupChatIndex,
+            perform: { _ in
+                Task {
+                    await homeViewModel.fetchTracksForGroupChat()
+                }
+            }
+        )
+        .onChange(
+            of: homeViewModel.filterSelection,
+            perform: { _ in
+                Task {
+                    await homeViewModel.fetchChats()
                 }
             }
         )

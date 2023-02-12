@@ -10,9 +10,9 @@ import SwiftUI
 struct ChatsListView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
 
-    @State private var pickerOptions = [
-        AutoSpotoConstants.Strings.INDIVIDUAL_PICKER_OPTION,
-        AutoSpotoConstants.Strings.GROUP_PICKER_OPTION
+    private var filterOptions: [FilterChatType] = [
+        .individual,
+        .group
     ]
 
     var body: some View {
@@ -60,9 +60,9 @@ struct ChatsListView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 10)
 
-                Picker("", selection: $pickerOptions) {
-                    ForEach(pickerOptions, id: \.self) {
-                        Text($0)
+                Picker("", selection: $homeViewModel.filterSelection) {
+                    ForEach(filterOptions, id: \.self) {
+                        Text($0.localizedString)
                             .foregroundColor(.blue)
                             .font(.josefinSansRegular(16))
                     }
@@ -71,7 +71,7 @@ struct ChatsListView: View {
                 .padding(.trailing, 6)
                 .padding(.bottom, 30)
                 .introspectSegmentedControl { segmentedControl in
-                    segmentedControl.selectedSegmentBezelColor = .blue
+//                    segmentedControl.selectedSegmentBezelColor = .blue
                 }
             }
             .frame(height: topInset)
