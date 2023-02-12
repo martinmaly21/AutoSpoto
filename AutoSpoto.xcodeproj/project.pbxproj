@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */; };
+		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
 				50C1790A29980D68009CD58F /* OpenGraph in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
@@ -312,6 +314,7 @@
 				92F05DF7298D894600796C4C /* PythonKit */,
 				50F178A52995FA0F002AFC1C /* Introspect */,
 				50C1790929980D68009CD58F /* OpenGraph */,
+				5069BF6529994BDF007F4037 /* Kingfisher */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -345,6 +348,7 @@
 				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */,
+				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -620,6 +624,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/satoshi-takano/OpenGraph";
@@ -647,6 +659,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5069BF6529994BDF007F4037 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		50C1790929980D68009CD58F /* OpenGraph */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */;

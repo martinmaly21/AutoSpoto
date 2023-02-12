@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 
 struct TrackRow: View {
@@ -25,22 +26,18 @@ struct TrackRow: View {
                     .fixedSize(horizontal: false, vertical: true)
             } else {
                 HStack(alignment: .center, spacing: 15) {
-                    AsyncImage(
-                        url: track.imageURL,
-                        content: { image in
-                            image.resizable()
-                                .aspectRatio(contentMode: .fill)
+                    KFImage(track.imageURL)
+                        .placeholder {
+                            Color.gray
                                 .frame(width: 60, height: 60)
-                                .background(Color.gray)
-                                .cornerRadius(12)
-                        },
-                        placeholder: {
-                            ProgressView()
-                                .frame(width: 60, height: 60)
-                                .background(Color.gray)
                                 .cornerRadius(12)
                         }
-                    )
+                        .cacheOriginalImage(true)
+                        .fade(duration: 0.25)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(12)
+                        .aspectRatio(contentMode: .fill)
 
                     VStack(alignment: .leading, spacing: 8) {
                         Text(track.title ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)

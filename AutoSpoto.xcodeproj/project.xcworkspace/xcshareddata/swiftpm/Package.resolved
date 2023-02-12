@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "branch" : "master",
+        "revision" : "2db469112fbcfd83ff0a96c4546772d283f317f5"
+      }
+    },
+    {
       "identity" : "opengraph",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/satoshi-takano/OpenGraph",
