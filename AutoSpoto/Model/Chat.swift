@@ -117,12 +117,15 @@ struct Chat: Hashable {
         }
     }
 
-    mutating func fetchMetadataForTracks() async {
-        //this allows all of these tasks to be run in parallel
-        await withTaskGroup(of: Void.self) { group in
-            for track in tracks {
-                group.addTask { await track.getTrackMetadata() }
-            }
+    func fetchMetadataForTracks(completion: @escaping (Track) -> Void) {
+        for (index, track) in tracks.enumerated() {
+            DispatchQueue.main.asyncAfter(
+                //is this enough of a delay to avoid 'Too many requests' errors?
+                deadline: .now() + (0.01 * Double(index)) ,
+                execute: {
+                    track.getTrackMetadata(completion: completion)
+                }
+            )
         }
     }
 

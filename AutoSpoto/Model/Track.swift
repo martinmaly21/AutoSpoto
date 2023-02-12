@@ -25,28 +25,37 @@ class Track: Hashable {
         self.timeStamp = timeStamp
     }
 
-    public func getTrackMetadata() async {
-        do {
-            guard !hasFetchedMetadata && !isFetchingMetadata else { return }
-
-            isFetchingMetadata = true
-            hasFetchedMetadata = true
-
-            let og = try await OpenGraph.fetch(url: url)
-
-            if let imageURLString = og[.image] {
-                imageURL = URL(string: imageURLString)
-            }
-
-            title = og[.title]
-            artist = og[.description]
-
+    public func getTrackMetadata(
+        completion: @escaping (Track) -> Void
+    ) {
+        defer {
             isFetchingMetadata = false
-        } catch let error {
-            print("Error: \(error)")
-            isFetchingMetadata = false
-            errorFetchingMetadata = true
         }
+
+        guard !hasFetchedMetadata && !isFetchingMetadata else { return }
+
+        isFetchingMetadata = true
+        hasFetchedMetadata = true
+
+        OpenGraph.fetch(
+            url: url,
+            completion: { result in
+                switch result {
+                case .failure(let failure):
+                    print("Error: \(failure.localizedDescription)")
+                    self.errorFetchingMetadata = true
+                case .success(let og):
+                    if let imageURLString = og[.image] {
+                        self.imageURL = URL(string: imageURLString)
+                    }
+
+                    self.title = og[.title]
+                    self.artist = og[.description]
+                    completion(self)
+                }
+            }
+        )
+
     }
 
     func hash(into hasher: inout Hasher) {

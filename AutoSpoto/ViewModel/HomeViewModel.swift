@@ -106,6 +106,11 @@ class HomeViewModel: ObservableObject {
         }
 
         await chats[selectedChatIndex].fetchTracks()
-        await chats[selectedChatIndex].fetchMetadataForTracks()
+
+        chats[selectedChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
+            if let indexOfTrack = self.chats[selectedChatIndex].tracks.firstIndex(of: updatedTrack) {
+                self.chats[selectedChatIndex].tracks[indexOfTrack] = updatedTrack
+            }
+        })
     }
 }
