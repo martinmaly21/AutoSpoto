@@ -19,7 +19,7 @@ struct ChatView: View {
         let heightOfToolbar: CGFloat = 80
 
         if let selectedChat = selectedChat {
-            ZStack(alignment: .top) {
+            ZStack(alignment: .center) {
                 if selectedChat.tracks.isEmpty && selectedChat.tracksHaveBeenFetched {
                     VStack(spacing: 20){
                         Image(systemName: "headphones")
@@ -80,34 +80,37 @@ struct ChatView: View {
                         }
                     }
                 }
+                VStack {
+                    HStack(alignment: .center, spacing: 14) {
+                        Image(systemName: "person.crop.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 45, height: 45)
+                            .background(Color.gray)
+                            .clipShape(Circle())
 
-                HStack(alignment: .center, spacing: 14) {
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 45, height: 45)
-                        .background(Color.gray)
-                        .clipShape(Circle())
+                        Text(selectedChat.displayName)
+                            .font(.josefinSansRegular(20))
+                            .foregroundColor(.white)
 
-                    Text(selectedChat.displayName)
-                        .font(.josefinSansRegular(20))
+                        Spacer()
+
+                        Text(
+                            String.localizedStringWithFormat(
+                                AutoSpotoConstants.Strings.NUMBER_OF_SONGS,
+                                selectedChat.tracks.count
+                            )
+                        )
+                        .font(.josefinSansRegular(18))
                         .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 16.5)
+                    .frame(height: heightOfToolbar)
+                    .frame(maxWidth: .infinity)
+                    .background(.ultraThinMaterial)
 
                     Spacer()
-
-                    Text(
-                        String.localizedStringWithFormat(
-                            AutoSpotoConstants.Strings.NUMBER_OF_SONGS,
-                            selectedChat.tracks.count
-                        )
-                    )
-                    .font(.josefinSansRegular(18))
-                    .foregroundColor(.white)
                 }
-                .padding(.horizontal, 16.5)
-                .frame(height: heightOfToolbar)
-                .frame(maxWidth: .infinity)
-                .background(.ultraThinMaterial)
             }
         } else {
             ProgressView()
