@@ -28,10 +28,6 @@ class Track: Hashable {
     public func getTrackMetadata(
         completion: @escaping (Track) -> Void
     ) {
-        defer {
-            isFetchingMetadata = false
-        }
-
         guard !hasFetchedMetadata && !isFetchingMetadata else { return }
 
         isFetchingMetadata = true
@@ -44,6 +40,8 @@ class Track: Hashable {
                 case .failure(let failure):
                     print("Error: \(failure.localizedDescription)")
                     self.errorFetchingMetadata = true
+                    self.isFetchingMetadata = false
+
                     completion(self)
                 case .success(let og):
                     if let imageURLString = og[.image] {
@@ -52,6 +50,8 @@ class Track: Hashable {
 
                     self.title = og[.title]
                     self.artist = og[.description]
+                    self.isFetchingMetadata = false
+
                     completion(self)
                 }
             }
