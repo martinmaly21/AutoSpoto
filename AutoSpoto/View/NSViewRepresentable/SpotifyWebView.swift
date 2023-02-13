@@ -40,23 +40,17 @@ struct SpotifyWebView: NSViewRepresentable {
         }
         
         func requestForCallbackURL(request: URLRequest) {
-            // Get the access token string after the '#access_token=' and before '&token_type='
-            let requestURLString = (request.url?.absoluteString)! as String
-            if requestURLString.hasPrefix(redirectURI) {
-                if requestURLString.contains("#access_token=") {
-                    if let range = requestURLString.range(of: "=") {
-                        let spotifAcTok = requestURLString[range.upperBound...]
-                        if let range = spotifAcTok.range(of: "&token_type=") {
-                            let spotifAcTokFinal = spotifAcTok[..<range.lowerBound]
-                            handleAuth(spotifyAccessToken: String(spotifAcTokFinal))
-                        }
-                    }
-                }
+            guard let requestURLString = request.url?.absoluteString else {
+                return
             }
-        }
-        
-        func handleAuth(spotifyAccessToken: String) {
-            parent.spotifyAccessToken = spotifyAccessToken
+
+
+            if requestURLString.hasPrefix(redirectURI) {
+                let code = requestURLString.getQueryStringParameter(param: "code")
+
+                //Do next shit
+                print("Test: \(code)")
+            }
         }
     }
 
