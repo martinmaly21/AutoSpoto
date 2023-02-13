@@ -16,7 +16,6 @@
 		5069BF712999AF97007F4037 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF702999AF97007F4037 /* Configuration.swift */; };
 		5069BF732999C0A6007F4037 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
 		5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */; };
-		5069BF77299AA780007F4037 /* OnboardingSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF76299AA780007F4037 /* OnboardingSuccessView.swift */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
@@ -79,7 +78,6 @@
 		5069BF702999AF97007F4037 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		5069BF722999C0A6007F4037 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoContainerView.swift; sourceTree = "<group>"; };
-		5069BF76299AA780007F4037 /* OnboardingSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSuccessView.swift; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				50CFCE2829896983009C3F4A /* DiskAccessIntroductionView.swift */,
 				50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */,
 				5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */,
-				5069BF76299AA780007F4037 /* OnboardingSuccessView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -431,7 +428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
-				5069BF77299AA780007F4037 /* OnboardingSuccessView.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */,

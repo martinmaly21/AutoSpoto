@@ -169,5 +169,23 @@ extension AutoSpotoConstants.Strings {
         value: "Cancel",
         comment: "Generic 'Cancel' string"
     )
+
+    static let FINISH = NSLocalizedString(
+        "FINISH",
+        value: "Finish",
+        comment: "Generic 'Finish' string"
+    )
+
+    static let SUCCESS = NSLocalizedString(
+        "SUCCESS!",
+        value: "Success! 🥳",
+        comment: "Generic 'Success!' string"
+    )
+
+    static let CONNECTED_TO_SPOTIFY = NSLocalizedString(
+        "CONNECTED_TO_SPOTIFY",
+        value: "You are now connected to spotify. Press 'Finish' to begin creating playlists.",
+        comment: "Generic 'Success!' string"
+    )
 }
 
