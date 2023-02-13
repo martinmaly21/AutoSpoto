@@ -42,7 +42,6 @@ struct ChatsListView: View {
                         .font(.josefinSansBold(26))
                         .foregroundColor(.white)
 
-
                     Spacer()
 
                     Button(
@@ -79,5 +78,7 @@ struct ChatsListView: View {
             .frame(height: topInset)
             .background(.ultraThinMaterial)
         }
+        .frame(width: 300)
+        .frame(maxWidth: .infinity)
     }
 }
