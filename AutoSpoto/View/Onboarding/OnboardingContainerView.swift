@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct OnboardingContainerView: View {
+    @Binding var autoSpotoCurrentView: AutoSpotoContainerView.CurrentView
+
     enum CurrentView {
         case getStarted
         case diskAccessIntroductionView
         case chooseMusicStreamingServiceView
+        case successfullyCompletedOnboarding
     }
-    @State private var currentView: CurrentView = .chooseMusicStreamingServiceView
+    @State private var onboardingCurrentView: CurrentView = .chooseMusicStreamingServiceView
 
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
@@ -40,10 +43,10 @@ struct OnboardingContainerView: View {
                 Spacer()
             }
 
-            switch currentView {
+            switch onboardingCurrentView {
             case .getStarted:
                 GetStartedView(
-                    currentView: $currentView,
+                    onboardingCurrentView: $onboardingCurrentView,
                     topLeftLogoOpacity: $topLeftLogoOpacity,
                     shouldAnimateLogoToTopLeft: $shouldAnimateLogoToTopLeft,
                     elementTransitionOpacity: $elementTransitionOpacity
@@ -52,6 +55,8 @@ struct OnboardingContainerView: View {
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
                 ChooseMusicStreamingServiceView()
+            case .successfullyCompletedOnboarding:
+                OnboardingSuccessView()
             }
 
             //tool bar
@@ -63,16 +68,18 @@ struct OnboardingContainerView: View {
 
                     Button(
                         action: {
-                            switch currentView {
+                            switch onboardingCurrentView {
                             case .getStarted:
                                 withAnimation {
                                     shouldAnimateLogoToTopLeft = true
                                     elementTransitionOpacity = 0
                                 }
                             case .diskAccessIntroductionView:
-                                currentView = .chooseMusicStreamingServiceView
+                                onboardingCurrentView = .chooseMusicStreamingServiceView
                             case .chooseMusicStreamingServiceView:
-                                break //TODO
+                                onboardingCurrentView = .successfullyCompletedOnboarding
+                            case .successfullyCompletedOnboarding:
+                                autoSpotoCurrentView = .home
                             }
                         },
                         label: {

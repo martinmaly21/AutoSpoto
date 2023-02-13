@@ -12,7 +12,7 @@ struct ChooseMusicStreamingServiceView: View {
 
     @State private var showSpotifyLoginSheet: Bool = false
     @State private var spotifyAccessToken: String?
-    
+
     var body: some View {
         VStack {
             Text(AutoSpotoConstants.Strings.CHOOSE_MUSIC_STREAMING_SERVICE)
@@ -68,7 +68,8 @@ struct ChooseMusicStreamingServiceView: View {
                 .buttonStyle(.plain)
 
                 if let spotifyAccessToken = spotifyAccessToken {
-                    Text(spotifyAccessToken)
+
+
                 }
             }
         }
