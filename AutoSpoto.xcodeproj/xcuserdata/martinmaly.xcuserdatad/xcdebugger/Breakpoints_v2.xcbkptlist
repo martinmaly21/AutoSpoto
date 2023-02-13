@@ -3,4 +3,69 @@
    uuid = "9D6B8958-28C5-4CDC-A94C-CFF8F77254B2"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C24801EC-1752-4305-A497-312714BD9795"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AutoSpoto/View/NSViewRepresentable/WebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "requestForCallbackURL(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C24801EC-1752-4305-A497-312714BD9795 - 874ea14d2727695b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AutoSpoto.WebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/AutoSpoto/AutoSpoto/View/NSViewRepresentable/WebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1204">
+               </Location>
+               <Location
+                  uuid = "C24801EC-1752-4305-A497-312714BD9795 - 874ea14d2727695b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AutoSpoto.WebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/AutoSpoto/AutoSpoto/View/NSViewRepresentable/WebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1284">
+               </Location>
+               <Location
+                  uuid = "C24801EC-1752-4305-A497-312714BD9795 - 874ea14d2727695b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AutoSpoto.WebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/AutoSpoto/AutoSpoto/View/NSViewRepresentable/WebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "2940">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
