@@ -66,11 +66,6 @@ struct ChooseMusicStreamingServiceView: View {
                     .frame(width: 300)
                 }
                 .buttonStyle(.plain)
-
-                if let spotifyAccessToken = spotifyAccessToken {
-
-
-                }
             }
         }
         .opacity(elementTransitionOpacity)
@@ -86,6 +81,16 @@ struct ChooseMusicStreamingServiceView: View {
                     spotifyAccessToken: $spotifyAccessToken,
                     isVisible: $showSpotifyLoginSheet
                 )
+            }
+        )
+        .onChange(
+            of: spotifyAccessToken,
+            perform: { _ in
+                if let spotifyAccessToken = spotifyAccessToken {
+                    //TODO: write to .cache
+
+                    showSpotifyLoginSheet = false
+                }
             }
         )
     }
