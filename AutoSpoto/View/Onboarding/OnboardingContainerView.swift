@@ -14,7 +14,6 @@ struct OnboardingContainerView: View {
         case getStarted
         case diskAccessIntroductionView
         case chooseMusicStreamingServiceView
-        case successfullyCompletedOnboarding
     }
     @State private var onboardingCurrentView: CurrentView = .chooseMusicStreamingServiceView
 
@@ -23,6 +22,8 @@ struct OnboardingContainerView: View {
 
     @State private var shouldAnimateLogoToTopLeft = false
     @State private var elementTransitionOpacity: CGFloat = 1.0
+
+    @State private var spotifyAccessToken: String?
 
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
@@ -54,11 +55,10 @@ struct OnboardingContainerView: View {
             case .diskAccessIntroductionView:
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
-                ChooseMusicStreamingServiceView()
-            case .successfullyCompletedOnboarding:
-                OnboardingSuccessView()
+                ChooseMusicStreamingServiceView(spotifyAccessToken: $spotifyAccessToken)
             }
 
+            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && spotifyAccessToken == nil
             //tool bar
             VStack {
                 Spacer()
@@ -77,13 +77,13 @@ struct OnboardingContainerView: View {
                             case .diskAccessIntroductionView:
                                 onboardingCurrentView = .chooseMusicStreamingServiceView
                             case .chooseMusicStreamingServiceView:
-                                onboardingCurrentView = .successfullyCompletedOnboarding
-                            case .successfullyCompletedOnboarding:
-                                autoSpotoCurrentView = .home
+                                withAnimation {
+                                    autoSpotoCurrentView = .home
+                                }
                             }
                         },
                         label: {
-                            Text(AutoSpotoConstants.Strings.CONTINUE)
+                            Text(onboardingCurrentView == .chooseMusicStreamingServiceView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE)
                                 .font(.josefinSansRegular(18))
                         }
                     )
@@ -96,6 +96,7 @@ struct OnboardingContainerView: View {
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
             }
+            .opacity(shouldHideToolBar ? 0 : 1)
         }
         .multilineTextAlignment(.center)
         .padding(.horizontal, defaultHorizontalPadding)
