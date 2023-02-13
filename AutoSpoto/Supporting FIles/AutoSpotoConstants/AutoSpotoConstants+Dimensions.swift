@@ -14,9 +14,9 @@ extension AutoSpotoConstants {
 }
 
 extension AutoSpotoConstants.Dimensions {
-    static let onboardingWindowWidth: CGFloat = 1000
-    static let onboardingWindowHeight: CGFloat = 600
+    static let onboardingWindowWidth: CGFloat = 1100
+    static let onboardingWindowHeight: CGFloat = 700
 
-    static let loginWithSpotifyWindowWidth: CGFloat = 800
-    static let loginWithSpotifyWindowHeight: CGFloat = 480
+    static let loginWithSpotifyWindowWidth: CGFloat = 1000
+    static let loginWithSpotifyWindowHeight: CGFloat = 600
 }
