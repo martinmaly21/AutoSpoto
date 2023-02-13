@@ -16,7 +16,7 @@ struct SpotifyLoginView: View {
         //Not exactly sure where this is from?
         let securityString = randomSecurityString()
 
-        guard let url = URL(string: "https://accounts.spotify.com/en/authorize?client_id=\(clientID)&response_type=token&redirect_uri=\(redirectURI)&scope=playlist-modify-public&show_dialog=True&state=\(securityString)") else {
+        guard let url = URL(string: "https://accounts.spotify.com/en/authorize?client_id=\(clientID)&response_type=code&redirect_uri=\(redirectURI)&scope=playlist-modify-public&show_dialog=True&state=\(securityString)") else {
             fatalError("Could not construct URL")
         }
 
