@@ -184,7 +184,7 @@ extension AutoSpotoConstants.Strings {
 
     static let CONNECTED_TO_SPOTIFY = NSLocalizedString(
         "CONNECTED_TO_SPOTIFY",
-        value: "You are now connected to spotify. Press 'Finish' to begin creating playlists.",
+        value: "You are now connected to Spotify. Click 'Finish' to begin creating playlists.",
         comment: "Generic 'Success!' string"
     )
 }
