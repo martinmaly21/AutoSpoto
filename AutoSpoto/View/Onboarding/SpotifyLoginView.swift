@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct SpotifyLoginView: View {
+    @Binding var spotifyAccessToken: String?
+
     @Binding var isVisible: Bool
 
     private var spotifyLoginURL: URL {
         //Not exactly sure where this is from?
-        let redirect = "spotify-api-example-app%3A%2F%2F"
         let securityString = randomSecurityString()
 
-        guard let url = URL(string: "https://accounts.spotify.com/en/authorize?client_id=\(clientID)&response_type=code&redirect_uri=\(redirect)&scope=playlist-modify-public&show_dialog=True&state=\(securityString)") else {
+        guard let url = URL(string: "https://accounts.spotify.com/en/authorize?client_id=\(clientID)&response_type=token&redirect_uri=\(redirectURI)&scope=playlist-modify-public&show_dialog=True&state=\(securityString)") else {
             fatalError("Could not construct URL")
         }
 
@@ -24,7 +25,10 @@ struct SpotifyLoginView: View {
 
     var body: some View {
         VStack {
-            WebView(url: spotifyLoginURL)
+            SpotifyWebView(
+                spotifyAccessToken: $spotifyAccessToken,
+                url: spotifyLoginURL
+            )
             Button(
                 AutoSpotoConstants.Strings.CANCEL,
                 action: {
@@ -35,6 +39,15 @@ struct SpotifyLoginView: View {
         .frame(
             width: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowWidth,
             height: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowHeight
+        )
+        .onChange(
+            of: spotifyAccessToken,
+            perform: { _ in
+                if spotifyAccessToken != nil {
+                    //spotify access token was retrieved
+                    isVisible = false
+                }
+            }
         )
     }
 
