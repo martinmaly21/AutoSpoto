@@ -2,6 +2,7 @@ import sqlite3
 import time
 import pandas as pd
 import os
+from base64 import b64encode 
 
 #pd.set_option("display.max_rows", None)
 class db:
@@ -15,6 +16,19 @@ class db:
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
         self.connection.cursor().execute("attach"+contact_string+ "as adb")
 
+    def imageAsBase64(self, image):
+        if not image:
+            return
+        img = image[1:]  # why does Apple prepend \x01 to all images?!
+        t = ''
+        if img[6:10] == b'JFIF':
+            t += b64encode(img).decode('ascii')
+        else:
+            raise NotImplementedError(
+                'Image types other than JPEG are not supported yet.')
+        # place 'P' manually for nice 75 char alignment
+        return t
+    
     def create_table(self):
 
         self.connection.cursor().execute("CREATE TABLE playlists (chat_id INTEGER, playlist_id TEXT, last_updated TEXT)")
@@ -36,7 +50,7 @@ class db:
     
     def display_playlists(self):
         rows = pd.read_sql(("Select * From Playlists"), self.connection) #Query the database for records
-        rows = rows.to_json(orient='records')
+        #rows = rows.to_json(orient='records')
         return rows
 
 
@@ -45,25 +59,39 @@ class db:
     def retrieve_group_chat(self):
         rows = pd.read_sql(("select ROWID as chat_id, display_name from cdb.chat where display_name not like'';"), self.connection)
         rows.dropna(subset=['display_name'], inplace=True)
-        rows = rows.to_json(orient='records')
-        return rows
+        
+        flag_check = self.display_playlists()
+
+        final_table = pd.merge(rows, flag_check, on ='chat_id',  how='left')
+        final_table = final_table[['chat_id','display_name','playlist_id']]
+        final_table['playlist_id'] = final_table['playlist_id'].notna()
+        
+        final_table.drop_duplicates(keep='first', inplace=True)
+        final_table = final_table.to_json(orient='records')
+        return final_table
 
     #Here the select before the join is filtering out all of the groupchats.
     #The guid field in the chat table contians 'iMessage;-;+' followed by the phone number of the contact
     # substr(temp.guid, -12) filter outs the characters before the number
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
-        rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from  adb.ZABCDPHONENUMBER right join (SELECT * from cdb.chat where guid not like'%chat%') as temp on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
-        rows.dropna(subset=['Phone_Number'], inplace= True)
-        rows = rows.to_json(orient='records')
-        return rows
+        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from  adb.ZABCDPHONENUMBER right join (SELECT * from cdb.chat where guid not like'%chat%') as temp on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
+        contact_rows.dropna(subset=['Phone_Number'], inplace= True)
+        image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
+        joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
+        joined_contacts['Image_Blob'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
+
+        flag_check = self.display_playlists()
+
+        final_table = pd.merge(joined_contacts, flag_check, on ='chat_id',  how='left')
+        final_table = final_table[['Image_Blob','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
+        final_table['playlist_id'] = final_table['playlist_id'].notna()
+
+        final_table.drop_duplicates(keep='first', inplace=True)
+        final_table = final_table.to_json(orient='records')
+        return final_table
 
     def close_connection(self):
         self.connection.cursor().close()
         print('connection closed')
 
-
-
-
-#print(conn.retrieve_single_chat())
-#print(conn.retrieve_group_chat())
