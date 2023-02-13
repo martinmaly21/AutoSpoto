@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct OnboardingContainerView: View {
+    @Binding var autoSpotoCurrentView: AutoSpotoContainerView.CurrentView
+
     enum CurrentView {
         case getStarted
         case diskAccessIntroductionView
         case chooseMusicStreamingServiceView
     }
-    @State private var currentView: CurrentView = .getStarted
+    @State private var onboardingCurrentView: CurrentView = .getStarted
 
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
 
     @State private var shouldAnimateLogoToTopLeft = false
     @State private var elementTransitionOpacity: CGFloat = 1.0
+
+    @State private var spotifyAccessToken: String?
 
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
@@ -40,10 +44,10 @@ struct OnboardingContainerView: View {
                 Spacer()
             }
 
-            switch currentView {
+            switch onboardingCurrentView {
             case .getStarted:
                 GetStartedView(
-                    currentView: $currentView,
+                    onboardingCurrentView: $onboardingCurrentView,
                     topLeftLogoOpacity: $topLeftLogoOpacity,
                     shouldAnimateLogoToTopLeft: $shouldAnimateLogoToTopLeft,
                     elementTransitionOpacity: $elementTransitionOpacity
@@ -51,9 +55,10 @@ struct OnboardingContainerView: View {
             case .diskAccessIntroductionView:
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
-                ChooseMusicStreamingServiceView()
+                ChooseMusicStreamingServiceView(spotifyAccessToken: $spotifyAccessToken)
             }
 
+            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && spotifyAccessToken == nil
             //tool bar
             VStack {
                 Spacer()
@@ -63,20 +68,22 @@ struct OnboardingContainerView: View {
 
                     Button(
                         action: {
-                            switch currentView {
+                            switch onboardingCurrentView {
                             case .getStarted:
                                 withAnimation {
                                     shouldAnimateLogoToTopLeft = true
                                     elementTransitionOpacity = 0
                                 }
                             case .diskAccessIntroductionView:
-                                currentView = .chooseMusicStreamingServiceView
+                                onboardingCurrentView = .chooseMusicStreamingServiceView
                             case .chooseMusicStreamingServiceView:
-                                break //TODO
+                                withAnimation {
+                                    autoSpotoCurrentView = .home
+                                }
                             }
                         },
                         label: {
-                            Text(AutoSpotoConstants.Strings.CONTINUE)
+                            Text(onboardingCurrentView == .chooseMusicStreamingServiceView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE)
                                 .font(.josefinSansRegular(18))
                         }
                     )
@@ -89,6 +96,7 @@ struct OnboardingContainerView: View {
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
             }
+            .opacity(shouldHideToolBar ? 0 : 1)
         }
         .multilineTextAlignment(.center)
         .padding(.horizontal, defaultHorizontalPadding)

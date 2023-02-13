@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GetStartedView: View {
-    @Binding var currentView: OnboardingContainerView.CurrentView
+    @Binding var onboardingCurrentView: OnboardingContainerView.CurrentView
 
     //animation parameters
     @Binding var topLeftLogoOpacity: CGFloat
@@ -65,7 +65,7 @@ struct GetStartedView: View {
             for: elementTransitionOpacity,
             completion: {
                 topLeftLogoOpacity = 1
-                currentView = .diskAccessIntroductionView
+                onboardingCurrentView = .diskAccessIntroductionView
             }
         )
     }
