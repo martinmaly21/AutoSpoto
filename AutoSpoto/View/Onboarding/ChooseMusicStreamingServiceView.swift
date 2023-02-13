@@ -101,11 +101,36 @@ struct ChooseMusicStreamingServiceView: View {
             of: spotifyAccessToken,
             perform: { _ in
                 if let spotifyAccessToken = spotifyAccessToken {
-                    //TODO: write to .cache
-
+                    
+                    
+                    let jsonObject = spotifyAccessToken.toJSON() as? [String:AnyObject]
+                    
+                    let access_string =  "{\"access_token\": \"\((jsonObject?["access_token"])!)\", "
+                    let token_type = "\"token_type\": \"\((jsonObject?["token_type"])!)\", "
+                    let expires_in = "\"expires_in\": \(3600), "
+                    let scope = "\"scope\": \"\((jsonObject?["scope"])!)\", "
+                    let expires_at = "\"expires_at\": \(Int (NSDate ().timeIntervalSince1970) + 3600), "
+                    let refresh_token = "\"refresh_token\":\"\((jsonObject?["refresh_token"])!)\"}"
+                    
+                    let final_json = access_string + token_type + expires_in + scope + expires_at + refresh_token
+                    
+                    let url = URL (fileURLWithPath:"/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/.cache")
+                    do {
+                        try final_json.write(toFile: url.path, atomically: true, encoding: .utf8)
+                    print(url)
+                    } catch {
+                    print(error)
+                    }
                     showSpotifyLoginSheet = false
                 }
             }
         )
+    }
+}
+
+extension String {
+    func toJSON() -> Any? {
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 }
