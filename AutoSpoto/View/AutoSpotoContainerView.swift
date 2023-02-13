@@ -19,30 +19,8 @@ struct AutoSpotoContainerView: View {
             switch autoSpotoCurrentView {
             case .onboarding:
                 OnboardingContainerView(autoSpotoCurrentView: $autoSpotoCurrentView)
-                    .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
-                        for window in NSApplication.shared.windows {
-                            //hide title bar
-                            window.titlebarAppearsTransparent = true
-                            window.titleVisibility = .hidden
-
-                            //hide minimize (yellow) and expand (green) buttons
-                            window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-                            window.standardWindowButton(.zoomButton)?.isHidden = true
-                        }
-                    })
             case .home:
                 HomeContainerView()
-                    .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
-                        for window in NSApplication.shared.windows {
-                            //hide title bar
-                            window.titlebarAppearsTransparent = false
-                            window.titleVisibility = .hidden
-
-                            //hide minimize (yellow) and expand (green) buttons
-                            window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-                            window.standardWindowButton(.zoomButton)?.isHidden = true
-                        }
-                    })
             }
         }
         .onAppear {
