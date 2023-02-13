@@ -5,6 +5,9 @@
 ## secrets
 Configuration.swift
 
+## don't commit python cache files
+*.pyc
+
 ## User settings
 xcuserdata/
 
