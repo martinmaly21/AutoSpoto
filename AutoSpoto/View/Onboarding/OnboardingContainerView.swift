@@ -15,7 +15,7 @@ struct OnboardingContainerView: View {
         case diskAccessIntroductionView
         case chooseMusicStreamingServiceView
     }
-    @State private var onboardingCurrentView: CurrentView = .chooseMusicStreamingServiceView
+    @State private var onboardingCurrentView: CurrentView = .getStarted
 
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
