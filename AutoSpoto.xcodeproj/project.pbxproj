@@ -12,7 +12,7 @@
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
 		5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */; };
-		5069BF6F2999AC24007F4037 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6E2999AC24007F4037 /* WebView.swift */; };
+		5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */; };
 		5069BF712999AF97007F4037 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF702999AF97007F4037 /* Configuration.swift */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
@@ -72,7 +72,7 @@
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
 		5069BF6929999504007F4037 /* FilterChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChatType.swift; sourceTree = "<group>"; };
 		5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginView.swift; sourceTree = "<group>"; };
-		5069BF6E2999AC24007F4037 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWebView.swift; sourceTree = "<group>"; };
 		5069BF702999AF97007F4037 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		5069BF6D2999AC0A007F4037 /* NSViewRepresentable */ = {
 			isa = PBXGroup;
 			children = (
-				5069BF6E2999AC24007F4037 /* WebView.swift */,
+				5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */,
 			);
 			path = NSViewRepresentable;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
-				5069BF6F2999AC24007F4037 /* WebView.swift in Sources */,
+				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,

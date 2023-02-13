@@ -11,6 +11,7 @@ struct ChooseMusicStreamingServiceView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
 
     @State private var showSpotifyLoginSheet: Bool = false
+    @State private var spotifyAccessToken: String?
     
     var body: some View {
         VStack {
@@ -65,6 +66,10 @@ struct ChooseMusicStreamingServiceView: View {
                     .frame(width: 300)
                 }
                 .buttonStyle(.plain)
+
+                if let spotifyAccessToken = spotifyAccessToken {
+                    Text(spotifyAccessToken)
+                }
             }
         }
         .opacity(elementTransitionOpacity)
@@ -76,7 +81,10 @@ struct ChooseMusicStreamingServiceView: View {
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {
-                SpotifyLoginView(isVisible: $showSpotifyLoginSheet)
+                SpotifyLoginView(
+                    spotifyAccessToken: $spotifyAccessToken,
+                    isVisible: $showSpotifyLoginSheet
+                )
             }
         )
     }
