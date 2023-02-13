@@ -40,15 +40,6 @@ struct SpotifyLoginView: View {
             width: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowWidth,
             height: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowHeight
         )
-        .onChange(
-            of: spotifyAccessToken,
-            perform: { _ in
-                if spotifyAccessToken != nil {
-                    //spotify access token was retrieved
-                    isVisible = false
-                }
-            }
-        )
     }
 
     func randomSecurityString() -> String {
