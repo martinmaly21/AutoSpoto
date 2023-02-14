@@ -6,26 +6,12 @@ class Spotiy:
 
     #An instance of the class contains a connection and the user_id. All subsequent API calls can be made using these attributes and a playlist id
     
-    def __init__(self):
-
-        cache_path = os.environ['HOME'] + '/SideProjects/autoSpoto/AutoSpoto/AutoSpoto/Backend/.cache'
-
+    def __init__(self, cache_path):
         auth_manager= spotipy.oauth2.SpotifyOAuth(scope="playlist-modify-public",
                                                 cache_path =cache_path,
                                                 show_dialog=True)
 
         self.conn = spotipy.Spotify(auth_manager=auth_manager)
-
-    
-    def login(self):
-
-        user_info = self.conn.current_user()
-        if user_info['id']:
-            return user_info
-        else:
-            raise Exception(response['error'])
-
-
         
     #method that creates a playlist
     #The user can pass it a name and a description
