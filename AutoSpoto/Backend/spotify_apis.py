@@ -14,7 +14,7 @@ class Spotiy:
         self.conn = spotipy.Spotify(auth_manager=auth_manager)
         
     
-     def login(self):
+     def user_info(self):
 
         user_info = self.conn.current_user()
         if user_info['id']:
