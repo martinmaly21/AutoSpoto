@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Chat: Hashable {
     let type: ChatType
-    let image: String //base 64 string I believe
+    let image: String? //base 64 string I believe
     let id: Int
 
     //this indicates whether a playlist already exists for this chat
@@ -40,6 +40,24 @@ struct Chat: Hashable {
                 fatalError("Group chat has no name")
             }
         }
+    }
+
+    init(_ individualChatCodable: IndividualChatCodable) {
+        type = .individual(
+            firstName: individualChatCodable.First_Name,
+            lastName: individualChatCodable.Last_Name
+        )
+        image = individualChatCodable.Image_Blob
+        id = individualChatCodable.chat_id
+        playlistExists = individualChatCodable.playlist_id
+    }
+
+    init(_ groupChatCodable: GroupChatCodable) {
+        type = .group(name: groupChatCodable.display_name)
+        image = nil //TODO
+//        image = individualChatCodable.Image_Blob
+        id = groupChatCodable.chat_id
+        playlistExists = groupChatCodable.playlist_id
     }
 
     mutating func fetchTracks() async {
