@@ -6,13 +6,14 @@ from base64 import b64encode
 
 #pd.set_option("display.max_rows", None)
 class db:
-    def __init__(self, db_string):
+    def __init__(self, db_string, contacts_string_id):
         chat_db_string = f"\'{os.environ['HOME']}/Library/Messages/chat.db\'"
-        contact_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/DBD9A071-1507-4104-A7B0-9302B102B4D4/AddressBook-v22.abcddb\'"
+        #is it okay to just pass in 'contacts_string_id'? I.e. will it be named AddressBook-v22.abcddb for everyone?
+        contacts_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/{contacts_string_id}/AddressBook-v22.abcddb\'"
         self.connection = sqlite3.connect(db_string)
         self.connection.row_factory = sqlite3.Row
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
-        self.connection.cursor().execute("attach"+contact_string+ "as adb")
+        self.connection.cursor().execute("attach"+contacts_string+ "as adb")
         self.connection.cursor().execute("CREATE TABLE IF NOT EXISTS playlists (chat_id INTEGER, playlist_id TEXT, last_updated TEXT)")
 
     def imageAsBase64(self, image):

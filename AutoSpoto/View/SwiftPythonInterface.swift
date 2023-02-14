@@ -43,8 +43,9 @@ class SwiftPythonInterface {
         //Not sure if Bundle.main.bundleURL.path() is a constant; Ideally we want it to be
         //so that multiple instances of autospoto.db are not created
         let dbString = "\(Bundle.main.bundleURL.path())/autospoto.db"
+        let contactsStringID = "DBD9A071-1507-4104-A7B0-9302B102B4D4"
 
-        return Python.import("db").db(dbString)
+        return Python.import("db").db(dbString, contactsStringID)
     }
 
     private static var spotiy: PythonObject {
