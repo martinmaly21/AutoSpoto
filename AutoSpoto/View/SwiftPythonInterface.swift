@@ -78,7 +78,7 @@ class SwiftPythonInterface {
     }
 
     static func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {
-        let response = spotiy.create_playlist(spotiy.user_id, name, description, chat_id, db)
+        let response = spotiy.create_playlist(spotiy.user_id(), name, description, chat_id, db)
 
         db.close_connection()
         print(response)
