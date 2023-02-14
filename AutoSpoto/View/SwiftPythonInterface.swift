@@ -42,10 +42,11 @@ class SwiftPythonInterface {
         //is it okay to pass in Bundle.main.bundleURL?
         //Not sure if Bundle.main.bundleURL.path() is a constant; Ideally we want it to be
         //so that multiple instances of autospoto.db are not created
-        let dbString = "\(Bundle.main.bundleURL.path())/autospoto.db"
-        let contactsStringID = "DBD9A071-1507-4104-A7B0-9302B102B4D4"
+        let db_string = "\(Bundle.main.bundleURL.path())/autospoto.db"
+        print(db_string)
+        let contactsStringID = "24485206-D95C-4125-A166-735537F69AC7"
 
-        return Python.import("db").db(dbString, contactsStringID)
+        return Python.import("db").db(db_string, contactsStringID)
     }
 
     private static var spotiy: PythonObject {
@@ -54,6 +55,11 @@ class SwiftPythonInterface {
         }
 
         return spotify_api.Spotiy(cacheUrl.path)
+    }
+
+     static func user_info() -> PythonObject {
+        let user_info = spotify_api.Spotiy().login()
+        return user_info
     }
 
     static func extractScript(chat_id: Int, lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
