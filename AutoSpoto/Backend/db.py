@@ -6,15 +6,14 @@ from base64 import b64encode
 
 #pd.set_option("display.max_rows", None)
 class db:
-    def __init__(self):
+    def __init__(self, db_string):
         chat_db_string = f"\'{os.environ['HOME']}/Library/Messages/chat.db\'"
-        contact_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/24485206-D95C-4125-A166-735537F69AC7/AddressBook-v22.abcddb\'"
-
-
-        self.connection = sqlite3.connect("/Users/andrewcaravaggio/SideProjects/songs/AutoSpoto")
+        contact_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/DBD9A071-1507-4104-A7B0-9302B102B4D4/AddressBook-v22.abcddb\'"
+        self.connection = sqlite3.connect(db_string)
         self.connection.row_factory = sqlite3.Row
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
         self.connection.cursor().execute("attach"+contact_string+ "as adb")
+        self.connection.cursor().execute("CREATE TABLE IF NOT EXISTS playlists (chat_id INTEGER, playlist_id TEXT, last_updated TEXT)")
 
     def imageAsBase64(self, image):
         if not image:
@@ -24,14 +23,11 @@ class db:
         if img[6:10] == b'JFIF':
             t += b64encode(img).decode('ascii')
         else:
+            return "fucked"
             raise NotImplementedError(
                 'Image types other than JPEG are not supported yet.')
         # place 'P' manually for nice 75 char alignment
         return t
-    
-    def create_table(self):
-
-        self.connection.cursor().execute("CREATE TABLE playlists (chat_id INTEGER, playlist_id TEXT, last_updated TEXT)")
 
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
@@ -75,7 +71,7 @@ class db:
     # substr(temp.guid, -12) filter outs the characters before the number
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
-        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from  adb.ZABCDPHONENUMBER right join (SELECT * from cdb.chat where guid not like'%chat%') as temp on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
+        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from (SELECT * from cdb.chat where guid not like'%chat%') as temp left join adb.ZABCDPHONENUMBER on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
         contact_rows.dropna(subset=['Phone_Number'], inplace= True)
         image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
         joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
