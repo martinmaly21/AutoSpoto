@@ -19,6 +19,8 @@
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
+		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50C1790A29980D68009CD58F /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 50C1790929980D68009CD58F /* OpenGraph */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
@@ -84,6 +86,8 @@
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
+		50B19563299B4711002E7F65 /* IndividualChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualChatCodable.swift; sourceTree = "<group>"; };
+		50B19565299B471A002E7F65 /* GroupChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatCodable.swift; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -210,6 +214,15 @@
 			path = AutoSpoto;
 			sourceTree = "<group>";
 		};
+		50B19562299B4706002E7F65 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				50B19563299B4711002E7F65 /* IndividualChatCodable.swift */,
+				50B19565299B471A002E7F65 /* GroupChatCodable.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		50CFCE2C29896ED0009C3F4A /* AutoSpotoConstants */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +262,7 @@
 		50F178992995EDF9002AFC1C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				50B19562299B4706002E7F65 /* Codable */,
 				50F1789A2995EE0B002AFC1C /* Chat.swift */,
 				50C1790B29980ED8009CD58F /* Track.swift */,
 				5069BF67299994BC007F4037 /* ChatType.swift */,
@@ -439,6 +453,7 @@
 				5069BF732999C0A6007F4037 /* String.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
 				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
+				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				5069BF712999AF97007F4037 /* Configuration.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */,
@@ -454,6 +469,7 @@
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				50D43F5E2985EAC9000DC525 /* CustomButtonStyle.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
+				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
