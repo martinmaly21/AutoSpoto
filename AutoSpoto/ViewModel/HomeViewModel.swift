@@ -87,6 +87,7 @@ class HomeViewModel: ObservableObject {
             groupChats = tableData.map { Chat($0) }
         }
         catch {
+            //TODO: handle error better
             print (error)
         }
 
@@ -108,6 +109,7 @@ class HomeViewModel: ObservableObject {
             individualChats = tableData.map { Chat($0) }
         }
         catch {
+            //TODO: handle error better
             print (error)
         }
 

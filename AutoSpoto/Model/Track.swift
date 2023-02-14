@@ -10,7 +10,7 @@ import OpenGraph
 
 class Track: Hashable {
     var url: URL
-    var timeStamp: Int
+    var timeStamp: String
 
     var hasFetchedMetadata = false
     var isFetchingMetadata = false
@@ -20,9 +20,13 @@ class Track: Hashable {
     var title: String?
     var artist: String?
 
-    init(url: URL, timeStamp: Int) {
+    init?(trackCodable: TrackCodable) {
+        guard let url = URL(string: trackCodable.decoded_blob) else {
+            assertionFailure("Could not create URL")
+            return nil
+        }
         self.url = url
-        self.timeStamp = timeStamp
+        self.timeStamp = trackCodable.date_utc
     }
 
     public func getTrackMetadata(
