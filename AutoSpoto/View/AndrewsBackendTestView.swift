@@ -13,7 +13,7 @@ struct AndrewsBackendTestView: View {
     var body: some View {
         VStack{
             Button(action:{
-                let _ = SwiftPythonInterface.login()
+//                let _ = SwiftPythonInterface.login()
                 showResult.toggle()
             },
                    label:{
