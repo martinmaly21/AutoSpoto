@@ -84,7 +84,7 @@ class HomeViewModel: ObservableObject {
         do {
             let decoder = JSONDecoder()
             let tableData = try decoder.decode([GroupChatCodable].self, from: jsonData)
-            individualChats = tableData.map { Chat($0) }
+            groupChats = tableData.map { Chat($0) }
         }
         catch {
             print (error)
