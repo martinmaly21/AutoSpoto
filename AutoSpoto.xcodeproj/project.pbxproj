@@ -60,6 +60,7 @@
 		50F178A02995F441002AFC1C /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789F2995F441002AFC1C /* ChatRow.swift */; };
 		50F178A62995FA0F002AFC1C /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 50F178A52995FA0F002AFC1C /* Introspect */; };
 		50F178A829960B40002AFC1C /* TrackRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178A729960B40002AFC1C /* TrackRow.swift */; };
+		50F2F3AB299B115700625513 /* .cache in Resources */ = {isa = PBXBuildFile; fileRef = 50F2F3AA299B115700625513 /* .cache */; };
 		50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
 		50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
@@ -122,6 +123,7 @@
 		50F1789D2995F092002AFC1C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		50F1789F2995F441002AFC1C /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		50F178A729960B40002AFC1C /* TrackRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRow.swift; sourceTree = "<group>"; };
+		50F2F3AA299B115700625513 /* .cache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .cache; sourceTree = "<group>"; };
 		50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoConstants.swift; sourceTree = "<group>"; };
 		50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Strings.swift"; sourceTree = "<group>"; };
 		50F34C63297657DB0059516B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				50D7A414298B333700943731 /* spotify_apis.py */,
 				50D7A411298B333700943731 /* spotipy_example.py */,
 				50D7A40F298B333700943731 /* unload_plist.sh */,
+				50F2F3AA299B115700625513 /* .cache */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
 				50DFB9742994A84500E9A3D9 /* spotipy in Resources */,
+				50F2F3AB299B115700625513 /* .cache in Resources */,
 				50D7A418298B333700943731 /* spotipy_example.py in Resources */,
 				50DFB97A2994A8E600E9A3D9 /* charset_normalizer in Resources */,
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
