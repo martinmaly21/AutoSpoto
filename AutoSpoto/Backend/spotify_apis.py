@@ -13,8 +13,19 @@ class Spotiy:
 
         self.conn = spotipy.Spotify(auth_manager=auth_manager)
         
+    
+     def login(self):
+
+        user_info = self.conn.current_user()
+        if user_info['id']:
+            return user_info['id']
+        else:
+            raise Exception(response['error'])
+
+    
     #method that creates a playlist
     #The user can pass it a name and a description
+
     
     def create_playlist(self, user_id, name, description, chat_id, db_object):   
 

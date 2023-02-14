@@ -19,10 +19,11 @@ def split_it(url_l):
         
     url_l = url_l.decode("utf-8", "ignore")
     url_l = ''.join(url_l.split())
-    results =  re.search('https[^=]+=', url_l)
+
+    results =  re.search('https.+?(?=[?])', url_l)
 
     if results != None:
-        return results.group()
+        return results.group(0)
     return None
 
 def get_songs(chat_id, last_updated, display_view):
@@ -46,23 +47,25 @@ def get_songs(chat_id, last_updated, display_view):
     chatMessagesJoined = pd.read_sql_query("select chat_id, message_id from chat_message_join", conn)
 
     chatMessagesAndHandlesJoined = pd.merge(messagesAndHandlesJoined, chatMessagesJoined, on = 'message_id', how='left')
-   
+    
     houseMusicChat = chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id]
 
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
-
+    
     # The part of the code where we can use the last updated field in the database to sync the playlist
     if last_updated:
         houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
         houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
    
     spotifyTrackText = 'https://open.spotify.com/track/'
-    
+   
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
     houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
     
     if display_view:
-        return(houseMusicChat[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
+        ret_view = houseMusicChat[['decoded_blob', 'date_utc']]
+        ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
+        return(ret_view.to_json(orient='records').replace("\\",""))
     
     trackIDs = []
 
