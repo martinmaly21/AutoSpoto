@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ChooseMusicStreamingServiceView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
-
+    
     @State private var showSpotifyLoginSheet: Bool = false
     @Binding var spotifyAccessToken: String?
-
+    
     var body: some View {
         VStack {
             if spotifyAccessToken == nil {
@@ -20,7 +20,7 @@ struct ChooseMusicStreamingServiceView: View {
                     .font(.josefinSansSemibold(30))
                     .foregroundColor(.white)
                     .padding(.bottom, 60)
-
+                
                 VStack(spacing: 12) {
                     Button {
                         showSpotifyLoginSheet = true
@@ -32,11 +32,11 @@ struct ChooseMusicStreamingServiceView: View {
                                 .foregroundColor(.white)
                                 .frame(width: 30, height: 30)
                                 .padding(.leading, 8)
-
+                            
                             Text(AutoSpotoConstants.Strings.CONNECT_WITH_SPOTIFY)
                                 .foregroundColor(.white)
                                 .font(.josefinSansRegular(18))
-
+                            
                         }
                         .padding(12)
                         .background(in: RoundedRectangle(cornerRadius: 10))
@@ -44,7 +44,7 @@ struct ChooseMusicStreamingServiceView: View {
                         .frame(width: 400)
                     }
                     .buttonStyle(.plain)
-
+                    
                     Button {
                         print("pressed apple music")
                     } label: {
@@ -55,11 +55,11 @@ struct ChooseMusicStreamingServiceView: View {
                                 .foregroundColor(.white)
                                 .frame(width: 30, height: 30)
                                 .padding(.leading, 8)
-
+                            
                             Text(AutoSpotoConstants.Strings.CONNECT_WITH_APPLE_MUSIC)
                                 .foregroundColor(.white)
                                 .font(.josefinSansRegular(18))
-
+                            
                         }
                         .padding(12)
                         .background(in: RoundedRectangle(cornerRadius: 10))
@@ -74,7 +74,7 @@ struct ChooseMusicStreamingServiceView: View {
                     .font(.josefinSansSemibold(40))
                     .foregroundColor(.white)
                     .padding(.bottom, 60)
-
+                
                 //TODO: Change in future when we allow user to connect with apple music
                 Text(AutoSpotoConstants.Strings.CONNECTED_TO_SPOTIFY)
                     .font(.josefinSansSemibold(26))
@@ -101,8 +101,6 @@ struct ChooseMusicStreamingServiceView: View {
             of: spotifyAccessToken,
             perform: { _ in
                 if let spotifyAccessToken = spotifyAccessToken {
-                    
-                    
                     let jsonObject = spotifyAccessToken.toJSON() as? [String:AnyObject]
                     
                     let access_string =  "{\"access_token\": \"\((jsonObject?["access_token"])!)\", "
@@ -117,9 +115,9 @@ struct ChooseMusicStreamingServiceView: View {
                     let url = URL (fileURLWithPath:"/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/.cache")
                     do {
                         try final_json.write(toFile: url.path, atomically: true, encoding: .utf8)
-                    print(url)
+                        print(url)
                     } catch {
-                    print(error)
+                        print(error)
                     }
                     showSpotifyLoginSheet = false
                 }
