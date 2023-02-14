@@ -12,76 +12,90 @@ import PythonKit
 //Call this function to sign the user in and save the cache
 
 class SwiftPythonInterface {
-    static let shared = SwiftPythonInterface()
+    private static var filepath: String {
+        let knownFileNameAtDesiredPath = "db.py"
+        let knownFileNameArray = knownFileNameAtDesiredPath.split(separator: ".")
 
-    //TODO: will need to retrieve this from the user's machine
-    private var filepath: String = "/Users/martinmaly/AutoSpoto/AutoSpoto/Backend/"
+        guard let filePath = Bundle.main.url(forResource: String(knownFileNameArray[0]), withExtension: String(knownFileNameArray[1]))?.path() else {
+            fatalError("Could not get filePath")
+        }
+        return filePath.replacingOccurrences(of: knownFileNameAtDesiredPath, with: "")
+    }
 
     //Instance variables
-
     private static var spotify_api: PythonObject {
         let sys = Python.import("sys")
-        sys.path.append(shared.filepath)
+        sys.path.append(filepath)
         return Python.import("spotify_apis")
     }
 
     private static var extract_script: PythonObject {
         let sys = Python.import("sys")
-        sys.path.append(shared.filepath)
+        sys.path.append(filepath)
         return Python.import("extract_script")
     }
 
     private static var db: PythonObject {
         let sys = Python.import("sys")
-        sys.path.append(shared.filepath)
-        return Python.import("db")
+        sys.path.append(filepath)
+
+        //is it okay to pass in Bundle.main.bundleURL?
+        //Not sure if Bundle.main.bundleURL.path() is a constant; Ideally we want it to be
+        //so that multiple instances of autospoto.db are not created
+        let dbString = "\(Bundle.main.bundleURL.path())/autospoto.db"
+        let contactsStringID = "DBD9A071-1507-4104-A7B0-9302B102B4D4"
+
+        return Python.import("db").db(dbString, contactsStringID)
     }
 
-    static func login() -> PythonObject {
-        let user_info = spotify_api.Spotiy().login()
-        return user_info
+    private static var spotiy: PythonObject {
+        guard let cacheUrl = Bundle.main.urls(forResourcesWithExtension: "cache", subdirectory: nil)?.first else {
+            fatalError("Could not get .cache url")
+        }
+
+        return spotify_api.Spotiy(cacheUrl.path)
     }
 
-    static func extractScript(chat_id: Int) -> PythonObject {
-        let tracks = extract_script.get_songs(chat_id)
+    static func extractScript(chat_id: Int, lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
+        let tracks = extract_script.get_songs(chat_id, lastUpdated, displayView)
         return(tracks)
     }
 
     //maybe playlist_id can be string. Will need to see what the best way to pass objects/variables between functions
     static func addSongsToPlaylist(playlist_id: PythonObject, tracks: PythonObject) -> PythonObject {
         //Hard coded values right now for testing
-        let response = spotify_api.Spotiy().update_playlist(playlist_id, tracks, db.db())
+        let response = spotiy.update_playlist(playlist_id, tracks, db)
 
-        db.db().close_connection()
+        db.close_connection()
         print(response)
         return(response)
     }
 
     static func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {
-        let response = spotify_api.Spotiy().create_playlist(spotify_api.Spotiy().user_id, name, description, chat_id, db.db())
+        let response = spotiy.create_playlist(spotiy.user_id, name, description, chat_id, db)
 
-        db.db().close_connection()
+        db.close_connection()
         print(response)
         return(response)
     }
 
     static func deletePlaylist(playlist_id: String) {
-        spotify_api.Spotiy().current_user_unfollow_playlist(playlist_id, db.db())
-        db.db().close_connection()
+        spotiy.current_user_unfollow_playlist(playlist_id, db)
+        db.close_connection()
     }
 
     static func displayPlaylists() -> PythonObject {
-        let response = db.db().display_playlists()
+        let response = db.display_playlists()
         return response
     }
 
     static func viewGroupChat() -> PythonObject {
-        let response = db.db().retrieve_group_chat()
+        let response = db.retrieve_group_chat()
         return response
     }
 
     static func viewSingleChat() -> PythonObject {
-        let response = db.db().retrieve_single_chat()
+        let response = db.retrieve_single_chat()
         return response
     }
 
