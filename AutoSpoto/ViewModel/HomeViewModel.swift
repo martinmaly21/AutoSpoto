@@ -76,27 +76,20 @@ class HomeViewModel: ObservableObject {
         //only fetch if group chats have not already been fetched (groupChats.isEmpty)
         guard groupChats.isEmpty else { return }
 
-        //TODO: fetch from SwiftPythonInterface
-        groupChats = [
-            Chat(
-                type: .group(name: "Family 🏠"),
-                image: "",
-                id: 0,
-                playlistExists: true
-            ),
-            Chat(
-                type: .group(name: "House music"),
-                image: "",
-                id: 1,
-                playlistExists: true
-            ),
-            Chat(
-                type: .group(name: "Colombia Crew"),
-                image: "",
-                id: 11,
-                playlistExists: false
-            )
-        ]
+        let jsonString = SwiftPythonInterface.viewGroupChat().description
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            fatalError("Could not get jsonData")
+        }
+
+        do {
+            let decoder = JSONDecoder()
+            let tableData = try decoder.decode([GroupChatCodable].self, from: jsonData)
+            groupChats = tableData.map { Chat($0) }
+        }
+        catch {
+            //TODO: handle error better
+            print (error)
+        }
 
         selectedGroupChatIndex = 0
     }
@@ -105,63 +98,20 @@ class HomeViewModel: ObservableObject {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
         guard individualChats.isEmpty else { return }
 
-        //TODO: fetch from SwiftPythonInterface
-        individualChats = [
-            Chat(
-                type: .individual(firstName: "Johnny", lastName: "Sins"),
-                image: "",
-                id: 2,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Yerd", lastName: "Yanson"),
-                image: "",
-                id: 3,
-                playlistExists: true
-            ),
-            Chat(
-                type: .individual(firstName: "Andrew", lastName: "Caravaggio"),
-                image: "",
-                id: 4,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Adrian", lastName: "Bilic"),
-                image: "",
-                id: 5,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Mike", lastName: "Hunt 🍑"),
-                image: "",
-                id: 6,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Alexander", lastName: "Shulgin 🍬"),
-                image: "",
-                id: 7,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Tiger", lastName: "Woods"),
-                image: "",
-                id: 8,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Dad", lastName: nil),
-                image: "",
-                id: 9,
-                playlistExists: false
-            ),
-            Chat(
-                type: .individual(firstName: "Barney", lastName: "Maly 🐶"),
-                image: "",
-                id: 10,
-                playlistExists: false
-            ),
-        ]
+        let jsonString = SwiftPythonInterface.viewSingleChat().description
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            fatalError("Could not get jsonData")
+        }
+
+        do {
+            let decoder = JSONDecoder()
+            let tableData = try decoder.decode([IndividualChatCodable].self, from: jsonData)
+            individualChats = tableData.map { Chat($0) }
+        }
+        catch {
+            //TODO: handle error better
+            print (error)
+        }
 
         selectedIndividualChatIndex = 0
     }

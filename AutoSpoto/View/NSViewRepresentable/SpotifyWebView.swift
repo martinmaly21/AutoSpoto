@@ -68,15 +68,31 @@ struct SpotifyWebView: NSViewRepresentable {
                         return
                     }
 
-                    do {
-                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                    guard let jsonString = String(data: data, encoding: String.Encoding.utf8) else {
+                        fatalError("Could not get JSON String")
+                    }
 
-                        if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
-                            self.parent.spotifyAccessToken = JSONString
-                        }
+                    let jsonObject = jsonString.toJSON() as? [String:AnyObject]
+
+                    let access_string =  "{\"access_token\": \"\((jsonObject?["access_token"])!)\", "
+                    let token_type = "\"token_type\": \"\((jsonObject?["token_type"])!)\", "
+                    let expires_in = "\"expires_in\": \(3600), "
+                    let scope = "\"scope\": \"\((jsonObject?["scope"])!)\", "
+                    let expires_at = "\"expires_at\": \(Int (NSDate ().timeIntervalSince1970) + 3600), "
+                    let refresh_token = "\"refresh_token\":\"\((jsonObject?["refresh_token"])!)\"}"
+
+                    let final_json = access_string + token_type + expires_in + scope + expires_at + refresh_token
+
+                    guard let cacheUrl = Bundle.main.urls(forResourcesWithExtension: "cache", subdirectory: nil)?.first else {
+                        fatalError("Could not get .cache url")
+                    }
+
+                    do {
+                        try final_json.write(toFile: cacheUrl.path, atomically: true, encoding: .utf8)
+                        self.parent.spotifyAccessToken = final_json
                     } catch {
                         //TODO: handle error better?
-                        print("Error: Unable to parse JSON")
+                        print(error)
                     }
                 }
             }
