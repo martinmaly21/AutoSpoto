@@ -48,9 +48,9 @@ class Spotiy:
             num_of_spot_posts = int(len(tracks) / 100) # need to divide list if the tracks are more than 100
             for i in range(num_of_spot_posts+1):
                 if i == (num_of_spot_posts):
-                    response = self.conn.playlist_add_items(playlist_id, tracks[99*i:], position=None)
+                    response = self.conn.playlist_add_items(playlist_id, tracks[100*i:], position=None)
                     break
-                self.conn.playlist_add_items(playlist_id, tracks[100*i: 99 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
+                self.conn.playlist_add_items(playlist_id, tracks[100*i: 100 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
                 
         else:
             response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
