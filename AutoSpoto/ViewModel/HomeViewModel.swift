@@ -122,14 +122,6 @@ class HomeViewModel: ObservableObject {
         }
 
         await individualChats[selectedIndividualChatIndex].fetchTracks()
-
-        individualChats[selectedIndividualChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
-            if let indexOfTrack = self.individualChats[selectedIndividualChatIndex].tracks.firstIndex(of: updatedTrack) {
-                DispatchQueue.main.async {
-                    self.individualChats[selectedIndividualChatIndex].tracks[indexOfTrack] = updatedTrack
-                }
-            }
-        })
     }
 
     public func fetchTracksForGroupChat() async {
@@ -138,14 +130,46 @@ class HomeViewModel: ObservableObject {
         }
 
         await groupChats[selectedGroupChatIndex].fetchTracks()
+    }
 
-        groupChats[selectedGroupChatIndex].fetchMetadataForTracks(completion: { updatedTrack in
-            if let indexOfTrack = self.groupChats[selectedGroupChatIndex].tracks.firstIndex(of: updatedTrack) {
+    public func fetchTrackMetadata(
+        chat: Chat,
+        track: Track
+    ) async {
+        switch filterSelection {
+        case .individual:
+            await fetchTrackMetadataForIndividualChat(chat: chat, track: track)
+        case .group:
+            await fetchTrackMetadataForGroupChat(chat: chat, track: track)
+        }
+    }
+
+    private func fetchTrackMetadataForIndividualChat(
+        chat: Chat,
+        track: Track
+    ) async {
+        if let indexOfChat = individualChats.firstIndex(of: chat),
+           let indexOfTrack = individualChats[indexOfChat].tracks.firstIndex(of: track) {
+            individualChats[indexOfChat].tracks[indexOfTrack].fetchTrackMetadata { updatedTrack in
                 DispatchQueue.main.async {
-                    self.groupChats[selectedGroupChatIndex].tracks[indexOfTrack] = updatedTrack
+                    self.individualChats[indexOfChat].tracks[indexOfTrack] = updatedTrack
                 }
             }
-        })
+        }
+    }
+
+    private func fetchTrackMetadataForGroupChat(
+        chat: Chat,
+        track: Track
+    ) async {
+        if let indexOfChat = groupChats.firstIndex(of: chat),
+           let indexOfTrack = groupChats[indexOfChat].tracks.firstIndex(of: track) {
+            groupChats[indexOfChat].tracks[indexOfTrack].fetchTrackMetadata { updatedTrack in
+                DispatchQueue.main.async {
+                    self.groupChats[indexOfChat].tracks[indexOfTrack] = updatedTrack
+                }
+            }
+        }
     }
 
     func resetModel() async {

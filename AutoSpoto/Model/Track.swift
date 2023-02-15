@@ -29,7 +29,7 @@ class Track: Hashable {
         self.timeStamp = trackCodable.date_utc
     }
 
-    public func getTrackMetadata(
+    public func fetchTrackMetadata(
         completion: @escaping (Track) -> Void
     ) {
         guard !hasFetchedMetadata && !isFetchingMetadata else { return }
