@@ -20,12 +20,11 @@ def split_it(url_l):
     url_l = url_l.decode("utf-8", "ignore")
     url_l = ''.join(url_l.split())
 
-    results =  re.search('https.+?(?=[?])', url_l)
-
+    results =  re.search('https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9]{22}\?si=[a-zA-Z0-9_-]{16}', url_l)
+    
     if results != None:
         return results.group(0)
     return None
-
 def get_songs(chat_id, last_updated, display_view):
 
 #    last_updated = kwargs.get('last_updated', None)
@@ -51,7 +50,6 @@ def get_songs(chat_id, last_updated, display_view):
     houseMusicChat = chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id]
 
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
-    
     # The part of the code where we can use the last updated field in the database to sync the playlist
     if last_updated:
         houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
@@ -60,7 +58,8 @@ def get_songs(chat_id, last_updated, display_view):
     spotifyTrackText = 'https://open.spotify.com/track/'
    
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
-    houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
+    houseMusicChat.dropna(subset=['decoded_blob'], inplace= True)
+    #houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
     
     if display_view:
         ret_view = houseMusicChat[['decoded_blob', 'date_utc']]
