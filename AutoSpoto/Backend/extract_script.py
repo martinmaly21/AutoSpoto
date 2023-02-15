@@ -20,7 +20,7 @@ def split_it(url_l):
     url_l = url_l.decode("utf-8", "ignore")
     url_l = ''.join(url_l.split())
 
-    results =  re.search('https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9]{22}', url_l)
+    results =  re.search('https:\/\/open\.spotify\.com\/track\/(?![a-zA-Z0-9]{19}WHt)[a-zA-Z0-9]{22}', url_l)
     
     if results != None:
         return results.group(0)
