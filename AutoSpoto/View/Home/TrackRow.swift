@@ -10,7 +10,9 @@ import Kingfisher
 
 
 struct TrackRow: View {
-    //for now this track will always be a spotify URL
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
+    let chat: Chat
     let track: Track
 
     var body: some View {
@@ -60,6 +62,11 @@ struct TrackRow: View {
                     Spacer()
                 }
                 .multilineTextAlignment(.leading)
+                .onAppear {
+                    Task {
+                        await homeViewModel.fetchTrackMetadata(chat: chat, track: track)
+                    }
+                }
             }
 
 

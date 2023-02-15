@@ -86,18 +86,6 @@ struct Chat: Hashable {
         isFetchingTracks = false
     }
 
-    func fetchMetadataForTracks(completion: @escaping (Track) -> Void) {
-        for (index, track) in tracks.reversed().enumerated() {
-            DispatchQueue.main.asyncAfter(
-                //is this enough of a delay to avoid 'Too many requests' errors?
-                deadline: .now() + (0.01 * Double(index)) ,
-                execute: {
-                    track.getTrackMetadata(completion: completion)
-                }
-            )
-        }
-    }
-
     static func == (lhs: Chat, rhs: Chat) -> Bool {
         return lhs.id == rhs.id
     }

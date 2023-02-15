@@ -12,7 +12,7 @@ struct AutoSpotoContainerView: View {
         case onboarding
         case home
     }
-    @State private var autoSpotoCurrentView: CurrentView = .home
+    @State private var autoSpotoCurrentView: CurrentView = .onboarding
     
     var body: some View {
         ZStack {
@@ -38,7 +38,7 @@ struct AutoSpotoContainerView: View {
 
             //IF so, show messages UI
             //If not, show OnboardingContainerView
-            autoSpotoCurrentView = .home
+            autoSpotoCurrentView = .onboarding
         }
     }
 }

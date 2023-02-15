@@ -45,7 +45,7 @@ struct ChatView: View {
                                         Spacer()
 
                                         ForEach(selectedChat.tracks, id: \.hashValue) { track in
-                                            TrackRow(track: track)
+                                            TrackRow(chat: selectedChat, track: track)
                                         }
 
                                         Spacer()
@@ -80,6 +80,7 @@ struct ChatView: View {
                             .padding(.bottom, bottomPadding)
                         }
                     }
+                    .environmentObject(homeViewModel)
                 }
                 VStack {
                     HStack(alignment: .center, spacing: 14) {
