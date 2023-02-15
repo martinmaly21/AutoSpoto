@@ -56,8 +56,8 @@ class SwiftPythonInterface {
         return spotify_api.Spotiy(cacheUrl.path)
     }
 
-     static func user_info() -> PythonObject {
-        let user_info = spotify_api.Spotiy().login()
+    static func user_info() -> PythonObject {
+        let user_info = spotify_api.Spotiy().user_info()
         return user_info
     }
 
@@ -66,18 +66,38 @@ class SwiftPythonInterface {
         return(tracks)
     }
 
-    //maybe playlist_id can be string. Will need to see what the best way to pass objects/variables between functions
-    static func addSongsToPlaylist(playlist_id: PythonObject, tracks: PythonObject) -> PythonObject {
-        //Hard coded values right now for testing
-        let response = spotiy.update_playlist(playlist_id, tracks, db)
+    static func createPlaylistAndAddSongs(
+        playlistImage: String? = nil,
+        playlistName: String,
+        playlistDescription: String = "",
+        chatID: Int
+    ) {
+        //TODO: pass in playlistPhoto
+
+        let playlistID = SwiftPythonInterface.createPlaylist(
+            name: playlistName,
+            description: playlistDescription,
+            chat_id: chatID
+        )
+
+        let _ = addSongsToPlaylist(
+            playlist_id: playlistID,
+            tracks: extractScript(chat_id: chatID)
+        )
+    }
+
+    static private func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {
+        let response = spotiy.create_playlist(spotiy.user_info(), name, description, chat_id, db)
 
         db.close_connection()
         print(response)
         return(response)
     }
 
-    static func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {
-        let response = spotiy.create_playlist(spotiy.user_id(), name, description, chat_id, db)
+    //maybe playlist_id can be string. Will need to see what the best way to pass objects/variables between functions
+    static func addSongsToPlaylist(playlist_id: PythonObject, tracks: PythonObject) -> PythonObject {
+        //Hard coded values right now for testing
+        let response = spotiy.update_playlist(playlist_id, tracks, db)
 
         db.close_connection()
         print(response)

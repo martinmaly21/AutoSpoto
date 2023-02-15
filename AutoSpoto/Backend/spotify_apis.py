@@ -14,8 +14,7 @@ class Spotiy:
         self.conn = spotipy.Spotify(auth_manager=auth_manager)
         
     
-     def user_info(self):
-
+    def user_info(self):
         user_info = self.conn.current_user()
         if user_info['id']:
             return user_info['id']
@@ -32,8 +31,8 @@ class Spotiy:
         response = self.conn.user_playlist_create(user_id, name= name, public=True, collaborative=False, description= description)
         #if the playlist is succesfully created we will create a record in the sqlite db
         if response['id']:
-            db_object.add_playlist(chat_id, response['id'])
-            return(response['id'], response)
+            db_object.add_playlist(chat_id, response ['id'])
+            return response['id']
         else:
             raise Exception(response['error'])
     
