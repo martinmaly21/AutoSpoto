@@ -22,7 +22,7 @@ struct ChatsListView: View {
             ScrollView {
                 Spacer()
                     .frame(height: topInset)
-                VStack(spacing: 0) {
+                LazyVStack(spacing: 0) {
                     ForEach(homeViewModel.chats.indices, id: \.self) { index in
                         let chat = homeViewModel.chats[index]
                         ChatRow(chat: chat, isSelected: index == homeViewModel.selectedChatIndex)

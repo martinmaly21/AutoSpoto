@@ -37,8 +37,8 @@ struct ChatView: View {
                     GeometryReader { proxy in
                         ZStack(alignment: .bottom) {
                             ScrollViewReader { reader in
-                                ScrollView(showsIndicators: false) {
-                                    VStack {
+                                ScrollView {
+                                    LazyVStack {
                                         Spacer()
                                             .frame(height: heightOfToolbar)
 
