@@ -62,15 +62,14 @@ def get_songs(chat_id, last_updated, display_view):
     #houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
     
     if display_view:
-        ret_view = houseMusicChat[['decoded_blob', 'date_utc']]
+        ret_view = houseMusicChat
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
-        return(ret_view.to_json(orient='records').replace("\\",""))
+        return(ret_view[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
+
+    houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
+    houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
     
-    trackIDs = []
-
-    for url in houseMusicChat['decoded_blob'].to_numpy():
-        path = parse.urlparse(url).path
-        trackIDs.append(path.rpartition('/')[2])
-
-    trackIdsWithoutDuplicates = list(set(trackIDs)) #No duplicates
+    trackIDs = houseMusicChat['decoded_blob'].tolist()
+    
+    trackIdsWithoutDuplicates = trackIDs #No duplicates
     return trackIdsWithoutDuplicates
