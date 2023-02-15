@@ -1,6 +1,7 @@
 import spotipy
 import os
 import db
+import time
 
 class Spotiy:
 
@@ -15,6 +16,7 @@ class Spotiy:
         
     
     def user_info(self):
+
         user_info = self.conn.current_user()
         if user_info['id']:
             return user_info['id']
@@ -48,7 +50,8 @@ class Spotiy:
                 if i == (num_of_spot_posts):
                     response = self.conn.playlist_add_items(playlist_id, tracks[99*i:], position=None)
                     break
-                self.conn.playlist_add_items(playlist_id, tracks[99*i: 99 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
+                self.conn.playlist_add_items(playlist_id, tracks[100*i: 99 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
+                
         else:
             response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
         
