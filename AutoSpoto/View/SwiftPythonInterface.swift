@@ -22,21 +22,20 @@ class SwiftPythonInterface {
         return filePath.replacingOccurrences(of: knownFileNameAtDesiredPath, with: "")
     }
 
+    static let sys = Python.import("sys")
+
     //Instance variables
     private static var spotify_api: PythonObject {
-        let sys = Python.import("sys")
         sys.path.append(filepath)
         return Python.import("spotify_apis")
     }
 
     private static var extract_script: PythonObject {
-        let sys = Python.import("sys")
         sys.path.append(filepath)
         return Python.import("extract_script")
     }
 
     private static var db: PythonObject {
-        let sys = Python.import("sys")
         sys.path.append(filepath)
 
         //is it okay to pass in Bundle.main.bundleURL?
