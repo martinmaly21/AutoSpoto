@@ -20,6 +20,8 @@ class Track: Hashable {
     var title: String?
     var artist: String?
 
+    private var currentTask: URLSessionDataTask?
+
     init?(trackCodable: TrackCodable) {
         guard let url = URL(string: trackCodable.decoded_blob) else {
             assertionFailure("Could not create URL")
@@ -37,13 +39,25 @@ class Track: Hashable {
         isFetchingMetadata = true
         hasFetchedMetadata = true
 
-        OpenGraph.fetch(
+        let task = OpenGraph.fetch(
             url: url,
             completion: { result in
+                self.currentTask = nil
+
                 switch result {
-                case .failure(let failure):
-                    print("Error: \(failure.localizedDescription)")
-                    self.errorFetchingMetadata = true
+                case .failure(let error):
+
+                    if let error = error as? OpenGraphResponseError,
+                       case .unexpectedStatusCode(404) = error {
+                        //404 error (invalid url)
+                        self.errorFetchingMetadata = true
+                        self.hasFetchedMetadata = true
+                    } else {
+                        //otherwise, fetch was cancelled or perhaps too many network requests. Either way, we can
+                        //try to fetch again next time the cell appears
+                        self.hasFetchedMetadata = false
+                    }
+
                     self.isFetchingMetadata = false
 
                     completion(self)
@@ -61,6 +75,15 @@ class Track: Hashable {
             }
         )
 
+        if let currentTask = currentTask {
+            currentTask.cancel()
+        }
+
+        self.currentTask = task
+    }
+
+    public func cancelTaskIfNeeded() {
+        currentTask?.cancel()
     }
 
     func hash(into hasher: inout Hasher) {
