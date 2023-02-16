@@ -122,6 +122,7 @@ struct ChatView: View {
                         showCreatePlaylistSheeet: $showCreatePlaylistSheeet,
                         chat: selectedChat
                     )
+                    .environmentObject(homeViewModel)
                 }
             )
         } else {

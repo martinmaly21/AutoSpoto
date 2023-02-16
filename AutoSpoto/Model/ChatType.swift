@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ChatType {
+enum ChatType: Hashable {
     case individual(firstName: String?, lastName: String?)
     case group(name: String?)
 }
