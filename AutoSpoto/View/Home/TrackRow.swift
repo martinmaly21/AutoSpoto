@@ -60,6 +60,14 @@ struct TrackRow: View {
                     }
 
                     Spacer()
+
+                    VStack {
+                        Text(track.timeStamp)
+                            .font(.josefinSansLight(16))
+                            .foregroundColor(.white)
+
+                        Spacer()
+                    }
                 }
                 .multilineTextAlignment(.leading)
                 .onAppear {
