@@ -81,4 +81,6 @@ def get_songs(chat_id, last_updated, display_view):
     
     #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
+    trackIDs.reverse()
+
     return trackIDs
