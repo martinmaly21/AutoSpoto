@@ -61,10 +61,8 @@ class SwiftPythonInterface {
     }
 
     static func extractScript(chat_id: Int, lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
-        DispatchQueue.main.sync {
-            let tracks = extract_script.get_songs(chat_id, lastUpdated, displayView)
-            return(tracks)
-        }
+        let tracks = extract_script.get_songs(chat_id, lastUpdated, displayView)
+        return(tracks)
     }
 
     static func createPlaylistAndAddSongs(
