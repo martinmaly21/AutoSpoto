@@ -69,7 +69,8 @@ def get_songs(chat_id, last_updated, display_view):
     houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
     houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
     
-    trackIDs = houseMusicChat['decoded_blob'].tolist()
+    houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
     
+    trackIDs = houseMusicChat['decoded_blob'].tolist()
     trackIdsWithoutDuplicates = trackIDs #No duplicates
     return trackIdsWithoutDuplicates
