@@ -61,6 +61,7 @@ def get_songs(chat_id, last_updated, display_view):
     houseMusicChat.dropna(subset=['decoded_blob'], inplace= True)
     if display_view:
         ret_view = houseMusicChat
+        ret_view = ret_view.sort_values(by = 'date_utc')
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
         ret_view = ret_view.sort_values(by = 'date_utc')
         print(ret_view)
