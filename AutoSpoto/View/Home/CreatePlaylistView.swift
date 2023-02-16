@@ -42,10 +42,12 @@ struct CreatePlaylistView: View {
             HStack {
                 Spacer()
                 Button(AutoSpotoConstants.Strings.CREATE) {
-                    SwiftPythonInterface.createPlaylistAndAddSongs(
-                        playlistName: playlistName,
-                        chatID: chat.id
-                    )
+                    Task {
+                        SwiftPythonInterface.createPlaylistAndAddSongs(
+                            playlistName: playlistName,
+                            chatID: chat.id
+                        )
+                    }
 
                     self.showCreatePlaylistSheeet = false
                 }
