@@ -132,6 +132,38 @@ class HomeViewModel: ObservableObject {
         await groupChats[selectedGroupChatIndex].fetchTracks()
     }
 
+    public func cancelTrackMetadataFetchIfNeeded(
+        chat: Chat,
+        track: Track
+    ) {
+        switch filterSelection {
+        case .individual:
+            cancelTrackMetadataFetchIfNeededForIndividualChat(chat: chat, track: track)
+        case .group:
+            cancelTrackMetadataFetchIfNeededForGroupChat(chat: chat, track: track)
+        }
+    }
+
+    private func cancelTrackMetadataFetchIfNeededForIndividualChat(
+        chat: Chat,
+        track: Track
+    ) {
+        if let indexOfChat = individualChats.firstIndex(of: chat),
+           let indexOfTrack = individualChats[indexOfChat].tracks.firstIndex(of: track) {
+            individualChats[indexOfChat].tracks[indexOfTrack].cancelTaskIfNeeded()
+        }
+    }
+
+    private func cancelTrackMetadataFetchIfNeededForGroupChat(
+        chat: Chat,
+        track: Track
+    ) {
+        if let indexOfChat = groupChats.firstIndex(of: chat),
+           let indexOfTrack = groupChats[indexOfChat].tracks.firstIndex(of: track) {
+            groupChats[indexOfChat].tracks[indexOfTrack].cancelTaskIfNeeded()
+        }
+    }
+
     public func fetchTrackMetadata(
         chat: Chat,
         track: Track

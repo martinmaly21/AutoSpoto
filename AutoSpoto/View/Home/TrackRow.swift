@@ -75,6 +75,9 @@ struct TrackRow: View {
                         await homeViewModel.fetchTrackMetadata(chat: chat, track: track)
                     }
                 }
+                .onDisappear {
+                    homeViewModel.cancelTrackMetadataFetchIfNeeded(chat: chat, track: track)
+                }
             }
 
 
