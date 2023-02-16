@@ -91,7 +91,7 @@ struct Chat: Hashable {
     }
 
     public func hash(into hasher: inout Hasher) {
-        return hasher.combine(type)
+        hasher.combine(type)
         hasher.combine(image)
         hasher.combine(id)
 
