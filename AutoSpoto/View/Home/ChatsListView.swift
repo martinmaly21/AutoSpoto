@@ -23,7 +23,7 @@ struct ChatsListView: View {
                 Spacer()
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
-                    ForEach(homeViewModel.chats.indices, id: \.self) { index in
+                    ForEach(homeViewModel.chats.indices, id: \.hashValue) { index in
                         let chat = homeViewModel.chats[index]
                         ChatRow(chat: chat, isSelected: index == homeViewModel.selectedChatIndex)
                             .onTapGesture {

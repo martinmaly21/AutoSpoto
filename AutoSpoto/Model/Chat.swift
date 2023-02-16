@@ -91,6 +91,16 @@ struct Chat: Hashable {
     }
 
     public func hash(into hasher: inout Hasher) {
-        return hasher.combine(id)
+        return hasher.combine(type)
+        hasher.combine(image)
+        hasher.combine(id)
+
+        hasher.combine(playlistExists)
+
+        hasher.combine(tracks)
+
+        hasher.combine(hasFetchedTracks)
+        hasher.combine(isFetchingTracks)
+        hasher.combine(errorFetchingTracks)
     }
 }

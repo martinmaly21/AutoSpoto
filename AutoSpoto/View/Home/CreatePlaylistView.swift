@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreatePlaylistView: View {
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var showCreatePlaylistSheeet: Bool
 
     let chat: Chat
@@ -47,6 +48,8 @@ struct CreatePlaylistView: View {
                             playlistName: playlistName,
                             chatID: chat.id
                         )
+
+                        homeViewModel.updateChatForPlaylist(chat: chat, wasCreated: true)
                     }
 
                     self.showCreatePlaylistSheeet = false
