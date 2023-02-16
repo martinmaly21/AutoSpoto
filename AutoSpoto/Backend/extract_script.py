@@ -19,7 +19,7 @@ def split_it(url_l):
         
     url_l = url_l.decode("utf-8", "ignore")
     url_l = ''.join(url_l.split())
-
+    #regex saying that the string must start with https://open.com/tracks/ then followed by 22 characters where the last three characters cannont be WHt
     results =  re.search('https:\/\/open\.spotify\.com\/track\/(?![a-zA-Z0-9]{19}WHt)[a-zA-Z0-9]{22}', url_l)
     
     if results != None:
@@ -59,18 +59,23 @@ def get_songs(chat_id, last_updated, display_view):
    
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
     houseMusicChat.dropna(subset=['decoded_blob'], inplace= True)
-    #houseMusicChat = houseMusicChat[houseMusicChat['decoded_blob'].str.startswith(spotifyTrackText) == True] #Keep only the rows that have a spotify song in them
-    
     if display_view:
         ret_view = houseMusicChat
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
+        ret_view = ret_view.sort_values(by = 'date_utc')
+        print(ret_view)
         return(ret_view[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
 
-    houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
-    houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
     
+    #Stripping the link so that we only have the track id
+    houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
+    
+    #Removing Duplicates
     houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
     
+    #Soring by dates
+    houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
+    
+    #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
-    trackIdsWithoutDuplicates = trackIDs #No duplicates
-    return trackIdsWithoutDuplicates
+    return trackIDs
