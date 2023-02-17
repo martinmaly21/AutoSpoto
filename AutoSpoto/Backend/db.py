@@ -112,7 +112,7 @@ class db:
         flag_check = self.display_playlists()
 
         final_table = pd.merge(joined_contacts, flag_check, on ='chat_id',  how='left')
-        final_table = final_table[['Image_Blob','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
+        final_table = final_table[['Image','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
         final_table.drop_duplicates(keep='first', inplace=True)
         final_table = final_table.to_json(orient='records')
         return final_table
