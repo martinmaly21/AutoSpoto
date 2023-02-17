@@ -13,6 +13,6 @@ struct IndividualChatCodable: Codable {
     let chat_id: Int
     let First_Name: String?
     let Last_Name: String?
-    let playlist_id: Int?
+    let playlist_id: String?
 }
     

@@ -11,5 +11,5 @@ struct GroupChatCodable: Codable {
     let chat_id: Int
     let display_name: String
     let Image: String?
-    let playlist_id: Int?
+    let playlist_id: String?
 }
