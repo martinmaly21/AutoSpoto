@@ -107,7 +107,7 @@ class db:
         contact_rows.dropna(subset=['Phone_Number'], inplace= True)
         image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
         joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
-        joined_contacts['Image_Blob'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
+        joined_contacts['Image'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
 
         flag_check = self.display_playlists()
 
