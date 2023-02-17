@@ -15,10 +15,18 @@ struct ChatRow: View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 15) {
                 ZStack {
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    if let base64ImageString = chat.image,
+                       let base64ImageStringData = Data(base64Encoded: base64ImageString),
+                       let nsImage = NSImage(data: base64ImageStringData) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                    } else {
+                        Image(systemName: "person.crop.circle")
+                            .resizable()
+                    }
                 }
+
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
                 .background(Color.gray)
                 .clipShape(Circle())
