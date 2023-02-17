@@ -92,11 +92,9 @@ class db:
 
         final_table = pd.merge(output, flag_check, on ='chat_id',  how='left')
         final_table = final_table[['chat_id','display_name','path','playlist_id']]
-        final_table['playlist_id'] = final_table['playlist_id'].notna()
         final_table.drop_duplicates(keep='first', inplace=True)
         final_table.rename({'path': 'Image'}, inplace=True, axis=1) 
 
-        print(final_table)
         final_table = final_table.to_json(orient='records')
         return final_table
 
