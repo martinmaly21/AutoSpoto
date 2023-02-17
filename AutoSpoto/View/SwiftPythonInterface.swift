@@ -11,6 +11,7 @@ import PythonKit
 
 //Call this function to sign the user in and save the cache
 
+@MainActor
 class SwiftPythonInterface {
     private static var filepath: String {
         let knownFileNameAtDesiredPath = "db.py"

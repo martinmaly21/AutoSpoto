@@ -66,7 +66,7 @@ struct Chat: Hashable {
         hasFetchedTracks = true
         isFetchingTracks = true
 
-        let jsonString = SwiftPythonInterface.extractScript(chat_id: id, displayView: true).description
+        let jsonString = await SwiftPythonInterface.extractScript(chat_id: id, displayView: true).description
         guard let jsonData = jsonString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }
