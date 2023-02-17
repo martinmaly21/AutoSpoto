@@ -87,7 +87,14 @@ struct Chat: Hashable {
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.type == rhs.type &&
+        lhs.image == rhs.image &&
+        lhs.id == rhs.id &&
+        lhs.playlistExists == rhs.playlistExists &&
+        lhs.tracks == rhs.tracks &&
+        lhs.hasFetchedTracks == rhs.hasFetchedTracks &&
+        lhs.isFetchingTracks == rhs.isFetchingTracks &&
+        lhs.errorFetchingTracks == rhs.errorFetchingTracks
     }
 
     public func hash(into hasher: inout Hasher) {
