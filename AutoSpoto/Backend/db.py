@@ -30,6 +30,13 @@ class db:
         # place 'P' manually for nice 75 char alignment
         return t
 
+    def path_to64(self, path):
+        binary_fc       = open(path, 'rb').read()  # fc aka file_content
+        base64_utf8_str = b64encode(binary_fc).decode('utf-8')
+
+        ext     = path.split('.')[-1]
+        dataurl = f'data:image/{ext};base64,{base64_utf8_str}'
+        return dataurl
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
     def add_playlist(self, chat_id, playlist_id):
@@ -54,15 +61,42 @@ class db:
     # This is getting all groupchats and their chat ids that have a name
     #The display_name field is blank if there is no name which is what the not like'' is doing
     def retrieve_group_chat(self):
-        rows = pd.read_sql(("select ROWID as chat_id, display_name from cdb.chat where display_name not like'';"), self.connection)
+        directory = (os.environ['HOME']+'/Library/Intents/Images/')
+        dir_list = []
+
+        for file in os.listdir(directory):
+            filename = os.fsdecode(file)
+            if filename.endswith(".png"):
+                dir_list.append(os.path.join(directory, filename))
+                continue
+            else:
+                continue
+
+        dir_panda = pd.DataFrame({'path':dir_list})
+        
+        rows = pd.read_sql(("select ROWID as chat_id, display_name, guid from cdb.chat where display_name not like'';"), self.connection)
         rows.dropna(subset=['display_name'], inplace=True)
+        #Get the guid in the form chatxxxxxxxx so we can search the substring in the path
+        rows['guid'] = rows['guid'].str.split(';').str[2]
+        pat = "|".join(rows.guid)
+        #Searching substring so that we add the chat guid to the directory dataframe
+        dir_panda.insert(0, 'guid', dir_panda['path'].str.extract("(" + pat + ')', expand=False))
+        dir_panda.dropna(subset=['guid'], inplace=True)
+        #Apply the 
+        dir_panda['path'] = dir_panda['path'].apply(self.path_to64)
+        
+        #merge the tables so that the path the base64 image in included along with chat_id, guid and display_name
+        output = pd.merge(rows, dir_panda, on ='guid',  how='left')
         
         flag_check = self.display_playlists()
 
-        final_table = pd.merge(rows, flag_check, on ='chat_id',  how='left')
-        final_table = final_table[['chat_id','display_name','playlist_id']]
+        final_table = pd.merge(output, flag_check, on ='chat_id',  how='left')
+        final_table = final_table[['chat_id','display_name','path','playlist_id']]
         final_table['playlist_id'] = final_table['playlist_id'].notna()
         final_table.drop_duplicates(keep='first', inplace=True)
+        final_table.rename({'path': 'Image'}, inplace=True, axis=1) 
+
+        print(final_table)
         final_table = final_table.to_json(orient='records')
         return final_table
 
