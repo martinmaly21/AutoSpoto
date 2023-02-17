@@ -33,10 +33,7 @@ class db:
     def path_to64(self, path):
         binary_fc       = open(path, 'rb').read()  # fc aka file_content
         base64_utf8_str = b64encode(binary_fc).decode('utf-8')
-
-        ext     = path.split('.')[-1]
-        dataurl = f'data:image/{ext};base64,{base64_utf8_str}'
-        return dataurl
+        return base64_utf8_str
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
     def add_playlist(self, chat_id, playlist_id):

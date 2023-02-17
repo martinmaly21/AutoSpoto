@@ -13,7 +13,7 @@ struct Chat: Hashable {
     let id: Int
 
     //this indicates whether a playlist already exists for this chat
-    var playlistID: Int?
+    var playlistID: String?
 
     var playlistExists: Bool {
         return playlistID != nil

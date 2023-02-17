@@ -206,7 +206,7 @@ class HomeViewModel: ObservableObject {
 
     public func updateChatForPlaylist(
         chat: Chat,
-        playlistID: Int
+        playlistID: String
     ) {
         switch filterSelection {
         case .individual:
