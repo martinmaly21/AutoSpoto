@@ -13,7 +13,11 @@ struct Chat: Hashable {
     let id: Int
 
     //this indicates whether a playlist already exists for this chat
-    var playlistExists: Bool
+    var playlistID: Int?
+
+    var playlistExists: Bool {
+        return playlistID != nil
+    }
 
     var tracks: [Track] = []
 
@@ -23,7 +27,7 @@ struct Chat: Hashable {
 
     var displayName: String {
         switch type {
-        case .individual(let firstName, let lastName):
+        case .individual(let firstName, let lastName, let phoneNumber):
             if let firstName = firstName, let lastName = lastName {
                 return "\(firstName) \(lastName)"
             } else if let firstName = firstName {
@@ -31,7 +35,7 @@ struct Chat: Hashable {
             } else if let lastName = lastName {
                 return lastName
             } else {
-                fatalError("Individual chat has no name")
+                return phoneNumber
             }
         case .group(let name):
             if let name = name {
@@ -45,19 +49,19 @@ struct Chat: Hashable {
     init(_ individualChatCodable: IndividualChatCodable) {
         type = .individual(
             firstName: individualChatCodable.First_Name,
-            lastName: individualChatCodable.Last_Name
+            lastName: individualChatCodable.Last_Name,
+            phoneNumber: individualChatCodable.Phone_Number
         )
-        image = individualChatCodable.Image_Blob
+        image = individualChatCodable.Image
         id = individualChatCodable.chat_id
-        playlistExists = individualChatCodable.playlist_id
+        playlistID = individualChatCodable.playlist_id //TODO: cahnge
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
         type = .group(name: groupChatCodable.display_name)
-        image = nil //TODO
-        //        image = individualChatCodable.Image_Blob
+        image = groupChatCodable.Image
         id = groupChatCodable.chat_id
-        playlistExists = groupChatCodable.playlist_id
+        playlistID = groupChatCodable.playlist_id
     }
 
     mutating func fetchTracks() async {
@@ -90,7 +94,7 @@ struct Chat: Hashable {
         return lhs.type == rhs.type &&
         lhs.image == rhs.image &&
         lhs.id == rhs.id &&
-        lhs.playlistExists == rhs.playlistExists &&
+        lhs.playlistID == rhs.playlistID &&
         lhs.tracks == rhs.tracks &&
         lhs.hasFetchedTracks == rhs.hasFetchedTracks &&
         lhs.isFetchingTracks == rhs.isFetchingTracks &&
@@ -102,7 +106,7 @@ struct Chat: Hashable {
         hasher.combine(image)
         hasher.combine(id)
 
-        hasher.combine(playlistExists)
+        hasher.combine(playlistID)
 
         hasher.combine(tracks)
 

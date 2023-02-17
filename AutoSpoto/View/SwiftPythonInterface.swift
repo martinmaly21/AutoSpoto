@@ -66,12 +66,13 @@ class SwiftPythonInterface {
         return(tracks)
     }
 
+    //return playlist iD
     static func createPlaylistAndAddSongs(
         playlistImage: String? = nil,
         playlistName: String,
         playlistDescription: String = "",
         chatID: Int
-    ) {
+    ) -> Int {
         //TODO: pass in playlistPhoto
 
         let playlistID = SwiftPythonInterface.createPlaylist(
@@ -84,6 +85,12 @@ class SwiftPythonInterface {
             playlist_id: playlistID,
             tracks: extractScript(chat_id: chatID)
         )
+
+        guard let playlistIDDescriptionInt = Int(playlistID.description) else {
+            fatalError("Could not synthesize playlistIDDescriptionInt")
+        }
+
+        return playlistIDDescriptionInt
     }
 
     static private func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {

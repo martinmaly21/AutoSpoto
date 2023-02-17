@@ -44,12 +44,12 @@ struct CreatePlaylistView: View {
                 Spacer()
                 Button(AutoSpotoConstants.Strings.CREATE) {
                     Task {
-                        SwiftPythonInterface.createPlaylistAndAddSongs(
+                        let playlistID = SwiftPythonInterface.createPlaylistAndAddSongs(
                             playlistName: playlistName,
                             chatID: chat.id
                         )
 
-                        homeViewModel.updateChatForPlaylist(chat: chat, wasCreated: true)
+                        homeViewModel.updateChatForPlaylist(chat: chat, playlistID: playlistID)
                     }
 
                     self.showCreatePlaylistSheeet = false

@@ -206,16 +206,16 @@ class HomeViewModel: ObservableObject {
 
     public func updateChatForPlaylist(
         chat: Chat,
-        wasCreated: Bool //true if created, false if deleted
+        playlistID: Int
     ) {
         switch filterSelection {
         case .individual:
             if let indexOfChat = individualChats.firstIndex(of: chat) {
-                self.individualChats[indexOfChat].playlistExists = wasCreated
+                self.individualChats[indexOfChat].playlistID = playlistID
             }
         case .group:
             if let indexOfChat = groupChats.firstIndex(of: chat) {
-                self.groupChats[indexOfChat].playlistExists = wasCreated
+                self.groupChats[indexOfChat].playlistID = playlistID
             }
         }
     }
