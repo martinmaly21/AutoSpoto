@@ -10,6 +10,7 @@ class db:
         chat_db_string = f"\'{os.environ['HOME']}/Library/Messages/chat.db\'"
         #is it okay to just pass in 'contacts_string_id'? I.e. will it be named AddressBook-v22.abcddb for everyone?
         contacts_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/{contacts_string_id}/AddressBook-v22.abcddb\'"
+        self.contact_uid = contacts_string_id
         self.connection = sqlite3.connect(db_string)
         self.connection.row_factory = sqlite3.Row
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
@@ -24,15 +25,29 @@ class db:
         if img[6:10] == b'JFIF':
             t += b64encode(img).decode('ascii')
         else:
-            return "fucked"
-            raise NotImplementedError(
-                'Image types other than JPEG are not supported yet.')
+            return image
         # place 'P' manually for nice 75 char alignment
         return t
 
+        # place 'P' manually for nice 75 char alignment
+        
+    def hidden_image(self, path):
+    
+        if path is None or len(path) > 300:
+            return path
+        
+        else:
+            path = path.decode('ascii')
+            path = path.lstrip('\x02')
+            path = path.rstrip('\x00')
+            path =  f"{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/24485206-D95C-4125-A166-735537F69AC7/.AddressBook-v22_SUPPORT/_EXTERNAL_DATA/{path}" 
+            binary_fc       = open(path, 'rb').read()  # fc aka file_content
+            base64_utf8_str = b64encode(binary_fc).decode('utf-8', 'ignore')
+            return base64_utf8_str
+
     def path_to64(self, path):
         binary_fc       = open(path, 'rb').read()  # fc aka file_content
-        base64_utf8_str = b64encode(binary_fc).decode('utf-8')
+        base64_utf8_str = b64encode(binary_fc).decode('utf-8', 'ignore')
         return base64_utf8_str
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
@@ -104,6 +119,7 @@ class db:
         contact_rows.dropna(subset=['Phone_Number'], inplace= True)
         image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
         joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
+        joined_contacts['Image_Blob'] = joined_contacts['Image_Blob'].apply(self.hidden_image)
         joined_contacts['Image'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
 
         flag_check = self.display_playlists()
@@ -117,3 +133,7 @@ class db:
     def close_connection(self):
         self.connection.cursor().close()
         print('connection closed')
+
+# x  = db('/Users/andrewcaravaggio//Library/Messages/chat.db', '24485206-D95C-4125-A166-735537F69AC7')
+# lol = x.retrieve_single_chat()
+# lol.to_csv('pictures.csv', sep='\t')
