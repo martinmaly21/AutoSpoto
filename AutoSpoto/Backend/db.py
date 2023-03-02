@@ -40,7 +40,7 @@ class db:
             path = path.decode('ascii')
             path = path.lstrip('\x02')
             path = path.rstrip('\x00')
-            path =  f"{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/24485206-D95C-4125-A166-735537F69AC7/.AddressBook-v22_SUPPORT/_EXTERNAL_DATA/{path}" 
+            path =  f"{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/{self.contact_uid}/.AddressBook-v22_SUPPORT/_EXTERNAL_DATA/{path}" 
             binary_fc       = open(path, 'rb').read()  # fc aka file_content
             base64_utf8_str = b64encode(binary_fc).decode('utf-8', 'ignore')
             return base64_utf8_str
