@@ -47,7 +47,11 @@ def get_songs(chat_id, last_updated, display_view):
 
     chatMessagesAndHandlesJoined = pd.merge(messagesAndHandlesJoined, chatMessagesJoined, on = 'message_id', how='left')
     
-    houseMusicChat = chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id]
+    ####This code is looping through the newly created 
+    houseMusicChat = []
+    for chat in chat_id:
+        houseMusicChat.append(chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat])
+    houseMusicChat = pd.concat(houseMusicChat)
 
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
     # The part of the code where we can use the last updated field in the database to sync the playlist
@@ -64,7 +68,6 @@ def get_songs(chat_id, last_updated, display_view):
         ret_view = ret_view.sort_values(by = 'date_utc')
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
         ret_view = ret_view.sort_values(by = 'date_utc')
-        print(ret_view)
         return(ret_view[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
 
     
