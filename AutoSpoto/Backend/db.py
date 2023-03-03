@@ -126,14 +126,12 @@ class db:
 
         final_table = pd.merge(joined_contacts, flag_check, on ='chat_id',  how='left')
         final_table = final_table[['Image','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
-        final_table.drop_duplicates(keep='first', inplace=True)
+        #### This line of code is basically grouping records by phone number and putting chat_ids grouped together into a list
+        #### Meaning that a chat with sms and imessage messages will be represented as [x, x] in the chat_id column
+        final_table = final_table.groupby(['Phone_Number'], dropna=False,  as_index=False).aggregate({'Image': 'first','Phone_Number':'first','chat_id': lambda x: list(x),'First_Name':'first','Last_Name':'first','playlist_id':'first'})
         final_table = final_table.to_json(orient='records')
         return final_table
 
     def close_connection(self):
         self.connection.cursor().close()
         print('connection closed')
-
-# x  = db('/Users/andrewcaravaggio//Library/Messages/chat.db', '24485206-D95C-4125-A166-735537F69AC7')
-# lol = x.retrieve_single_chat()
-# lol.to_csv('pictures.csv', sep='\t')
