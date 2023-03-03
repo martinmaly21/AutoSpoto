@@ -52,8 +52,9 @@ class db:
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
     def add_playlist(self, chat_id, playlist_id):
-        self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat_id, playlist_id,None))
-        self.connection.commit()
+        for chat in chat_id:
+            self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat, playlist_id,None))
+            self.connection.commit()
 
     #For the same reason we need to update the row when songs have been uploaded to spotify    
     def update_time_playlist(self, playlist_id):
