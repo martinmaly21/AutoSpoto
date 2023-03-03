@@ -10,7 +10,7 @@ import SwiftUI
 struct Chat: Hashable {
     let type: ChatType
     let image: String? //base 64 string I believe
-    let id: Int
+    let id: [Int]
 
     //this indicates whether a playlist already exists for this chat
     var playlistID: String?
