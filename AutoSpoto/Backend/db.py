@@ -107,7 +107,8 @@ class db:
         final_table = final_table[['chat_id','display_name','path','playlist_id']]
         final_table.drop_duplicates(keep='first', inplace=True)
         final_table.rename({'path': 'Image'}, inplace=True, axis=1) 
-
+        final_table['chat_id'] = final_table['chat_id'].apply(lambda x: [x])
+        print(final_table)
         final_table = final_table.to_json(orient='records')
         return final_table
 
@@ -129,7 +130,9 @@ class db:
         final_table = final_table[['Image','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
         #### This line of code is basically grouping records by phone number and putting chat_ids grouped together into a list
         #### Meaning that a chat with sms and imessage messages will be represented as [x, x] in the chat_id column
-        final_table = final_table.groupby(['Phone_Number'], dropna=False,  as_index=False).aggregate({'Image': 'first','Phone_Number':'first','chat_id': lambda x: list(x),'First_Name':'first','Last_Name':'first','playlist_id':'first'})
+        final_table.drop_duplicates(inplace=True)
+        final_table = final_table.groupby(['Phone_Number','playlist_id'], dropna=False,  as_index=False).aggregate({'Image': 'first','Phone_Number':'first','chat_id': lambda x: list(x),'First_Name':'first','Last_Name':'first','playlist_id':'first'})
+        final_table.sort_values('First_Name', inplace=True)
         final_table = final_table.to_json(orient='records')
         return final_table
 
