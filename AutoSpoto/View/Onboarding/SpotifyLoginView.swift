@@ -24,16 +24,29 @@ struct SpotifyLoginView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
+            HStack {
+                Spacer()
+
+                Button(
+                    action: {
+                        isVisible = false
+                    },
+                    label: {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(Color.textPrimary)
+                            .clipShape(Circle())
+                    }
+                )
+                .buttonStyle(.plain)
+                .padding([.trailing, .top], 5)
+            }
+
             SpotifyWebView(
                 spotifyAccessToken: $spotifyAccessToken,
                 url: spotifyLoginURL
-            )
-            Button(
-                AutoSpotoConstants.Strings.CANCEL,
-                action: {
-                    isVisible = false
-                }
             )
         }
         .frame(

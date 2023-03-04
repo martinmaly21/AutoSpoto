@@ -67,17 +67,11 @@ struct ChatView: View {
                                 }
                             }
 
-                            Button(
+                            CreatePlaylistButton(
                                 action: {
                                     showCreatePlaylistSheeet = true
-                                },
-                                label: {
-                                    //TODO: add shadow on button
-                                    Text(AutoSpotoConstants.Strings.CREATE_PLAYLIST)
-                                        .font(.josefinSansRegular(18))
                                 }
                             )
-                            .customButton(foregroundColor: .textPrimary, backgroundColor: .backgroundPrimary)
                             .padding(.bottom, bottomPadding)
                         }
                     }
