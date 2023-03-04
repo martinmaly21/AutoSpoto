@@ -69,7 +69,6 @@
 		50F34C66297659950059516B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F34C65297659950059516B /* Colors.xcassets */; };
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
-		92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,7 +133,6 @@
 		50F34C65297659950059516B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50F34C6729765DC00059516B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndrewsBackendTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,7 +321,6 @@
 				5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */,
 				5069BF6D2999AC0A007F4037 /* NSViewRepresentable */,
 				50F34C8F297662B00059516B /* View Modifiers */,
-				92F05DFB298D8D5700796C4C /* AndrewsBackendTestView.swift */,
 				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
 				50F178902995EAA9002AFC1C /* Onboarding */,
 				50F178912995EAB8002AFC1C /* Home */,
@@ -476,7 +473,6 @@
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
 				50CFCE2929896983009C3F4A /* DiskAccessIntroductionView.swift in Sources */,
-				92F05DFC298D8D5700796C4C /* AndrewsBackendTestView.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 				5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */,
 			);
