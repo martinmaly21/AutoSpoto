@@ -38,6 +38,9 @@ struct ChooseMusicStreamingServiceView: View {
                                 .font(.josefinSansRegular(18))
 
                         }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 35)
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -68,6 +71,9 @@ struct ChooseMusicStreamingServiceView: View {
                                 .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 5))
                         }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 35)
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .frame(minWidth: 0, maxWidth: .infinity)
