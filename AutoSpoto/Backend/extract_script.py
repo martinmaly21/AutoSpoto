@@ -25,7 +25,7 @@ def split_it(url_l):
     if results != None:
         return results.group(0)
     return None
-def get_songs(chat_id, last_updated, display_view):
+def get_songs(chat_ids, last_updated, display_view):
 
 #    last_updated = kwargs.get('last_updated', None)
 #    display_view = kwargs.get('display_view', None)
@@ -49,8 +49,8 @@ def get_songs(chat_id, last_updated, display_view):
     
     ####This code is looping through the newly created 
     houseMusicChat = []
-    for chat in chat_id:
-        houseMusicChat.append(chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat])
+    for chat_id in chat_ids:
+        houseMusicChat.append(chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id])
     houseMusicChat = pd.concat(houseMusicChat)
 
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]

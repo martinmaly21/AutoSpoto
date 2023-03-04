@@ -10,7 +10,7 @@ import SwiftUI
 struct Chat: Hashable {
     let type: ChatType
     let image: String? //base 64 string I believe
-    let id: [Int]
+    let ids: [Int]
 
     //this indicates whether a playlist already exists for this chat
     var playlistID: String?
@@ -53,14 +53,14 @@ struct Chat: Hashable {
             phoneNumber: individualChatCodable.Phone_Number
         )
         image = individualChatCodable.Image
-        id = individualChatCodable.chat_id
+        ids = individualChatCodable.chat_ids
         playlistID = individualChatCodable.playlist_id //TODO: cahnge
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
         type = .group(name: groupChatCodable.display_name)
         image = groupChatCodable.Image
-        id = groupChatCodable.chat_id
+        ids = groupChatCodable.chat_ids
         playlistID = groupChatCodable.playlist_id
     }
 
@@ -70,7 +70,7 @@ struct Chat: Hashable {
         hasFetchedTracks = true
         isFetchingTracks = true
 
-        let jsonString = await SwiftPythonInterface.extractScript(chat_id: id, displayView: true).description
+        let jsonString = await SwiftPythonInterface.extractScript(chat_ids: ids, displayView: true).description
         guard let jsonData = jsonString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }
@@ -93,7 +93,7 @@ struct Chat: Hashable {
     static func == (lhs: Chat, rhs: Chat) -> Bool {
         return lhs.type == rhs.type &&
         lhs.image == rhs.image &&
-        lhs.id == rhs.id &&
+        lhs.ids == rhs.ids &&
         lhs.playlistID == rhs.playlistID &&
         lhs.tracks == rhs.tracks &&
         lhs.hasFetchedTracks == rhs.hasFetchedTracks &&
@@ -104,7 +104,7 @@ struct Chat: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(type)
         hasher.combine(image)
-        hasher.combine(id)
+        hasher.combine(ids)
 
         hasher.combine(playlistID)
 
