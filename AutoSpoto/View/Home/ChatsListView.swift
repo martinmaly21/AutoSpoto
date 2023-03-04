@@ -51,10 +51,21 @@ struct ChatsListView: View {
                             }
                         },
                         label: {
-                            Image(systemName: "arrow.clockwise")
+                            ZStack {
+                                Image(systemName: "arrow.clockwise")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .bold()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(Color.refreshButtonTextColor)
+                            }
+                            .frame(width: 50, height: 30)
+                            .background(Color.refreshButtonBackgroundColor)
+                            .clipShape(Capsule())
+                            .aspectRatio(contentMode: .fit)
                         }
                     )
-                    .frame(width: 30, height: 30)
+                    .buttonStyle(.plain)
 
                 }
                 .padding(.horizontal, 18)
