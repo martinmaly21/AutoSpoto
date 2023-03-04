@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */; };
+		502F5A3229B381D000E830E6 /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 502F5A3129B381D000E830E6 /* OpenGraph */; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -22,7 +23,6 @@
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50B19568299B4A6D002E7F65 /* TrackCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* TrackCodable.swift */; };
-		50C1790A29980D68009CD58F /* OpenGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 50C1790929980D68009CD58F /* OpenGraph */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
@@ -143,8 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
+				502F5A3229B381D000E830E6 /* OpenGraph in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
-				50C1790A29980D68009CD58F /* OpenGraph in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,8 +359,8 @@
 			packageProductDependencies = (
 				92F05DF7298D894600796C4C /* PythonKit */,
 				50F178A52995FA0F002AFC1C /* Introspect */,
-				50C1790929980D68009CD58F /* OpenGraph */,
 				5069BF6529994BDF007F4037 /* Kingfisher */,
+				502F5A3129B381D000E830E6 /* OpenGraph */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -393,8 +393,8 @@
 			packageReferences = (
 				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */,
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				502F5A3029B381D000E830E6 /* XCRemoteSwiftPackageReference "OpenGraph" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -680,20 +680,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		502F5A3029B381D000E830E6 /* XCRemoteSwiftPackageReference "OpenGraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/martinmaly21/OpenGraph";
+			requirement = {
+				branch = "decode-html-entities";
+				kind = branch;
+			};
+		};
 		5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				branch = master;
 				kind = branch;
-			};
-		};
-		50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/satoshi-takano/OpenGraph";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
 			};
 		};
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
@@ -715,15 +715,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		502F5A3129B381D000E830E6 /* OpenGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 502F5A3029B381D000E830E6 /* XCRemoteSwiftPackageReference "OpenGraph" */;
+			productName = OpenGraph;
+		};
 		5069BF6529994BDF007F4037 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		50C1790929980D68009CD58F /* OpenGraph */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 50C1790829980D68009CD58F /* XCRemoteSwiftPackageReference "OpenGraph" */;
-			productName = OpenGraph;
 		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
