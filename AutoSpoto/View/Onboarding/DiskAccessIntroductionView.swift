@@ -18,12 +18,12 @@ struct DiskAccessIntroductionView: View {
 
             Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_TITLE)
                 .font(.josefinSansSemibold(30))
-                .foregroundColor(.white)
+                .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 10)
 
             Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_SUBTITLE)
                 .font(.josefinSansLight(18))
-                .foregroundColor(.white)
+                .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 10)
 
             Button(
@@ -35,7 +35,7 @@ struct DiskAccessIntroductionView: View {
                         .font(.josefinSansRegular(18))
                 }
             )
-            .customButton(foregroundColor: .black, backgroundColor: .white)
+            .customButton(foregroundColor: .textPrimary, backgroundColor: .backgroundPrimary)
         }
         .opacity(elementTransitionOpacity)
         .onAppear {

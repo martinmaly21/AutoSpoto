@@ -27,7 +27,7 @@ struct TrackRow: View {
                 HStack {
                     Text(errorString)
                         .font(.josefinSansRegular(18))
-                        .foregroundColor(.red)
+                        .foregroundColor(.errorRed)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.leading)
                         .padding()
@@ -52,11 +52,11 @@ struct TrackRow: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(track.title ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
                             .font(.josefinSansRegular(18))
-                            .foregroundColor(.white)
+                            .foregroundColor(.textPrimary)
 
                         Text(track.artist ?? AutoSpotoConstants.Strings.TRACK_ARTIST_METADATA_PLACEHOLDER)
                             .font(.josefinSansLight(18))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.textPrimary)
                     }
 
                     Spacer()
@@ -64,7 +64,7 @@ struct TrackRow: View {
                     VStack {
                         Text(track.timeStamp)
                             .font(.josefinSansLight(16))
-                            .foregroundColor(.white)
+                            .foregroundColor(.textPrimary)
 
                         Spacer()
                     }

@@ -14,31 +14,19 @@ struct ChatRow: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 15) {
-                ZStack {
-                    if let base64ImageString = chat.image,
-                       let base64ImageStringData = Data(base64Encoded: base64ImageString),
-                       let nsImage = NSImage(data: base64ImageStringData) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                    } else {
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                    }
-                }
-
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
-                .background(Color.gray)
-                .clipShape(Circle())
+                PersonPictureView(
+                    base64ImageString: chat.image,
+                    dimension: 60
+                )
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(chat.displayName)
                         .font(.josefinSansRegular(18))
-                        .foregroundColor(.white)
+                        .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
 
                     Text("18 days ago")
                         .font(.josefinSansLight(18))
-                        .foregroundColor(.gray)
+                        .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
                 }
 
                 Spacer()
@@ -48,7 +36,7 @@ struct ChatRow: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.green)
+                        .foregroundColor(.spotifyGreen)
                 }
             }
             .multilineTextAlignment(.leading)
@@ -57,7 +45,7 @@ struct ChatRow: View {
         }
         .frame(maxHeight: 80)
         .contentShape(Rectangle())
-        .background(isSelected ? Color.primaryBlue : Color.clear)
+        .background(isSelected ? Color.secondaryBlue : Color.clear)
         .cornerRadius(6)
     }
 }

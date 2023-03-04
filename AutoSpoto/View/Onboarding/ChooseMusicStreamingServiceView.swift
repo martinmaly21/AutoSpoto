@@ -18,7 +18,7 @@ struct ChooseMusicStreamingServiceView: View {
             if spotifyAccessToken == nil {
                 Text(AutoSpotoConstants.Strings.CHOOSE_MUSIC_STREAMING_SERVICE)
                     .font(.josefinSansSemibold(30))
-                    .foregroundColor(.white)
+                    .foregroundColor(.textPrimaryWhite)
                     .padding(.bottom, 60)
 
                 VStack(spacing: 12) {
@@ -29,12 +29,12 @@ struct ChooseMusicStreamingServiceView: View {
                             Image("spotify-logo")
                                 .resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.white)
+                                .foregroundColor(.textPrimaryWhite)
                                 .frame(width: 30, height: 30)
                                 .padding(.leading, 8)
 
                             Text(AutoSpotoConstants.Strings.CONNECT_WITH_SPOTIFY)
-                                .foregroundColor(.white)
+                                .foregroundColor(.textPrimaryWhite)
                                 .font(.josefinSansRegular(18))
 
                         }
@@ -52,18 +52,18 @@ struct ChooseMusicStreamingServiceView: View {
                             Image("apple-logo")
                                 .resizable()
                                 .renderingMode(.template)
-                                .foregroundColor(.white)
+                                .foregroundColor(.textPrimaryWhite)
                                 .frame(width: 30, height: 30)
                                 .padding(.leading, 8)
 
                             Text(AutoSpotoConstants.Strings.CONNECT_WITH_APPLE_MUSIC)
-                                .foregroundColor(.white)
+                                .foregroundColor(.textPrimaryWhite)
                                 .font(.josefinSansRegular(18))
 
                         }
                         .padding(12)
                         .background(in: RoundedRectangle(cornerRadius: 10))
-                        .backgroundStyle(Color.appleMusicOragne)
+                        .backgroundStyle(Color.appleMusicOrange)
                         .frame(width: 300)
                     }
                     .buttonStyle(.plain)
@@ -72,13 +72,13 @@ struct ChooseMusicStreamingServiceView: View {
                 //connected to spotify
                 Text(AutoSpotoConstants.Strings.SUCCESS)
                     .font(.josefinSansSemibold(40))
-                    .foregroundColor(.white)
+                    .foregroundColor(.textPrimaryWhite)
                     .padding(.bottom, 60)
 
                 //TODO: Change in future when we allow user to connect with apple music
                 Text(AutoSpotoConstants.Strings.CONNECTED_TO_SPOTIFY)
                     .font(.josefinSansSemibold(26))
-                    .foregroundColor(.white)
+                    .foregroundColor(.textPrimaryWhite)
                     .padding(.bottom, 60)
             }
         }

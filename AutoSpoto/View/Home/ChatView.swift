@@ -76,7 +76,7 @@ struct ChatView: View {
                                         .font(.josefinSansRegular(18))
                                 }
                             )
-                            .customButton(foregroundColor: .white, backgroundColor: .primaryBlue)
+                            .customButton(foregroundColor: .textPrimary, backgroundColor: .backgroundPrimary)
                             .padding(.bottom, bottomPadding)
                         }
                     }
@@ -84,16 +84,14 @@ struct ChatView: View {
                 }
                 VStack {
                     HStack(alignment: .center, spacing: 14) {
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 45, height: 45)
-                            .background(Color.gray)
-                            .clipShape(Circle())
+                        PersonPictureView(
+                            base64ImageString: selectedChat.image,
+                            dimension: 45
+                        )
 
                         Text(selectedChat.displayName)
                             .font(.josefinSansRegular(20))
-                            .foregroundColor(.white)
+                            .foregroundColor(.textPrimary)
 
                         Spacer()
 
@@ -104,7 +102,7 @@ struct ChatView: View {
                             )
                         )
                         .font(.josefinSansRegular(18))
-                        .foregroundColor(.white)
+                        .foregroundColor(.textPrimary)
                         .redacted(reason: tracksAreLoading ? .placeholder : [])
                     }
                     .padding(.horizontal, 16.5)
