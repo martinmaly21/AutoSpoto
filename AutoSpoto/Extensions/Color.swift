@@ -16,10 +16,12 @@ extension Color {
     static let spotifyGreen = Color("Spotify Green")
     static let appleMusicOrange = Color("Apple Music Orange")
     static let errorRed = Color("Error Red")
+    static let selectedPersonPictureTintColor = Color("Selected Person Picture Tint Color")
+    static let unselectedPersonPictureTintColor = Color("Unselected Person Picture Tint Color")
+    static let emptyStateTintColor = Color("Empty State Tint Color")
 
     static let textPrimary = Color("Text Primary")
     static let textPrimaryWhite = Color("Text Primary White")
-    static let textPrimaryBlack = Color("Text Primary Black")
 
     static let backgroundPrimary = Color("Background Primary")
     static let backgroundSecondary = Color("Background Secondary")

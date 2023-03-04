@@ -10,6 +10,7 @@ import SwiftUI
 struct PersonPictureView: View {
     let base64ImageString: String?
     let dimension: CGFloat
+    let isSelected: Bool
 
     var body: some View {
         ZStack {
@@ -21,11 +22,12 @@ struct PersonPictureView: View {
             } else {
                 Image(systemName: "person.crop.circle")
                     .resizable()
+                    .foregroundColor(isSelected ? Color.selectedPersonPictureTintColor : Color.unselectedPersonPictureTintColor)
             }
         }
         .aspectRatio(contentMode: .fill)
         .frame(width: dimension, height: dimension)
-        .background(Color.gray)
+        .background(Color.clear)
         .clipShape(Circle())
     }
 }
