@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingContainerView: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Binding var autoSpotoCurrentView: AutoSpotoContainerView.CurrentView
 
     enum CurrentView {
@@ -16,6 +17,39 @@ struct OnboardingContainerView: View {
         case chooseMusicStreamingServiceView
     }
     @State private var onboardingCurrentView: CurrentView = .getStarted
+
+    enum OnboardingGradient {
+        case lightMode, darkMode
+
+        @ViewBuilder
+        var shape: some View {
+            switch self {
+            case .lightMode:
+                RadialGradient(
+                    gradient: Gradient(
+                        colors: [
+                            Color.backgroundPrimary,
+                            Color.primaryBlue,
+                        ]
+                    ),
+                    center: .topTrailing,
+                    startRadius: 0,
+                    endRadius: 700
+                )
+            case .darkMode:
+                LinearGradient(
+                    gradient: Gradient(
+                        colors: [
+                            Color.primaryBlue,
+                            Color.backgroundPrimary
+                        ]
+                    ),
+                    startPoint: .topLeading,
+                    endPoint: .bottom
+                )
+            }
+        }
+    }
 
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
@@ -105,17 +139,6 @@ struct OnboardingContainerView: View {
             width: AutoSpotoConstants.Dimensions.onboardingWindowWidth,
             height: AutoSpotoConstants.Dimensions.onboardingWindowHeight
         )
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        Color.primaryBlue,
-                        Color.backgroundPrimary
-                    ]
-                ),
-                startPoint: .topLeading,
-                endPoint: .bottom
-            )
-        )
+        .background(colorScheme == .light ? OnboardingGradient.lightMode.shape : OnboardingGradient.darkMode.shape)
     }
 }
