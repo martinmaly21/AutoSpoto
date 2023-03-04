@@ -27,7 +27,7 @@ struct CreatePlaylistButton: View {
                 .background(Color.primaryBlue)
                 .foregroundColor(Color.textPrimaryWhite)
                 .clipShape(Capsule())
-                .shadow(color: .gray, radius: 5, x: 4, y: 4)
+                .shadow(color: .black.opacity(0.5), radius: 6, x: 4, y: 4)
             }
         )
         .buttonStyle(.plain)

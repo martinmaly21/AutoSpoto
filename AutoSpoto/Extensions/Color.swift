@@ -29,4 +29,6 @@ extension Color {
     static let onboardingNavigationButtonBackgroundColor = Color("Onboarding Navigation Button Background Color")
     static let onboardingNavigationButtonTextColor = Color("Onboarding Navigation Button Text Color")
 
+    static let refreshButtonBackgroundColor = Color("Refresh Button Background Color")
+    static let refreshButtonTextColor = Color("Refresh Button Text Color")
 }

@@ -43,7 +43,6 @@ struct CreatePlaylistView: View {
             HStack {
                 Spacer()
 
-
                 Button(
                     action: {
                         Task {
