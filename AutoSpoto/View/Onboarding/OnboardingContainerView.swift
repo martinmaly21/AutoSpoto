@@ -34,7 +34,7 @@ struct OnboardingContainerView: View {
                     ),
                     center: .topTrailing,
                     startRadius: 0,
-                    endRadius: 700
+                    endRadius: 600
                 )
             case .darkMode:
                 LinearGradient(
