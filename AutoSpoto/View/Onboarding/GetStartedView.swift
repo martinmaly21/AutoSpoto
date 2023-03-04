@@ -22,7 +22,7 @@ struct GetStartedView: View {
                 HStack {
                     Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
                         .font(.josefinSansBold(shouldAnimateLogoToTopLeft ? 30 : 90))
-                        .foregroundColor(.white)
+                        .foregroundColor(.textPrimaryWhite)
                         .padding(.bottom, 10)
                         .padding(.leading, shouldAnimateLogoToTopLeft ? 18 : 0)
 
@@ -38,7 +38,7 @@ struct GetStartedView: View {
 
             Text(AutoSpotoConstants.Strings.AUTO_SPOTO_SPLASH_MOTTO)
                 .font(.josefinSansRegular(30))
-                .foregroundColor(.white)
+                .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 40)
                 .opacity(elementTransitionOpacity)
 
@@ -49,14 +49,14 @@ struct GetStartedView: View {
 
             Text(AutoSpotoConstants.Strings.WHAT_IS_AUTOSPOTO_ANSWER)
                 .font(.josefinSansRegular(18))
-                .foregroundColor(.white)
+                .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 80)
                 .padding(.horizontal, 35)
                 .opacity(elementTransitionOpacity)
 
             //Made with LOVE footer
             Text(AutoSpotoConstants.Strings.MADE_WITH_LOVE)
-                .foregroundColor(.white)
+                .foregroundColor(.textPrimaryWhite)
                 .font(.josefinSansRegular(14))
                 .opacity(elementTransitionOpacity)
         }

@@ -54,7 +54,7 @@ struct CreatePlaylistView: View {
 
                     self.showCreatePlaylistSheeet = false
                 }
-                .customButton(foregroundColor: .primaryBlue, backgroundColor: .white)
+                .customButton(foregroundColor: .secondaryBlue, backgroundColor: .backgroundPrimary)
             }
         }
         .onAppear {

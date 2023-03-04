@@ -34,7 +34,7 @@ struct OnboardingContainerView: View {
                 HStack {
                     Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
                         .font(.josefinSansBold(30))
-                        .foregroundColor(.white)
+                        .foregroundColor(.textPrimaryWhite)
                         .padding(.leading, 18)
                         .opacity(topLeftLogoOpacity)
 
@@ -87,7 +87,7 @@ struct OnboardingContainerView: View {
                                 .font(.josefinSansRegular(18))
                         }
                     )
-                    .customButton(foregroundColor: .black, backgroundColor: .white)
+                    .customButton(foregroundColor: .backgroundPrimary, backgroundColor: .textPrimary)
                     .padding(.trailing, defaultHorizontalPadding)
                 }
                 .frame(height: 60)
@@ -110,7 +110,7 @@ struct OnboardingContainerView: View {
                 gradient: Gradient(
                     colors: [
                         Color.primaryBlue,
-                        Color.black
+                        Color.backgroundPrimary
                     ]
                 ),
                 startPoint: .topLeading,

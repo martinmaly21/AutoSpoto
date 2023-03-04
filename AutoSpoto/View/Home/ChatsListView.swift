@@ -40,7 +40,7 @@ struct ChatsListView: View {
                 HStack(alignment: .center) {
                     Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
                         .font(.josefinSansBold(26))
-                        .foregroundColor(.white)
+                        .foregroundColor(.textPrimary)
 
                     Spacer()
 
@@ -64,7 +64,7 @@ struct ChatsListView: View {
                 Picker("", selection: $homeViewModel.filterSelection) {
                     ForEach(filterOptions, id: \.self) {
                         Text($0.localizedString)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.secondaryBlue)
                             .font(.josefinSansRegular(16))
                     }
                 }
