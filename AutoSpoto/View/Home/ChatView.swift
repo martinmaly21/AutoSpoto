@@ -33,6 +33,7 @@ struct ChatView: View {
                         Text(AutoSpotoConstants.Strings.NO_TRACKS_EMPTY_STATE)
                             .font(.josefinSansRegular(18))
                     }
+                    .foregroundColor(.emptyStateTintColor)
                 } else {
                     GeometryReader { proxy in
                         ZStack(alignment: .bottom) {
@@ -86,7 +87,8 @@ struct ChatView: View {
                     HStack(alignment: .center, spacing: 14) {
                         PersonPictureView(
                             base64ImageString: selectedChat.image,
-                            dimension: 45
+                            dimension: 45,
+                            isSelected: false
                         )
 
                         Text(selectedChat.displayName)

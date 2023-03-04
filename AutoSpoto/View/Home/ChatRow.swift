@@ -16,7 +16,8 @@ struct ChatRow: View {
             HStack(alignment: .center, spacing: 15) {
                 PersonPictureView(
                     base64ImageString: chat.image,
-                    dimension: 60
+                    dimension: 60,
+                    isSelected: isSelected
                 )
 
                 VStack(alignment: .leading, spacing: 8) {
@@ -45,7 +46,7 @@ struct ChatRow: View {
         }
         .frame(maxHeight: 80)
         .contentShape(Rectangle())
-        .background(isSelected ? Color.secondaryBlue : Color.clear)
+        .background(isSelected ? Color.primaryBlue : Color.clear)
         .cornerRadius(6)
     }
 }
