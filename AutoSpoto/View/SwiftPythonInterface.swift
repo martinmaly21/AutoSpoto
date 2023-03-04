@@ -61,8 +61,8 @@ class SwiftPythonInterface {
         return user_info
     }
 
-    static func extractScript(chat_id: Int, lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
-        let tracks = extract_script.get_songs(chat_id, lastUpdated, displayView)
+    static func extractScript(chat_ids: [Int], lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
+        let tracks = extract_script.get_songs(chat_ids, lastUpdated, displayView)
         return(tracks)
     }
 
@@ -71,26 +71,26 @@ class SwiftPythonInterface {
         playlistImage: String? = nil,
         playlistName: String,
         playlistDescription: String = "",
-        chatID: Int
+        chatIDs: [Int]
     ) -> String {
         //TODO: pass in playlistPhoto
 
         let playlistID = SwiftPythonInterface.createPlaylist(
             name: playlistName,
             description: playlistDescription,
-            chat_id: chatID
+            chat_ids: chatIDs
         )
 
         let _ = addSongsToPlaylist(
             playlist_id: playlistID,
-            tracks: extractScript(chat_id: chatID)
+            tracks: extractScript(chat_ids: chatIDs)
         )
 
         return playlistID.description
     }
 
-    static private func createPlaylist(name: String, description: String, chat_id: Int) -> PythonObject {
-        let response = spotiy.create_playlist(spotiy.user_info(), name, description, chat_id, db)
+    static private func createPlaylist(name: String, description: String, chat_ids: [Int]) -> PythonObject {
+        let response = spotiy.create_playlist(spotiy.user_info(), name, description, chat_ids, db)
 
         db.close_connection()
         print(response)

@@ -46,7 +46,7 @@ struct CreatePlaylistView: View {
                     Task {
                         let playlistID = SwiftPythonInterface.createPlaylistAndAddSongs(
                             playlistName: playlistName,
-                            chatID: chat.id
+                            chatIDs: chat.ids
                         )
 
                         homeViewModel.updateChatForPlaylist(chat: chat, playlistID: playlistID)

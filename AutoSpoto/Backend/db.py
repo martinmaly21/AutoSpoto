@@ -15,7 +15,7 @@ class db:
         self.connection.row_factory = sqlite3.Row
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
         self.connection.cursor().execute("attach"+contacts_string+ "as adb")
-        self.connection.cursor().execute("CREATE TABLE IF NOT EXISTS playlists (chat_id INTEGER, playlist_id TEXT, last_updated TEXT)")
+        self.connection.cursor().execute("CREATE TABLE IF NOT EXISTS playlists (chat_ids INTEGER, playlist_id TEXT, last_updated TEXT)")
 
     def imageAsBase64(self, image):
         if not image:
@@ -51,9 +51,9 @@ class db:
         return base64_utf8_str
     #When a playlist is created we keep track of current time so we do not upload songs that have already been uploaded at an earlier date
 
-    def add_playlist(self, chat_id, playlist_id):
-        for chat in chat_id:
-            self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat, playlist_id,None))
+    def add_playlist(self, chat_ids, playlist_id):
+        for chat_id in chat_ids:
+            self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat_id, playlist_id,None))
             self.connection.commit()
 
     #For the same reason we need to update the row when songs have been uploaded to spotify    
@@ -87,7 +87,7 @@ class db:
 
         dir_panda = pd.DataFrame({'path':dir_list})
         
-        rows = pd.read_sql(("select ROWID as chat_id, display_name, guid from cdb.chat where display_name not like'';"), self.connection)
+        rows = pd.read_sql(("select ROWID as chat_ids, display_name, guid from cdb.chat where display_name not like'';"), self.connection)
         rows.dropna(subset=['display_name'], inplace=True)
         #Get the guid in the form chatxxxxxxxx so we can search the substring in the path
         rows['guid'] = rows['guid'].str.split(';').str[2]
@@ -98,17 +98,16 @@ class db:
         #Apply the 
         dir_panda['path'] = dir_panda['path'].apply(self.path_to64)
         
-        #merge the tables so that the path the base64 image in included along with chat_id, guid and display_name
+        #merge the tables so that the path the base64 image in included along with chat_ids, guid and display_name
         output = pd.merge(rows, dir_panda, on ='guid',  how='left')
         
         flag_check = self.display_playlists()
 
-        final_table = pd.merge(output, flag_check, on ='chat_id',  how='left')
-        final_table = final_table[['chat_id','display_name','path','playlist_id']]
+        final_table = pd.merge(output, flag_check, on ='chat_ids',  how='left')
+        final_table = final_table[['chat_ids','display_name','path','playlist_id']]
         final_table.drop_duplicates(keep='first', inplace=True)
         final_table.rename({'path': 'Image'}, inplace=True, axis=1) 
-        final_table['chat_id'] = final_table['chat_id'].apply(lambda x: [x])
-        print(final_table)
+        final_table['chat_ids'] = final_table['chat_ids'].apply(lambda x: [x])
         final_table = final_table.to_json(orient='records')
         return final_table
 
@@ -117,7 +116,7 @@ class db:
     # substr(temp.guid, -12) filter outs the characters before the number
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
-        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_id, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from (SELECT * from cdb.chat where guid not like'%chat%') as temp left join adb.ZABCDPHONENUMBER on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
+        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_ids, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from (SELECT * from cdb.chat where guid not like'%chat%') as temp left join adb.ZABCDPHONENUMBER on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
         contact_rows.dropna(subset=['Phone_Number'], inplace= True)
         image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
         joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
@@ -126,12 +125,12 @@ class db:
 
         flag_check = self.display_playlists()
 
-        final_table = pd.merge(joined_contacts, flag_check, on ='chat_id',  how='left')
-        final_table = final_table[['Image','Phone_Number','chat_id','First_Name','Last_Name','playlist_id']]
+        final_table = pd.merge(joined_contacts, flag_check, on ='chat_ids',  how='left')
+        final_table = final_table[['Image','Phone_Number','chat_ids','First_Name','Last_Name','playlist_id']]
         #### This line of code is basically grouping records by phone number and putting chat_ids grouped together into a list
-        #### Meaning that a chat with sms and imessage messages will be represented as [x, x] in the chat_id column
+        #### Meaning that a chat with sms and imessage messages will be represented as [x, x] in the chat_ids column
         final_table.drop_duplicates(inplace=True)
-        final_table = final_table.groupby(['Phone_Number','playlist_id'], dropna=False,  as_index=False).aggregate({'Image': 'first','Phone_Number':'first','chat_id': lambda x: list(x),'First_Name':'first','Last_Name':'first','playlist_id':'first'})
+        final_table = final_table.groupby(['Phone_Number','playlist_id'], dropna=False,  as_index=False).aggregate({'Image': 'first','Phone_Number':'first','chat_ids': lambda x: list(x),'First_Name':'first','Last_Name':'first','playlist_id':'first'})
         final_table.sort_values('First_Name', inplace=True)
         final_table = final_table.to_json(orient='records')
         return final_table
