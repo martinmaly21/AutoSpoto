@@ -187,5 +187,11 @@ extension AutoSpotoConstants.Strings {
         value: "You are now connected to Spotify. Click 'Finish' to begin creating playlists.",
         comment: "Generic 'Success!' string"
     )
+
+    static let COMING_SOON = NSLocalizedString(
+        "COMING_SOON",
+        value: "Coming soon",
+        comment: "Used to flag upcoming features"
+    )
 }
 
