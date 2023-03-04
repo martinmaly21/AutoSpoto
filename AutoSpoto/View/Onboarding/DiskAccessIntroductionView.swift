@@ -26,16 +26,12 @@ struct DiskAccessIntroductionView: View {
                 .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 10)
 
-            Button(
+            OnboardingButton(
+                title: AutoSpotoConstants.Strings.OPEN_SETTINGS,
                 action: {
                     NSWorkspace.shared.open(AutoSpotoConstants.URL.fullDiskAccess)
-                },
-                label: {
-                    Text(AutoSpotoConstants.Strings.OPEN_SETTINGS)
-                        .font(.josefinSansRegular(18))
                 }
             )
-            .customButton(foregroundColor: .textPrimary, backgroundColor: .backgroundPrimary)
         }
         .opacity(elementTransitionOpacity)
         .onAppear {

@@ -9,20 +9,6 @@ import SwiftUI
 import Introspect
 
 extension View {
-    func customButton(
-        foregroundColor: Color = .white,
-        backgroundColor: Color = .gray,
-        pressedColor: Color = .accentColor
-    ) -> some View {
-        self.buttonStyle(
-            CustomButtonStyle(
-                foregroundColor: foregroundColor,
-                backgroundColor: backgroundColor,
-                pressedColor: pressedColor
-            )
-        )
-    }
-
     /// Calls the completion handler whenever an animation on the given value completes.
     /// - Parameters:
     ///   - value: The value to observe for animations.

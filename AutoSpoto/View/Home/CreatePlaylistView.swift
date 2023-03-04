@@ -42,19 +42,25 @@ struct CreatePlaylistView: View {
 
             HStack {
                 Spacer()
-                Button(AutoSpotoConstants.Strings.CREATE) {
-                    Task {
-                        let playlistID = SwiftPythonInterface.createPlaylistAndAddSongs(
-                            playlistName: playlistName,
-                            chatIDs: chat.ids
-                        )
 
-                        homeViewModel.updateChatForPlaylist(chat: chat, playlistID: playlistID)
+
+                Button(
+                    action: {
+                        Task {
+                            let playlistID = SwiftPythonInterface.createPlaylistAndAddSongs(
+                                playlistName: playlistName,
+                                chatIDs: chat.ids
+                            )
+
+                            homeViewModel.updateChatForPlaylist(chat: chat, playlistID: playlistID)
+                        }
+
+                        self.showCreatePlaylistSheeet = false
+                    },
+                    label: {
+                        Text(AutoSpotoConstants.Strings.CREATE)
                     }
-
-                    self.showCreatePlaylistSheeet = false
-                }
-                .customButton(foregroundColor: .secondaryBlue, backgroundColor: .backgroundPrimary)
+                )
             }
         }
         .onAppear {

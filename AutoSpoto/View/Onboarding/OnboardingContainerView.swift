@@ -100,7 +100,8 @@ struct OnboardingContainerView: View {
                 HStack {
                     Spacer()
 
-                    Button(
+                    OnboardingButton(
+                        title: onboardingCurrentView == .chooseMusicStreamingServiceView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
                         action: {
                             switch onboardingCurrentView {
                             case .getStarted:
@@ -115,13 +116,8 @@ struct OnboardingContainerView: View {
                                     autoSpotoCurrentView = .home
                                 }
                             }
-                        },
-                        label: {
-                            Text(onboardingCurrentView == .chooseMusicStreamingServiceView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE)
-                                .font(.josefinSansRegular(18))
                         }
                     )
-                    .customButton(foregroundColor: .backgroundPrimary, backgroundColor: .textPrimary)
                     .padding(.trailing, defaultHorizontalPadding)
                 }
                 .frame(height: 60)

@@ -25,4 +25,8 @@ extension Color {
 
     static let backgroundPrimary = Color("Background Primary")
     static let backgroundSecondary = Color("Background Secondary")
+
+    static let onboardingNavigationButtonBackgroundColor = Color("Onboarding Navigation Button Background Color")
+    static let onboardingNavigationButtonTextColor = Color("Onboarding Navigation Button Text Color")
+
 }
