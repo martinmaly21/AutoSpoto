@@ -14,7 +14,12 @@ class Track: Hashable {
 
     var hasFetchedMetadata = false
     var isFetchingMetadata = false
-    var errorFetchingMetadata = false
+
+    enum MetaDataFetchError {
+        case miscError
+        case error404
+    }
+    var errorFetchingMetadata: MetaDataFetchError?
 
     var imageURL: URL?
     var title: String?
@@ -50,7 +55,7 @@ class Track: Hashable {
                     if let error = error as? OpenGraphResponseError,
                        case .unexpectedStatusCode(404) = error {
                         //404 error (invalid url)
-                        self.errorFetchingMetadata = true
+                        self.errorFetchingMetadata = .error404
                         self.hasFetchedMetadata = true
                     } else {
                         //otherwise, fetch was cancelled or perhaps too many network requests. Either way, we can
