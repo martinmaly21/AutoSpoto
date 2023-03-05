@@ -56,11 +56,11 @@ struct ChatsListView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .bold()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 25, height: 25)
                                     .foregroundColor(Color.refreshButtonTextColor)
                             }
-                            .frame(width: 50, height: 30)
-                            .background(Color.refreshButtonBackgroundColor)
+                            .padding(.leading, 24)
+                            .frame(width: 50, height: 40)
                             .clipShape(Capsule())
                             .aspectRatio(contentMode: .fit)
                         }
