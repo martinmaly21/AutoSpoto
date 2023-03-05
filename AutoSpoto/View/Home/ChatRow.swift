@@ -12,21 +12,17 @@ struct ChatRow: View {
     let isSelected: Bool
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 2) {
             HStack(alignment: .center, spacing: 15) {
                 PersonPictureView(
                     base64ImageString: chat.image,
-                    dimension: 60,
+                    dimension: 40,
                     isSelected: isSelected
                 )
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(chat.displayName)
                         .font(.josefinSansRegular(18))
-                        .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
-
-                    Text("18 days ago")
-                        .font(.josefinSansLight(18))
                         .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
                 }
 
@@ -42,9 +38,16 @@ struct ChatRow: View {
             }
             .multilineTextAlignment(.leading)
             .padding([.leading, .trailing], 16)
-            .padding([.top, .bottom], 15)
+            .padding(.bottom, 8)
+
+            Rectangle()
+                .frame(height: 0.5)
+                .frame(maxWidth: .infinity)
+                .background(Color.green)
+                .opacity(isSelected ? 0 : 1)
         }
-        .frame(maxHeight: 80)
+        .padding(.top, 8)
+        .frame(maxHeight: 60)
         .contentShape(Rectangle())
         .background(isSelected ? Color.primaryBlue : Color.clear)
         .cornerRadius(6)
