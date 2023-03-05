@@ -45,6 +45,7 @@ struct TrackRow: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.leading)
                         .padding()
+                        .padding(.horizontal, -16)
 
                     Spacer()
                 }
@@ -97,7 +98,7 @@ struct TrackRow: View {
 
             Divider()
         }
-        .padding([.leading, .trailing], 16)
+        .padding(.horizontal, 16)
         .frame(maxHeight: 80)
         .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
     }
