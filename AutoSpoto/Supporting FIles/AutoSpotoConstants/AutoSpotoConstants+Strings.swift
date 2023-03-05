@@ -116,6 +116,12 @@ extension AutoSpotoConstants.Strings {
         comment: "Text displayed when there's an error fetching metadata for a track"
     )
 
+    static let ERROR_INVALID_TRACK_URL = NSLocalizedString(
+        "ERROR_INVALID_TRACK_URL",
+        value: "Unfortunately, the ID for (%@) is invalid. The URL may be malformed.",
+        comment: "Text displayed when there's a valid URL with an invalid ID"
+    )
+
     static let NO_TRACKS_EMPTY_STATE = NSLocalizedString(
         "NO_TRACKS_EMPTY_STATE",
         value: "This chat does not appear to have any tracks yet",

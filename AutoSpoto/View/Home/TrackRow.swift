@@ -15,17 +15,31 @@ struct TrackRow: View {
     let chat: Chat
     let track: Track
 
+    private var errorMessage: String? {
+        guard let errorFetchingMetadata = track.errorFetchingMetadata else {
+            return nil
+        }
+        switch errorFetchingMetadata {
+        case .error404:
+            return String.localizedStringWithFormat(
+                AutoSpotoConstants.Strings.ERROR_INVALID_TRACK_URL,
+                track.url.absoluteString
+            )
+        case .miscError:
+            return String.localizedStringWithFormat(
+                AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
+                track.url.absoluteString
+            )
+        }
+    }
+
     var body: some View {
         let trackMetadataIsLoading = (!track.isFetchingMetadata && !track.hasFetchedMetadata) || track.isFetchingMetadata
 
         VStack {
-            if track.errorFetchingMetadata {
-                let errorString = String.localizedStringWithFormat(
-                    AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
-                    track.url.absoluteString
-                )
+            if let errorMessage = errorMessage {
                 HStack {
-                    Text(errorString)
+                    Text(errorMessage)
                         .font(.josefinSansRegular(18))
                         .foregroundColor(.errorRed)
                         .fixedSize(horizontal: false, vertical: true)
