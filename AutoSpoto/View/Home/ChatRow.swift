@@ -43,8 +43,8 @@ struct ChatRow: View {
             Rectangle()
                 .frame(height: 0.5)
                 .frame(maxWidth: .infinity)
-                .background(Color.green)
-                .opacity(isSelected ? 0 : 1)
+                .background(Color.textPrimary)
+                .opacity(isSelected ? 0 : 0.2)
         }
         .padding(.top, 8)
         .frame(maxHeight: 60)
