@@ -25,6 +25,7 @@ struct GetStartedView: View {
                         .foregroundColor(.textPrimaryWhite)
                         .padding(.bottom, 10)
                         .padding(.leading, shouldAnimateLogoToTopLeft ? 18 : 0)
+                        .padding(.top, shouldAnimateLogoToTopLeft ? 18 : 0)
 
                     if shouldAnimateLogoToTopLeft {
                         Spacer()

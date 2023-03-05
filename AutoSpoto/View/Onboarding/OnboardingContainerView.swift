@@ -70,6 +70,7 @@ struct OnboardingContainerView: View {
                         .font(.josefinSansBold(30))
                         .foregroundColor(.textPrimaryWhite)
                         .padding(.leading, 18)
+                        .padding(.top, 18)
                         .opacity(topLeftLogoOpacity)
 
                     Spacer()
