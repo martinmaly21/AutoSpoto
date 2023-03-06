@@ -8,6 +8,7 @@ from urllib import parse
 import re
 import os
 import json
+import spotify_apis
 
 
 #Helper function for decoding blob located withing the attributedBody column in chat.db
@@ -25,7 +26,7 @@ def split_it(url_l):
     if results != None:
         return results.group(0)
     return None
-def get_songs(chat_ids, last_updated, display_view):
+def get_songs(chat_ids, last_updated, display_view, spotify_obj):
 
 #    last_updated = kwargs.get('last_updated', None)
 #    display_view = kwargs.get('display_view', None)
@@ -67,8 +68,34 @@ def get_songs(chat_ids, last_updated, display_view):
         ret_view = houseMusicChat
         ret_view = ret_view.sort_values(by = 'date_utc')
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
-        ret_view = ret_view.sort_values(by = 'date_utc')
-        return(ret_view[['decoded_blob', 'date_utc']].to_json(orient='records').replace("\\",""))
+        trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
+        tracks_response = spotify_obj.get_tracks(trackIDs)
+        ui_json = []
+
+        #Here we are pasing the json response and creating an object to pass to the ui
+        for index in range(len(tracks_response['tracks'])):
+            #right now we are passing the track_id in the form spotify:track:2QX2AOmSUydpG1IRK4xVR8, the reference image so that the user can see the album cover
+            #The date the song was added and the preview url to listen to the song
+            track_id = tracks_response['tracks'][index]['uri']
+            image_ref = tracks_response['tracks'][index]['album']['images'][0]['url']
+            
+            #sometimes there isn't a preview url returned from the /tracks endpoint. In this case we will return none
+            try:    
+                preview_url =  tracks_response['tracks'][index]['preview_url']
+            except KeyError:
+                preview_url =  None
+            ui_json.append(
+            {
+                'track_id': track_id,
+                'image_ref': image_ref,
+                'preview_url':  preview_url,
+                'date': ret_view.iloc[index, ret_view.columns.get_loc('date_utc')] #append the date column from before
+            }
+            )  
+        return json.dumps(ui_json)
+        
+        #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
+        
 
     
     #Stripping the link so that we only have the track id
@@ -77,13 +104,18 @@ def get_songs(chat_ids, last_updated, display_view):
     #Removing Duplicates
     houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
     
-    #Soring by dates
+    #Sorting by dates
     houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
 
     houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
     
     #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
-    trackIDs.reverse()
-
+    response = spotify_obj.get_tracks(trackIDs)
+    trackIDs = []
+    for track in range(len(response['tracks'])):  
+        trackIDs.append(response['tracks'][track]['uri'])
     return trackIDs
+
+# example function call for display_view of UI
+x = get_songs([10], display_view=True, last_updated=False, spotify_obj = spotify_apis.Spotiy('/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/.cache'))

@@ -70,9 +70,6 @@ class Spotiy:
     #Updates playlist method
     def update_playlist(self, playlist_id, tracks, db_object):
         
-        for index, row in enumerate(tracks): 
-            tracks[index] = ('spotify:track:'+row) #append spotify:track to each of the track ids for the spotify api
-
         if len(tracks) > 100:
             num_of_spot_posts = int(len(tracks) / 100) # need to divide list if the tracks are more than 100
             for i in range(num_of_spot_posts+1):
