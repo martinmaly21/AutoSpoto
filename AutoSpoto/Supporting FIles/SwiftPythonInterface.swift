@@ -61,8 +61,8 @@ class SwiftPythonInterface {
         return user_info
     }
 
-    static func extractScript(chat_ids: [Int], lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
-        let tracks = extract_script.get_songs(chat_ids, lastUpdated, displayView)
+    static func extractScript(chat_ids: [Int], lastUpdated: Bool = false, displayView: Bool = false, spotify_obj: PythonObject) -> PythonObject {
+        let tracks = extract_script.get_songs(chat_ids, lastUpdated, displayView, spotify_obj)
         return(tracks)
     }
 
