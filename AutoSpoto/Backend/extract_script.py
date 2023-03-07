@@ -72,7 +72,9 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         
         trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
         tracks_response = spotify_obj.get_tracks(trackIDs)
-        
+        #with open('testingshit.json') as user_file:
+            #tracks_response = user_file.read()
+        #tracks_response = json.loads(tracks_response)
         #Just in case the user only has broken links we will return at this point
         if not tracks_response['tracks']:
             return('{}')
@@ -82,16 +84,28 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
             #right now we are passing the track_id in the form spotify:track:2QX2AOmSUydpG1IRK4xVR8, the reference image so that the user can see the album cover
             #The date the song was added and the preview url to listen to the song
             track_id = tracks_response['tracks'][index]['uri']
-            image_ref = tracks_response['tracks'][index]['album']['images'][0]['url']
-            
+
+            if tracks_response['tracks'][index]['album']['images']:
+                image_ref = tracks_response['tracks'][index]['album']['images'][0]['url']
+            else:
+                image_ref = None
             #sometimes there isn't a preview url returned from the /tracks endpoint. In this case we will return none
             try:    
                 preview_url =  tracks_response['tracks'][index]['preview_url']
             except KeyError:
                 preview_url =  None
 
-            ui_json.append([track_id, image_ref, preview_url])
-        output_df = pd.DataFrame(ui_json, columns=["track_id", "image_ref", "preview_url"])
+            artist_name = tracks_response['tracks'][index]['album']['artists'][0]['name']
+            
+            album_name = tracks_response['tracks'][index]['album']['name']
+
+            song_name = tracks_response['tracks'][index]['name']
+
+            release_year = tracks_response['tracks'][index]['album']['release_date']
+            release_year = release_year.split('-')[0]
+        
+            ui_json.append([track_id, image_ref, preview_url, artist_name, album_name, song_name, release_year])
+        output_df = pd.DataFrame(ui_json, columns=["track_id", "image_ref", "preview_url", "artist_name", "album_name", "song_name", "release_year"])
         output_df.drop_duplicates(inplace=True)
         ret_view['decoded_blob'] = ret_view['decoded_blob'].str.split('track/').str[1]
         #Here we are appending spotify:track to each column in ret_view for formatting for the join below
@@ -101,7 +115,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         #first we return only the valid links from within the users chats using the /tracks endpoint
         #then we merge with the original dataframe to get the dates that the tracks were sent
         output_df= pd.merge(output_df, ret_view, on ='track_id',  how='left')
-        output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc']]
+        output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc',"artist_name", "album_name", "song_name", "release_year"]]
 
         return(output_df.to_json(orient='records'))
         #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
@@ -133,3 +147,5 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         trackIDs.append(response['tracks'][track]['uri'])
     return trackIDs
 
+# x = get_songs([10], display_view=True, last_updated=False, spotify_obj = spotify_apis.Spotiy('/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/.cache'))
+# print(x)
