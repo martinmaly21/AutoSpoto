@@ -53,7 +53,7 @@ class db:
 
     def add_playlist(self, chat_ids, playlist_id):
         for chat_id in chat_ids:
-            self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat_id, playlist_id,None))
+            self.connection.cursor().execute("INSERT into playlists VALUES (?, ?, ? )", (chat_id, playlist_id,time.strftime("%Y-%m-%d %H:%M:%S")))
             self.connection.commit()
 
     #For the same reason we need to update the row when songs have been uploaded to spotify    
