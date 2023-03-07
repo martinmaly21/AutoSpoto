@@ -74,7 +74,7 @@ class Spotiy:
         
         if len(tracks) > 100:
             num_of_spot_posts = int(len(tracks) / 100) # need to divide list if the tracks are more than 100
-            for i in range(num_of_spot_posts+1):
+            for i in range(num_of_spot_posts):
                 if i == (num_of_spot_posts):
                     response = self.conn.playlist_add_items(playlist_id, tracks[100*i:], position=None)
                     break
