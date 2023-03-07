@@ -3,8 +3,6 @@
 import sqlite3
 import pandas as pd
 import datetime as datetime
-import numpy as np
-from urllib import parse
 import re
 import os
 import json
@@ -64,14 +62,16 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
    
     houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob 
     houseMusicChat.dropna(subset=['decoded_blob'], inplace= True)
+    
     if display_view:
         ret_view = houseMusicChat
         ret_view = ret_view.sort_values(by = 'date_utc')
         ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
+        if ret_view.empty:
+            return('{}')
         trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
         tracks_response = spotify_obj.get_tracks(trackIDs)
         ui_json = []
-
         #Here we are pasing the json response and creating an object to pass to the ui
         for index in range(len(tracks_response['tracks'])):
             #right now we are passing the track_id in the form spotify:track:2QX2AOmSUydpG1IRK4xVR8, the reference image so that the user can see the album cover
@@ -108,7 +108,8 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
 
     houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
-    
+    if houseMusicChat.empty:
+        return('{}')
     #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
     response = spotify_obj.get_tracks(trackIDs)
