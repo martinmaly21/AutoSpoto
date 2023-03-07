@@ -64,6 +64,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     
     if display_view:
         ret_view = houseMusicChat
+
         if ret_view.empty:
             return('{}')
 
@@ -146,6 +147,3 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     for track in range(len(response['tracks'])):  
         trackIDs.append(response['tracks'][track]['uri'])
     return trackIDs
-
-# x = get_songs([10], display_view=True, last_updated=False, spotify_obj = spotify_apis.Spotiy('/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/.cache'))
-# print(x)
