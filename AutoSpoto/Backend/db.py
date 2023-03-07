@@ -107,7 +107,7 @@ class db:
         final_table = final_table[['chat_ids','display_name','path','playlist_id']]
         final_table.drop_duplicates(keep='first', inplace=True)
         final_table.rename({'path': 'Image'}, inplace=True, axis=1) 
-        final_table['chat_ids'] = final_table['chat_ids'].apply(lambda x: [x])
+        final_table = final_table.groupby(['display_name']).aggregate({'chat_ids': lambda x: list(x),'Image':'first','playlist_id':'first'}).reset_index()
         final_table.sort_values('display_name', inplace=True)
         final_table = final_table.to_json(orient='records')
         return final_table
