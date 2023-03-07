@@ -28,12 +28,6 @@ class Spotiy:
         #this function removes all of the Nones from the JSON. When a broken uri is sent to the tracks endpoint the response is None
         if isinstance(json_data, list):
             return [self.clean_nones(x) for x in json_data if x is not None]
-        elif isinstance(json_data, dict):
-            return {
-                key: self.clean_nones(val)
-                for key, val in json_data.items()
-                if val is not None
-            }
         else:
             return json_data
     
