@@ -24,6 +24,7 @@ def split_it(url_l):
     if results != None:
         return results.group(0)
     return None
+
 def get_songs(chat_ids, last_updated, display_view, spotify_obj):
 
 #    last_updated = kwargs.get('last_updated', None)
@@ -45,13 +46,11 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     chatMessagesJoined = pd.read_sql_query("select chat_id, message_id from chat_message_join", conn)
 
     chatMessagesAndHandlesJoined = pd.merge(messagesAndHandlesJoined, chatMessagesJoined, on = 'message_id', how='left')
-    
     ####This code is looping through the newly created 
     houseMusicChat = []
     for chat_id in chat_ids:
         houseMusicChat.append(chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id])
     houseMusicChat = pd.concat(houseMusicChat)
-
     houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
     # The part of the code where we can use the last updated field in the database to sync the playlist
     if last_updated:
@@ -65,12 +64,18 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     
     if display_view:
         ret_view = houseMusicChat
-        ret_view = ret_view.sort_values(by = 'date_utc')
-        ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
         if ret_view.empty:
             return('{}')
+
+        ret_view = ret_view.sort_values(by = 'date_utc')
+        ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
+        
         trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
         tracks_response = spotify_obj.get_tracks(trackIDs)
+        
+        #Just in case the user only has broken links we will return at this point
+        if not tracks_response['tracks']:
+            return('{}')
         ui_json = []
         #Here we are pasing the json response and creating an object to pass to the ui
         for index in range(len(tracks_response['tracks'])):
@@ -84,20 +89,26 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
                 preview_url =  tracks_response['tracks'][index]['preview_url']
             except KeyError:
                 preview_url =  None
-            ui_json.append(
-            {
-                'track_id': track_id,
-                'image_ref': image_ref,
-                'preview_url':  preview_url,
-                'date': ret_view.iloc[index, ret_view.columns.get_loc('date_utc')] #append the date column from before
-            }
-            )  
-        return json.dumps(ui_json)
+
+            ui_json.append([track_id, image_ref, preview_url])
+        output_df = pd.DataFrame(ui_json, columns=["track_id", "image_ref", "preview_url"])
+        output_df.drop_duplicates(inplace=True)
+        ret_view['decoded_blob'] = ret_view['decoded_blob'].str.split('track/').str[1]
+        #Here we are appending spotify:track to each column in ret_view for formatting for the join below
+        ret_view['decoded_blob'] = 'spotify:track:' + ret_view['decoded_blob'].astype(str)
+        ret_view.rename(columns={'decoded_blob': 'track_id',}, inplace=True)
         
+        #first we return only the valid links from within the users chats using the /tracks endpoint
+        #then we merge with the original dataframe to get the dates that the tracks were sent
+        output_df= pd.merge(output_df, ret_view, on ='track_id',  how='left')
+        output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc']]
+
+        return(output_df.to_json(orient='records'))
         #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
         
 
-    
+    if houseMusicChat.empty:
+        return('{}')
     #Stripping the link so that we only have the track id
     houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
     
@@ -108,15 +119,17 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     houseMusicChat = houseMusicChat.sort_values(by = 'date_utc')
 
     houseMusicChat.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
-    if houseMusicChat.empty:
-        return('{}')
+    
     #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
     response = spotify_obj.get_tracks(trackIDs)
+    
+    #Just incase the user only has broken links in there chat
+    if not response['tracks']:
+        return('{}')
+    
     trackIDs = []
     for track in range(len(response['tracks'])):  
         trackIDs.append(response['tracks'][track]['uri'])
     return trackIDs
 
-# example function call for display_view of UI
-x = get_songs([10], display_view=True, last_updated=False, spotify_obj = spotify_apis.Spotiy('/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/.cache'))
