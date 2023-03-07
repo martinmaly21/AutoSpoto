@@ -39,10 +39,14 @@ class Spotiy:
             for i in range(num_of_spot_posts+1):
                 if i == 0 :
                     response = self.clean_nones(self.conn.tracks(tracks[0: 50]))
-                elif i == (num_of_spot_posts):
+                    print(len(tracks[0: 50]))
+                
+                elif i == (num_of_spot_posts) and tracks[50*i:]:
+                    print('broken')
+                    print(tracks[50*i:])
                     response["tracks"] += self.clean_nones(self.conn.tracks(tracks[50*i:]))["tracks"]
                     break
-                else:
+                elif tracks[50*i: 50 + (50*i)]:
                     response["tracks"] += self.clean_nones(self.conn.tracks(tracks[50*i: 50 + (50*i)]))["tracks"]
             
         else:
