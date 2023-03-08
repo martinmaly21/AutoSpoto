@@ -77,6 +77,8 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
             #tracks_response = user_file.read()
         #tracks_response = json.loads(tracks_response)
         #Just in case the user only has broken links we will return at this point
+        if not tracks_response:
+            return None
         if not tracks_response['tracks']:
             return('{}')
         ui_json = []
@@ -123,7 +125,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         
 
     if houseMusicChat.empty:
-        return('{}')
+        return None
     #Stripping the link so that we only have the track id
     houseMusicChat['decoded_blob'] = houseMusicChat['decoded_blob'].str.split('track/').str[1]
     
@@ -141,7 +143,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     
     #Just incase the user only has broken links in there chat
     if not response['tracks']:
-        return('{}')
+        return None
     
     trackIDs = []
     for track in range(len(response['tracks'])):  
