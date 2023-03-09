@@ -73,6 +73,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         
         trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
         tracks_response = spotify_obj.get_tracks(trackIDs)
+        number_of_tracks = len(tracks_response['tracks'])
         #with open('testingshit.json') as user_file:
             #tracks_response = user_file.read()
         #tracks_response = json.loads(tracks_response)
@@ -83,7 +84,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
             return('{}')
         ui_json = []
         #Here we are pasing the json response and creating an object to pass to the ui
-        for index in range(len(tracks_response['tracks'])):
+        for index in range(number_of_tracks):
             #right now we are passing the track_id in the form spotify:track:2QX2AOmSUydpG1IRK4xVR8, the reference image so that the user can see the album cover
             #The date the song was added and the preview url to listen to the song
             track_id = tracks_response['tracks'][index]['uri']
@@ -119,8 +120,9 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         #then we merge with the original dataframe to get the dates that the tracks were sent
         output_df= pd.merge(output_df, ret_view, on ='track_id',  how='left')
         output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc',"artist_name", "album_name", "song_name", "release_year"]]
-
-        return(output_df.to_json(orient='records'))
+        output = (output_df.to_json(orient='records'))
+        output = (f'{{"number_of_tracks": {number_of_tracks}, "tracks": {output}}}')
+        return(output)
         #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
         
 
