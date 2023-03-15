@@ -61,9 +61,14 @@ class SwiftPythonInterface {
         return user_info
     }
 
-    static func extractScript(chat_ids: [Int], lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
+    static func getSongs(chat_ids: [Int], lastUpdated: Bool = false, displayView: Bool = false) -> PythonObject {
         let tracks = extract_script.get_songs(chat_ids, lastUpdated, displayView, spotiy)
         return(tracks)
+    }
+
+    static func getNumberOfSongs(chat_ids: [Int]) -> PythonObject {
+        let numberOfSongs = extract_script.get_number_of_songs(chat_ids, spotiy)
+        return(numberOfSongs)
     }
 
     //return playlist iD
@@ -83,7 +88,7 @@ class SwiftPythonInterface {
 
         let _ = addSongsToPlaylist(
             playlist_id: playlistID,
-            tracks: extractScript(chat_ids: chatIDs)
+            tracks: getSongs(chat_ids: chatIDs)
         )
 
         return playlistID.description
