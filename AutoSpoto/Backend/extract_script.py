@@ -25,58 +25,6 @@ def split_it(url_l):
         return results.group(0)
     return None
 
-def get_number_of_songs(chat_ids, spotify_obj):
-    conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db')
-    cur = conn.cursor()
-    cur.execute(" select name from sqlite_master where type = 'table' ")
-
-
-    messages = pd.read_sql_query('''select ROWID, text, attributedBody, date, handle_id, datetime(date/1000000000 + strftime("%s", "2001-01-01") ,"unixepoch","localtime")  as date_utc FROM message''', conn)
-    messages.rename(columns={'ROWID' : 'message_id'}, inplace = True)
-
-    handles = pd.read_sql_query("select ROWID, id from handle", conn)
-    handles.rename(columns={'id' : 'phone_number', 'ROWID': 'handle_id'}, inplace = True)
-
-    messagesAndHandlesJoined = pd.merge(messages, handles, on ='handle_id',  how='left')
-
-    chatMessagesJoined = pd.read_sql_query("select chat_id, message_id from chat_message_join", conn)
-
-    chatMessagesAndHandlesJoined = pd.merge(messagesAndHandlesJoined, chatMessagesJoined, on = 'message_id', how='left')
-    ####This code is looping through the newly created
-    houseMusicChat = []
-    for chat_id in chat_ids:
-        houseMusicChat.append(chatMessagesAndHandlesJoined[chatMessagesAndHandlesJoined['chat_id'] == chat_id])
-    houseMusicChat = pd.concat(houseMusicChat)
-    houseMusicChat = houseMusicChat[['text', 'attributedBody','date_utc']]
-    # The part of the code where we can use the last updated field in the database to sync the playlist
-    if last_updated:
-        houseMusicChat['date_utc'] = pd.to_datetime(houseMusicChat['date_utc'], format='%Y-%m-%d %H:%M:%S')
-        houseMusicChat = houseMusicChat.loc[(houseMusicChat['date_utc'] >= last_updated)] #Find all records stored after the last_updated field in the DB
-
-    spotifyTrackText = 'https://open.spotify.com/track/'
-
-    houseMusicChat['decoded_blob'] = houseMusicChat['attributedBody'].apply(split_it) #Applying the regex function to every blob
-    houseMusicChat.dropna(subset=['decoded_blob'], inplace= True)
-
-    ret_view = houseMusicChat
-
-    if ret_view.empty:
-        return 0
-
-    ret_view = ret_view.sort_values(by = 'date_utc')
-    ret_view.drop_duplicates(subset='decoded_blob', keep = 'first', inplace = True)
-
-    trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
-    tracks_response = spotify_obj.get_tracks(trackIDs)
-    number_of_tracks = len(tracks_response['tracks'])
-
-    if not tracks_response:
-        return 0
-    if not tracks_response['tracks']:
-        return 0
-
-    return number_of_tracks
-
 #when display_view is True, metadata will also be returned with the track
 #when display_view is False, only the track ID's will be returned. This is used when creating a playlist w/ spotify API
 def get_songs(chat_ids, last_updated, display_view, spotify_obj):

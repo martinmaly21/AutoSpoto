@@ -66,11 +66,6 @@ class SwiftPythonInterface {
         return(tracks)
     }
 
-    static func getNumberOfSongs(chat_ids: [Int]) -> PythonObject {
-        let numberOfSongs = extract_script.get_number_of_songs(chat_ids, spotiy)
-        return(numberOfSongs)
-    }
-
     //return playlist iD
     static func createPlaylistAndAddSongs(
         playlistImage: String? = nil,
