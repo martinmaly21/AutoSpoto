@@ -85,14 +85,6 @@ struct TrackRow: View {
                     }
                 }
                 .multilineTextAlignment(.leading)
-                .onAppear {
-                    Task {
-                        await homeViewModel.fetchTrackMetadata(chat: chat, track: track)
-                    }
-                }
-                .onDisappear {
-                    homeViewModel.cancelTrackMetadataFetchIfNeeded(chat: chat, track: track)
-                }
             }
 
 
