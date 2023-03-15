@@ -16,8 +16,9 @@ class Track: Hashable {
     var artist: String?
 
     init?(trackCodable: TrackCodable) {
-        guard let url = URL(string: trackCodable.decoded_blob) else {
-            assertionFailure("Could not create URL")
+        let trackID = trackCodable.track_id
+        guard let url = URL(string: "https://open.spotify.com/track/\(trackID)") else {
+            assertionFailure("Could not get track URL")
             return nil
         }
         self.url = url
