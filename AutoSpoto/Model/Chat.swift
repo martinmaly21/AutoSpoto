@@ -80,7 +80,7 @@ struct Chat: Hashable {
         hasFetchedTracks = true
         isFetchingTracks = true
 
-        let jsonString = await SwiftPythonInterface.extractScript(chat_ids: ids, displayView: true).description
+        let jsonString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
 
         //if extract script succeeded and chat truly has no tracks, '{}' will be returned
         guard jsonString != "{}" else {
