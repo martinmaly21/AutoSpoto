@@ -81,6 +81,13 @@ struct Chat: Hashable {
         isFetchingTracks = true
 
         let jsonString = await SwiftPythonInterface.extractScript(chat_ids: ids, displayView: true).description
+
+        //if extract script succeeded and chat truly has no tracks, '{}' will be returned
+        guard jsonString != "{}" else {
+            isFetchingTracks = false
+            return
+        }
+
         guard let jsonData = jsonString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }
@@ -89,12 +96,9 @@ struct Chat: Hashable {
             let decoder = JSONDecoder()
             let tracksCodable = try decoder.decode([TrackCodable].self, from: jsonData)
             tracks = tracksCodable.compactMap { Track(trackCodable: $0) }
-        }
-        catch {
-            //TODO: handle error better
-            isFetchingTracks = false
+        } catch {
             errorFetchingTracks = true
-            print (error)
+            print(error)
         }
 
         isFetchingTracks = false
