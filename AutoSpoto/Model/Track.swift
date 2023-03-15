@@ -11,12 +11,6 @@ class Track: Hashable {
     var url: URL
     var timeStamp: String
 
-    enum MetaDataFetchError {
-        case miscError
-        case error404
-    }
-    var errorFetchingMetadata: MetaDataFetchError?
-
     var imageURL: URL?
     var title: String?
     var artist: String?
@@ -33,8 +27,6 @@ class Track: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(url)
         hasher.combine(timeStamp)
-
-        hasher.combine(errorFetchingMetadata)
 
         hasher.combine(imageURL)
         hasher.combine(title)

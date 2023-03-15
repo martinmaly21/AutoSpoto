@@ -16,21 +16,14 @@ struct TrackRow: View {
     let track: Track
 
     private var errorMessage: String? {
-        guard let errorFetchingMetadata = track.errorFetchingMetadata else {
+        guard chat.errorFetchingTracks else {
             return nil
         }
-        switch errorFetchingMetadata {
-        case .error404:
-            return String.localizedStringWithFormat(
-                AutoSpotoConstants.Strings.ERROR_INVALID_TRACK_URL,
-                track.url.absoluteString
-            )
-        case .miscError:
-            return String.localizedStringWithFormat(
-                AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
-                track.url.absoluteString
-            )
-        }
+
+        return String.localizedStringWithFormat(
+            AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA,
+            track.url.absoluteString
+        )
     }
 
     var body: some View {

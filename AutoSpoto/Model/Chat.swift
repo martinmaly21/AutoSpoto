@@ -32,7 +32,7 @@ struct Chat: Hashable {
 
     private var hasFetchedTracks = false
     private var isFetchingTracks = false
-    var isFetchingTracksMetaData = false
+    var isFetchingTracksMetaData = false //TODO: use this!
     var errorFetchingTracks = false
 
     var displayName: String {
