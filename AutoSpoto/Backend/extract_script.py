@@ -25,6 +25,8 @@ def split_it(url_l):
         return results.group(0)
     return None
 
+#when display_view is True, metadata will also be returned with the track
+#when display_view is False, only the track ID's will be returned. This is used when creating a playlist w/ spotify API
 def get_songs(chat_ids, last_updated, display_view, spotify_obj):
 
 #    last_updated = kwargs.get('last_updated', None)
