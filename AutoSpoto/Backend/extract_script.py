@@ -120,9 +120,7 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         #then we merge with the original dataframe to get the dates that the tracks were sent
         output_df= pd.merge(output_df, ret_view, on ='track_id',  how='left')
         output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc',"artist_name", "album_name", "song_name", "release_year"]]
-        output = (output_df.to_json(orient='records'))
-        output = (f'{{"number_of_tracks": {number_of_tracks}, "tracks": {output}}}')
-        return(output)
+        return(output_df.to_json(orient='records'))
         #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
         
 
