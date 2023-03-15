@@ -34,7 +34,7 @@ struct TrackRow: View {
     }
 
     var body: some View {
-        let trackMetadataIsLoading = (!track.isFetchingMetadata && !track.hasFetchedMetadata) || track.isFetchingMetadata
+        let trackMetadataIsLoading = chat.hasNotFetchedAndIsFetchingTracks
 
         VStack {
             if let errorMessage = errorMessage {

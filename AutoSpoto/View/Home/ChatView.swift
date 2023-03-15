@@ -20,11 +20,11 @@ struct ChatView: View {
 
         if let selectedChat = homeViewModel.selectedChat {
             ZStack(alignment: .center) {
-                let tracksAreLoading = (!selectedChat.isFetchingTracks && !selectedChat.hasFetchedTracks) || selectedChat.isFetchingTracks
+                let tracksAreLoading = selectedChat.hasNotFetchedAndIsFetchingTracks
 
                 if tracksAreLoading {
                     ProgressView()
-                } else if selectedChat.tracks.isEmpty && selectedChat.hasFetchedTracks {
+                } else if selectedChat.hasNoTracks {
                     VStack(spacing: 20) {
                         Image(systemName: "headphones")
                             .resizable()

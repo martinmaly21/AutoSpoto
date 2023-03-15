@@ -11,9 +11,6 @@ class Track: Hashable {
     var url: URL
     var timeStamp: String
 
-    var hasFetchedMetadata = false
-    var isFetchingMetadata = false
-
     enum MetaDataFetchError {
         case miscError
         case error404
@@ -37,8 +34,6 @@ class Track: Hashable {
         hasher.combine(url)
         hasher.combine(timeStamp)
 
-        hasher.combine(hasFetchedMetadata)
-        hasher.combine(isFetchingMetadata)
         hasher.combine(errorFetchingMetadata)
 
         hasher.combine(imageURL)

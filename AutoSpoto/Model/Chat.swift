@@ -21,8 +21,18 @@ struct Chat: Hashable {
 
     var tracks: [Track] = []
 
-    var hasFetchedTracks = false
-    var isFetchingTracks = false
+    var hasNoTracks: Bool {
+        return tracks.isEmpty && hasFetchedTracks
+    }
+
+    //this boolean is used to show loading indicator UI
+    var hasNotFetchedAndIsFetchingTracks: Bool {
+        return !hasFetchedTracks && isFetchingTracks
+    }
+
+    private var hasFetchedTracks = false
+    private var isFetchingTracks = false
+    var isFetchingTracksMetaData = false
     var errorFetchingTracks = false
 
     var displayName: String {
