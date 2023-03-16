@@ -80,22 +80,28 @@ struct Chat: Hashable {
         hasFetchedTracks = true
         isFetchingTracks = true
 
-        let jsonString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
+        let trackListWithNoMetadata = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: false).description
 
-        //if extract script succeeded and chat truly has no tracks, '{}' will be returned
-        guard jsonString != "{}" else {
+        //if extract script succeeded and chat truly has no tracks, 'None' will be returned
+        guard trackListWithNoMetadata != "None" else {
             isFetchingTracks = false
             return
         }
 
-        guard let jsonData = jsonString.data(using: .utf8) else {
+        //TODO: will need to change when apple music is supported
+        let trackIDs = trackListWithNoMetadata.capturedGroups(withRegex: "spotify:track:([0-9a-zA-Z]){22}")
+        tracks = trackIDs.compactMap { Track(trackID: $0) }
+
+        let trackListWithMetadataString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
+
+        guard let trackListWithMetadata = trackListWithMetadataString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }
 
         do {
             let decoder = JSONDecoder()
-            let tracksCodable = try decoder.decode([TrackCodable].self, from: jsonData)
-            tracks = tracksCodable.compactMap { Track(trackCodable: $0) }
+            let tracksCodable = try decoder.decode([LongTrackCodable].self, from: trackListWithMetadata)
+            tracks = tracksCodable.compactMap { Track(longTrackCodable: $0) }
         } catch {
             errorFetchingTracks = true
             print(error)

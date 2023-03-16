@@ -24,7 +24,7 @@
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
-		50B19568299B4A6D002E7F65 /* TrackCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* TrackCodable.swift */; };
+		50B19568299B4A6D002E7F65 /* LongTrackCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* LongTrackCodable.swift */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
@@ -91,7 +91,7 @@
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
 		50B19563299B4711002E7F65 /* IndividualChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualChatCodable.swift; sourceTree = "<group>"; };
 		50B19565299B471A002E7F65 /* GroupChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatCodable.swift; sourceTree = "<group>"; };
-		50B19567299B4A6D002E7F65 /* TrackCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCodable.swift; sourceTree = "<group>"; };
+		50B19567299B4A6D002E7F65 /* LongTrackCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTrackCodable.swift; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 			children = (
 				50B19563299B4711002E7F65 /* IndividualChatCodable.swift */,
 				50B19565299B471A002E7F65 /* GroupChatCodable.swift */,
-				50B19567299B4A6D002E7F65 /* TrackCodable.swift */,
+				50B19567299B4A6D002E7F65 /* LongTrackCodable.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
-				50B19568299B4A6D002E7F65 /* TrackCodable.swift in Sources */,
+				50B19568299B4A6D002E7F65 /* LongTrackCodable.swift in Sources */,
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
