@@ -110,6 +110,12 @@ extension AutoSpotoConstants.Strings {
         comment: "Placeholder for tracka artist metadata"
     )
 
+    static let TRACK_TIME_STAMP_METADATA_PLACEHOLDER = NSLocalizedString(
+        "TRACK_TIME_STAMP_METADATA_PLACEHOLDER",
+        value: "Track Time Stamp",
+        comment: "Placeholder for tracka time stamp metadata"
+    )
+
     static let ERROR_FETCHING_TRACK_METADATA = NSLocalizedString(
         "ERROR_FETCHING_TRACK_METADATA",
         value: "Error fetching track information for: %@",

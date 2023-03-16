@@ -58,7 +58,7 @@ struct TrackRow: View {
                         .aspectRatio(contentMode: .fill)
 
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(track.title ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
+                        Text(track.name ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimary)
 
@@ -70,7 +70,7 @@ struct TrackRow: View {
                     Spacer()
 
                     VStack {
-                        Text(track.timeStamp)
+                        Text(track.timeStamp ?? AutoSpotoConstants.Strings.TRACK_TIME_STAMP_METADATA_PLACEHOLDER)
                             .font(.josefinSansLight(16))
                             .foregroundColor(.textPrimary)
 
