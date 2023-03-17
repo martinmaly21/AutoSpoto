@@ -18,29 +18,30 @@ extension String {
         return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 
-    //retrieved from: https://stackoverflow.com/a/47671579
-    func capturedGroups(withRegex pattern: String) -> [String] {
-        var results = [String]()
-
-        var regex: NSRegularExpression
+    //retrieved from: https://stackoverflow.com/a/53652037
+    func groups(for regexPattern: String) -> [[String]] {
         do {
-            regex = try NSRegularExpression(pattern: pattern, options: [])
-        } catch {
-            return results
+            let text = self
+            let regex = try NSRegularExpression(pattern: regexPattern)
+            let matches = regex.matches(
+                in: text,
+                range: NSRange(
+                    text.startIndex...,
+                    in: text
+                )
+            )
+            return matches.map { match in
+                return (0..<match.numberOfRanges).map {
+                    let rangeBounds = match.range(at: $0)
+                    guard let range = Range(rangeBounds, in: text) else {
+                        return ""
+                    }
+                    return String(text[range])
+                }
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
         }
-        let matches = regex.matches(in: self, options: [], range: NSRange(location:0, length: self.count))
-
-        guard let match = matches.first else { return results }
-
-        let lastRangeIndex = match.numberOfRanges - 1
-        guard lastRangeIndex >= 1 else { return results }
-
-        for i in 1...lastRangeIndex {
-            let capturedGroupIndex = match.range(at: i)
-            let matchedString = (self as NSString).substring(with: capturedGroupIndex)
-            results.append(matchedString)
-        }
-
-        return results
     }
 }

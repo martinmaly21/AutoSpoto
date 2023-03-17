@@ -80,7 +80,7 @@ struct Chat: Hashable {
         hasFetchedTracks = true
         isFetchingTracks = true
 
-        let trackListWithNoMetadata = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: false).description
+        let trackListWithNoMetadata = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: false, shouldStripInvalidIDs: false).description
 
         //if extract script succeeded and chat truly has no tracks, 'None' will be returned
         guard trackListWithNoMetadata != "None" else {
@@ -89,7 +89,8 @@ struct Chat: Hashable {
         }
 
         //TODO: will need to change when apple music is supported
-        let trackIDs = trackListWithNoMetadata.capturedGroups(withRegex: "spotify:track:([0-9a-zA-Z]){22}")
+        let trackIDs = trackListWithNoMetadata.groups(for: AutoSpotoConstants.Regex.spotifyTrackIDRegex).compactMap { $0.last }
+
         tracks = trackIDs.compactMap { Track(trackID: $0) }
 
         let trackListWithMetadataString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description

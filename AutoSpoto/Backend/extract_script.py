@@ -27,7 +27,7 @@ def split_it(url_l):
 
 #when display_view is True, metadata will also be returned with the track
 #when display_view is False, only the track ID's will be returned. This is used when creating a playlist w/ spotify API
-def get_songs(chat_ids, last_updated, display_view, spotify_obj):
+def get_songs(chat_ids, last_updated, display_view, shouldStripInvalidIDs, spotify_obj):
 
     conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db')
     cur = conn.cursor()
@@ -119,6 +119,8 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
         #then we merge with the original dataframe to get the dates that the tracks were sent
         output_df= pd.merge(output_df, ret_view, on ='track_id',  how='left')
         output_df = output_df[['track_id', 'image_ref', 'preview_url', 'date_utc',"artist_name", "album_name", "song_name", "release_year"]]
+
+        #TODO: can we utilize 'shouldStripInvalidIDs' param here too? Or is it unnecesssary.
         return(output_df.to_json(orient='records'))
         #passing the uri without spotify:track to /tracks endpoint to verify that the links are correct
         
@@ -138,6 +140,11 @@ def get_songs(chat_ids, last_updated, display_view, spotify_obj):
     
     #converting dataframe to list so that it may interface with the spotify API
     trackIDs = houseMusicChat['decoded_blob'].tolist()
+
+    #initially, we just want the raw track data (so we can display empty cells while metadata is loading)
+    if not shouldStripInvalidIDs:
+        return trackIDs
+
     response = spotify_obj.get_tracks(trackIDs)
     
     #Just incase the user only has broken links in there chat

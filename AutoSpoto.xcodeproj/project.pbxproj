@@ -69,6 +69,7 @@
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
 		50F34C66297659950059516B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F34C65297659950059516B /* Colors.xcassets */; };
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
+		50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +137,7 @@
 		50F34C65297659950059516B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50F34C6729765DC00059516B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Regex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */,
 				50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */,
 				50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */,
+				50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */,
 			);
 			path = AutoSpotoConstants;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
+				50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
 				50B19568299B4A6D002E7F65 /* LongTrackCodable.swift in Sources */,
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
