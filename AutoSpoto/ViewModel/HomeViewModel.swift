@@ -121,7 +121,8 @@ class HomeViewModel: ObservableObject {
             return
         }
 
-        await individualChats[selectedIndividualChatIndex].fetchTracks()
+        await individualChats[selectedIndividualChatIndex].fetchTracksWithNoMetadata()
+        await individualChats[selectedIndividualChatIndex].fetchTracksWithMetadata()
     }
 
     public func fetchTracksForGroupChat() async {
@@ -129,7 +130,8 @@ class HomeViewModel: ObservableObject {
             return
         }
 
-        await groupChats[selectedGroupChatIndex].fetchTracks()
+        await groupChats[selectedGroupChatIndex].fetchTracksWithNoMetadata()
+        await groupChats[selectedGroupChatIndex].fetchTracksWithMetadata()
     }
 
     public func updateChatForPlaylist(

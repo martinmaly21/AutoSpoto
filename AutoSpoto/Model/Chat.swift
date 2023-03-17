@@ -22,17 +22,17 @@ struct Chat: Hashable {
     var tracks: [Track] = []
 
     var hasNoTracks: Bool {
-        return tracks.isEmpty && hasFetchedTracks
+        return tracks.isEmpty && hasAttemptedToFetchTracks
     }
 
     //this boolean is used to show loading indicator UI
     var hasNotFetchedAndIsFetchingTracks: Bool {
-        return !hasFetchedTracks && isFetchingTracks
+        return !hasAttemptedToFetchTracks && isFetchingTracks
     }
 
-    private var hasFetchedTracks = false
+    private var hasAttemptedToFetchTracks = false
     private var isFetchingTracks = false
-    var isFetchingTracksMetaData = false //TODO: use this!
+    var isFetchingTracksMetaData = false
     var errorFetchingTracks = false
 
     var displayName: String {
@@ -74,10 +74,10 @@ struct Chat: Hashable {
         playlistID = groupChatCodable.playlist_id
     }
 
-    mutating func fetchTracks() async {
-        guard !hasFetchedTracks && !isFetchingTracks else { return }
+    mutating func fetchTracksWithNoMetadata() async {
+        guard !hasAttemptedToFetchTracks && !isFetchingTracks else { return }
 
-        hasFetchedTracks = true
+        hasAttemptedToFetchTracks = true
         isFetchingTracks = true
 
         let trackListWithNoMetadata = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: false, shouldStripInvalidIDs: false).description
@@ -93,7 +93,18 @@ struct Chat: Hashable {
 
         tracks = trackIDs.compactMap { Track(trackID: $0) }
 
+        isFetchingTracks = false
+    }
+
+    mutating func fetchTracksWithMetadata() async {
+        isFetchingTracksMetaData = true
+
         let trackListWithMetadataString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
+
+        guard trackListWithMetadataString != "{}" else {
+            isFetchingTracksMetaData = false
+            return
+        }
 
         guard let trackListWithMetadata = trackListWithMetadataString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
@@ -108,7 +119,7 @@ struct Chat: Hashable {
             print(error)
         }
 
-        isFetchingTracks = false
+        isFetchingTracksMetaData = false
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {
@@ -117,8 +128,9 @@ struct Chat: Hashable {
         lhs.ids == rhs.ids &&
         lhs.playlistID == rhs.playlistID &&
         lhs.tracks == rhs.tracks &&
-        lhs.hasFetchedTracks == rhs.hasFetchedTracks &&
+        lhs.hasAttemptedToFetchTracks == rhs.hasAttemptedToFetchTracks &&
         lhs.isFetchingTracks == rhs.isFetchingTracks &&
+        lhs.isFetchingTracksMetaData == rhs.isFetchingTracksMetaData &&
         lhs.errorFetchingTracks == rhs.errorFetchingTracks
     }
 
@@ -131,8 +143,9 @@ struct Chat: Hashable {
 
         hasher.combine(tracks)
 
-        hasher.combine(hasFetchedTracks)
+        hasher.combine(hasAttemptedToFetchTracks)
         hasher.combine(isFetchingTracks)
+        hasher.combine(isFetchingTracksMetaData)
         hasher.combine(errorFetchingTracks)
     }
 }
