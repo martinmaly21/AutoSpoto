@@ -94,11 +94,10 @@ struct Chat: Hashable {
         tracks = trackIDs.compactMap { Track(trackID: $0) }
 
         isFetchingTracks = false
+        isFetchingTracksMetaData = true
     }
 
     mutating func fetchTracksWithMetadata() async {
-        isFetchingTracksMetaData = true
-
         let trackListWithMetadataString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
 
         guard trackListWithMetadataString != "{}" else {
