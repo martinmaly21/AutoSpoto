@@ -56,8 +56,6 @@ class Spotiy:
                 for i in range(num_of_spot_posts+1):
                     if i == 0 :
                         response = self.clean_nones(self.conn.tracks(tracks[0: 50]))
-                    
-                    
                     elif i == (num_of_spot_posts) and tracks[50*i:]:
                         response["tracks"] += self.clean_nones(self.conn.tracks(tracks[50*i:]))["tracks"]
                         break
@@ -96,16 +94,17 @@ class Spotiy:
         try:
             socket.gethostbyname('api.spotify.com')
             if len(tracks) > 100:
-                num_of_spot_posts = int(len(tracks) / 100) # need to divide list if the tracks are more than 100
-                for i in range(num_of_spot_posts):
-                    if i == (num_of_spot_posts):
-                        response = self.conn.playlist_add_items(playlist_id, tracks[100*i:], position=None)
+                num_of_spot_posts = (len(tracks) // 100) # need to divide list if the tracks are more than 100
+                for i in range(num_of_spot_posts+1):
+                    if i == 0 :
+                        response = self.conn.playlist_add_items(playlist_id, (tracks[0: 100]), position=None)
+                    elif i == (num_of_spot_posts) and tracks[100*i:]:
+                        response = self.conn.playlist_add_items(playlist_id, (tracks[100*i:]), position=None)
                         break
-                    self.conn.playlist_add_items(playlist_id, tracks[100*i: 100 + (100*i)], position=None)# This is just a range basically saying to upload in intervals of 100 songs
-                    
+                    elif tracks[100*i: 100 + (100*i)]:
+                        response = self.conn.playlist_add_items(playlist_id, tracks[100*i: 100 + (100*i)], position=None)
             else:
                 response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
-            
             #After the songs are updated we update the time in the last updated column of the database
             if response['snapshot_id']:
                 db_object.update_time_playlist(playlist_id)
