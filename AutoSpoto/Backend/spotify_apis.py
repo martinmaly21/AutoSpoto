@@ -27,7 +27,7 @@ class Spotiy:
                 return user_info['id']
             else:
                 raise Exception(response['error'])
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
         except spotipy.SpotifyException as response:
             return None
@@ -64,9 +64,8 @@ class Spotiy:
                 
             else:
                 response = self.clean_nones(self.conn.tracks(tracks))
-
             return response
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
         except spotipy.SpotifyException as response:
             return None
@@ -83,7 +82,7 @@ class Spotiy:
                 return response['id']
             else:
                 return None
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
         except spotipy.SpotifyException as response:
             return None
@@ -93,24 +92,18 @@ class Spotiy:
     def update_playlist(self, playlist_id, tracks, db_object):
         try:
             socket.gethostbyname('api.spotify.com')
-            if len(tracks) > 100:
-                num_of_spot_posts = (len(tracks) // 100) # need to divide list if the tracks are more than 100
-                for i in range(num_of_spot_posts+1):
-                    if i == 0 :
-                        response = self.conn.playlist_add_items(playlist_id, (tracks[0: 100]), position=None)
-                    elif i == (num_of_spot_posts) and tracks[100*i:]:
-                        response = self.conn.playlist_add_items(playlist_id, (tracks[100*i:]), position=None)
-                        break
-                    elif tracks[100*i: 100 + (100*i)]:
-                        response = self.conn.playlist_add_items(playlist_id, tracks[100*i: 100 + (100*i)], position=None)
-            else:
-                response = self.conn.playlist_add_items(playlist_id, tracks, position=None)
+            num_of_spot_posts = (len(tracks) // 100) # need to divide list if the tracks are more than 100
+            for i in range(num_of_spot_posts+1):
+                if not tracks[100*i: 100 + (100*i)]:
+                    break
+                else:
+                    response = self.conn.playlist_add_items(playlist_id, tracks[100*i: 100 + (100*i)], position=None)
             #After the songs are updated we update the time in the last updated column of the database
             if response['snapshot_id']:
                 db_object.update_time_playlist(playlist_id)
             else:
                 raise Exception(response['error'])
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
         except spotipy.SpotifyException as response:
             return None
@@ -128,7 +121,7 @@ class Spotiy:
 
         except spotipy.SpotifyException as response:
             return None
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
     def validate_playlist(self, user_id, db_object):
         try:
@@ -139,7 +132,7 @@ class Spotiy:
         #In this case the playlist id is not found on the users account
         except spotipy.SpotifyException as response:
             return None
-        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError) as e:
+        except (socket.gaierror, RequestException, urllib3.exceptions.MaxRetryError) as e:
             return None
         #This exception is raised if there is an issue with the users internet connection
         
