@@ -1,14 +1,15 @@
+#!/Library/Frameworks/Python.framework/Versions/3.11/bin/python3
 import db
 import spotify_apis
 import extract_script
 import pandas as pd
 import spotipy
 import json
+import os
 
 
-
-spot = spotify_apis.Spotiy('/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/.cache')
-conn = db.db("/Users/andrewcaravaggio/SideProjects/songs/AutoSpoto","24485206-D95C-4125-A166-735537F69AC7")
+spot = spotify_apis.Spotiy(os.environ["CACHE_PATH"])
+conn = db.db(os.environ["DB_STRING"],os.environ["CONTACT_STRING"])
 #conn.add_playlist([10], '0ScAOLewbFikfkmYbYwV0Y')
 #conn.add_playlist([2], '1B4IYC8kUJfjw2ZdvOnrvw')
 
@@ -47,7 +48,7 @@ def auto_update_playlist(spotify_obj, db_object):
         playlist_id = row['playlist_id']
         chat_id = row['chat_id']
         last_updated = row['last_updated']
-        tracks = extract_script.get_songs([chat_id], last_updated= last_updated, display_view=False, spotify_obj= spotify_obj)
+        tracks = extract_script.get_songs([chat_id], last_updated= last_updated, display_view=False, spotify_obj= spotify_obj, shouldStripInvalidIDs=True)
         if tracks:
             print(last_updated)
             spotify_obj.update_playlist(playlist_id, tracks, db_object)
@@ -60,7 +61,7 @@ def auto_update_playlist(spotify_obj, db_object):
 #spot.create_playlist(spot.user_info(), 'Playlist 3', 'Testing scheduler', [5], conn)
 
 remove_del_playlist_db(spot, conn)
-auto_update_playlist(spot, conn)
+#auto_update_playlist(spot, conn)
 
 rows = conn.connection.cursor().execute("Select * From playlists") #Query the database for records
 rows = rows.fetchall()
@@ -68,4 +69,3 @@ for row in rows:
     playlist_id = row['playlist_id']
     chat_id = row['chat_id']
     print(chat_id, playlist_id)
-

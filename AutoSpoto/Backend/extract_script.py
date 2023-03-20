@@ -72,15 +72,15 @@ def get_songs(chat_ids, last_updated, display_view, shouldStripInvalidIDs, spoti
         
         trackIDs = ret_view['decoded_blob'].str.split('track/').str[1].tolist()
         tracks_response = spotify_obj.get_tracks(trackIDs)
+        if not tracks_response:
+            return None
+        if not tracks_response['tracks']:
+            return('{}')
         number_of_tracks = len(tracks_response['tracks'])
         #with open('testingshit.json') as user_file:
             #tracks_response = user_file.read()
         #tracks_response = json.loads(tracks_response)
         #Just in case the user only has broken links we will return at this point
-        if not tracks_response:
-            return None
-        if not tracks_response['tracks']:
-            return('{}')
         ui_json = []
         #Here we are pasing the json response and creating an object to pass to the ui
         for index in range(number_of_tracks):
