@@ -15,6 +15,7 @@ struct OnboardingContainerView: View {
         case getStarted
         case diskAccessIntroductionView
         case chooseMusicStreamingServiceView
+        case accessContactsView
     }
     @State private var onboardingCurrentView: CurrentView = .getStarted
 
@@ -91,6 +92,8 @@ struct OnboardingContainerView: View {
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
                 ChooseMusicStreamingServiceView(spotifyAccessToken: $spotifyAccessToken)
+            case .accessContactsView:
+                AccessContactsView()
             }
 
             let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && spotifyAccessToken == nil
@@ -102,7 +105,7 @@ struct OnboardingContainerView: View {
                     Spacer()
 
                     OnboardingButton(
-                        title: onboardingCurrentView == .chooseMusicStreamingServiceView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
+                        title: onboardingCurrentView == .accessContactsView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
                         action: {
                             switch onboardingCurrentView {
                             case .getStarted:
@@ -113,10 +116,13 @@ struct OnboardingContainerView: View {
                             case .diskAccessIntroductionView:
                                 onboardingCurrentView = .chooseMusicStreamingServiceView
                             case .chooseMusicStreamingServiceView:
+                                onboardingCurrentView = .accessContactsView
+                            case .accessContactsView:
                                 withAnimation {
                                     autoSpotoCurrentView = .home
                                 }
                             }
+                            
                         }
                     )
                     .padding(.trailing, defaultHorizontalPadding)
