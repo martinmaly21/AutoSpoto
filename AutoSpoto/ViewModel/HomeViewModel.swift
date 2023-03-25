@@ -76,7 +76,7 @@ class HomeViewModel: ObservableObject {
         //only fetch if group chats have not already been fetched (groupChats.isEmpty)
         guard groupChats.isEmpty else { return }
 
-        let jsonString = SwiftPythonInterface.viewGroupChat().description
+        let jsonString = await SwiftPythonInterface.viewGroupChat().description
         guard let jsonData = jsonString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }
@@ -98,7 +98,7 @@ class HomeViewModel: ObservableObject {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
         guard individualChats.isEmpty else { return }
 
-        let jsonString = SwiftPythonInterface.viewSingleChat().description
+        let jsonString = await SwiftPythonInterface.viewSingleChat().description
         guard let jsonData = jsonString.data(using: .utf8) else {
             fatalError("Could not get jsonData")
         }

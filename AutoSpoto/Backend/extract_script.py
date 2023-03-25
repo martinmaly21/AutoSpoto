@@ -29,7 +29,7 @@ def split_it(url_l):
 #when display_view is False, only the track ID's will be returned. This is used when creating a playlist w/ spotify API
 def get_songs(chat_ids, last_updated, display_view, shouldStripInvalidIDs, spotify_obj):
 
-    conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db')
+    conn = sqlite3.connect(os.environ['HOME'] + '/Library/Messages/chat.db', check_same_thread=False)
     cur = conn.cursor()
     cur.execute(" select name from sqlite_master where type = 'table' ") 
 

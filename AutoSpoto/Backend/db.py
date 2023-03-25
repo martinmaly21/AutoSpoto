@@ -11,7 +11,7 @@ class db:
         #is it okay to just pass in 'contacts_string_id'? I.e. will it be named AddressBook-v22.abcddb for everyone?
         contacts_string = f"\'{os.environ['HOME']}/Library/Application Support/AddressBook/Sources/{contacts_string_id}/AddressBook-v22.abcddb\'"
         self.contact_uid = contacts_string_id
-        self.connection = sqlite3.connect(db_string)
+        self.connection = sqlite3.connect(db_string, check_same_thread=False)
         self.connection.row_factory = sqlite3.Row
         self.connection.cursor().execute("attach" +chat_db_string+ "as cdb")
         self.connection.cursor().execute("attach"+contacts_string+ "as adb")
