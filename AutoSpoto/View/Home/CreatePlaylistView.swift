@@ -46,7 +46,7 @@ struct CreatePlaylistView: View {
                 Button(
                     action: {
                         Task {
-                            let playlistID = SwiftPythonInterface.createPlaylistAndAddSongs(
+                            let playlistID = await SwiftPythonInterface.createPlaylistAndAddSongs(
                                 playlistName: playlistName,
                                 chatIDs: chat.ids
                             )
