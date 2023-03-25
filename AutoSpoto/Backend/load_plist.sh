@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-filename="/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/text.txt"
+filename="/Applications/autospoto/AutoSpoto/AutoSpoto/Backend/text.txt"
 
 # Define variables outside the loop
 var1=""
@@ -23,6 +23,5 @@ export CACHE_PATH=$var1
 export DB_STRING=$var2
 export CONTACT_STRING=$var3
 
-cd /Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto/Backend/dist
+cd /Applications/autospoto/AutoSpoto/AutoSpoto/Backend/dist
 ./scheduler
-
