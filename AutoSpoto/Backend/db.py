@@ -3,6 +3,7 @@ import time
 import pandas as pd
 import os
 from base64 import b64encode 
+import re
 
 #pd.set_option("display.max_rows", None)
 class db:
@@ -30,7 +31,9 @@ class db:
         return t
 
         # place 'P' manually for nice 75 char alignment
-        
+    def strip_it(self, phone_number):
+        return re.sub('\D', '', phone_number)
+
     def hidden_image(self, path):
     
         if path is None or len(path) > 300:
@@ -117,13 +120,13 @@ class db:
     # substr(temp.guid, -12) filter outs the characters before the number
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
-        contact_rows = pd.read_sql(("SELECT distinct temp.ROWID as chat_ids, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from (SELECT * from cdb.chat where guid not like'%chat%') as temp left join adb.ZABCDPHONENUMBER on substr(temp.guid, -12) = ZABCDPHONENUMBER.ZFULLNUMBER left join adb.ZABCDRECORD on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK;"), self.connection)
-        contact_rows.dropna(subset=['Phone_Number'], inplace= True)
-        image_rows = pd.read_sql(("Select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number from ZABCDRECORD left join ZABCDPHONENUMBER on ZABCDPHONENUMBER.ZOWNER = ZABCDRECORD.Z_PK"),self.connection)
-        joined_contacts = pd.merge(image_rows, contact_rows, on ='Phone_Number',  how='inner')
+        rows = pd.read_sql(("select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from ZABCDRECORD inner join adb.ZABCDPHONENUMBER on adb.ZABCDPHONENUMBER.ZOWNER = adb.ZABCDRECORD.Z_PK;"), self.connection)
+        rows1 = pd.read_sql(("SELECT guid, ROWID as chat_ids from cdb.chat where guid not like'%chat%';"), self.connection)
+        rows1['guid'] = rows1['guid'].apply(self.strip_it)
+        rows['Phone_Number'] = rows['Phone_Number'].apply(self.strip_it)
+        joined_contacts = pd.merge(rows, rows1, left_on='Phone_Number', right_on='guid', how="inner")
         joined_contacts['Image_Blob'] = joined_contacts['Image_Blob'].apply(self.hidden_image)
         joined_contacts['Image'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
-
         flag_check = self.display_playlists()
 
         final_table = pd.merge(joined_contacts, flag_check, on ='chat_ids',  how='left')

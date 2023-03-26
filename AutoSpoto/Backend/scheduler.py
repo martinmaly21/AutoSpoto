@@ -1,4 +1,4 @@
-#!/Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+#!/opt/homebrew/bin/python3
 import db
 import spotify_apis
 import extract_script
@@ -60,6 +60,11 @@ def auto_update_playlist(spotify_obj, db_object):
 #spot.create_playlist(spot.user_info(), 'Playlist 2', 'Testing scheduler', [10], conn)
 #spot.create_playlist(spot.user_info(), 'Playlist 3', 'Testing scheduler', [5], conn)
 
+
+rows = conn.connection.cursor().execute("Select * From playlists") #Query the database for records
+rows = rows.fetchall()
+
+print(spot.user_info())
 remove_del_playlist_db(spot, conn)
 auto_update_playlist(spot, conn)
 
