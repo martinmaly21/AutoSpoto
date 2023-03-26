@@ -44,7 +44,10 @@ class SwiftPythonInterface {
         //is it okay to pass in Bundle.main.bundleURL?
         //Not sure if Bundle.main.bundleURL.path() is a constant; Ideally we want it to be
         //so that multiple instances of autospoto.db are not created
-        let db_string = "\(filepath)autospoto.db"
+//        let db_string = "\(filepath)autospoto.db"
+
+        let db_string = "/Users/martinmaly/AutoSpoto/AutoSpoto/Backend/autospoto.db"
+
         let contactsStringID = "DBD9A071-1507-4104-A7B0-9302B102B4D4"
 
         return DispatchQueue.main.sync {

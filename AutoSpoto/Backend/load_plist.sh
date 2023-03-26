@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-filename="/Applications/autospoto/AutoSpoto/AutoSpoto/Backend/text.txt"
+filename="/Users/martinmaly/AutoSpoto/AutoSpoto/Backend/text.txt"
 
 # Define variables outside the loop
 var1=""
@@ -22,6 +22,9 @@ done < "$filename"
 export CACHE_PATH=$var1
 export DB_STRING=$var2
 export CONTACT_STRING=$var3
+#export SPOTIPY_CLIENT_ID=daf925983160411786bc9afd3c8db891
+#export SPOTIPY_CLIENT_SECRET=2be54995915c4bd197d6d85650faf39d
+#export SPOTIPY_REDIRECT_URI=spotify-api-example-app://
 
-cd /Applications/autospoto/AutoSpoto/AutoSpoto/Backend/dist
+cd /Users/martinmaly/AutoSpoto/AutoSpoto/Backend/dist
 ./scheduler
