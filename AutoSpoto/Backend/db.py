@@ -32,7 +32,8 @@ class db:
 
         # place 'P' manually for nice 75 char alignment
     def strip_it(self, phone_number):
-        return re.sub('\D', '', phone_number)
+        number = re.sub('\D', '', phone_number)
+        return number[-10:]
 
     def hidden_image(self, path):
     
@@ -121,9 +122,10 @@ class db:
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
         rows = pd.read_sql(("select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from ZABCDRECORD inner join adb.ZABCDPHONENUMBER on adb.ZABCDPHONENUMBER.ZOWNER = adb.ZABCDRECORD.Z_PK;"), self.connection)
+        rows['Phone_Number'] = rows['Phone_Number'].apply(self.strip_it)
+        rows.drop_duplicates(inplace=True)
         rows1 = pd.read_sql(("SELECT guid, ROWID as chat_ids from cdb.chat where guid not like'%chat%';"), self.connection)
         rows1['guid'] = rows1['guid'].apply(self.strip_it)
-        rows['Phone_Number'] = rows['Phone_Number'].apply(self.strip_it)
         joined_contacts = pd.merge(rows, rows1, left_on='Phone_Number', right_on='guid', how="inner")
         joined_contacts['Image_Blob'] = joined_contacts['Image_Blob'].apply(self.hidden_image)
         joined_contacts['Image'] = joined_contacts['Image_Blob'].apply(self.imageAsBase64)
