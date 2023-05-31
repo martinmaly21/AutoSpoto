@@ -5,7 +5,6 @@ import os
 from base64 import b64encode 
 import re
 
-#pd.set_option("display.max_rows", None)
 class db:
     def __init__(self, db_string, contacts_string_id):
         chat_db_string = f"\'{os.environ['HOME']}/Library/Messages/chat.db\'"
@@ -121,9 +120,12 @@ class db:
     # substr(temp.guid, -12) filter outs the characters before the number
     #Format right now is +1xxxxxxxxxx for the number which is what it is in the address book as well
     def retrieve_single_chat(self):
+        ## (1)
         rows = pd.read_sql(("select ZTHUMBNAILIMAGEDATA as Image_Blob, ZFULLNUMBER as Phone_Number, ZFIRSTNAME as First_Name, ZLASTNAME as Last_Name from ZABCDRECORD inner join adb.ZABCDPHONENUMBER on adb.ZABCDPHONENUMBER.ZOWNER = adb.ZABCDRECORD.Z_PK;"), self.connection)
         rows['Phone_Number'] = rows['Phone_Number'].apply(self.strip_it)
         rows.drop_duplicates(inplace=True)
+        
+        #2
         rows1 = pd.read_sql(("SELECT guid, ROWID as chat_ids from cdb.chat where guid not like'%chat%';"), self.connection)
         rows1['guid'] = rows1['guid'].apply(self.strip_it)
         joined_contacts = pd.merge(rows, rows1, left_on='Phone_Number', right_on='guid', how="inner")
