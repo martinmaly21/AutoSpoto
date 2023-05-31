@@ -49,4 +49,13 @@ extension String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted)
             .joined()
     }
+    
+    func isValidEmail() -> Bool {
+        guard let regex = try? NSRegularExpression(
+            pattern: #"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}$"#,
+            options: .caseInsensitive
+            ) else { preconditionFailure("Unable to create email regex") }
+
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
 }
