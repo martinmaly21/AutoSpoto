@@ -34,7 +34,7 @@ extension AutoSpotoConstants.Strings {
 
     static let MADE_WITH_LOVE = NSLocalizedString(
         "MADE_WITH_LOVE",
-        value: "Made with ❤️ in 🇨🇦, 🇨🇴 & 🇪🇨.",
+        value: "Made with ❤️ in 🇨🇦, 🇨🇴, 🇪🇨 & 🇯🇵.",
         comment: "Text that's displayed at bottom of splash screen."
     )
 
