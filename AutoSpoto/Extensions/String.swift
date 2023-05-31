@@ -44,4 +44,9 @@ extension String {
             return []
         }
     }
+    
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted)
+            .joined()
+    }
 }
