@@ -56,7 +56,7 @@ class DatabaseManager {
             let phoneNumber = Expression<String?>("ZFULLNUMBER")
             let email = Expression<String?>("ZADDRESS")
             let imageBlob = Expression<String?>("ZTHUMBNAILIMAGEDATA")
-
+            
             let owner = Expression<String>("ZOWNER")
             let pk = Expression<String>("Z_PK")
             
@@ -78,15 +78,15 @@ class DatabaseManager {
             for contact in phoneNumberContactsRows {
                 let firstNameValue = contact[firstName]
                 let lastNameValue = contact[lastName]
-                  
+                
                 let imageBlobValue = contact[imageBlob]
                 
                 //the digits is an extension declared in String.swift to strip any non-numeric digits from phone number
                 if let phoneNumberValue = contact[phoneNumber]?.digits,
                    //this code is used to prevent adding duplicate entries to contactsRowsTuple
                    !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
-                    firstNameValue == fn && lastNameValue == ln && phoneNumberValue == ci && imageBlobValue == ib
-                }) {
+                       firstNameValue == fn && lastNameValue == ln && phoneNumberValue == ci && imageBlobValue == ib
+                   }) {
                     contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: phoneNumberValue, imageBlob: imageBlobValue))
                 }
             }
@@ -96,7 +96,7 @@ class DatabaseManager {
             let allEmailContactsTable = emailTable
                 .join(contactsTable, on: emailJoinCondition)
                 .select(firstName, lastName, email, imageBlob)
-
+            
             let emailContactsRows = try database.prepare(allEmailContactsTable)
             
             // Iterate through the email rows and access the selected values
@@ -109,8 +109,8 @@ class DatabaseManager {
                 //this code is used to prevent adding duplicate entries to emailContactsRowsTuple
                 if let emailValue = contact[email],
                    !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
-                    firstNameValue == fn && lastNameValue == ln && emailValue == ci && imageBlobValue == ib
-                }) {
+                       firstNameValue == fn && lastNameValue == ln && emailValue == ci && imageBlobValue == ib
+                   }) {
                     contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: emailValue, imageBlob: imageBlobValue))
                 }
             }
@@ -134,13 +134,13 @@ class DatabaseManager {
                 .filter(!guID.like("%chat%"))
             
             let chatRows = try database.prepare(chatIDsQuery)
-  
+            
             var chatRowsTuple = [(contactInfo: String?, chatID: Int?)]()
             for chat in chatRows {
                 var contactInfo: String?
                 
                 if let guIDrow = chat[guID],
-                    let range = guIDrow.range(of: "iMessage;-;") {
+                   let range = guIDrow.range(of: "iMessage;-;") {
                     //this is the data without the 'iMessage;-;' prefix
                     let parsedData = String(guIDrow[range.upperBound...])
                     
@@ -186,25 +186,38 @@ class DatabaseManager {
             chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsAndPlaylistIDDataFrame
                 .grouped(by: "contactInfo")
                 .mapGroups({ slice in
-                    let df: DataFrame = [
-                        "chatIDs" : [slice["chatID"].compactMap { $0 as? Int }],
-                        "contactInfo" : [slice["contactInfo"][0]],
-                        "firstName" : [slice["firstName"][0]],
-                        "lastName" : [slice["lastName"][0]],
-                        "imageBlob" : [slice["imageBlob"][0]],
-                        "spotifyPlaylistID" : [slice["spotifyPlaylistID"][0]],
-                        "lastUpdated" : [slice["lastUpdated"][0]],
-                    ]
+                    var df = DataFrame()
+                    
+                    df["chatIDs", [Int].self] = Column(name: "chatIDs", contents: [slice["chatID"].compactMap { $0 as? Int }])
+                    df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
+                    df["firstName", String?.self] = Column(name: "firstName", contents: [slice["firstName"].first as? String])
+                    df["lastName", String?.self] = Column(name: "lastName", contents: [slice["lastName"].first as? String])
+                    df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["imageBlob"].first as? String])
+                    df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["spotifyPlaylistID"].first as? String])
+                    df["lastUpdated", String?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? String])
                     
                     return df
                 })
                 .ungrouped()
             
             //sort chats by first name
-            chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(on: "firstName", order: .ascending)
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(
+                on: "firstName",
+                String?.self,
+                by: { lhs, rhs in
+                    guard let lhs = lhs else {
+                        return false
+                    }
+                    guard let rhs = rhs else {
+                        return true
+                    }
+                    
+                    return lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedAscending
+                }
+            )
             
-//                can be useful for debugging:
-//                print("grouped: \(x.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            //                can be useful for debugging:
+            //                print("grouped: \(chatsWithAssociatedContactsAndPlaylistIDDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
             return try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
         } catch let error {
