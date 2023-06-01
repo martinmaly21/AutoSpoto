@@ -111,59 +111,57 @@ class DatabaseManager {
                 }
             }
             
-            //MARK: combining the data from contactsRowsTuple into a tuple
-            let firstNameData = contactsRowsTuple.map { $0.firstName }
-            let lastNameData = contactsRowsTuple.map { $0.lastName }
-            let phoneNumberData = contactsRowsTuple.map { $0.phoneNumber }
-            let emailData = contactsRowsTuple.map { $0.email }
-            let imageBlobData = contactsRowsTuple.map { $0.imageBlob }
-            
             //contacts data frame holds both the email and phone number contacts
             var contactsDataFrame = DataFrame()
-            contactsDataFrame.append(column: Column(name: "firstName", contents: firstNameData))
-            contactsDataFrame.append(column: Column(name: "lastName", contents: lastNameData))
-            contactsDataFrame.append(column: Column(name: "phoneNumber", contents: phoneNumberData))
-            contactsDataFrame.append(column: Column(name: "email", contents: emailData))
-            contactsDataFrame.append(column: Column(name: "imageBlob", contents: imageBlobData))
+            contactsDataFrame.append(column: Column(name: "firstName", contents: contactsRowsTuple.map { $0.firstName }))
+            contactsDataFrame.append(column: Column(name: "lastName", contents: contactsRowsTuple.map { $0.lastName }))
+            contactsDataFrame.append(column: Column(name: "phoneNumber", contents: contactsRowsTuple.map { $0.phoneNumber }))
+            contactsDataFrame.append(column: Column(name: "email", contents: contactsRowsTuple.map { $0.email }))
+            contactsDataFrame.append(column: Column(name: "imageBlob", contents: contactsRowsTuple.map { $0.imageBlob }))
+            // each row will be updated with it's corresponding chatID in the next step
+            contactsDataFrame.append(column: Column(name: "chatID", contents: [String?](repeating: nil, count: contactsRowsTuple.count)))
+            
+            print("contactsDataFrame: \(contactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
             //2
             let guID = Expression<String?>("guid")
-            let chatIDs = Expression<String?>("ROWID")
+            let chatID = Expression<String?>("ROWID")
             
-            let table = Table("chat")
+            let chatTable = Table("chat")
             
-            let chatIDsQuery = table
-                .select(guID, chatIDs)
+            let chatIDsQuery = chatTable
+                .select(guID, chatID)
                 .filter(!guID.like("%chat%"))
             
-            let p = try database.prepare(chatIDsQuery)
+            let chatRows = try database.prepare(chatIDsQuery)
   
-            var allChatRowsTuple = [(email: String?, phoneNumber: String?, chatID: String?)]()
-            for row in p {
+            var chatRowsTuple = [(email: String?, phoneNumber: String?, chatID: String?)]()
+            for chat in chatRows {
+                var email: String?
+                var phoneNumber: String?
                 
-                if let guIDrow = row[guID],
+                if let guIDrow = chat[guID],
                     let range = guIDrow.range(of: "iMessage;-;") {
                     //this is the data without the 'iMessage;-;' prefix
                     let parsedData = String(guIDrow[range.upperBound...])
                     
                     if parsedData.isValidEmail() {
-                        //chat is with email
-                        print("Test:\(parsedData)")
+                        email = parsedData
                     } else {
-                        //how i want to do it:
-                        //if contact exists, associate it, otherwise just attach phoneNumber
-                        //
-                        
-                        //logic
-                        
-                        //check if regEx is email
-                        //if not, strip non-numeric and compare characters
-                        //else, attach value after 'iMessage;-;' to table
-                        //chat is with phone number
-                        //phone number
+                        phoneNumber = parsedData.digits
                     }
+                    
+                    chatRowsTuple.append((email: email, phoneNumber: phoneNumber, chatID: chat[chatID]))
                 }
             }
+            
+            //contacts data frame holds both the email and phone number contacts
+            var chatsDataFrame = DataFrame()
+            chatsDataFrame.append(column: Column(name: "email", contents: chatRowsTuple.map { $0.email }))
+            chatsDataFrame.append(column: Column(name: "phoneNumber", contents: chatRowsTuple.map { $0.phoneNumber }))
+            chatsDataFrame.append(column: Column(name: "chatID", contents: chatRowsTuple.map { $0.chatID }))
+            
+            print("chatsDataFrame: \(chatsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
             return ""
         } catch let error {
