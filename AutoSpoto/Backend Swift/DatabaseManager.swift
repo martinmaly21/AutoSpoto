@@ -187,7 +187,7 @@ class DatabaseManager {
                 .grouped(by: "contactInfo")
                 .mapGroups({ slice in
                     let df: DataFrame = [
-                        "chatIDs" : slice["chatID"].compactMap { $0 as? Int },
+                        "chatIDs" : [slice["chatID"].compactMap { $0 as? Int }],
                         "contactInfo" : [slice["contactInfo"][0]],
                         "firstName" : [slice["firstName"][0]],
                         "lastName" : [slice["lastName"][0]],
