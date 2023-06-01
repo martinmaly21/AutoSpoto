@@ -132,7 +132,7 @@ class DatabaseManager {
             
             let chatRows = try database.prepare(chatIDsQuery)
   
-            var chatRowsTuple = [(contactInfo: String?, chatID: String?)]()
+            var chatRowsTuple = [(contactInfo: String?, chatID: Int?)]()
             for chat in chatRows {
                 var contactInfo: String?
                 
@@ -145,7 +145,7 @@ class DatabaseManager {
                         contactInfo = parsedData.digits
                     }
                     
-                    chatRowsTuple.append((contactInfo: contactInfo, chatID: "\(Int.random(in: 0...100000))")) //TODO: fix this
+                    chatRowsTuple.append((contactInfo: contactInfo, chatID: Int.random(in: 0...100000))) //TODO: fix this
                 }
             }
             
