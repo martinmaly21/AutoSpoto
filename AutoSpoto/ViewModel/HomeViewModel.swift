@@ -18,6 +18,8 @@ class HomeViewModel: ObservableObject {
     @Published var filterSelection: FilterChatType = .individual
 
     @Published var scrollToBottom = false
+    
+    let databaseManager: DatabaseManager
 
     var selectedChatIndex: Int? {
         get {
@@ -62,6 +64,13 @@ class HomeViewModel: ObservableObject {
             return groupChats
         }
     }
+    
+    init() {
+        #warning("Will need to update")
+        let databaseString = "/Users/martinmaly/Developer/AutoSpoto/AutoSpoto/Backend/autospoto.db"
+        let addressBookID = "0E0A58CC-863C-47F3-9C70-A81612E240C4"
+        databaseManager = DatabaseManager(databaseString: databaseString, addressBookID: addressBookID)
+    }
 
     public func fetchChats() async {
         switch filterSelection {
@@ -98,14 +107,11 @@ class HomeViewModel: ObservableObject {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
         guard individualChats.isEmpty else { return }
 
-        let jsonString = await SwiftPythonInterface.viewSingleChat().description
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            fatalError("Could not get jsonData")
-        }
-
+        let indivualChatsJSON = databaseManager.fetchIndividualChats()
+        
         do {
             let decoder = JSONDecoder()
-            let tableData = try decoder.decode([IndividualChatCodable].self, from: jsonData)
+            let tableData = try decoder.decode([IndividualChatCodable].self, from: indivualChatsJSON)
             individualChats = tableData.map { Chat($0) }
         }
         catch {

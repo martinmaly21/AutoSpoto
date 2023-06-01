@@ -58,13 +58,13 @@ struct Chat: Hashable {
 
     init(_ individualChatCodable: IndividualChatCodable) {
         type = .individual(
-            firstName: individualChatCodable.First_Name,
-            lastName: individualChatCodable.Last_Name,
-            phoneNumber: individualChatCodable.Phone_Number
+            firstName: individualChatCodable.firstName,
+            lastName: individualChatCodable.lastName,
+            phoneNumber: individualChatCodable.contactInfo
         )
-        image = individualChatCodable.Image
-        ids = individualChatCodable.chat_ids
-        playlistID = individualChatCodable.playlist_id //TODO: cahnge
+        image = individualChatCodable.imageBlob
+        ids = individualChatCodable.chatIDs
+        playlistID = individualChatCodable.spotifyPlaylistID //TODO: cahnge
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
