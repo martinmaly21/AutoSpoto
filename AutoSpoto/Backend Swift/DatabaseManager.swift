@@ -177,14 +177,34 @@ class DatabaseManager {
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.firstName", to: "firstName")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.lastName", to: "lastName")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.imageBlob", to: "imageBlob")
-            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.lastUpdated", to: "lastUpdated")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.spotifyPlaylistID", to: "spotifyPlaylistID")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.lastUpdated", to: "lastUpdated")
+            
+            //This method is responsible for grouping together chatID's for the same
+            //phone number. This can sometimes happen if a user has a chat with
+            //a certain phone number over iMessage AND text message
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsAndPlaylistIDDataFrame
+                .grouped(by: "contactInfo")
+                .mapGroups({ slice in
+                    let df: DataFrame = [
+                        "chatIDs" : slice["chatID"].compactMap { $0 as? Int },
+                        "contactInfo" : [slice["contactInfo"][0]],
+                        "firstName" : [slice["firstName"][0]],
+                        "lastName" : [slice["lastName"][0]],
+                        "imageBlob" : [slice["imageBlob"][0]],
+                        "spotifyPlaylistID" : [slice["spotifyPlaylistID"][0]],
+                        "lastUpdated" : [slice["lastUpdated"][0]],
+                    ]
+                    
+                    return df
+                })
+                .ungrouped()
             
             //sort chats by first name
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(on: "firstName", order: .ascending)
             
-            //            Uncomment for debugging:
-//            print("chatsWithAssociatedContactsAndPlaylistIDDataFrame: \(chatsWithAssociatedContactsAndPlaylistIDDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+//                can be useful for debugging:
+//                print("grouped: \(x.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
             return try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
         } catch let error {
