@@ -73,16 +73,18 @@ class DatabaseManager {
             let phoneNumberContactsRows = try database.prepare(allPhoneNumberContactsTable)
             
             //Note: 'contactInfo' will be either an email or a string
-            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String?, imageBlob: String?)]()
+            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: String?)]()
             // Iterate through the phone number rows and access the selected values
             for contact in phoneNumberContactsRows {
                 let firstNameValue = contact[firstName]
                 let lastNameValue = contact[lastName]
-                let phoneNumberValue = contact[phoneNumber]?.digits  //the digits is an extension declared in String.swift to strip any non-numeric digits
+                  
                 let imageBlobValue = contact[imageBlob]
                 
-                //this code is used to prevent adding duplicate entries to contactsRowsTuple
-                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
+                //the digits is an extension declared in String.swift to strip any non-numeric digits from phone number
+                if let phoneNumberValue = contact[phoneNumber]?.digits,
+                   //this code is used to prevent adding duplicate entries to contactsRowsTuple
+                   !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
                     firstNameValue == fn && lastNameValue == ln && phoneNumberValue == ci && imageBlobValue == ib
                 }) {
                     contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: phoneNumberValue, imageBlob: imageBlobValue))
@@ -101,11 +103,12 @@ class DatabaseManager {
             for contact in emailContactsRows {
                 let firstNameValue = contact[firstName]
                 let lastNameValue = contact[lastName]
-                let emailValue = contact[email]
+                
                 let imageBlobValue = contact[imageBlob]
                 
                 //this code is used to prevent adding duplicate entries to emailContactsRowsTuple
-                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
+                if let emailValue = contact[email],
+                   !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
                     firstNameValue == fn && lastNameValue == ln && emailValue == ci && imageBlobValue == ib
                 }) {
                     contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: emailValue, imageBlob: imageBlobValue))
@@ -169,6 +172,14 @@ class DatabaseManager {
             var chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsDataFrame
                 .joined(playlistsDataFrame, on: "chatID", kind: .left)
             
+            //rename columns (this makes the JSON easier to read)
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.contactInfo", to: "contactInfo")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.firstName", to: "firstName")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.lastName", to: "lastName")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.imageBlob", to: "imageBlob")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.lastUpdated", to: "lastUpdated")
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.spotifyPlaylistID", to: "spotifyPlaylistID")
+            
             //sort chats by first name
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(on: "firstName", order: .ascending)
             
@@ -185,7 +196,7 @@ class DatabaseManager {
     //currently has a playlist associated with it
     private func retrievePlaylistsDataFrame() -> DataFrame {
         do {
-            let chatID = Expression<Int?>("chatID")
+            let chatID = Expression<Int>("chatID")
             let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
             let lastUpdated = Expression<String?>("lastUpdated")
             
@@ -208,6 +219,5 @@ class DatabaseManager {
         } catch let error {
             fatalError("Error: \(error)")
         }
-        
     }
 }
