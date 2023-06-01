@@ -44,8 +44,10 @@ class DatabaseManager {
         }
     }
     
-    func fetchGroupChats() {
+    func fetchGroupChats() -> Data {
         //TODO
+        fatalError("Must be implemented. See 'fetchIndividualChats()'")
+        return Data()
     }
     
     func fetchIndividualChats() -> Data {
