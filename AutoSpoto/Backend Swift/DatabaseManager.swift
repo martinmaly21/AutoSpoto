@@ -24,7 +24,7 @@ class DatabaseManager {
             // Open a SQLite database connection
             self.database = try Connection(
                 databaseString,
-                readonly: true
+                readonly: false
             )
             
             // Execute the "attach" statements
@@ -33,10 +33,10 @@ class DatabaseManager {
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
             try database.execute("""
-                CREATE TABLE IF NOT EXISTS playlists (
-                    chat_ids INTEGER,
-                    playlist_id TEXT,
-                    last_updated TEXT
+                CREATE TABLE IF NOT EXISTS CREATED_PLAYLISTS (
+                    chatID INTEGER,
+                    spotifyPlaylistID TEXT,
+                    lastUpdated TEXT
                 )
             """)
         } catch let error {
@@ -48,7 +48,7 @@ class DatabaseManager {
         //TODO
     }
     
-    func fetchIndividualChats() -> String {
+    func fetchIndividualChats() -> Data {
         do {
             //1
             let firstName = Expression<String?>("ZFIRSTNAME")
@@ -113,13 +113,12 @@ class DatabaseManager {
             }
             
             //contacts data frame holds both the email and phone number contacts
-            var contactsDataFrame = DataFrame()
-            contactsDataFrame.append(column: Column(name: "firstName", contents: contactsRowsTuple.map { $0.firstName }))
-            contactsDataFrame.append(column: Column(name: "lastName", contents: contactsRowsTuple.map { $0.lastName }))
-            contactsDataFrame.append(column: Column(name: "contactInfo", contents: contactsRowsTuple.map { $0.contactInfo }))
-            contactsDataFrame.append(column: Column(name: "imageBlob", contents: contactsRowsTuple.map { $0.imageBlob }))
-            
-            print("contactsDataFrame: \(contactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            let contactsDataFrame: DataFrame = [
+                "firstName": contactsRowsTuple.map { $0.firstName },
+                "lastName": contactsRowsTuple.map { $0.lastName },
+                "contactInfo": contactsRowsTuple.map { $0.contactInfo },
+                "imageBlob": contactsRowsTuple.map { $0.imageBlob }
+            ]
             
             //2
             let guID = Expression<String?>("guid")
@@ -151,20 +150,64 @@ class DatabaseManager {
             }
             
             //contacts data frame holds both the email and phone number contacts
-            var chatsDataFrame = DataFrame()
-            chatsDataFrame.append(column: Column(name: "contactInfo", contents: chatRowsTuple.map { $0.contactInfo }))
-            chatsDataFrame.append(column: Column(name: "chatID", contents: chatRowsTuple.map { $0.chatID }))
+            let chatsDataFrame: DataFrame = [
+                "contactInfo": chatRowsTuple.map { $0.contactInfo },
+                "chatID": chatRowsTuple.map { $0.chatID }
+            ]
             
-            print("chatsDataFrame: \(chatsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
-            
-            let chatsWithAssociatedContactsDataFrame = chatsDataFrame
+            var chatsWithAssociatedContactsDataFrame = chatsDataFrame
                 .joined(contactsDataFrame, on: "contactInfo", kind: .left)
             
-            print("chatsWithAssociatedContactsDataFrame: \(chatsWithAssociatedContactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            //rename columns back to previous pre-join values
+            chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.lastName", to: "lastName")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.imageBlob", to: "imageBlob")
             
-            return ""
+            //associate 'spotifyPlaylistID' and 'lastUpdated' (if they exist), with the chat
+            let playlistsDataFrame = retrievePlaylistsDataFrame()
+            var chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsDataFrame
+                .joined(playlistsDataFrame, on: "chatID", kind: .left)
+            
+            //sort chats by first name
+            chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(on: "firstName", order: .ascending)
+            
+            //            Uncomment for debugging:
+//            print("chatsWithAssociatedContactsAndPlaylistIDDataFrame: \(chatsWithAssociatedContactsAndPlaylistIDDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            
+            return try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
         } catch let error {
             fatalError("Error: \(error)")
         }
+    }
+    
+    //retrieve a table that stores whether each chat
+    //currently has a playlist associated with it
+    private func retrievePlaylistsDataFrame() -> DataFrame {
+        do {
+            let chatID = Expression<Int?>("chatID")
+            let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
+            let lastUpdated = Expression<String?>("lastUpdated")
+            
+            let playlistsTable = Table("CREATED_PLAYLISTS")
+            let allPlaylistsTable = playlistsTable.select(chatID, spotifyPlaylistID, lastUpdated)
+            let playlistsRows = try database.prepare(allPlaylistsTable)
+            
+            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]()
+            for row in playlistsRows {
+                playlistsRowsTuple.append((chatID: row[chatID], spotifyPlaylistID: row[spotifyPlaylistID], lastUpdated: row[lastUpdated]))
+            }
+            
+            let playlistsDataFrame: DataFrame = [
+                "chatID": playlistsRowsTuple.map { $0.chatID },
+                "spotifyPlaylistID": playlistsRowsTuple.map { $0.spotifyPlaylistID },
+                "lastUpdated": playlistsRowsTuple.map { $0.lastUpdated },
+            ]
+            
+            return playlistsDataFrame
+        } catch let error {
+            fatalError("Error: \(error)")
+        }
+        
     }
 }
