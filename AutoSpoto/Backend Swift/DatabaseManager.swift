@@ -72,7 +72,8 @@ class DatabaseManager {
             
             let phoneNumberContactsRows = try database.prepare(allPhoneNumberContactsTable)
             
-            var contactsRowsTuple = [(firstName: String?, lastName: String?, phoneNumber: String?, email: String?, imageBlob: String?)]()
+            //Note: 'contactInfo' will be either an email or a string
+            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String?, imageBlob: String?)]()
             // Iterate through the phone number rows and access the selected values
             for contact in phoneNumberContactsRows {
                 let firstNameValue = contact[firstName]
@@ -81,10 +82,10 @@ class DatabaseManager {
                 let imageBlobValue = contact[imageBlob]
                 
                 //this code is used to prevent adding duplicate entries to contactsRowsTuple
-                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, pn: String?, e: String?, ib: String?) in
-                    firstNameValue == fn && lastNameValue == ln && phoneNumberValue == pn && imageBlobValue == ib
+                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
+                    firstNameValue == fn && lastNameValue == ln && phoneNumberValue == ci && imageBlobValue == ib
                 }) {
-                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, phoneNumber: phoneNumberValue, email: nil, imageBlob: imageBlobValue))
+                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: phoneNumberValue, imageBlob: imageBlobValue))
                 }
             }
             
@@ -104,10 +105,10 @@ class DatabaseManager {
                 let imageBlobValue = contact[imageBlob]
                 
                 //this code is used to prevent adding duplicate entries to emailContactsRowsTuple
-                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, phoneNumber: String?, email: String?, ib: String?) in
-                    firstNameValue == fn && lastNameValue == ln && emailValue == email && imageBlobValue == ib
+                if !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
+                    firstNameValue == fn && lastNameValue == ln && emailValue == ci && imageBlobValue == ib
                 }) {
-                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, phoneNumber: nil, email: emailValue, imageBlob: imageBlobValue))
+                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: emailValue, imageBlob: imageBlobValue))
                 }
             }
             
@@ -115,11 +116,8 @@ class DatabaseManager {
             var contactsDataFrame = DataFrame()
             contactsDataFrame.append(column: Column(name: "firstName", contents: contactsRowsTuple.map { $0.firstName }))
             contactsDataFrame.append(column: Column(name: "lastName", contents: contactsRowsTuple.map { $0.lastName }))
-            contactsDataFrame.append(column: Column(name: "phoneNumber", contents: contactsRowsTuple.map { $0.phoneNumber }))
-            contactsDataFrame.append(column: Column(name: "email", contents: contactsRowsTuple.map { $0.email }))
+            contactsDataFrame.append(column: Column(name: "contactInfo", contents: contactsRowsTuple.map { $0.contactInfo }))
             contactsDataFrame.append(column: Column(name: "imageBlob", contents: contactsRowsTuple.map { $0.imageBlob }))
-            // each row will be updated with it's corresponding chatID in the next step
-            contactsDataFrame.append(column: Column(name: "chatID", contents: [String?](repeating: nil, count: contactsRowsTuple.count)))
             
             print("contactsDataFrame: \(contactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
@@ -135,33 +133,34 @@ class DatabaseManager {
             
             let chatRows = try database.prepare(chatIDsQuery)
   
-            var chatRowsTuple = [(email: String?, phoneNumber: String?, chatID: String?)]()
+            var chatRowsTuple = [(contactInfo: String?, chatID: String?)]()
             for chat in chatRows {
-                var email: String?
-                var phoneNumber: String?
+                var contactInfo: String?
                 
                 if let guIDrow = chat[guID],
                     let range = guIDrow.range(of: "iMessage;-;") {
                     //this is the data without the 'iMessage;-;' prefix
                     let parsedData = String(guIDrow[range.upperBound...])
                     
-                    if parsedData.isValidEmail() {
-                        email = parsedData
-                    } else {
-                        phoneNumber = parsedData.digits
+                    if !parsedData.isValidEmail() {
+                        contactInfo = parsedData.digits
                     }
                     
-                    chatRowsTuple.append((email: email, phoneNumber: phoneNumber, chatID: chat[chatID]))
+                    chatRowsTuple.append((contactInfo: contactInfo, chatID: "\(Int.random(in: 0...100000))")) //TODO: fix this
                 }
             }
             
             //contacts data frame holds both the email and phone number contacts
             var chatsDataFrame = DataFrame()
-            chatsDataFrame.append(column: Column(name: "email", contents: chatRowsTuple.map { $0.email }))
-            chatsDataFrame.append(column: Column(name: "phoneNumber", contents: chatRowsTuple.map { $0.phoneNumber }))
+            chatsDataFrame.append(column: Column(name: "contactInfo", contents: chatRowsTuple.map { $0.contactInfo }))
             chatsDataFrame.append(column: Column(name: "chatID", contents: chatRowsTuple.map { $0.chatID }))
             
             print("chatsDataFrame: \(chatsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            
+            let chatsWithAssociatedContactsDataFrame = chatsDataFrame
+                .joined(contactsDataFrame, on: "contactInfo", kind: .left)
+            
+            print("chatsWithAssociatedContactsDataFrame: \(chatsWithAssociatedContactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             
             return ""
         } catch let error {
