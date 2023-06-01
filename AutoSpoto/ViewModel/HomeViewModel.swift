@@ -85,14 +85,11 @@ class HomeViewModel: ObservableObject {
         //only fetch if group chats have not already been fetched (groupChats.isEmpty)
         guard groupChats.isEmpty else { return }
 
-        let jsonString = await SwiftPythonInterface.viewGroupChat().description
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            fatalError("Could not get jsonData")
-        }
+        let groupChatsJSON = databaseManager.fetchGroupChats()
 
         do {
             let decoder = JSONDecoder()
-            let tableData = try decoder.decode([GroupChatCodable].self, from: jsonData)
+            let tableData = try decoder.decode([GroupChatCodable].self, from: groupChatsJSON)
             groupChats = tableData.map { Chat($0) }
         }
         catch {
@@ -127,8 +124,8 @@ class HomeViewModel: ObservableObject {
             return
         }
 
-        await individualChats[selectedIndividualChatIndex].fetchTracksWithNoMetadata()
-        await individualChats[selectedIndividualChatIndex].fetchTracksWithMetadata()
+//        await individualChats[selectedIndividualChatIndex].fetchTracksWithNoMetadata()
+//        await individualChats[selectedIndividualChatIndex].fetchTracksWithMetadata()
     }
 
     public func fetchTracksForGroupChat() async {
