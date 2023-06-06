@@ -45,9 +45,37 @@ class DatabaseManager {
     }
     
     func fetchGroupChats() -> Data {
-        //TODO
-        fatalError("Must be implemented. See 'fetchIndividualChats()'")
-        return Data()
+        do{
+            
+            var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?)]()
+            
+            
+            let chat_ids = Expression<Int?>("ROWID")
+            let chat_name = Expression<String?>("display_name")
+            let guid = Expression<String?>("guid")
+            let chatTable = Table("chat")
+            
+            let query = chatTable.select(chat_ids, chat_name, guid).filter(chat_name != "")
+            
+            for groupChat in try database.prepare(query){
+                let chatId = groupChat[chat_ids]
+                let name = groupChat[chat_name]
+                let uid = groupChat[guid]
+                contactsRowsTuple.append((chatID: chatId, displayName:name, unique_id: uid))
+            }
+            let groupChats: DataFrame = [
+                "Chat Id": contactsRowsTuple.map { $0.chatID },
+                "Chat Name": contactsRowsTuple.map { $0.displayName},
+                "Contact Info": contactsRowsTuple.map { $0.unique_id}
+            ]
+            
+            print("data: \(groupChats.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            
+            return try groupChats.jsonRepresentation()
+
+        }catch let error{
+            fatalError("Error: \(error)")
+        }
     }
     
     func fetchIndividualChats() -> Data {
@@ -255,4 +283,5 @@ class DatabaseManager {
             fatalError("Error: \(error)")
         }
     }
+    
 }
