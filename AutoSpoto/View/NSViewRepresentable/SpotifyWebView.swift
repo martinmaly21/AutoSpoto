@@ -36,12 +36,13 @@ struct SpotifyWebView: NSViewRepresentable {
             Task {
                 do {
                     try await requestForCallbackURL(request: navigationAction.request)
-                    decisionHandler(.allow)
+                    
                 } catch let error {
                     #warning("HANDLE ERROR")
                 }
             }
             
+            decisionHandler(.allow)
         }
         
         private func requestForCallbackURL(request: URLRequest) async throws {
@@ -51,7 +52,7 @@ struct SpotifyWebView: NSViewRepresentable {
 
             if requestURLString.hasPrefix(redirectURI) {
                 guard let code = requestURLString.getQueryStringParameter(param: "code"),
-                      requestURLString.getQueryStringParameter(param: "error") != nil else {
+                      requestURLString.getQueryStringParameter(param: "error") == nil else {
                     throw AutoSpotoError.errorLoggingInToSpotify
                 }
                 try await SpotifyManager.fetchAndSaveToken(code: code)
