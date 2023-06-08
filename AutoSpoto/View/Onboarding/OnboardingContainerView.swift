@@ -58,8 +58,6 @@ struct OnboardingContainerView: View {
     @State private var shouldAnimateLogoToTopLeft = false
     @State private var elementTransitionOpacity: CGFloat = 1.0
 
-    @State private var spotifyAccessToken: String?
-
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
 
@@ -91,12 +89,12 @@ struct OnboardingContainerView: View {
             case .diskAccessIntroductionView:
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
-                ChooseMusicStreamingServiceView(spotifyAccessToken: $spotifyAccessToken)
+                ChooseMusicStreamingServiceView()
             case .accessContactsView:
                 AccessContactsView()
             }
 
-            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && spotifyAccessToken == nil
+            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && KeychainManager.authenticationTokenExists
             //tool bar
             VStack {
                 Spacer()

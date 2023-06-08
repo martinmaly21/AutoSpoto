@@ -205,5 +205,24 @@ extension AutoSpotoConstants.Strings {
         value: "Coming soon",
         comment: "Used to flag upcoming features"
     )
+    
+    
+    static let ERROR = NSLocalizedString(
+        "ERROR",
+        value: "Error",
+        comment: "Generic 'Error' string"
+    )
+    
+    static let UNEXPECTED_RESPONSE = NSLocalizedString(
+        "UNEXPECTED_RESPONSE",
+        value: "Unexpected HTTP response. Please try again.",
+        comment: "Used to flag upcoming features"
+    )
+    
+    static let ERROR_LOGGING_INTO_SPOTIFY = NSLocalizedString(
+        "ERROR_LOGGING_INTO_SPOTIFY",
+        value: "Error logging into Spotify. Please try again.",
+        comment: "Used when there is an error logging into Spotify"
+    )
 }
 
