@@ -45,7 +45,7 @@ class DatabaseManager {
     }
     
     func fetchGroupChats() -> Data {
-        do{
+        do {
             
             var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?)]()
             

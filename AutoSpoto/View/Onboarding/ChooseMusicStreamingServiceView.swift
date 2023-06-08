@@ -11,11 +11,10 @@ struct ChooseMusicStreamingServiceView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
 
     @State private var showSpotifyLoginSheet: Bool = false
-    @Binding var spotifyAccessToken: String?
 
     var body: some View {
         VStack {
-            if spotifyAccessToken == nil {
+            if !KeychainManager.authenticationTokenExists {
                 Text(AutoSpotoConstants.Strings.CHOOSE_MUSIC_STREAMING_SERVICE)
                     .font(.josefinSansSemibold(30))
                     .foregroundColor(.textPrimaryWhite)
@@ -106,18 +105,7 @@ struct ChooseMusicStreamingServiceView: View {
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {
-                SpotifyLoginView(
-                    spotifyAccessToken: $spotifyAccessToken,
-                    isVisible: $showSpotifyLoginSheet
-                )
-            }
-        )
-        .onChange(
-            of: spotifyAccessToken,
-            perform: { _ in
-                if spotifyAccessToken != nil {
-                    showSpotifyLoginSheet = false
-                }
+                SpotifyLoginView(isVisible: $showSpotifyLoginSheet)
             }
         )
     }
