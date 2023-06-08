@@ -3,4 +3,162 @@
    uuid = "9D6B8958-28C5-4CDC-A94C-CFF8F77254B2"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "524EA853-B6C1-41E6-90D9-C757FF6A2163"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "requestForCallbackURL(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "524EA853-B6C1-41E6-90D9-C757FF6A2163 - 576a79a85ad92ff1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "524EA853-B6C1-41E6-90D9-C757FF6A2163 - 53d85edbf9a489f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) await resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "524EA853-B6C1-41E6-90D9-C757FF6A2163 - 3e57cd47230c6fe2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "524EA853-B6C1-41E6-90D9-C757FF6A2163 - e3038c4c0ca2abdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E94F49D4-0942-4DEF-B35A-A90701CB12FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "requestForCallbackURL(request:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E94F49D4-0942-4DEF-B35A-A90701CB12FF - b3456adf6aa24044"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "940">
+               </Location>
+               <Location
+                  uuid = "E94F49D4-0942-4DEF-B35A-A90701CB12FF - 576a79a85ad92e52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "E94F49D4-0942-4DEF-B35A-A90701CB12FF - c8edecc991ffc8cc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "E94F49D4-0942-4DEF-B35A-A90701CB12FF - c8edecc991ffc840"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for AutoSpoto.SpotifyWebView.Coordinator.requestForCallbackURL(request: Foundation.URLRequest) async throws -&gt; ()"
+                  moduleName = "AutoSpoto"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinmaly/Developer/AutoSpoto/AutoSpoto/View/NSViewRepresentable/SpotifyWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

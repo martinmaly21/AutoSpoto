@@ -58,6 +58,9 @@ struct SpotifyWebView: NSViewRepresentable {
                 }
                 try await SpotifyManager.fetchAndSaveToken(code: code)
                 
+                //fail silently if fetch to get user's spotify ID fail, we will try again later
+                try? await SpotifyManager.fetchAndSaveUserSpotifyID()
+                
                 DispatchQueue.main.async {
                     self.parent.isVisible = false
                     self.parent.userAuthorizedSpotify = true
