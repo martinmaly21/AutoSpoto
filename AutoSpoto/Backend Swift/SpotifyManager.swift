@@ -36,16 +36,16 @@ class SpotifyManager {
             return headers
         }
         
-        if var token = KeychainManager.standard.read(
+        if var keychainToken = KeychainManager.standard.read(
             service: AutoSpotoConstants.KeyChain.service,
             account: AutoSpotoConstants.KeyChain.account,
-            type: Token.self
+            type: KeychainToken.self
         ) {
-            if token.accessTokenHasExpired {
-                token = try await refreshTokenAndSaveToken(expiredToken: token)
+            if keychainToken.accessTokenHasExpired {
+                keychainToken = try await refreshAndSaveToken(expiredKeychainToken: keychainToken)
             }
             
-            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(token.access_token))"
+            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(keychainToken.access_token))"
         }
         
         return headers
@@ -125,26 +125,26 @@ class SpotifyManager {
             AutoSpotoConstants.HTTPParameter.code: code,
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
-        let token = try JSONDecoder().decode(Token.self, from: data)
+        let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
         
-        KeychainManager.saveSpotifyTokenInKeychain(token: token)
+        _ = KeychainManager.saveSpotifyTokenInKeychain(spotifyToken: spotifyToken)
     }
     
-    public static func refreshTokenAndSaveToken(expiredToken: Token) async throws -> Token {
+    public static func refreshAndSaveToken(expiredKeychainToken: KeychainToken) async throws -> KeychainToken {
         let params = [
             AutoSpotoConstants.HTTPParameter.grant_type: "refresh_token",
-            AutoSpotoConstants.HTTPParameter.refresh_token: expiredToken.refresh_token
+            AutoSpotoConstants.HTTPParameter.refresh_token: expiredKeychainToken.refresh_token
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
-        let token = try JSONDecoder().decode(Token.self, from: data)
+        let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
         
-        KeychainManager.saveSpotifyTokenInKeychain(token: token)
+        let keychainToken = KeychainManager.saveSpotifyTokenInKeychain(spotifyToken: spotifyToken)
         
-        return token
+        return keychainToken
     }
     
     
-    public static func getUserSpotifyID() async throws {
+    public static func fetchAndSaveUserSpotifyID() async throws {
         let data = try await http(method: .post(data: nil), path: "/me")
         
         print("Data: \(data)")

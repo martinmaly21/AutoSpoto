@@ -118,18 +118,19 @@ extension KeychainManager {
         return KeychainManager.standard.read(
             service: AutoSpotoConstants.KeyChain.service,
             account: AutoSpotoConstants.KeyChain.account,
-            type: Token.self
+            type: KeychainToken.self
         ) != nil
     }
     
-    static func saveSpotifyTokenInKeychain(token: Token) {
-        token.updateExpiryDate()
-        
+    static func saveSpotifyTokenInKeychain(spotifyToken: SpotifyToken) -> KeychainToken {
+        let keychainToken = KeychainToken(spotifyToken: spotifyToken)
         //set token in kechain
         KeychainManager.standard.save(
-            token,
+            keychainToken,
             service: AutoSpotoConstants.KeyChain.service,
             account: AutoSpotoConstants.KeyChain.account
         )
+        
+        return keychainToken
     }
 }
