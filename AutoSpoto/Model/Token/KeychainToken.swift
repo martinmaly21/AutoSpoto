@@ -13,7 +13,7 @@ struct KeychainToken: Codable {
     let expiryDate: Date
     
     var accessTokenHasExpired: Bool {
-        return expiryDate > Date()
+        return expiryDate < Date()
     }
     
     init(spotifyToken: SpotifyToken) {
