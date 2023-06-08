@@ -74,10 +74,10 @@ extension AutoSpotoConstants.Strings {
         comment: "Button title that allows user to open settings"
     )
 
-    static let CHOOSE_MUSIC_STREAMING_SERVICE = NSLocalizedString(
-        "CHOOSE_MUSIC_STREAMING_SERVICE",
-        value: "Choose your preferred music streaming service",
-        comment: "Title for screen to allow the user to choose their streaming service"
+    static let CONNECT_YOUR_SPOTIFY = NSLocalizedString(
+        "CONNECT_YOUR_SPOTIFY",
+        value: "Connect your Spotify account",
+        comment: "Connect your Spotify account"
     )
 
     static let CONNECT_WITH_SPOTIFY = NSLocalizedString(

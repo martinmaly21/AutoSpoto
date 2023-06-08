@@ -8,16 +8,28 @@
 import Foundation
 
 class UserDefaultsManager {
-    private var spotifyUserID: String {
+    static var spotifyUser: SpotifyUser {
         get {
-            guard let spotifyUserID = UserDefaults.standard.string(forKey: AutoSpotoConstants.UserDefaults.spotifyUserID) else {
-                fatalError("spotifyUserID was nil")
+            guard let spotifyUserData = UserDefaults.standard.object(
+                forKey: AutoSpotoConstants.UserDefaults.spotifyUser
+            ) as? Data,
+                  let spotifyUser = try? JSONDecoder().decode(
+                    SpotifyUser.self, from: spotifyUserData
+                  ) else {
+                fatalError("Could not get spotifyUserData")
             }
-            return spotifyUserID
+            
+            return spotifyUser
         }
         
         set {
-            UserDefaults.standard.set(newValue, forKey: AutoSpotoConstants.UserDefaults.spotifyUserID)
+            guard let encodedSpotifyUserData = try? JSONEncoder().encode(newValue) else {
+                fatalError("Could not encode spotify user")
+            }
+            UserDefaults.standard.set(
+                encodedSpotifyUserData,
+                forKey: AutoSpotoConstants.UserDefaults.spotifyUser
+            )
         }
     }
 }

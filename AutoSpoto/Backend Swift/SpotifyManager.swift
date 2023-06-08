@@ -146,7 +146,7 @@ class SpotifyManager {
     
     public static func fetchAndSaveUserSpotifyID() async throws {
         let data = try await http(method: .get(queryParams: nil), path: "/me")
-        
-        print("Data: \(data)")
+        let spotifyUser = try JSONDecoder().decode(SpotifyUser.self, from: data)
+        UserDefaultsManager.spotifyUser = spotifyUser
     }
 }
