@@ -38,7 +38,7 @@ struct AutoSpotoContainerView: View {
 
             //IF so, show messages UI
             //If not, show OnboardingContainerView
-            autoSpotoCurrentView = .home
+            autoSpotoCurrentView = .onboarding
         }
     }
 }
