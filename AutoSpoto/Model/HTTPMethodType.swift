@@ -55,7 +55,7 @@ enum HTTPMethodType: Equatable {
         }
     }
     
-    var data: Data? {
+    var data: [String : Any]? {
         switch self {
         case .get(queryParams: _):
             return nil
@@ -64,31 +64,19 @@ enum HTTPMethodType: Equatable {
                 return nil
             }
             
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: data) else {
-                fatalError("Could not create")
-            }
-            
-            return jsonData
+            return data
         case .put(let data):
             guard let data = data else {
                 return nil
             }
             
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: data) else {
-                fatalError("Could not create")
-            }
-            
-            return jsonData
+            return data
         case .delete(let data):
             guard let data = data else {
                 return nil
             }
             
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: data) else {
-                fatalError("Could not create")
-            }
-            
-            return jsonData
+            return data
         }
     }
 }

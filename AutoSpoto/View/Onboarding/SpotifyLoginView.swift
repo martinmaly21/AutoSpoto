@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SpotifyLoginView: View {
     @Binding var isVisible: Bool
+    @Binding var userAuthorizedSpotify: Bool
 
     var body: some View {
         VStack(spacing: 5) {
@@ -31,7 +32,7 @@ struct SpotifyLoginView: View {
                 .padding([.trailing, .top], 5)
             }
 
-            SpotifyWebView(isVisible: $isVisible)
+            SpotifyWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify)
         }
         .frame(
             width: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowWidth,

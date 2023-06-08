@@ -18,6 +18,7 @@ struct OnboardingContainerView: View {
         case accessContactsView
     }
     @State private var onboardingCurrentView: CurrentView = .getStarted
+    @State var userAuthorizedSpotify: Bool = false
 
     enum OnboardingGradient {
         case lightMode, darkMode
@@ -89,12 +90,12 @@ struct OnboardingContainerView: View {
             case .diskAccessIntroductionView:
                 DiskAccessIntroductionView()
             case .chooseMusicStreamingServiceView:
-                ChooseMusicStreamingServiceView()
+                ChooseMusicStreamingServiceView(userAuthorizedSpotify: $userAuthorizedSpotify)
             case .accessContactsView:
                 AccessContactsView()
             }
 
-            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && !KeychainManager.authenticationTokenExists
+            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && !userAuthorizedSpotify
             //tool bar
             VStack {
                 Spacer()

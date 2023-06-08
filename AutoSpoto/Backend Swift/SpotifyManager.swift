@@ -8,7 +8,11 @@
 import Foundation
 
 class SpotifyManager {
-    private static func url(path: String, params: [String: Any]? = nil) -> URL {
+    private static func url(
+        path: String,
+        params: [String: Any]? = nil,
+        isTokenFetch: Bool = false
+    ) -> URL {
         var queryString = ""
         if let params = params {
             queryString = "?"
@@ -18,7 +22,7 @@ class SpotifyManager {
         }
         let path = path.trimmingCharacters(in: .init(charactersIn: "/"))
         queryString = queryString.trimmingCharacters(in: .init(charactersIn: "&"))
-        let urlString = "\(AutoSpotoConstants.URL.spotifyEndpoint)/\(path)/\(queryString)"
+        let urlString = "\(isTokenFetch ? AutoSpotoConstants.URL.spotifyAuthEndpoint : AutoSpotoConstants.URL.spotifyWebAPIEndPoint)/\(path)/\(queryString)"
         return URL(string: urlString)!
     }
     
@@ -55,9 +59,9 @@ class SpotifyManager {
         let httpURL: URL
         switch method {
         case .get(let queryParams):
-            httpURL = url(path: path, params: queryParams)
+            httpURL = url(path: path, params: queryParams, isTokenFetch: isTokenFetch)
         case .post, .put, .delete:
-            httpURL = url(path: path)
+            httpURL = url(path: path, isTokenFetch: isTokenFetch)
         }
         
         var request = URLRequest(url: httpURL)
@@ -72,8 +76,11 @@ class SpotifyManager {
             )
         }
         
-        if let data = method.data {
-            request.httpBody = data
+        if let form = method.data {
+            let formData = form.map { "\($0)=\($1)" }
+                .joined(separator: "&")
+                .data(using: .utf8)
+            request.httpBody = formData
         }
         
         do {
@@ -134,5 +141,12 @@ class SpotifyManager {
         KeychainManager.saveSpotifyTokenInKeychain(token: token)
         
         return token
+    }
+    
+    
+    public static func getUserSpotifyID() async throws {
+        let data = try await http(method: .post(data: nil), path: "/me")
+        
+        print("Data: \(data)")
     }
 }

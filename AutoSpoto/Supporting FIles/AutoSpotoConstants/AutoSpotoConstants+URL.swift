@@ -16,7 +16,9 @@ extension AutoSpotoConstants {
 extension AutoSpotoConstants.URL {
     static let fullDiskAccess = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles")!
 
-    static let spotifyEndpoint = URL(string: "https://accounts.spotify.com/api")!
+    static let spotifyAuthEndpoint = URL(string: "https://accounts.spotify.com/api")!
+    
+    static let spotifyWebAPIEndPoint = URL(string: "https://api.spotify.com/v1")!
     
     static var spotifyLogin: URL {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

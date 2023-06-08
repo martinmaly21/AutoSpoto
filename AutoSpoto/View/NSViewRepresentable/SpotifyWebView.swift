@@ -10,6 +10,7 @@ import WebKit
 
 struct SpotifyWebView: NSViewRepresentable {
     @Binding var isVisible: Bool
+    @Binding var userAuthorizedSpotify: Bool
     
     func makeNSView(context: Context) -> WKWebView {
         return WKWebView()
@@ -59,6 +60,7 @@ struct SpotifyWebView: NSViewRepresentable {
                 
                 DispatchQueue.main.async {
                     self.parent.isVisible = false
+                    self.parent.userAuthorizedSpotify = true
                 }
             }
         }
