@@ -123,6 +123,8 @@ extension KeychainManager {
     }
     
     static func saveSpotifyTokenInKeychain(token: Token) {
+        token.updateExpiryDate()
+        
         //set token in kechain
         KeychainManager.standard.save(
             token,

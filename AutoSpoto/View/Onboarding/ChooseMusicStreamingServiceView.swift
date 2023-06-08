@@ -11,6 +11,7 @@ struct ChooseMusicStreamingServiceView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
 
     @State private var showSpotifyLoginSheet: Bool = false
+    @Binding var userAuthorizedSpotify: Bool
 
     var body: some View {
         VStack {
@@ -105,7 +106,7 @@ struct ChooseMusicStreamingServiceView: View {
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {
-                SpotifyLoginView(isVisible: $showSpotifyLoginSheet)
+                SpotifyLoginView(isVisible: $showSpotifyLoginSheet, userAuthorizedSpotify: $userAuthorizedSpotify)
             }
         )
     }
