@@ -94,7 +94,7 @@ struct OnboardingContainerView: View {
                 AccessContactsView()
             }
 
-            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && KeychainManager.authenticationTokenExists
+            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && !KeychainManager.authenticationTokenExists
             //tool bar
             VStack {
                 Spacer()
