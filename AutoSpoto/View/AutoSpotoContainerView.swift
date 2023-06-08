@@ -24,21 +24,15 @@ struct AutoSpotoContainerView: View {
             }
         }
         .onAppear {
-            //TODO: check if user has went through "Onboarding" process
-
-            //TODO: check if user has granted disk access. if so:
-
-            //IF so, check if user has logged in to streaming service
-            //if yes, bring them to main app screen
-
-            //IF not, show stream service shit
-
-            //if no disk access, show them splash screen again
-
-
-            //IF so, show messages UI
-            //If not, show OnboardingContainerView
-            autoSpotoCurrentView = .onboarding
+            //TODO: more fine grained checks. E.g. if user has granted disk access
+            if KeychainManager.authenticationTokenExists {
+                //user has previously logged in
+                //we will assume Spotify profile exists too, since it's set at same time
+                autoSpotoCurrentView = .home
+            } else {
+                //otherwise, show user onboarding
+                autoSpotoCurrentView = .onboarding
+            }
         }
     }
 }
