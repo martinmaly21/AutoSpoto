@@ -16,7 +16,7 @@ struct ChooseMusicStreamingServiceView: View {
     var body: some View {
         VStack {
             if !KeychainManager.authenticationTokenExists {
-                Text(AutoSpotoConstants.Strings.CHOOSE_MUSIC_STREAMING_SERVICE)
+                Text(AutoSpotoConstants.Strings.CONNECT_YOUR_SPOTIFY)
                     .font(.josefinSansSemibold(30))
                     .foregroundColor(.textPrimaryWhite)
                     .padding(.bottom, 60)
@@ -48,40 +48,6 @@ struct ChooseMusicStreamingServiceView: View {
                     .background(Color.spotifyGreen)
                     .background(in: RoundedRectangle(cornerRadius: 10))
                     .clipShape(Capsule())
-
-                    Button {
-                        print("pressed apple music")
-                    } label: {
-                        HStack {
-                            Image("apple-logo")
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(.textPrimaryWhite)
-                                .frame(width: 30, height: 30)
-                                .padding(.leading, 8)
-
-                            Text(AutoSpotoConstants.Strings.CONNECT_WITH_APPLE_MUSIC)
-                                .foregroundColor(.textPrimaryWhite)
-                                .font(.josefinSansRegular(18))
-
-                            Text(AutoSpotoConstants.Strings.COMING_SOON)
-                                .padding(.horizontal, 5)
-                                .foregroundColor(.appleMusicOrange)
-                                .font(.josefinSansRegular(18))
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .frame(height: 35)
-                        .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding(12)
-                    .background(Color.appleMusicOrange)
-                    .background(in: RoundedRectangle(cornerRadius: 10))
-                    .clipShape(Capsule())
-                    .disabled(true)
                 }
             } else {
                 //connected to spotify

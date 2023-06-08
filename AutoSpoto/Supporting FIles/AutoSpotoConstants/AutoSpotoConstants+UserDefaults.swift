@@ -14,5 +14,5 @@ extension AutoSpotoConstants {
 }
 
 extension AutoSpotoConstants.UserDefaults {
-    static let spotifyUserID = "spotifyUserID"
+    static let spotifyUser = "spotifyUser"
 }
