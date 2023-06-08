@@ -145,7 +145,7 @@ class SpotifyManager {
     
     
     public static func fetchAndSaveUserSpotifyID() async throws {
-        let data = try await http(method: .post(data: nil), path: "/me")
+        let data = try await http(method: .get(queryParams: nil), path: "/me")
         
         print("Data: \(data)")
     }

@@ -37,8 +37,13 @@ struct SpotifyWebView: NSViewRepresentable {
             Task {
                 do {
                     try await requestForCallbackURL(request: navigationAction.request)
-                    
                 } catch let error {
+                    //delete keychain item if it exists
+                    KeychainManager.standard.delete(
+                        service: AutoSpotoConstants.KeyChain.service,
+                        account: AutoSpotoConstants.KeyChain.account
+                    )
+                    
                     #warning("HANDLE ERROR")
                 }
             }
@@ -59,7 +64,7 @@ struct SpotifyWebView: NSViewRepresentable {
                 try await SpotifyManager.fetchAndSaveToken(code: code)
                 
                 //fail silently if fetch to get user's spotify ID fail, we will try again later
-                try? await SpotifyManager.fetchAndSaveUserSpotifyID()
+                try await SpotifyManager.fetchAndSaveUserSpotifyID()
                 
                 DispatchQueue.main.async {
                     self.parent.isVisible = false

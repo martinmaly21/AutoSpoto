@@ -8,9 +8,12 @@
 import Foundation
 
 class UserDefaultsManager {
-    private var spotifyUserID: String? {
+    private var spotifyUserID: String {
         get {
-            return UserDefaults.standard.string(forKey: AutoSpotoConstants.UserDefaults.spotifyUserID)
+            guard let spotifyUserID = UserDefaults.standard.string(forKey: AutoSpotoConstants.UserDefaults.spotifyUserID) else {
+                fatalError("spotifyUserID was nil")
+            }
+            return spotifyUserID
         }
         
         set {
