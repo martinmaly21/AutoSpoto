@@ -158,6 +158,20 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func createPlaylistAndAddSongs(
+        desiredPlaylistName: String,
+        chat: Chat
+    ) async {
+        let playlistID = await SwiftPythonInterface.createPlaylistAndAddSongs(
+            playlistName: desiredPlaylistName,
+            chatIDs: chat.ids
+        )
+        
+        chat.playlistID = playlistID
+        
+        self.objectWillChange.send()
+    }
+    
     func resetModel() async {
         individualChats = []
         groupChats = []

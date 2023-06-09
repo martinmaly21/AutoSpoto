@@ -46,15 +46,9 @@ struct CreatePlaylistView: View {
                 Button(
                     action: {
                         Task {
-                            let playlistID = await SwiftPythonInterface.createPlaylistAndAddSongs(
-                                playlistName: playlistName,
-                                chatIDs: chat.ids
-                            )
-
-                            chat.playlistID = playlistID
+                            await homeViewModel.createPlaylistAndAddSongs(desiredPlaylistName: playlistName, chat:chat)
+                            self.showCreatePlaylistSheeet = false
                         }
-
-                        self.showCreatePlaylistSheeet = false
                     },
                     label: {
                         Text(AutoSpotoConstants.Strings.CREATE)
