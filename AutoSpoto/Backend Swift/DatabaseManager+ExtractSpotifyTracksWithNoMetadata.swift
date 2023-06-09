@@ -40,7 +40,7 @@ extension DatabaseManager {
         tracks.append(Track(spotifyID: "2Nq06gpBMrjYnBLpi0cNYy", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "5mCLCA1bnQHPU4EZBtZgqo", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "0SyrQWyIGUNZIPDNn8WK3L", timeStamp: "BLAH"))
-        tracks.append(Track(spotifyID: "5coMYxwIrNMxtMIRJ1tWYm", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "5coMYxwIbNMxtMIRJ1tWYm", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "6Olho973oeYV1gbYa5aP1Z", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "2gWA2eWOso3Ncj5navWlmz", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "5QwfGyYKuVOcRRmarKO02G", timeStamp: "BLAH"))
@@ -59,13 +59,20 @@ extension DatabaseManager {
         tracks.append(Track(spotifyID: "20I8RduZC2PWMWTDCZuuAN", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "3QzptVakmUpFkP0KDqQU3m", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "7aGicnnu8dLFoUobkhkXYh", timeStamp: "BLAH"))
-        tracks.append(Track(spotifyID: "5hrJlfHjAhQXwVPVBwDFvY", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "5hrJlfHjAhQXbVPVBwDFvY", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "5mLllF9AIePVdhExTiNyyr", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "7sajvCnoz4QJrWRqXdjhAs", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "46W7yykdgEehLT3PXYP3NX", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "0yfNXxlyXdmP0ue1iJijx1", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "6nb57vP4sMYeeU2mfzVgr6", timeStamp: "BLAH"))
         tracks.append(Track(spotifyID: "2ItpB7U6vrd8QMmL2GIgnW", timeStamp: "BLAH"))
+        
+        tracks.append(Track(spotifyID: "7HOqSh3apbrDHwEizL8H71", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "2sLVs5iX0osogh4jcsAJkv", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "0KU8W0lHfsNlH7lfV1dz29", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "7uAQcuHWoTbSanKYmQrN89", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "7HNpXPaTcX5CoNBjTAEWBr", timeStamp: "BLAH"))
+        tracks.append(Track(spotifyID: "0VH9sKPtKbkxllpqyYmJ7E", timeStamp: "BLAH"))
 
         //remove duplicates
         tracks = tracks.unique
