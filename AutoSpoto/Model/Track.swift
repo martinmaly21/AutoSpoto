@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Track: Hashable {
+class Track: Equatable, Identifiable {
     let spotifyID: String
     let timeStamp: String //time stamp for when song was sent
 
@@ -59,6 +59,13 @@ class Track: Hashable {
 
     static func == (lhs: Track, rhs: Track) -> Bool {
         //TODO: should i update this to take in other parameters?
-        return lhs.url.absoluteString == rhs.url.absoluteString
+        return lhs.url.absoluteString == rhs.url.absoluteString &&
+        lhs.spotifyID == rhs.spotifyID &&
+        lhs.timeStamp == rhs.timeStamp &&
+        lhs.imageURL == rhs.imageURL &&
+        lhs.name == rhs.name &&
+        lhs.artist == rhs.artist &&
+        lhs.metadataHasBeenFetched == rhs.metadataHasBeenFetched &&
+        lhs.errorFetchingTrackMetadata == rhs.errorFetchingTrackMetadata
     }
 }

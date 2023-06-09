@@ -51,7 +51,7 @@ struct CreatePlaylistView: View {
                                 chatIDs: chat.ids
                             )
 
-                            homeViewModel.updateChatForPlaylist(chat: chat, playlistID: playlistID)
+                            chat.playlistID = playlistID
                         }
 
                         self.showCreatePlaylistSheeet = false

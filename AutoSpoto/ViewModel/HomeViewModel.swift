@@ -12,45 +12,32 @@ class HomeViewModel: ObservableObject {
     @Published var individualChats: [Chat] = []
     @Published var groupChats: [Chat] = []
 
-    @Published var selectedIndividualChatIndex: Int?
-    @Published var selectedGroupChatIndex: Int?
+    @Published var selectedIndividualChat: Chat?
+    @Published var selectedGroupChat: Chat?
 
     @Published var filterSelection: FilterChatType = .individual
 
     @Published var scrollToBottom = false
 
-    var selectedChatIndex: Int? {
+    var selectedChat: Chat? {
         get {
             switch filterSelection {
             case .individual:
-                return selectedIndividualChatIndex
+                return selectedIndividualChat
             case .group:
-                return selectedGroupChatIndex
+                return selectedGroupChat
             }
         }
 
         set {
             switch filterSelection {
             case .individual:
-                selectedIndividualChatIndex = newValue
+                selectedIndividualChat = newValue
             case .group:
-                selectedGroupChatIndex = newValue
+                selectedGroupChat = newValue
             }
 
             scrollToBottom = true
-        }
-    }
-
-    var selectedChat: Chat? {
-        guard let selectedChatIndex = selectedChatIndex else {
-            return nil
-        }
-
-        switch filterSelection {
-        case .individual:
-            return individualChats[selectedChatIndex]
-        case .group:
-            return groupChats[selectedChatIndex]
         }
     }
 
@@ -94,7 +81,7 @@ class HomeViewModel: ObservableObject {
         }
         
 
-        selectedGroupChatIndex = 0
+        selectedGroupChat = groupChats.first
     }
 
     private func fetchIndividualChats() async {
@@ -111,56 +98,15 @@ class HomeViewModel: ObservableObject {
             fatalError("Could not decode chats: \(error)")
         }
         
-        selectedIndividualChatIndex = 0
-    }
-    
-    public func fetchTrackIDsForIndividualChat() async {
-        guard let selectedIndividualChatIndex = selectedIndividualChatIndex else {
-            return
-        }
-        
-        await individualChats[selectedIndividualChatIndex].fetchTrackIDs()
-    }
-
-    public func fetchTrackIDsForGroupChat() async {
-        guard let selectedGroupChatIndex = selectedGroupChatIndex else {
-            return
-        }
-
-        await groupChats[selectedGroupChatIndex].fetchTrackIDs()
-    }
-    
-    //this trackID corresponds to the one passed in through 'onAppear'
-    //we then use this value to synthesize the page of data that should be fetched
-    public func fetchMetadata(for chat: Chat, spotifyID: String) async {
-        if let indexOfChat = individualChats.firstIndex(of: chat) {
-            await self.individualChats[indexOfChat].fetchTracksMetadata(spotifyID: spotifyID)
-        } else if let indexOfChat = groupChats.firstIndex(of: chat) {
-            await self.groupChats[indexOfChat].fetchTracksMetadata(spotifyID: spotifyID)
-        } else {
-            fatalError("Could not get chat")
-        }
-    }
-
-    public func updateChatForPlaylist(
-        chat: Chat,
-        playlistID: String
-    ) {
-        if let indexOfChat = individualChats.firstIndex(of: chat) {
-            self.individualChats[indexOfChat].playlistID = playlistID
-        } else if let indexOfChat = groupChats.firstIndex(of: chat) {
-            self.groupChats[indexOfChat].playlistID = playlistID
-        } else {
-            fatalError("Could not get chat")
-        }
+        selectedIndividualChat = individualChats.first
     }
     
     func resetModel() async {
         individualChats = []
         groupChats = []
 
-        selectedIndividualChatIndex = nil
-        selectedGroupChatIndex = nil
+        selectedIndividualChat = nil
+        selectedGroupChat = nil
 
         await fetchChats()
     }
