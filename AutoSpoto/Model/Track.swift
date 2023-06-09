@@ -8,32 +8,39 @@
 import Foundation
 
 class Track: Hashable {
-    var url: URL
-    var timeStamp: String?
+    let spotifyID: String
+    let timeStamp: String //time stamp for when song was sent
 
     var imageURL: URL?
     var name: String?
     var artist: String?
     var album: String?
     var releaseYear: Int?
-    var previewURL: URL? //mp3 preview of song
-
-    init?(trackID: String) {
-        guard let url = URL(string: "https://open.spotify.com/track/\(trackID)") else {
-            assertionFailure("Could not get track URL")
-            return nil
+    
+    var metadataHasBeenFetched = false
+    var errorFetchingTrackMetadata = false
+    
+    var url: URL {
+        guard let url = URL(string: "https://open.spotify.com/track/\(spotifyID)") else {
+            fatalError("Could not get track URL")
         }
-        self.url = url
+        return url
     }
 
-    init?(longTrackCodable: LongTrackCodable) {
-        let trackID = longTrackCodable.track_id
-        guard let url = URL(string: "https://open.spotify.com/track/\(trackID)") else {
-            assertionFailure("Could not get track URL")
-            return nil
+    init(spotifyID: String, timeStamp: String) {
+        self.spotifyID = spotifyID
+        self.timeStamp = timeStamp
+    }
+
+    //we need to also pass in trackID, because it won't be passed back from spotify API if it's invalid
+    convenience init(longTrackCodable: SpotifyTrack?, existingTrack: Track) {
+        self.init(spotifyID: existingTrack.spotifyID, timeStamp: existingTrack.timeStamp)
+        
+        metadataHasBeenFetched = true
+        guard let longTrackCodable else {
+            errorFetchingTrackMetadata = true
+            return
         }
-        self.url = url
-        self.timeStamp = longTrackCodable.date_utc
 
         if let imageURLString = longTrackCodable.image_ref {
             self.imageURL = URL(string: imageURLString)
@@ -46,10 +53,6 @@ class Track: Hashable {
         if let releaseYearString = longTrackCodable.release_year {
             self.releaseYear = Int(releaseYearString)
         }
-
-        if let previewURLString = longTrackCodable.preview_url {
-            self.previewURL = URL(string: previewURLString)
-        }
     }
 
     func hash(into hasher: inout Hasher) {
@@ -61,10 +64,13 @@ class Track: Hashable {
         hasher.combine(artist)
         hasher.combine(album)
         hasher.combine(releaseYear)
-        hasher.combine(previewURL)
+        
+        hasher.combine(errorFetchingTrackMetadata)
+        hasher.combine(metadataHasBeenFetched)
     }
 
     static func == (lhs: Track, rhs: Track) -> Bool {
+        //TODO: should i update this to take in other parameters?
         return lhs.url.absoluteString == rhs.url.absoluteString
     }
 }

@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct LongTrackCodable: Codable {
-    let track_id: String
-    let date_utc: String?
-
-    //metadata
+struct SpotifyTrack: Codable {
     let image_ref: String?
     let song_name: String?
     let artist_name: String?

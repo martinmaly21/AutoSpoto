@@ -19,21 +19,25 @@ struct Chat: Hashable {
         return playlistID != nil
     }
 
-    var tracks: [Track] = []
+    var tracksPages: [[Track]] = []
+    
+    //we will fetch metadata for 30 tracks at a time
+    let numberOfTrackMetadataPerFetch = 30
 
     var hasNoTracks: Bool {
-        return tracks.isEmpty && hasAttemptedToFetchTracks
+        return tracksPages.isEmpty && hasFetchedTracksIDs
     }
 
     //this boolean is used to show loading indicator UI
     var hasNotFetchedAndIsFetchingTracks: Bool {
-        return !hasAttemptedToFetchTracks && isFetchingTracks
+        return !hasFetchedTracksIDs && isFetchingTrackIDs
     }
 
-    private var hasAttemptedToFetchTracks = false
-    private var isFetchingTracks = false
-    var isFetchingTracksMetaData = false
-    var errorFetchingTracks = false
+    private var hasFetchedTracksIDs = false
+    private var isFetchingTrackIDs = false
+    
+    private var trackMetadataPagesBeingFetched: [Int] = []
+    private var trackMetadataPagesFetched: [Int] = []
 
     var displayName: String {
         switch type {
@@ -73,52 +77,67 @@ struct Chat: Hashable {
         ids = groupChatCodable.chat_ids
         playlistID = groupChatCodable.playlist_id
     }
-
-    mutating func fetchTracksWithNoMetadata() async {
-        guard !hasAttemptedToFetchTracks && !isFetchingTracks else { return }
-
-        hasAttemptedToFetchTracks = true
-        isFetchingTracks = true
-
-        let trackListWithNoMetadata = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: false, shouldStripInvalidIDs: false).description
-
-        //if extract script succeeded and chat truly has no tracks, 'None' will be returned
-        guard trackListWithNoMetadata != "None" else {
-            isFetchingTracks = false
-            return
+    
+    mutating func fetchTrackIDs() async {
+        //MARK: - first fetch track IDs to show row count
+        guard !hasFetchedTracksIDs && !isFetchingTrackIDs else { return }
+        
+        isFetchingTrackIDs = true
+        
+        let tracksWithNoMetadata = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: ids)
+        
+        var tracksPage: [Track] = []
+        
+        //split track IDs in chunks of 'numberOfTrackMetadataPerFetch'
+        for track in tracksWithNoMetadata {
+            tracksPage.append(track)
+            if tracksPage.count == numberOfTrackMetadataPerFetch {
+                tracksPages.append(tracksPage)
+                tracksPage.removeAll()
+            }
         }
-
-        //TODO: will need to change when apple music is supported
-        let trackIDs = trackListWithNoMetadata.groups(for: AutoSpotoConstants.Regex.spotifyTrackIDRegex).compactMap { $0.last }
-
-        tracks = trackIDs.compactMap { Track(trackID: $0) }
-
-        isFetchingTracks = false
-        isFetchingTracksMetaData = true
+        if !tracksPage.isEmpty {
+            tracksPages.append(tracksPage)
+        }
+        
+        hasFetchedTracksIDs = true
+        isFetchingTrackIDs = false
     }
 
-    mutating func fetchTracksWithMetadata() async {
-        let trackListWithMetadataString = await SwiftPythonInterface.getSongs(chat_ids: ids, displayView: true).description
-
-        guard trackListWithMetadataString != "{}" else {
-            isFetchingTracksMetaData = false
+    mutating func fetchTracksMetadata(spotifyID: String) async {
+        let page = getPage(for: spotifyID)
+        
+        guard !trackMetadataPagesBeingFetched.contains(page) && !trackMetadataPagesFetched.contains(page) else {
             return
         }
-
-        guard let trackListWithMetadata = trackListWithMetadataString.data(using: .utf8) else {
-            fatalError("Could not get jsonData")
+        
+        trackMetadataPagesBeingFetched.append(page)
+        
+        let tracksMetadataToFetch = getTracks(for: page)
+        let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
+        
+        for (index, track) in fetchedTracksMetadata.enumerated() {
+            tracksPages[page][index] = track
         }
-
-        do {
-            let decoder = JSONDecoder()
-            let tracksCodable = try decoder.decode([LongTrackCodable].self, from: trackListWithMetadata)
-            tracks = tracksCodable.compactMap { Track(longTrackCodable: $0) }
-        } catch {
-            errorFetchingTracks = true
-            print(error)
+        
+        trackMetadataPagesFetched.append(page)
+        trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
+    }
+    
+    private func getPage(for spotifyID: String) -> Int {
+        for (page, tracksPage) in tracksPages.enumerated() {
+            let trackExistsInPage = tracksPage.firstIndex(where: { $0.spotifyID == spotifyID }) != nil
+            
+            if trackExistsInPage {
+                return page
+            }
         }
-
-        isFetchingTracksMetaData = false
+        
+        fatalError("Could not get track page")
+    }
+    
+    private func getTracks(for page: Int) -> [Track] {
+        return tracksPages[page]
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {
@@ -126,11 +145,11 @@ struct Chat: Hashable {
         lhs.image == rhs.image &&
         lhs.ids == rhs.ids &&
         lhs.playlistID == rhs.playlistID &&
-        lhs.tracks == rhs.tracks &&
-        lhs.hasAttemptedToFetchTracks == rhs.hasAttemptedToFetchTracks &&
-        lhs.isFetchingTracks == rhs.isFetchingTracks &&
-        lhs.isFetchingTracksMetaData == rhs.isFetchingTracksMetaData &&
-        lhs.errorFetchingTracks == rhs.errorFetchingTracks
+        lhs.tracksPages == rhs.tracksPages &&
+        lhs.hasFetchedTracksIDs == rhs.hasFetchedTracksIDs &&
+        lhs.isFetchingTrackIDs == rhs.isFetchingTrackIDs &&
+        lhs.trackMetadataPagesBeingFetched == rhs.trackMetadataPagesBeingFetched &&
+        lhs.trackMetadataPagesFetched == rhs.trackMetadataPagesFetched
     }
 
     public func hash(into hasher: inout Hasher) {
@@ -140,11 +159,12 @@ struct Chat: Hashable {
 
         hasher.combine(playlistID)
 
-        hasher.combine(tracks)
+        hasher.combine(tracksPages)
 
-        hasher.combine(hasAttemptedToFetchTracks)
-        hasher.combine(isFetchingTracks)
-        hasher.combine(isFetchingTracksMetaData)
-        hasher.combine(errorFetchingTracks)
+        hasher.combine(hasFetchedTracksIDs)
+        hasher.combine(isFetchingTrackIDs)
+        
+        hasher.combine(trackMetadataPagesBeingFetched)
+        hasher.combine(trackMetadataPagesFetched)
     }
 }

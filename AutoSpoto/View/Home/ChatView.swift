@@ -45,8 +45,14 @@ struct ChatView: View {
 
                                         Spacer()
 
-                                        ForEach(selectedChat.tracks, id: \.hashValue) { track in
+                                        ForEach(selectedChat.tracksPages.flatMap({ $0 }), id: \.hashValue) { track in
                                             TrackRow(chat: selectedChat, track: track)
+                                                .onAppear {
+                                                    //fetch metadata when row appears
+                                                    Task {
+                                                        await self.homeViewModel.fetchMetadata(for: selectedChat, spotifyID: track.spotifyID)
+                                                    }
+                                                }
                                         }
 
                                         Spacer()
@@ -94,7 +100,7 @@ struct ChatView: View {
                         Text(
                             String.localizedStringWithFormat(
                                 AutoSpotoConstants.Strings.NUMBER_OF_TRACKS,
-                                selectedChat.tracks.count
+                                selectedChat.tracksPages.flatMap { $0 }.count
                             )
                         )
                         .font(.josefinSansRegular(18))
