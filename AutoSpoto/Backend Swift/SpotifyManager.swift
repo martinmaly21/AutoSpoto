@@ -158,10 +158,10 @@ class SpotifyManager {
         
         let data = try await http(method: .get(queryParams: params), path: "/tracks")
         
-        let spotifyTracks = try JSONDecoder().decode([SpotifyTrack?].self, from: data)
+        let spotifyTracks = try JSONDecoder().decode(SpotifyTracksResponse.self, from: data)
         
         var tracksWithMetadata: [Track] = []
-        for (index, spotifyTrack) in spotifyTracks.enumerated() {
+        for (index, spotifyTrack) in spotifyTracks.tracks.enumerated() {
             tracksWithMetadata.append(Track(longTrackCodable: spotifyTrack, existingTrack: tracks[index]))
         }
         

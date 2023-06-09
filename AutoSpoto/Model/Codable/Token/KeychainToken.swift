@@ -18,7 +18,22 @@ struct KeychainToken: Codable {
     
     init(spotifyToken: SpotifyToken) {
         self.access_token = spotifyToken.access_token
-        self.refresh_token = spotifyToken.refresh_token
+        
+        guard let refreshToken  = spotifyToken.refresh_token ?? KeychainManager.standard.read(
+            service: AutoSpotoConstants.KeyChain.service,
+            account: AutoSpotoConstants.KeyChain.account,
+            type: KeychainToken.self
+        )?.refresh_token else {
+            //this should never occur, because a user will always have a refresh token if they have retrieved a new acccess token
+            //but if it somehow does, we delete existing token so user can start app fresh
+            KeychainManager.standard.delete(
+                service: AutoSpotoConstants.KeyChain.service,
+                account: AutoSpotoConstants.KeyChain.account
+            )
+            
+            fatalError("Could not get keychain token")
+        }
+        self.refresh_token = refreshToken
         
         let calendar = Calendar.current
         guard let expiryDate = calendar.date(byAdding: .second, value: spotifyToken.expires_in, to: Date()) else {

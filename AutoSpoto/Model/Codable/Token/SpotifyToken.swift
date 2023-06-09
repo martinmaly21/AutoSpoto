@@ -12,5 +12,5 @@ struct SpotifyToken: Codable {
     private let token_type: String
     private let scope: String
     let expires_in: Int
-    let refresh_token: String
+    var refresh_token: String?
 }
