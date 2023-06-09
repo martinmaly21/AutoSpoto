@@ -1,5 +1,5 @@
 //
-//  DatabaseManager+ExtractTrackIDs.swift
+//  DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-06-08.
