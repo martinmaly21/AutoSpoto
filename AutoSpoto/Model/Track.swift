@@ -45,20 +45,7 @@ class Track: Equatable, Identifiable {
         self.artist = longTrackCodable.artistName
     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(url)
-        hasher.combine(timeStamp)
-
-        hasher.combine(imageURL)
-        hasher.combine(name)
-        hasher.combine(artist)
-        
-        hasher.combine(errorFetchingTrackMetadata)
-        hasher.combine(metadataHasBeenFetched)
-    }
-
     static func == (lhs: Track, rhs: Track) -> Bool {
-        //TODO: should i update this to take in other parameters?
         return lhs.url.absoluteString == rhs.url.absoluteString &&
         lhs.spotifyID == rhs.spotifyID &&
         lhs.timeStamp == rhs.timeStamp &&
