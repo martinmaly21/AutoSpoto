@@ -33,11 +33,11 @@ class Chat: Equatable, Identifiable {
         return !hasFetchedTracksIDs && isFetchingTrackIDs
     }
 
-    private var hasFetchedTracksIDs = false
-    private var isFetchingTrackIDs = false
+    var hasFetchedTracksIDs = false
+    var isFetchingTrackIDs = false
     
-    private var trackMetadataPagesBeingFetched: [Int] = []
-    private var trackMetadataPagesFetched: [Int] = []
+    var trackMetadataPagesBeingFetched: [Int] = []
+    var trackMetadataPagesFetched: [Int] = []
 
     var displayName: String {
         switch type {
@@ -78,60 +78,7 @@ class Chat: Equatable, Identifiable {
         playlistID = groupChatCodable.playlist_id
     }
     
-    func fetchTrackIDs() async {
-        //MARK: - first fetch track IDs to show row count
-        guard !hasFetchedTracksIDs && !isFetchingTrackIDs else { return }
-        
-        isFetchingTrackIDs = true
-        
-        let tracksWithNoMetadata = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: ids)
-        
-        var tracksPage: [Track] = []
-        
-        //split track IDs in chunks of 'numberOfTrackMetadataPerFetch'
-        for track in tracksWithNoMetadata {
-            tracksPage.append(track)
-            if tracksPage.count == numberOfTrackMetadataPerFetch {
-                tracksPages.append(tracksPage)
-                tracksPage.removeAll()
-            }
-        }
-        if !tracksPage.isEmpty {
-            tracksPages.append(tracksPage)
-        }
-        
-        hasFetchedTracksIDs = true
-        isFetchingTrackIDs = false
-    }
-
-    //this trackID corresponds to the one passed in through 'onAppear'
-    //we then use this value to synthesize the page of data that should be fetched
-    func fetchTracksMetadata(spotifyID: String) {
-        let page = getPage(for: spotifyID)
-        
-        guard !trackMetadataPagesBeingFetched.contains(page) && !trackMetadataPagesFetched.contains(page) else {
-            return
-        }
-        
-        trackMetadataPagesBeingFetched.append(page)
-        
-        let tracksMetadataToFetch = getTracks(for: page)
-        
-        Task {
-            let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
-
-            for (index, track) in fetchedTracksMetadata.enumerated() {
-                tracksPages[page][index] = track
-            }
-            
-            DispatchQueue.main.async {
-                self.trackMetadataPagesFetched.append(page)
-                self.trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
-            }
-        }
-    }
-    
-    private func getPage(for spotifyID: String) -> Int {
+    func getPage(for spotifyID: String) -> Int {
         for (page, tracksPage) in tracksPages.enumerated() {
             let trackExistsInPage = tracksPage.firstIndex(where: { $0.spotifyID == spotifyID }) != nil
             
@@ -143,7 +90,7 @@ class Chat: Equatable, Identifiable {
         fatalError("Could not get track page")
     }
     
-    private func getTracks(for page: Int) -> [Track] {
+    func getTracks(for page: Int) -> [Track] {
         return tracksPages[page]
     }
 

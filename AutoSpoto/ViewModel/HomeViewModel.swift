@@ -101,6 +101,59 @@ class HomeViewModel: ObservableObject {
         selectedIndividualChat = individualChats.first
     }
     
+    func fetchTrackIDs(for chat: Chat) async {
+        //MARK: - first fetch track IDs to show row count
+        guard !chat.hasFetchedTracksIDs && !chat.isFetchingTrackIDs else { return }
+        
+        chat.isFetchingTrackIDs = true
+        
+        let tracksWithNoMetadata = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: chat.ids)
+        
+        var tracksPage: [Track] = []
+        
+        //split track IDs in chunks of 'numberOfTrackMetadataPerFetch'
+        for track in tracksWithNoMetadata {
+            tracksPage.append(track)
+            if tracksPage.count == chat.numberOfTrackMetadataPerFetch {
+                chat.tracksPages.append(tracksPage)
+                tracksPage.removeAll()
+            }
+        }
+        if !tracksPage.isEmpty {
+            chat.tracksPages.append(tracksPage)
+        }
+        
+        chat.hasFetchedTracksIDs = true
+        chat.isFetchingTrackIDs = false
+    }
+
+    //this trackID corresponds to the one passed in through 'onAppear'
+    //we then use this value to synthesize the page of data that should be fetched
+    func fetchTracksMetadata(for chat: Chat, spotifyID: String) {
+        let page = chat.getPage(for: spotifyID)
+        
+        guard !chat.trackMetadataPagesBeingFetched.contains(page) && !chat.trackMetadataPagesFetched.contains(page) else {
+            return
+        }
+        
+        chat.trackMetadataPagesBeingFetched.append(page)
+        
+        let tracksMetadataToFetch = chat.getTracks(for: page)
+        
+        Task {
+            let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
+
+            for (index, track) in fetchedTracksMetadata.enumerated() {
+                chat.tracksPages[page][index] = track
+            }
+            
+            DispatchQueue.main.async {
+                chat.trackMetadataPagesFetched.append(page)
+                chat.trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
+            }
+        }
+    }
+    
     func resetModel() async {
         individualChats = []
         groupChats = []

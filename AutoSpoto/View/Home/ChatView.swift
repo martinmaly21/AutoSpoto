@@ -49,7 +49,7 @@ struct ChatView: View {
                                             TrackRow(chat: selectedChat, track: track)
                                                 .onAppear {
                                                     //fetch metadata when row appears
-                                                    selectedChat.fetchTracksMetadata(spotifyID: track.spotifyID)
+                                                    homeViewModel.fetchTracksMetadata(for: selectedChat, spotifyID: track.spotifyID)
                                                 }
                                         }
 
