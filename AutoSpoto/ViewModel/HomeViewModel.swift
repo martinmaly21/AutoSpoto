@@ -125,6 +125,8 @@ class HomeViewModel: ObservableObject {
         
         chat.hasFetchedTracksIDs = true
         chat.isFetchingTrackIDs = false
+        
+        self.objectWillChange.send()
     }
 
     //this trackID corresponds to the one passed in through 'onAppear'
@@ -150,6 +152,8 @@ class HomeViewModel: ObservableObject {
             DispatchQueue.main.async {
                 chat.trackMetadataPagesFetched.append(page)
                 chat.trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
+                
+                self.objectWillChange.send()
             }
         }
     }
