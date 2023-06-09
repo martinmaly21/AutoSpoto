@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Chat: Hashable {
+class Chat: Equatable, Identifiable {
     let type: ChatType
     let image: String? //base 64 string I believe
     let ids: [Int]
@@ -22,7 +22,7 @@ struct Chat: Hashable {
     var tracksPages: [[Track]] = []
     
     //we will fetch metadata for 30 tracks at a time
-    let numberOfTrackMetadataPerFetch = 30
+    let numberOfTrackMetadataPerFetch = 15
 
     var hasNoTracks: Bool {
         return tracksPages.isEmpty && hasFetchedTracksIDs
@@ -78,7 +78,7 @@ struct Chat: Hashable {
         playlistID = groupChatCodable.playlist_id
     }
     
-    mutating func fetchTrackIDs() async {
+    func fetchTrackIDs() async {
         //MARK: - first fetch track IDs to show row count
         guard !hasFetchedTracksIDs && !isFetchingTrackIDs else { return }
         
@@ -104,7 +104,9 @@ struct Chat: Hashable {
         isFetchingTrackIDs = false
     }
 
-    mutating func fetchTracksMetadata(spotifyID: String) async {
+    //this trackID corresponds to the one passed in through 'onAppear'
+    //we then use this value to synthesize the page of data that should be fetched
+    func fetchTracksMetadata(spotifyID: String) {
         let page = getPage(for: spotifyID)
         
         guard !trackMetadataPagesBeingFetched.contains(page) && !trackMetadataPagesFetched.contains(page) else {
@@ -114,14 +116,19 @@ struct Chat: Hashable {
         trackMetadataPagesBeingFetched.append(page)
         
         let tracksMetadataToFetch = getTracks(for: page)
-        let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
         
-        for (index, track) in fetchedTracksMetadata.enumerated() {
-            tracksPages[page][index] = track
+        Task {
+            let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
+
+            for (index, track) in fetchedTracksMetadata.enumerated() {
+                tracksPages[page][index] = track
+            }
+            
+            DispatchQueue.main.async {
+                self.trackMetadataPagesFetched.append(page)
+                self.trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
+            }
         }
-        
-        trackMetadataPagesFetched.append(page)
-        trackMetadataPagesBeingFetched.removeAll(where: { $0 == page })
     }
     
     private func getPage(for spotifyID: String) -> Int {
@@ -141,22 +148,14 @@ struct Chat: Hashable {
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.ids == rhs.ids
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(type)
-        hasher.combine(image)
-        hasher.combine(ids)
-
-        hasher.combine(playlistID)
-
-        hasher.combine(tracksPages)
-
-        hasher.combine(hasFetchedTracksIDs)
-        hasher.combine(isFetchingTrackIDs)
-        
-        hasher.combine(trackMetadataPagesBeingFetched)
-        hasher.combine(trackMetadataPagesFetched)
+        return lhs.type == rhs.type &&
+        lhs.image == rhs.image &&
+        lhs.ids == rhs.ids &&
+        lhs.playlistID == rhs.playlistID &&
+        lhs.tracksPages == rhs.tracksPages &&
+        lhs.hasFetchedTracksIDs == rhs.hasFetchedTracksIDs &&
+        lhs.isFetchingTrackIDs == rhs.isFetchingTrackIDs &&
+        lhs.trackMetadataPagesBeingFetched == rhs.trackMetadataPagesBeingFetched &&
+        lhs.trackMetadataPagesFetched == rhs.trackMetadataPagesFetched
     }
 }

@@ -45,13 +45,11 @@ struct ChatView: View {
 
                                         Spacer()
 
-                                        ForEach(selectedChat.tracksPages.flatMap({ $0 }), id: \.hashValue) { track in
+                                        ForEach(selectedChat.tracksPages.flatMap({ $0 }), id: \.id) { track in
                                             TrackRow(chat: selectedChat, track: track)
                                                 .onAppear {
                                                     //fetch metadata when row appears
-                                                    Task {
-                                                        await self.homeViewModel.fetchMetadata(for: selectedChat, spotifyID: track.spotifyID)
-                                                    }
+                                                    selectedChat.fetchTracksMetadata(spotifyID: track.spotifyID)
                                                 }
                                         }
 

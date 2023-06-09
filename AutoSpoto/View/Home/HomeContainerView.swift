@@ -22,18 +22,18 @@ struct HomeContainerView: View {
             }
         }
         .onReceive(
-            homeViewModel.$selectedIndividualChatIndex,
-            perform: { _ in
+            homeViewModel.$selectedIndividualChat,
+            perform: { chat in
                 Task {
-                    await homeViewModel.fetchTrackIDsForIndividualChat()
+                    await chat?.fetchTrackIDs()
                 }
             }
         )
         .onReceive(
-            homeViewModel.$selectedGroupChatIndex,
-            perform: { _ in
+            homeViewModel.$selectedGroupChat,
+            perform: { chat in
                 Task {
-                    await homeViewModel.fetchTrackIDsForGroupChat()
+                    await chat?.fetchTrackIDs()
                 }
             }
         )
