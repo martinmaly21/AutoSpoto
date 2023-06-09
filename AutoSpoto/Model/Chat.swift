@@ -21,7 +21,7 @@ class Chat: Equatable, Identifiable {
 
     var tracksPages: [[Track]] = []
     
-    //we will fetch metadata for 30 tracks at a time
+    //we will fetch metadata for 15 tracks at a time
     let numberOfTrackMetadataPerFetch = 15
 
     var hasNoTracks: Bool {
