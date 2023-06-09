@@ -14,8 +14,6 @@ class Track: Hashable {
     var imageURL: URL?
     var name: String?
     var artist: String?
-    var album: String?
-    var releaseYear: Int?
     
     var metadataHasBeenFetched = false
     var errorFetchingTrackMetadata = false
@@ -33,7 +31,7 @@ class Track: Hashable {
     }
 
     //we need to also pass in trackID, because it won't be passed back from spotify API if it's invalid
-    convenience init(longTrackCodable: SpotifyTrack?, existingTrack: Track) {
+    convenience init(longTrackCodable: SpotifyTracksResponse.SpotifyTrack?, existingTrack: Track) {
         self.init(spotifyID: existingTrack.spotifyID, timeStamp: existingTrack.timeStamp)
         
         metadataHasBeenFetched = true
@@ -42,17 +40,9 @@ class Track: Hashable {
             return
         }
 
-        if let imageURLString = longTrackCodable.image_ref {
-            self.imageURL = URL(string: imageURLString)
-        }
-
-        self.name = longTrackCodable.song_name
-        self.artist = longTrackCodable.artist_name
-        self.album = longTrackCodable.album_name
-
-        if let releaseYearString = longTrackCodable.release_year {
-            self.releaseYear = Int(releaseYearString)
-        }
+        self.imageURL = longTrackCodable.imageURL
+        self.name = longTrackCodable.name
+        self.artist = longTrackCodable.artistName
     }
 
     func hash(into hasher: inout Hasher) {
@@ -62,8 +52,6 @@ class Track: Hashable {
         hasher.combine(imageURL)
         hasher.combine(name)
         hasher.combine(artist)
-        hasher.combine(album)
-        hasher.combine(releaseYear)
         
         hasher.combine(errorFetchingTrackMetadata)
         hasher.combine(metadataHasBeenFetched)
