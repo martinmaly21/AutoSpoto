@@ -10,6 +10,8 @@ import SQLite
 import TabularData
 
 class DatabaseManager {
+    public static var shared: DatabaseManager!
+    
     private let databaseString: String
     private let database: Connection
     

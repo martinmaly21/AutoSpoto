@@ -25,7 +25,7 @@ struct HomeContainerView: View {
             homeViewModel.$selectedIndividualChatIndex,
             perform: { _ in
                 Task {
-                    await homeViewModel.fetchTracksForIndividualChat()
+                    await homeViewModel.fetchTrackIDsForIndividualChat()
                 }
             }
         )
@@ -33,7 +33,7 @@ struct HomeContainerView: View {
             homeViewModel.$selectedGroupChatIndex,
             perform: { _ in
                 Task {
-                    await homeViewModel.fetchTracksForGroupChat()
+                    await homeViewModel.fetchTrackIDsForGroupChat()
                 }
             }
         )

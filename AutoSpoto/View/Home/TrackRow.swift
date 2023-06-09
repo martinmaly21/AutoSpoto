@@ -16,7 +16,7 @@ struct TrackRow: View {
     let track: Track
 
     private var errorMessage: String? {
-        guard chat.errorFetchingTracks else {
+        guard track.errorFetchingTrackMetadata else {
             return nil
         }
 
@@ -27,7 +27,7 @@ struct TrackRow: View {
     }
 
     var body: some View {
-        let trackMetadataIsLoading = chat.isFetchingTracksMetaData
+        let trackMetadataIsLoading = !track.errorFetchingTrackMetadata && !track.metadataHasBeenFetched
 
         VStack {
             if let errorMessage = errorMessage {

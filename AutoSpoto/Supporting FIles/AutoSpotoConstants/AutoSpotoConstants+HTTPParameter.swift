@@ -18,4 +18,5 @@ extension AutoSpotoConstants.HTTPParameter {
     static let redirect_uri = "redirect_uri"
     static let code = "code"
     static let refresh_token = "refresh_token"
+    static let ids = "ids"
 }

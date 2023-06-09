@@ -118,6 +118,7 @@ class SpotifyManager {
         }
     }
    
+    //MARK: - Auth
     public static func fetchAndSaveToken(code: String) async throws {
         let params = [
             AutoSpotoConstants.HTTPParameter.grant_type: "authorization_code",
@@ -143,10 +144,33 @@ class SpotifyManager {
         return keychainToken
     }
     
-    
     public static func fetchAndSaveUserSpotifyID() async throws {
         let data = try await http(method: .get(queryParams: nil), path: "/me")
         let spotifyUser = try JSONDecoder().decode(SpotifyUser.self, from: data)
         UserDefaultsManager.spotifyUser = spotifyUser
+    }
+    
+    //MARK: - Playlists
+    public static func fetchTrackMetadata(for tracks: [Track]) async throws -> [Track] {
+        let params = [
+            AutoSpotoConstants.HTTPParameter.ids: tracks.map { $0.spotifyID }.joined(separator: ","),
+        ]
+        
+        let data = try await http(method: .get(queryParams: params), path: "/tracks")
+        
+        let spotifyTracks = try JSONDecoder().decode([SpotifyTrack?].self, from: data)
+        
+        var tracksWithMetadata: [Track] = []
+        for (index, spotifyTrack) in spotifyTracks.enumerated() {
+            tracksWithMetadata.append(Track(longTrackCodable: spotifyTrack, existingTrack: tracks[index]))
+        }
+        
+        return tracksWithMetadata
+    }
+    
+    public static func createPlaylist(for trackIds: [String]) {
+        //TODO: First, validate all track IDs. I think we can validate by attempting to fetch metadata and see if it fails?
+        
+        //TODO: Then, once we have only valid IDs, send those IDs to serve
     }
 }
