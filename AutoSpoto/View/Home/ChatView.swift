@@ -11,7 +11,7 @@ struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Namespace var bottomID
     
-    @State private var showModifyPlaylistSheeet = false
+    @State private var showCreatePlaylistSheet = false
     
     var body: some View {
         let buttonHeight: CGFloat = 60
@@ -91,7 +91,7 @@ struct ChatView: View {
                                     width: proxy.size.width,
                                     height: buttonHeight,
                                     action: {
-                                        showModifyPlaylistSheeet = true
+                                        showCreatePlaylistSheet = true
                                     }
                                 )
                             }
@@ -132,10 +132,10 @@ struct ChatView: View {
                 }
             }
             .sheet(
-                isPresented: $showModifyPlaylistSheeet,
+                isPresented: $showCreatePlaylistSheet,
                 content: {
-                    ModifyPlaylistView(
-                        showModifyPlaylistSheeet: $showModifyPlaylistSheeet,
+                    CreatePlaylistView(
+                        showCreatePlaylistSheet: $showCreatePlaylistSheet,
                         chat: selectedChat
                     )
                     .environmentObject(homeViewModel)
