@@ -12,7 +12,6 @@ import Kingfisher
 struct TrackRow: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
-    let chat: Chat
     let track: Track
 
     private var errorMessage: String? {
@@ -29,7 +28,7 @@ struct TrackRow: View {
     var body: some View {
         let trackMetadataIsLoading = !track.errorFetchingTrackMetadata && !track.metadataHasBeenFetched
 
-        VStack {
+        VStack(spacing: 0) {
             if let errorMessage = errorMessage {
                 HStack {
                     Text(errorMessage)
@@ -47,17 +46,18 @@ struct TrackRow: View {
                     KFImage(track.imageURL)
                         .placeholder {
                             Color.gray
-                                .frame(width: 60, height: 60)
-                                .cornerRadius(12)
+                                .frame(width: 30, height: 30)
+                                .cornerRadius(8)
                         }
                         .cacheOriginalImage(true)
                         .fade(duration: 0.25)
                         .resizable()
-                        .frame(width: 60, height: 60)
-                        .cornerRadius(12)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 40)
+                        .cornerRadius(8)
                         .aspectRatio(contentMode: .fill)
 
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 0) {
                         Text(track.name ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimary)
@@ -77,14 +77,16 @@ struct TrackRow: View {
                         Spacer()
                     }
                 }
+                .padding(.bottom, 4)
                 .multilineTextAlignment(.leading)
             }
 
 
             Divider()
         }
+        .padding(.bottom, -4)
         .padding(.horizontal, 16)
-        .frame(maxHeight: 80)
+        .frame(maxHeight: 50)
         .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
     }
 
