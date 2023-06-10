@@ -1,5 +1,5 @@
 //
-//  ModifyPlaylistView.swift
+//  CreatePlaylistView.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-02-12.
@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct ModifyPlaylistView: View {
+struct CreatePlaylistView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @Binding var showModifyPlaylistSheeet: Bool
+    @Binding var showCreatePlaylistSheet: Bool
 
     let chat: Chat
 
     @State private var playlistName: String
 
     init(
-        showModifyPlaylistSheeet: Binding<Bool>,
+        showCreatePlaylistSheet: Binding<Bool>,
         chat: Chat
     ) {
-        self._showModifyPlaylistSheeet = showModifyPlaylistSheeet
+        self._showCreatePlaylistSheet = showCreatePlaylistSheet
         self.chat = chat
         _playlistName = State(initialValue: chat.displayName)
     }
@@ -51,7 +51,7 @@ struct ModifyPlaylistView: View {
                                 chat: chat,
                                 desiredPlaylistName: playlistName
                             )
-                            self.showModifyPlaylistSheeet = false
+                            self.showCreatePlaylistSheet = false
                         }
                     },
                     label: {
