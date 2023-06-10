@@ -70,7 +70,7 @@ struct TrackRow: View {
                     Spacer()
 
                     VStack {
-                        Text(track.timeStamp ?? AutoSpotoConstants.Strings.TRACK_TIME_STAMP_METADATA_PLACEHOLDER)
+                        Text(track.timeStamp)
                             .font(.josefinSansLight(16))
                             .foregroundColor(.textPrimary)
 
