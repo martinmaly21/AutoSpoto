@@ -100,7 +100,13 @@ extension AutoSpotoConstants.Strings {
     
     static let MODIFY_PLAYLIST = NSLocalizedString(
         "MODIFY_PLAYLIST",
-        value: "Modify playlist",
+        value: "Modify VERY COOL playlist",
+        comment: "Title for button to allow the user to modify an existing playlist from a chat"
+    )
+    
+    static let MODIFY_PLAYLIST_WITH_NAME = NSLocalizedString(
+        "MODIFY_PLAYLIST",
+        value: "Modify '%@' playlist",
         comment: "Title for button to allow the user to modify an existing playlist from a chat"
     )
 
