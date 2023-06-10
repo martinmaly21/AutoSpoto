@@ -46,7 +46,7 @@ struct ChatView: View {
                                         Spacer()
                                         
                                         ForEach(selectedChat.tracks, id: \.id) { track in
-                                            TrackRow(chat: selectedChat, track: track)
+                                            TrackRow(track: track)
                                                 .onAppear {
                                                     //fetch metadata when row appears
                                                     Task {
