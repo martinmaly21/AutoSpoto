@@ -266,5 +266,11 @@ extension AutoSpotoConstants.Strings {
         value: "Automatically update your playlist with any new tracks shared between in %@.",
         comment: "The text that appears next to the private switch"
     )
+    
+    static let ERROR_CREATING_PLAYLIST = NSLocalizedString(
+        "ERROR_CREATING_PLAYLIST",
+        value: "There was an error creating your playlist. Please try again.",
+        comment: "The text that appears next to the private switch"
+    )
 }
 
