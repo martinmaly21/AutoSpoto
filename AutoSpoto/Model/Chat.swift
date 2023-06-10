@@ -21,11 +21,15 @@ class Chat: Equatable, Identifiable {
 
     var tracksPages: [[Track]] = []
     
+    var tracks: [Track] {
+        return tracksPages.flatMap({ $0 })
+    }
+    
     //we will fetch metadata for 15 tracks at a time
     let numberOfTrackMetadataPerFetch = 15
 
     var hasNoTracks: Bool {
-        return tracksPages.isEmpty && hasFetchedTracksIDs
+        return tracks.isEmpty && hasFetchedTracksIDs
     }
 
     //this boolean is used to show loading indicator UI
@@ -78,7 +82,16 @@ class Chat: Equatable, Identifiable {
         playlistID = groupChatCodable.playlist_id
     }
     
-    func getPage(for spotifyID: String) -> Int {
+    func getPage(for spotifyID: String? = nil) -> Int? {
+        guard !hasNoTracks else {
+            return nil
+        }
+        
+        //for the initial fetch we pass in a nil spotifyID, so just pass in the first page
+        guard let spotifyID else {
+            return 0
+        }
+        
         for (page, tracksPage) in tracksPages.enumerated() {
             let trackExistsInPage = tracksPage.firstIndex(where: { $0.spotifyID == spotifyID }) != nil
             
@@ -100,6 +113,7 @@ class Chat: Equatable, Identifiable {
         lhs.ids == rhs.ids &&
         lhs.playlistID == rhs.playlistID &&
         lhs.tracksPages == rhs.tracksPages &&
+        lhs.tracks == rhs.tracks &&
         lhs.hasFetchedTracksIDs == rhs.hasFetchedTracksIDs &&
         lhs.isFetchingTrackIDs == rhs.isFetchingTrackIDs &&
         lhs.trackMetadataPagesBeingFetched == rhs.trackMetadataPagesBeingFetched &&

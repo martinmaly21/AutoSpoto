@@ -10,18 +10,18 @@ import SwiftUI
 struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Namespace var bottomID
-
-    @State private var showCreatePlaylistSheeet = false
-
+    
+    @State private var showModifyPlaylistSheeet = false
+    
     var body: some View {
         let bottomPadding: CGFloat = 25
         let buttonHeight: CGFloat = 40
         let heightOfToolbar: CGFloat = 80
-
+        
         if let selectedChat = homeViewModel.selectedChat {
             ZStack(alignment: .center) {
                 let tracksAreLoading = selectedChat.hasNotFetchedAndIsFetchingTracks
-
+                
                 if tracksAreLoading {
                     ProgressView()
                 } else if selectedChat.hasNoTracks {
@@ -29,7 +29,7 @@ struct ChatView: View {
                         Image(systemName: "headphones")
                             .resizable()
                             .frame(width: 60, height: 60)
-
+                        
                         Text(AutoSpotoConstants.Strings.NO_TRACKS_EMPTY_STATE)
                             .font(.josefinSansRegular(18))
                     }
@@ -42,17 +42,19 @@ struct ChatView: View {
                                     LazyVStack {
                                         Spacer()
                                             .frame(height: heightOfToolbar)
-
+                                        
                                         Spacer()
-
-                                        ForEach(selectedChat.tracksPages.flatMap({ $0 }), id: \.id) { track in
+                                        
+                                        ForEach(selectedChat.tracks, id: \.id) { track in
                                             TrackRow(chat: selectedChat, track: track)
                                                 .onAppear {
                                                     //fetch metadata when row appears
-                                                    homeViewModel.fetchTracksMetadata(for: selectedChat, spotifyID: track.spotifyID)
+                                                    Task {
+                                                        await homeViewModel.fetchTracksMetadata(for: selectedChat, spotifyID: track.spotifyID)
+                                                    }
                                                 }
                                         }
-
+                                        
                                         Spacer()
                                             .frame(height: bottomPadding + buttonHeight + 30)
                                             .id(bottomID)
@@ -60,7 +62,7 @@ struct ChatView: View {
                                     .frame(minHeight: proxy.size.height)
                                 }
                                 .onReceive(homeViewModel.$scrollToBottom, perform: { publish in
-
+                                    
                                     //may need to change this when track fetching is async
                                     //since the number of chats won't be determined until the query is finished
                                     reader.scrollTo(bottomID)
@@ -70,10 +72,10 @@ struct ChatView: View {
                                     scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)
                                 }
                             }
-
-                            CreatePlaylistButton(
+                            
+                            ModifyPlaylistButton(
                                 action: {
-                                    showCreatePlaylistSheeet = true
+                                    showModifyPlaylistSheeet = true
                                 }
                             )
                             .padding(.bottom, bottomPadding)
@@ -88,17 +90,17 @@ struct ChatView: View {
                             dimension: 45,
                             isSelected: false
                         )
-
+                        
                         Text(selectedChat.displayName)
                             .font(.josefinSansRegular(20))
                             .foregroundColor(.textPrimary)
-
+                        
                         Spacer()
-
+                        
                         Text(
                             String.localizedStringWithFormat(
                                 AutoSpotoConstants.Strings.NUMBER_OF_TRACKS,
-                                selectedChat.tracksPages.flatMap { $0 }.count
+                                selectedChat.tracks.count
                             )
                         )
                         .font(.josefinSansRegular(18))
@@ -109,15 +111,15 @@ struct ChatView: View {
                     .frame(height: heightOfToolbar)
                     .frame(maxWidth: .infinity)
                     .background(.ultraThinMaterial)
-
+                    
                     Spacer()
                 }
             }
             .sheet(
-                isPresented: $showCreatePlaylistSheeet,
+                isPresented: $showModifyPlaylistSheeet,
                 content: {
-                    CreatePlaylistView(
-                        showCreatePlaylistSheeet: $showCreatePlaylistSheeet,
+                    ModifyPlaylistView(
+                        showModifyPlaylistSheeet: $showModifyPlaylistSheeet,
                         chat: selectedChat
                     )
                     .environmentObject(homeViewModel)

@@ -1,5 +1,5 @@
 //
-//  CreatePlaylistButton.swift
+//  ModifyPlaylistButton.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-03-04.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreatePlaylistButton: View {
+struct ModifyPlaylistButton: View {
     let action: () -> Void
 
     var body: some View {

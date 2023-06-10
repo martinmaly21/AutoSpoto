@@ -76,11 +76,17 @@ class SpotifyManager {
             )
         }
         
-        if let form = method.data {
-            let formData = form.map { "\($0)=\($1)" }
-                .joined(separator: "&")
-                .data(using: .utf8)
-            request.httpBody = formData
+        if let methodData = method.data {
+            var data: Data?
+            if isTokenFetch {
+                data = methodData.map { "\($0)=\($1)" }
+                    .joined(separator: "&")
+                    .data(using: .utf8)
+            } else {
+                data = try? JSONSerialization.data(withJSONObject: methodData)
+            }
+            
+            request.httpBody = data
         }
         
         do {
@@ -168,9 +174,82 @@ class SpotifyManager {
         return tracksWithMetadata
     }
     
-    public static func createPlaylist(for trackIds: [String]) {
-        //TODO: First, validate all track IDs. I think we can validate by attempting to fetch metadata and see if it fails?
+    //this method is responsible for filtering out all invalid IDs from a chat
+    private static func filterChat(
+        for chat: Chat
+    ) async throws -> [[Track]]? {
+        //this contains an array of arrays of a maximum of 50 length. Note: some of the IDs in these arrays may be invalid
+        let unfilteredTrackChunks = chat.tracks.splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
         
-        //TODO: Then, once we have only valid IDs, send those IDs to serve
+        var filteredTracksChunks: [[Track]] = []
+        
+        for unfilteredTrackChunk in unfilteredTrackChunks {
+            let filteredTrackChunk = try await fetchTrackMetadata(for: unfilteredTrackChunk).filter { !$0.errorFetchingTrackMetadata }
+            filteredTracksChunks.append(filteredTrackChunk)
+        }
+        guard !filteredTracksChunks.isEmpty else {
+            return nil
+        }
+        
+        //this contains an array of arrays of a maximum of 100 length. ALL IDs should be valid
+        filteredTracksChunks = filteredTracksChunks.flatMap { $0 }.splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerAddToPlaylistCall)
+        
+        return filteredTracksChunks
+    }
+    
+    //returns the playlist ID of the created spotify playlist
+    public static func createPlaylistAndAddTracks(
+        for chat: Chat,
+        desiredPlaylistName: String
+    ) async throws {
+        guard let filteredTracksChunks = try await filterChat(for: chat) else {
+            throw AutoSpotoError.chatHasNoValidIDs
+        }
+        
+        //create playlist
+        let playlistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
+        chat.playlistID = playlistID
+        
+        try await updatePlaylist(for: playlistID, for: filteredTracksChunks)
+    }
+    
+    private static func createPlaylist(
+        desiredPlaylistName: String
+    ) async throws -> String {
+        let params: [String : Any] = [
+            AutoSpotoConstants.HTTPParameter.name: desiredPlaylistName
+        ]
+        
+        let data = try await http(method: .post(data: params), path: "/users/\(UserDefaultsManager.spotifyUser.id)/playlists")
+        
+        let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
+
+        return spotifyPlaylist.id
+    }
+    
+    public static func updatePlaylist(
+        for spotifyPlaylistID: String,
+        for filteredTracksChunks: [[Track]]
+    ) async throws {
+        //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
+        //add tracks to playlist
+        for filteredTracksChunk in filteredTracksChunks {
+            let params: [String : Any] = [
+                AutoSpotoConstants.HTTPParameter.uris: filteredTracksChunk.map { "spotify:track:\($0.spotifyID)"}
+            ]
+
+            let _ = try await http(method: .post(data: params), path: "/playlists/\(spotifyPlaylistID)/tracks")
+        }
+        
+        let dateUpdated = Date()
+        let params: [String : Any] = [
+            AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
+                AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
+                "\(dateUpdated)"
+            )
+        ]
+        
+        let data = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
+        //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
     }
 }
