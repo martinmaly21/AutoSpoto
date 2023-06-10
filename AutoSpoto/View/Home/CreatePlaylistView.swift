@@ -10,12 +10,12 @@ import SwiftUI
 struct CreatePlaylistView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var showCreatePlaylistSheet: Bool
-
+    
     let chat: Chat
-
+    
     @State private var playlistName: String
     @State private var optInToAutomaticPlaylistUpdates = true
-
+    
     init(
         showCreatePlaylistSheet: Binding<Bool>,
         chat: Chat
@@ -24,7 +24,7 @@ struct CreatePlaylistView: View {
         self.chat = chat
         _playlistName = State(initialValue: chat.displayName)
     }
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -42,11 +42,11 @@ struct CreatePlaylistView: View {
                     .frame(width: 30, height: 30)
             }
             
-
-            VStack(alignment: .leading, spacing: 4) {
+            
+            VStack(alignment: .leading, spacing: 6) {
                 Text(AutoSpotoConstants.Strings.ENTER_PLAYLIST_NAME)
                     .font(.josefinSansRegular(18))
-
+                
                 TextField(AutoSpotoConstants.Strings.PLAYLIST_PLACEHOLDER_NAME, text: $playlistName)
                     .font(.josefinSansRegular(18))
             }
@@ -59,10 +59,20 @@ struct CreatePlaylistView: View {
                         .frame(height: 50)
                 }
             )
-
+            
             HStack {
                 Spacer()
-
+                
+                Button(
+                    action: {
+                        self.showCreatePlaylistSheet = false
+                    },
+                    label: {
+                        Text(AutoSpotoConstants.Strings.CANCEL)
+                    }
+                )
+                .padding(.leading, 8)
+                
                 Button(
                     action: {
                         Task {
