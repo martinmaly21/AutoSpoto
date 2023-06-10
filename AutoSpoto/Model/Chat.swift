@@ -45,6 +45,15 @@ class Chat: Equatable, Identifiable {
     
     var trackMetadataPagesBeingFetched: [Int] = []
     var trackMetadataPagesFetched: [Int] = []
+    
+    var isGroupChat: Bool {
+        switch type {
+        case .group(_):
+            return true
+        default:
+            return false
+        }
+    }
 
     var displayName: String {
         switch type {

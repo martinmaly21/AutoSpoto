@@ -160,7 +160,7 @@ extension AutoSpotoConstants.Strings {
 
     static let ENTER_PLAYLIST_NAME = NSLocalizedString(
         "ENTER_PLAYLIST_NAME",
-        value: "Enter your playlist name",
+        value: "Playlist name",
         comment: "Prompt for user to enter playlist name"
     )
 
@@ -252,6 +252,18 @@ extension AutoSpotoConstants.Strings {
     static let PRIVATE_PLAYLIST_SWITCH_TITLE = NSLocalizedString(
         "PRIVATE_PLAYLIST_SWITCH_TITLE",
         value: "This playlist should be private.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT = NSLocalizedString(
+        "AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT",
+        value: "Automatically update your playlist with any new tracks shared between you and %@.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT = NSLocalizedString(
+        "AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT",
+        value: "Automatically update your playlist with any new tracks shared between in %@.",
         comment: "The text that appears next to the private switch"
     )
 }

@@ -14,6 +14,7 @@ struct CreatePlaylistView: View {
     let chat: Chat
 
     @State private var playlistName: String
+    @State private var optInToAutomaticPlaylistUpdates = true
 
     init(
         showCreatePlaylistSheet: Binding<Bool>,
@@ -26,19 +27,38 @@ struct CreatePlaylistView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(AutoSpotoConstants.Strings.ENTER_PLAYLIST_DETAILS)
-                .font(.josefinSansRegular(18))
-                .font(.headline)
-                .multilineTextAlignment(.center)
+            HStack {
+                Text(AutoSpotoConstants.Strings.ENTER_PLAYLIST_DETAILS)
+                    .font(.josefinSansBold(22))
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                Image("spotify-logo")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(.textPrimaryWhite)
+                    .frame(width: 30, height: 30)
+            }
+            
 
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(AutoSpotoConstants.Strings.ENTER_PLAYLIST_NAME)
                     .font(.josefinSansRegular(18))
 
                 TextField(AutoSpotoConstants.Strings.PLAYLIST_PLACEHOLDER_NAME, text: $playlistName)
                     .font(.josefinSansRegular(18))
             }
-            .padding()
+            .padding(.vertical)
+            Toggle(
+                isOn: $optInToAutomaticPlaylistUpdates,
+                label: {
+                    Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
+                        .font(.josefinSansRegular(16))
+                        .frame(height: 50)
+                }
+            )
 
             HStack {
                 Spacer()
@@ -46,7 +66,6 @@ struct CreatePlaylistView: View {
                 Button(
                     action: {
                         Task {
-                            //TODO: check if playlsit already exists before performing appropriate function
                             await homeViewModel.createPlaylistAndAddSongs(
                                 chat: chat,
                                 desiredPlaylistName: playlistName
@@ -63,7 +82,7 @@ struct CreatePlaylistView: View {
         .onAppear {
             playlistName = chat.displayName
         }
-        .frame(width: 300, height: 200)
-        .padding()
+        .frame(width: 450, height: 200)
+        .padding(.all, 25)
     }
 }
