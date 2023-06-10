@@ -74,6 +74,7 @@ struct ChatView: View {
                             }
                             
                             ModifyPlaylistButton(
+                                playlistExists: selectedChat.playlistExists,
                                 action: {
                                     showModifyPlaylistSheeet = true
                                 }

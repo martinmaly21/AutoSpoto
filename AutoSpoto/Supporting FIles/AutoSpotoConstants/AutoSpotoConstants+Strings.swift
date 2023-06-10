@@ -95,7 +95,13 @@ extension AutoSpotoConstants.Strings {
     static let CREATE_PLAYLIST = NSLocalizedString(
         "CREATE_PLAYLIST",
         value: "Create playlist",
-        comment: "Title for button to allow the user to create a playlist from a group chat"
+        comment: "Title for button to allow the user to create a playlist from a chat"
+    )
+    
+    static let MODIFY_PLAYLIST = NSLocalizedString(
+        "MODIFY_PLAYLIST",
+        value: "Modify playlist",
+        comment: "Title for button to allow the user to modify an existing playlist from a chat"
     )
 
     static let TRACK_NAME_METADATA_PLACEHOLDER = NSLocalizedString(
