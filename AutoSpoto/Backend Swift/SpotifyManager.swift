@@ -242,14 +242,19 @@ class SpotifyManager {
         }
         
         let dateUpdated = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         let params: [String : Any] = [
             AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
                 AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
-                "\(dateUpdated)"
+                dateFormatter.string(from: dateUpdated)
             )
         ]
         
-        let data = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
+        let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
+        
         //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
     }
 }
