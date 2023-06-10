@@ -1,13 +1,14 @@
 //
-//  CreatePlaylistButton.swift
+//  ModifyPlaylistButton.swift
 //  AutoSpoto
 //
-//  Created by Martin Maly on 2023-03-04.
+//  Created by Martin Maly on 2023-06-10.
 //
 
 import SwiftUI
 
-struct CreatePlaylistButton: View {
+struct ModifyPlaylistButton: View {
+    let spotifyPlaylist: SpotifyPlaylist?
     let width: CGFloat
     let height: CGFloat
     let action: () -> Void
@@ -27,7 +28,7 @@ struct CreatePlaylistButton: View {
                             .foregroundColor(.textPrimaryWhite)
                             .frame(width: 30, height: 30)
                         
-                        Text(AutoSpotoConstants.Strings.CREATE_PLAYLIST)
+                        Text(spotifyPlaylist?.id ?? AutoSpotoConstants.Strings.MODIFY_PLAYLIST)
                             .font(.josefinSansSemibold(18))
                     }
                     .padding(.horizontal, 30)

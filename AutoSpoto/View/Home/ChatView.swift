@@ -72,13 +72,29 @@ struct ChatView: View {
                                 }
                             }
                             
-                            CreatePlaylistButton(
-                                width: proxy.size.width,
-                                height: buttonHeight,
-                                action: {
-                                    showModifyPlaylistSheeet = true
+                            if selectedChat.spotifyPlaylistExists {
+                                ModifyPlaylistButton(
+                                    spotifyPlaylist: selectedChat.spotifyPlaylist,
+                                    width: proxy.size.width,
+                                    height: buttonHeight,
+                                    action: {
+                                        //TODO:
+                                    }
+                                )
+                                .onAppear {
+                                    Task {
+                                        await homeViewModel.fetchPlaylist(for: selectedChat)
+                                    }
                                 }
-                            )
+                            } else {
+                                CreatePlaylistButton(
+                                    width: proxy.size.width,
+                                    height: buttonHeight,
+                                    action: {
+                                        showModifyPlaylistSheeet = true
+                                    }
+                                )
+                            }
                         }
                     }
                     .environmentObject(homeViewModel)

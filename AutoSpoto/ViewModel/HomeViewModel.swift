@@ -152,7 +152,6 @@ class HomeViewModel: ObservableObject {
         await fetchTracks(for: chat)
         
         do {
-            //TODO: show loading indicator
             try await SpotifyManager.createPlaylistAndAddTracks(
                 for: chat,
                 desiredPlaylistName: desiredPlaylistName
@@ -160,6 +159,21 @@ class HomeViewModel: ObservableObject {
         } catch let error {
             //TODO: handle if user has no valid IDs (AutoSpotoError.chatHasNoValidIDs error)
             //TODO: hanlde error
+        }
+        
+        self.objectWillChange.send()
+    }
+    
+    func fetchPlaylist(
+        for chat: Chat
+    ) async {
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID")
+        }
+        do {
+            chat.spotifyPlaylist = try await SpotifyManager.fetchPlaylist(for: spotifyPlaylistID)
+        } catch let error {
+            //TODO: handle if fetch for playlist fails
         }
         
         self.objectWillChange.send()

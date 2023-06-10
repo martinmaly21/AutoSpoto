@@ -207,10 +207,10 @@ class SpotifyManager {
         }
         
         //create playlist
-        let playlistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-        chat.playlistID = playlistID
+        let spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
+        chat.spotifyPlaylistID = spotifyPlaylistID
         
-        try await updatePlaylist(for: playlistID, for: filteredTracksChunks)
+        try await updatePlaylist(for: spotifyPlaylistID, for: filteredTracksChunks)
     }
     
     private static func createPlaylist(
@@ -256,5 +256,11 @@ class SpotifyManager {
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
         
         //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
+    }
+    
+    public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist {
+        let data = try await http(method: .get(queryParams: nil), path: "/playlists/\(spotifyPlaylistID)")
+        let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
+        return spotifyPlaylist
     }
 }
