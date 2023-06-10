@@ -46,13 +46,6 @@ class Track: Equatable, Identifiable {
     }
 
     static func == (lhs: Track, rhs: Track) -> Bool {
-        return lhs.url == rhs.url &&
-        lhs.spotifyID == rhs.spotifyID &&
-        lhs.timeStamp == rhs.timeStamp &&
-        lhs.imageURL == rhs.imageURL &&
-        lhs.name == rhs.name &&
-        lhs.artist == rhs.artist &&
-        lhs.metadataHasBeenFetched == rhs.metadataHasBeenFetched &&
-        lhs.errorFetchingTrackMetadata == rhs.errorFetchingTrackMetadata
+        return lhs.url == rhs.url
     }
 }

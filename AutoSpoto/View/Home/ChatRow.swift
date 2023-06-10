@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct ChatRow: View {
-    let chat: Chat
+    let chatImage: String?
+    let chatDisplayName: String
+    let chatPlaylistExists: Bool
+    
     let isSelected: Bool
 
     var body: some View {
         VStack(spacing: 2) {
             HStack(alignment: .center, spacing: 15) {
                 PersonPictureView(
-                    base64ImageString: chat.image,
+                    base64ImageString: chatImage,
                     dimension: 40,
                     isSelected: isSelected
                 )
 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(chat.displayName)
+                    Text(chatDisplayName)
                         .font(.josefinSansRegular(18))
                         .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
                 }
 
                 Spacer()
 
-                if chat.playlistExists {
+                if chatPlaylistExists {
                     Image(systemName: "music.note.list")
                         .resizable()
                         .frame(width: 20, height: 20)
