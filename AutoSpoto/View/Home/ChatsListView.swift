@@ -24,10 +24,15 @@ struct ChatsListView: View {
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
                     ForEach(homeViewModel.chats, id: \.id) { chat in
-                        ChatRow(chat: chat, isSelected: chat == homeViewModel.selectedChat)
-                            .onTapGesture {
-                                homeViewModel.selectedChat = chat
-                            }
+                        ChatRow(
+                            chatImage: chat.image,
+                            chatDisplayName: chat.displayName,
+                            chatPlaylistExists: chat.playlistExists,
+                            isSelected: chat == homeViewModel.selectedChat
+                        )
+                        .onTapGesture {
+                            homeViewModel.selectedChat = chat
+                        }
                     }
                 }
             }
@@ -92,3 +97,4 @@ struct ChatsListView: View {
         .frame(maxWidth: .infinity)
     }
 }
+
