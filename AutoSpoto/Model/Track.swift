@@ -46,7 +46,7 @@ class Track: Equatable, Identifiable {
     }
 
     static func == (lhs: Track, rhs: Track) -> Bool {
-        return lhs.url.absoluteString == rhs.url.absoluteString &&
+        return lhs.url == rhs.url &&
         lhs.spotifyID == rhs.spotifyID &&
         lhs.timeStamp == rhs.timeStamp &&
         lhs.imageURL == rhs.imageURL &&
