@@ -14,8 +14,7 @@ struct ChatView: View {
     @State private var showModifyPlaylistSheeet = false
     
     var body: some View {
-        let bottomPadding: CGFloat = 25
-        let buttonHeight: CGFloat = 40
+        let buttonHeight: CGFloat = 60
         let heightOfToolbar: CGFloat = 80
         
         if let selectedChat = homeViewModel.selectedChat {
@@ -56,7 +55,7 @@ struct ChatView: View {
                                         }
                                         
                                         Spacer()
-                                            .frame(height: bottomPadding + buttonHeight + 30)
+                                            .frame(height: buttonHeight + 15)
                                             .id(bottomID)
                                     }
                                     .frame(minHeight: proxy.size.height)
@@ -69,17 +68,17 @@ struct ChatView: View {
                                 })
                                 .frame(width: proxy.size.width)
                                 .introspectScrollView { scrollView in
-                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)
+                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: buttonHeight, right: 0)
                                 }
                             }
                             
-                            ModifyPlaylistButton(
-                                playlistExists: selectedChat.playlistExists,
+                            CreatePlaylistButton(
+                                width: proxy.size.width,
+                                height: buttonHeight,
                                 action: {
                                     showModifyPlaylistSheeet = true
                                 }
                             )
-                            .padding(.bottom, bottomPadding)
                         }
                     }
                     .environmentObject(homeViewModel)
