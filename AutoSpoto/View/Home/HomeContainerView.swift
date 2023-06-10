@@ -26,7 +26,7 @@ struct HomeContainerView: View {
             perform: { chat in
                 Task {
                     guard let chat else { return }
-                    await homeViewModel.fetchTrackIDs(for: chat)
+                    await homeViewModel.fetchTracks(for: chat)
                 }
             }
         )
@@ -35,7 +35,7 @@ struct HomeContainerView: View {
             perform: { chat in
                 Task {
                     guard let chat else { return }
-                    await homeViewModel.fetchTrackIDs(for: chat)
+                    await homeViewModel.fetchTracks(for: chat)
                 }
             }
         )

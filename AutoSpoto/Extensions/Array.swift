@@ -16,4 +16,23 @@ extension Array where Element: Equatable {
         }
         return uniqueValues
     }
+    
+    func splitIntoChunks(of maxLength: Int) -> [[Element]] {
+        var result = [[Element]]()
+        var temporaryStorageArray: [Element] = []
+        
+        //split track IDs in chunks of 'numberOfTrackMetadataPerFetch'
+        for value in self {
+            temporaryStorageArray.append(value)
+            if temporaryStorageArray.count == maxLength {
+                result.append(temporaryStorageArray)
+                temporaryStorageArray.removeAll()
+            }
+        }
+        if !temporaryStorageArray.isEmpty {
+            result.append(temporaryStorageArray)
+        }
+
+        return result
+    }
 }

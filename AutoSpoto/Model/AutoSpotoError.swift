@@ -10,6 +10,7 @@ import Foundation
 enum AutoSpotoError: LocalizedError {
     case unexpectedHTTPUrlResponse
     case errorLoggingInToSpotify
+    case chatHasNoValidIDs
     
     var errorDescription: String? {
         switch self {
@@ -17,6 +18,8 @@ enum AutoSpotoError: LocalizedError {
             return AutoSpotoConstants.Strings.UNEXPECTED_RESPONSE
         case .errorLoggingInToSpotify:
             return AutoSpotoConstants.Strings.ERROR_LOGGING_INTO_SPOTIFY
+        case .chatHasNoValidIDs:
+            return AutoSpotoConstants.Strings.CHAT_HAS_NO_VALID_IDS
         }
     }
 }

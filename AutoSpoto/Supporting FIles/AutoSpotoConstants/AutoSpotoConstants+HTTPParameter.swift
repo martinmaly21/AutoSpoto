@@ -19,4 +19,7 @@ extension AutoSpotoConstants.HTTPParameter {
     static let code = "code"
     static let refresh_token = "refresh_token"
     static let ids = "ids"
+    static let name = "name"
+    static let description = "description"
+    static let uris = "uris"
 }
