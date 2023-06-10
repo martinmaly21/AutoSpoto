@@ -88,6 +88,7 @@
 		50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
 		50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
+		50FB02E12A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */; };
 		9296FFF729CF5A4000853EF5 /* AccessContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,7 @@
 		50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Regex.swift"; sourceTree = "<group>"; };
 		50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Limits.swift"; sourceTree = "<group>"; };
 		50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylist.swift; sourceTree = "<group>"; };
+		50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPlaylistButton.swift; sourceTree = "<group>"; };
 		9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 				503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */,
 				503BC30029B3A83800743ED5 /* OnboardingButton.swift */,
 				503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */,
+				50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				509B08582A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift in Sources */,
 				509B08662A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift in Sources */,
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
+				50FB02E12A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift in Sources */,
 				5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
