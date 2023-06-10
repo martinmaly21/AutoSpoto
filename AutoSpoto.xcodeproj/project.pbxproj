@@ -89,6 +89,7 @@
 		50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
 		50FB02E12A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */; };
+		50FB02E32A34C9A600D2CEB7 /* ModifyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E22A34C9A600D2CEB7 /* ModifyPlaylistView.swift */; };
 		9296FFF729CF5A4000853EF5 /* AccessContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 /* End PBXBuildFile section */
@@ -176,6 +177,7 @@
 		50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Limits.swift"; sourceTree = "<group>"; };
 		50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylist.swift; sourceTree = "<group>"; };
 		50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPlaylistButton.swift; sourceTree = "<group>"; };
+		50FB02E22A34C9A600D2CEB7 /* ModifyPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPlaylistView.swift; sourceTree = "<group>"; };
 		9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,6 +342,7 @@
 				50F1789F2995F441002AFC1C /* ChatRow.swift */,
 				50F178A729960B40002AFC1C /* TrackRow.swift */,
 				50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */,
+				50FB02E22A34C9A600D2CEB7 /* ModifyPlaylistView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				509B085C2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
 				509B08602A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
 				503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */,
+				50FB02E32A34C9A600D2CEB7 /* ModifyPlaylistView.swift in Sources */,
 				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
 				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,

@@ -12,6 +12,7 @@ struct ChatView: View {
     @Namespace var bottomID
     
     @State private var showCreatePlaylistSheet = false
+    @State private var showModifyPlaylistSheet = false
     
     var body: some View {
         let buttonHeight: CGFloat = 60
@@ -78,7 +79,7 @@ struct ChatView: View {
                                     width: proxy.size.width,
                                     height: buttonHeight,
                                     action: {
-                                        //TODO:
+                                        showModifyPlaylistSheet = true
                                     }
                                 )
                                 .onAppear {
@@ -136,6 +137,16 @@ struct ChatView: View {
                 content: {
                     CreatePlaylistView(
                         showCreatePlaylistSheet: $showCreatePlaylistSheet,
+                        chat: selectedChat
+                    )
+                    .environmentObject(homeViewModel)
+                }
+            )
+            .sheet(
+                isPresented: $showModifyPlaylistSheet,
+                content: {
+                    ModifyPlaylistView(
+                        showModifyPlaylistSheet: $showModifyPlaylistSheet,
                         chat: selectedChat
                     )
                     .environmentObject(homeViewModel)
