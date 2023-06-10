@@ -85,6 +85,7 @@ struct CreatePlaylistView: View {
                 Button(
                     action: {
                         self.isCreatingPlaylist = true
+                        self.errorCreatingPlaylist = false
                         
                         Task {
                             do {
@@ -111,7 +112,7 @@ struct CreatePlaylistView: View {
         .onAppear {
             playlistName = chat.displayName
         }
-        .frame(width: 450, height: 200)
+        .frame(width: 450, height: errorCreatingPlaylist ? 250 : 200)
         .padding(.all, 25)
     }
 }
