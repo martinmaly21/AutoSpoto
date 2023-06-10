@@ -14,6 +14,8 @@ struct CreatePlaylistView: View {
     let chat: Chat
     
     @State private var playlistName: String
+    @State private var errorCreatingPlaylist = false
+    @State private var isCreatingPlaylist = false
     @State private var optInToAutomaticPlaylistUpdates = true
     
     init(
@@ -51,6 +53,7 @@ struct CreatePlaylistView: View {
                     .font(.josefinSansRegular(18))
             }
             .padding(.vertical)
+            
             Toggle(
                 isOn: $optInToAutomaticPlaylistUpdates,
                 label: {
@@ -59,6 +62,12 @@ struct CreatePlaylistView: View {
                         .frame(height: 50)
                 }
             )
+            
+            if errorCreatingPlaylist {
+                Text(AutoSpotoConstants.Strings.ERROR_CREATING_PLAYLIST)
+                    .font(.josefinSansRegular(16))
+                    .foregroundColor(.red)
+            }
             
             HStack {
                 Spacer()
@@ -75,12 +84,21 @@ struct CreatePlaylistView: View {
                 
                 Button(
                     action: {
+                        self.isCreatingPlaylist = true
+                        
                         Task {
-                            await homeViewModel.createPlaylistAndAddSongs(
-                                chat: chat,
-                                desiredPlaylistName: playlistName
-                            )
-                            self.showCreatePlaylistSheet = false
+                            do {
+                                try await homeViewModel.createPlaylistAndAddSongs(
+                                    chat: chat,
+                                    desiredPlaylistName: playlistName
+                                )
+                                self.isCreatingPlaylist = false
+                                self.showCreatePlaylistSheet = false
+                            } catch {
+                                self.errorCreatingPlaylist = true
+                                self.isCreatingPlaylist = false
+                            }
+                            
                         }
                     },
                     label: {
@@ -89,6 +107,7 @@ struct CreatePlaylistView: View {
                 )
             }
         }
+        .disabled(isCreatingPlaylist)
         .onAppear {
             playlistName = chat.displayName
         }
