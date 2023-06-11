@@ -214,7 +214,7 @@ struct CreatePlaylistView: View {
         .onAppear {
             playlistName = chat.displayName
         }
-        .frame(width: 450, height: errorCreatingPlaylist ? 250 : 210)
+        .frame(width: 450, height: errorCreatingPlaylist ? 270 : 230)
         .padding(.all, 25)
     }
 }
