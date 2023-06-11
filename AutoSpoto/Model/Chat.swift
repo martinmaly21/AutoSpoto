@@ -30,6 +30,8 @@ class Chat: Equatable, Identifiable {
     
     //we will fetch metadata for 15 tracks at a time
     let numberOfTrackMetadataPerFetch = 15
+    
+    var optedInToAutomaticChatUpdates = true
 
     var hasNoTracks: Bool {
         return tracks.isEmpty && hasFetchedTracksIDs

@@ -15,7 +15,9 @@ struct ChatView: View {
     @State private var showModifyPlaylistSheet = false
     
     var body: some View {
-        let buttonHeight: CGFloat = 60
+        let createButtonHeight: CGFloat = 60
+        let modifyButtonHeight: CGFloat = 120
+        
         let heightOfToolbar: CGFloat = 80
         
         if let selectedChat = homeViewModel.selectedChat {
@@ -56,7 +58,7 @@ struct ChatView: View {
                                         }
                                         
                                         Spacer()
-                                            .frame(height: buttonHeight + 15)
+                                            .frame(height: (selectedChat.spotifyPlaylistExists ? modifyButtonHeight : createButtonHeight) + 15)
                                             .id(bottomID)
                                     }
                                     .frame(minHeight: proxy.size.height)
@@ -69,18 +71,15 @@ struct ChatView: View {
                                 })
                                 .frame(width: proxy.size.width)
                                 .introspectScrollView { scrollView in
-                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: buttonHeight, right: 0)
+                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: selectedChat.spotifyPlaylistExists ? modifyButtonHeight : createButtonHeight, right: 0)
                                 }
                             }
                             
                             if selectedChat.spotifyPlaylistExists {
                                 ModifyPlaylistButton(
-                                    spotifyPlaylist: selectedChat.spotifyPlaylist,
+                                    chat: selectedChat,
                                     width: proxy.size.width,
-                                    height: buttonHeight,
-                                    action: {
-                                        showModifyPlaylistSheet = true
-                                    }
+                                    height: modifyButtonHeight
                                 )
                                 .onAppear {
                                     Task {
@@ -90,7 +89,7 @@ struct ChatView: View {
                             } else {
                                 CreatePlaylistButton(
                                     width: proxy.size.width,
-                                    height: buttonHeight,
+                                    height: createButtonHeight,
                                     action: {
                                         showCreatePlaylistSheet = true
                                     }

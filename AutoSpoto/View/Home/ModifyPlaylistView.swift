@@ -70,44 +70,55 @@ struct ModifyPlaylistView: View {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                     
-                    Toggle(
-                        isOn: $optInToAutomaticPlaylistUpdates,
+//                    Toggle(
+//                        isOn: $optInToAutomaticPlaylistUpdates,
+//                        label: {
+//                            Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
+//                                .font(.josefinSansRegular(16))
+//                        }
+//                    )
+                    
+                    
+//                    Button(
+//                        action: {
+//                            Task {
+//                                await homeViewModel.disconnectPlaylist(for: chat)
+//                                disconnectedChatFromPlaylist = true
+//                            }
+//                        },
+//                        label: {
+//                            Text(AutoSpotoConstants.Strings.SYNC_TRACKS)
+//                                .font(.josefinSansRegular(15))
+//                                .foregroundColor(.primaryBlue)
+//                                .underline(pattern: .solid)
+//
+//                        }
+//                    )
+//                    .buttonStyle(.plain)
+                    
+                    Button(
+                        action: {
+                            Task {
+                                await homeViewModel.disconnectPlaylist(for: chat)
+                                disconnectedChatFromPlaylist = true
+                            }
+                        },
                         label: {
-                            Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
-                                .font(.josefinSansRegular(16))
-                                .frame(maxHeight: .infinity)
+                            Text(AutoSpotoConstants.Strings.DISCONNECT_CHAT_FROM_PLAYLIST)
+                                .font(.josefinSansRegular(15))
+                                .foregroundColor(.errorRed)
+                                .underline(pattern: .solid)
+                            
                         }
                     )
+                    .buttonStyle(.plain)
                     
-                    HStack {
-                        
-                        
-                        
-                        Button(
-                            action: {
-                                Task {
-                                    await homeViewModel.disconnectPlaylist(for: chat)
-                                    disconnectedChatFromPlaylist = true
-                                }
-                            },
-                            label: {
-                                Text(AutoSpotoConstants.Strings.DISCONNECT_CHAT_FROM_PLAYLIST)
-                                    .font(.josefinSansRegular(15))
-                                    .foregroundColor(.errorRed)
-                                    .underline(pattern: .solid)
-                                
-                            }
-                        )
-                        .buttonStyle(.plain)
-                        
-                        
-                    }
                 }
                 
                 Spacer()
             }
         }
-        .frame(width: 450, height: 210)
+        .frame(width: 450)
         .padding(.all, 25)
     }
 }

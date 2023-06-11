@@ -9,53 +9,112 @@ import SwiftUI
 import Kingfisher
 
 struct ModifyPlaylistButton: View {
-    let spotifyPlaylist: SpotifyPlaylist?
+    @Environment(\.openURL) private var openURL
+    
+    let chat: Chat
     let width: CGFloat
     let height: CGFloat
-    let action: () -> Void
+    
+    var spotifyPlaylist: SpotifyPlaylist? {
+        return chat.spotifyPlaylist
+    }
     
     var body: some View {
-        Button(
-            action: action,
-            label: {
-                ZStack {
-                    Color.spotifyGreen
-                        .shadow(color: .black.opacity(0.2), radius: 6, x: 4, y: -3)
-                    
-                    HStack(spacing: 12) {
-                        if let imageURL = spotifyPlaylist?.imageURL {
-                            KFImage(imageURL)
+        ZStack {
+            Color.clear
+                .background(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.2), radius: 6, x: 4, y: -3)
+                .frame(height: height)
+                .frame(width: width)
+            
+            HStack {
+                HStack {
+                    VStack {
+                        HStack {
+                            Text(AutoSpotoConstants.Strings.CONNECTED_TO)
+                                .font(.josefinSansBold(16))
+                            
+                            Spacer()
+                        }
+                        
+                        HStack(spacing: 10) {
+                            KFImage(spotifyPlaylist?.imageURL)
                                 .placeholder {
-                                    Color.gray
-                                        .frame(width: 40, height: 40)
-                                        .cornerRadius(8)
+                                    Image("spotify-logo")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foregroundColor(.spotifyGreen)
+                                        .frame(width: 70, height: 70)
                                 }
                                 .cacheOriginalImage(true)
                                 .fade(duration: 0.25)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 40, height: 40)
+                                .frame(width: 70, height: 70)
                                 .cornerRadius(8)
                                 .aspectRatio(contentMode: .fill)
-                        }
-                        
-                        if let name = spotifyPlaylist?.name {
-                            Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.MODIFY_PLAYLIST_WITH_NAME, name))
-                                .font(.josefinSansSemibold(18))
-                        } else {
-                            Text(AutoSpotoConstants.Strings.MODIFY_PLAYLIST)
-                                .font(.josefinSansSemibold(18))
+                            
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(spotifyPlaylist?.name ?? AutoSpotoConstants.Strings.CHAT_NAME_PLACEHOLDER)
+                                    .font(.josefinSansRegular(22))
+                                    .font(.headline)
+                                
+                                Button(
+                                    action: {
+                                        if let url = spotifyPlaylist?.url {
+                                            openURL(url)
+                                        }
+                                    },
+                                    label: {
+                                        Text(spotifyPlaylist?.url?.absoluteString ?? AutoSpotoConstants.Strings.CHAT_URL_PLACEHOLDER)
+                                            .font(.josefinSansRegular(15))
+                                            .foregroundColor(.spotifyGreen)
+                                            .underline(pattern: .solid)
+                                        
+                                    }
+                                )
+                                .buttonStyle(.plain)
+                            }
+                            
+                            Spacer()
                         }
                     }
-                    .padding(.horizontal, 30)
-                    .redacted(reason: spotifyPlaylist == nil ? .placeholder : [])
-                    .foregroundColor(Color.textPrimaryWhite)
+                    Spacer()
+                    
+                    VStack(alignment: .center, spacing: 12) {
+                        SyncButton(
+                            title: AutoSpotoConstants.Strings.SYNC_TRACKS,
+                            action: {
+                                Task {
+                                    //TODO:
+                                    //                                await homeViewModel.disconnectPlaylist(for: chat)
+                                }
+                                
+                            }
+                        )
+                        
+                        Button(
+                            action: {
+                                Task {
+                                    //TODO:
+                                    //                            await homeViewModel.disconnectPlaylist(for: chat)
+                                }
+                            },
+                            label: {
+                                Text(AutoSpotoConstants.Strings.DISCONNECT_CHAT_FROM_PLAYLIST)
+                                    .font(.josefinSansRegular(15))
+                                    .foregroundColor(.errorRed)
+                                    .underline(pattern: .solid)
+                            }
+                        )
+                        .buttonStyle(.plain)
+                    }
                 }
-                .frame(height: height)
-                .frame(width: width)
             }
-        )
-        .buttonStyle(.borderless)
-        .contentShape(Rectangle())
+            .padding(.horizontal, 16.5)
+            .frame(height: height)
+            .frame(width: width)
+            .redacted(reason: spotifyPlaylist == nil ? .placeholder : [])
+        }
     }
 }
