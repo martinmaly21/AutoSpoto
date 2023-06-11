@@ -141,16 +141,6 @@ struct ChatView: View {
                     .environmentObject(homeViewModel)
                 }
             )
-            .sheet(
-                isPresented: $showModifyPlaylistSheet,
-                content: {
-                    ModifyPlaylistView(
-                        showModifyPlaylistSheet: $showModifyPlaylistSheet,
-                        chat: selectedChat
-                    )
-                    .environmentObject(homeViewModel)
-                }
-            )
         } else {
             ProgressView()
         }
