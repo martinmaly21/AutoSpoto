@@ -201,17 +201,15 @@ class SpotifyManager {
     public static func createPlaylistAndAddTracks(
         for chat: Chat,
         desiredPlaylistName: String
-    ) async throws -> String {
+    ) async throws {
         guard let filteredTracksChunks = try await filterChat(for: chat) else {
             throw AutoSpotoError.chatHasNoValidIDs
         }
         
         //create playlist
-        let spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
+        chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
         
-        try await updatePlaylist(for: spotifyPlaylistID, for: filteredTracksChunks)
-        
-        return spotifyPlaylistID
+        try await updatePlaylist(for: chat)
     }
     
     private static func createPlaylist(
@@ -228,11 +226,19 @@ class SpotifyManager {
         return spotifyPlaylist.id
     }
     
+    //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
+    //OR more likely the lastUpdated param should be a property on Chat
     public static func updatePlaylist(
-        for spotifyPlaylistID: String,
-        for filteredTracksChunks: [[Track]]
+        for chat: Chat
     ) async throws {
-        //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID for chat")
+        }
+        
+        guard let filteredTracksChunks = try await filterChat(for: chat) else {
+            throw AutoSpotoError.chatHasNoValidIDs
+        }
+        
         //add tracks to playlist
         for filteredTracksChunk in filteredTracksChunks {
             let params: [String : Any] = [

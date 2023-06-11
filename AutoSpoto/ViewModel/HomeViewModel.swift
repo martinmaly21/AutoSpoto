@@ -151,10 +151,26 @@ class HomeViewModel: ObservableObject {
         //re-fetch tracks, just in case there were ones that were added since
         await fetchTracks(for: chat)
         
-        chat.spotifyPlaylistID = try await SpotifyManager.createPlaylistAndAddTracks(
+        try await SpotifyManager.createPlaylistAndAddTracks(
             for: chat,
             desiredPlaylistName: desiredPlaylistName
         )
+        
+        self.objectWillChange.send()
+    }
+    
+    func updatePlaylist(
+        for chat: Chat
+    ) async {
+        //re-fetch tracks, just in case there were ones that were added since
+        await fetchTracks(for: chat)
+        
+        do {
+            try await SpotifyManager.updatePlaylist(for: chat)
+        } catch let error {
+            //TODO: handle if update playlist fails
+        }
+       
         
         self.objectWillChange.send()
     }
