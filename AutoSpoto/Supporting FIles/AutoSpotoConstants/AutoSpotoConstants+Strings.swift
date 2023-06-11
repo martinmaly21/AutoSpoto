@@ -317,7 +317,7 @@ extension AutoSpotoConstants.Strings {
     
     static let SYNC_TRACKS = NSLocalizedString(
         "SYNC_TRACKS",
-        value: "Sync tracks",
+        value: "Manually sync tracks",
         comment: "A button that allows user to force a track sync"
     )
     
