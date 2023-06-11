@@ -12,7 +12,6 @@ struct ChatView: View {
     @Namespace var bottomID
     
     @State private var showCreatePlaylistSheet = false
-    @State private var showModifyPlaylistSheet = false
     
     var body: some View {
         let createButtonHeight: CGFloat = 60
