@@ -1,5 +1,5 @@
 //
-//  ModifyPlaylistButton.swift
+//  PlaylistSummaryView.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-06-10.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct ModifyPlaylistButton: View {
+struct PlaylistSummaryView: View {
     @Environment(\.openURL) private var openURL
     
     let chat: Chat

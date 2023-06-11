@@ -15,7 +15,7 @@ struct ChatView: View {
     
     var body: some View {
         let createButtonHeight: CGFloat = 60
-        let modifyButtonHeight: CGFloat = 120
+        let playlistSummaryHeight: CGFloat = 120
         
         let heightOfToolbar: CGFloat = 80
         
@@ -57,7 +57,7 @@ struct ChatView: View {
                                         }
                                         
                                         Spacer()
-                                            .frame(height: (selectedChat.spotifyPlaylistExists ? modifyButtonHeight : createButtonHeight) + 15)
+                                            .frame(height: (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) + 15)
                                             .id(bottomID)
                                     }
                                     .frame(minHeight: proxy.size.height)
@@ -70,15 +70,15 @@ struct ChatView: View {
                                 })
                                 .frame(width: proxy.size.width)
                                 .introspectScrollView { scrollView in
-                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: selectedChat.spotifyPlaylistExists ? modifyButtonHeight : createButtonHeight, right: 0)
+                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight, right: 0)
                                 }
                             }
                             
                             if selectedChat.spotifyPlaylistExists {
-                                ModifyPlaylistButton(
+                                PlaylistSummaryView(
                                     chat: selectedChat,
                                     width: proxy.size.width,
-                                    height: modifyButtonHeight
+                                    height: playlistSummaryHeight
                                 )
                                 .onAppear {
                                     Task {
