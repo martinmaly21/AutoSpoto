@@ -94,7 +94,7 @@ extension AutoSpotoConstants.Strings {
 
     static let CREATE_PLAYLIST = NSLocalizedString(
         "CREATE_PLAYLIST",
-        value: "Create playlist",
+        value: "Connect chat to playlist",
         comment: "Title for button to allow the user to create a playlist from a chat"
     )
     
@@ -281,7 +281,7 @@ extension AutoSpotoConstants.Strings {
     
     static let SUCCESSFULLY_CREATED_PLAYLIST = NSLocalizedString(
         "SUCCESSFULLY_CREATED_PLAYLIST",
-        value: "Your playlist has been created",
+        value: "Your chat has been connected",
         comment: "The text that appears next to the private switch"
     )
     
