@@ -92,21 +92,23 @@ struct CreatePlaylistView: View {
                         
                         HStack {
                             ZStack {
-                                if let url = chat.spotifyPlaylist?.url {
-                                    Button(
-                                        action: {
+                                Button(
+                                    action: {
+                                        if let url = chat.spotifyPlaylist?.url {
                                             openURL(url)
-                                        },
-                                        label: {
-                                            Text(url.absoluteString)
-                                                .font(.josefinSansRegular(15))
-                                                .foregroundColor(.spotifyGreen)
-                                                .underline(pattern: .solid)
-                                            
                                         }
-                                    )
-                                    .buttonStyle(.plain)
-                                }
+                                    },
+                                    label: {
+                                        Text(chat.spotifyPlaylist?.url?.absoluteString ?? AutoSpotoConstants.Strings.CHAT_URL_PLACEHOLDER)
+                                            .font(.josefinSansRegular(15))
+                                            .foregroundColor(.spotifyGreen)
+                                            .underline(pattern: .solid)
+                                        
+                                    }
+                                )
+                                .buttonStyle(.plain)
+                                .redacted(reason: chat.spotifyPlaylist?.url == nil ? .placeholder : [])
+                                
                             }
                             .frame(height: 0)
                             
