@@ -258,9 +258,18 @@ class SpotifyManager {
         //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
     }
     
-    public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist {
-        let data = try await http(method: .get(queryParams: nil), path: "/playlists/\(spotifyPlaylistID)")
+    public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist? {
+        let params = [
+            AutoSpotoConstants.HTTPParameter.fields: "\(AutoSpotoConstants.HTTPParameter.id),\(AutoSpotoConstants.HTTPParameter.images),\(AutoSpotoConstants.HTTPParameter.name)"
+        ]
+        let data = try await http(method: .get(queryParams: params), path: "/playlists/\(spotifyPlaylistID)")
         let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
         return spotifyPlaylist
+    }
+    
+    //Use this method to check if a playist exists
+    public static func checkIfPlaylistExists(for spotifyPlaylistID: String) async throws -> Bool {
+        let spotifyPlaylist = try await fetchPlaylist(for: spotifyPlaylistID)
+        return spotifyPlaylist != nil
     }
 }
