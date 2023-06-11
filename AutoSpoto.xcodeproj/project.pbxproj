@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
@@ -95,7 +94,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPythonInterface.swift; sourceTree = "<group>"; };
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				500610F3298ADE3700A50DA1 /* SwiftPythonInterface.swift */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
 				50F34C65297659950059516B /* Colors.xcassets */,
 				50F34C692976611E0059516B /* Font */,
@@ -552,7 +549,6 @@
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
-				500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
 				509B08682A3203C800917AAC /* KeychainToken.swift in Sources */,
 				9296FFF729CF5A4000853EF5 /* AccessContactsView.swift in Sources */,
