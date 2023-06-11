@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct PlaylistSummaryView: View {
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @Environment(\.openURL) private var openURL
     
     let chat: Chat
@@ -100,18 +101,15 @@ struct PlaylistSummaryView: View {
                                 title: AutoSpotoConstants.Strings.SYNC_TRACKS,
                                 action: {
                                     Task {
-                                        //TODO:
-                                        //                                await homeViewModel.disconnectPlaylist(for: chat)
+                                        //TODO: update spotify playlist if new tracks
                                     }
-                                    
                                 }
                             )
                             
                             Button(
                                 action: {
                                     Task {
-                                        //TODO:
-                                        //                            await homeViewModel.disconnectPlaylist(for: chat)
+                                        await homeViewModel.disconnectPlaylist(for: chat)
                                     }
                                 },
                                 label: {
