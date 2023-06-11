@@ -103,7 +103,7 @@ struct PlaylistSummaryView: View {
                                 action: {
                                     Task {
                                         isModifyingPlaylist = true
-                                        //TODO: update spotify playlist if new tracks
+                                        await homeViewModel.updatePlaylist(for: chat)
                                         isModifyingPlaylist = false
                                     }
                                 }
