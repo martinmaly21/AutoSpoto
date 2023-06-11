@@ -272,5 +272,42 @@ extension AutoSpotoConstants.Strings {
         value: "There was an error creating your playlist. Please try again.",
         comment: "The text that appears next to the private switch"
     )
+    
+    static let DONE = NSLocalizedString(
+        "DONE",
+        value: "Done",
+        comment: "Generic 'Done' string"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST",
+        value: "Your playlist has been created",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT",
+        value: "From now on, any time a Spotify track is shared between you and %@, it will be added to '%@' playlist.",
+        comment: "Subtitle success text after creating playlist."
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT",
+        value: "From now on, any time a Spotify track is shared in %@, it will be added to '%@' playlist.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT",
+        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared between you and %@.",
+        comment: "Subtitle success text after creating playlist (opting out of auto updates)."
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT",
+        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared in %@.",
+        comment: "The text that appears next to the private switch (opting out of auto updates)"
+    )
+    
 }
 
