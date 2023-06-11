@@ -25,7 +25,7 @@ struct CreatePlaylistButton: View {
                             .resizable()
                             .renderingMode(.template)
                             .foregroundColor(.textPrimaryWhite)
-                            .frame(width: 30, height: 30)
+                            .frame(width: 40, height: 40)
                         
                         Text(AutoSpotoConstants.Strings.CREATE_PLAYLIST)
                             .font(.josefinSansSemibold(18))

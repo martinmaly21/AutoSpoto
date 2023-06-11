@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CreatePlaylistView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -59,11 +60,23 @@ struct CreatePlaylistView: View {
                         
                         Spacer()
                         
-                        Image("spotify-logo")
+                        KFImage(chat.spotifyPlaylist?.imageURL)
+                            .placeholder {
+                                Image("spotify-logo")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.spotifyGreen)
+                                    .frame(width: 40, height: 40)
+                            }
+                            .cacheOriginalImage(true)
+                            .fade(duration: 0.25)
                             .resizable()
-                            .renderingMode(.template)
-                            .foregroundColor(.spotifyGreen)
-                            .frame(width: 30, height: 30)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(8)
+                            .aspectRatio(contentMode: .fill)
+                        
+                        
                     }
                     
                     HStack {
@@ -101,7 +114,7 @@ struct CreatePlaylistView: View {
                         .resizable()
                         .renderingMode(.template)
                         .foregroundColor(.spotifyGreen)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 40, height: 40)
                 }
                 
                 
