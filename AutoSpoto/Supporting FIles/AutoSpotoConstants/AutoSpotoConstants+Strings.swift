@@ -309,5 +309,10 @@ extension AutoSpotoConstants.Strings {
         comment: "The text that appears next to the private switch (opting out of auto updates)"
     )
     
+    static let DISCONNECT_CHAT_FROM_PLAYLIST = NSLocalizedString(
+        "DISCONNECT_CHAT_FROM_PLAYLIST",
+        value: "Disconnect chat from playlist",
+        comment: "The text that appears next to the private switch (opting out of auto updates)"
+    )
 }
 

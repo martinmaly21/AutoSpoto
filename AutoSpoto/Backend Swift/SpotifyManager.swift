@@ -201,16 +201,17 @@ class SpotifyManager {
     public static func createPlaylistAndAddTracks(
         for chat: Chat,
         desiredPlaylistName: String
-    ) async throws {
+    ) async throws -> String {
         guard let filteredTracksChunks = try await filterChat(for: chat) else {
             throw AutoSpotoError.chatHasNoValidIDs
         }
         
         //create playlist
         let spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-        chat.spotifyPlaylistID = spotifyPlaylistID
         
         try await updatePlaylist(for: spotifyPlaylistID, for: filteredTracksChunks)
+        
+        return spotifyPlaylistID
     }
     
     private static func createPlaylist(
