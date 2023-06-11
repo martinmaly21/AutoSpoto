@@ -12,7 +12,7 @@ struct SpotifyPlaylist: Codable {
         let url: String
     }
     let id: String
-    let images: [Image]
+    private let images: [Image]
     let name: String
     
     var imageURL: URL? {
@@ -20,5 +20,13 @@ struct SpotifyPlaylist: Codable {
             return nil
         }
         return URL(string: imageURLString)
+    }
+    
+    var url: URL? {
+        guard let url = URL(string: "https://open.spotify.com/playlist/\(id)") else {
+            return nil
+        }
+        
+        return url
     }
 }

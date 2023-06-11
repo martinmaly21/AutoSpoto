@@ -9,6 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct CreatePlaylistView: View {
+    @Environment(\.openURL) private var openURL
+    
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var showCreatePlaylistSheet: Bool
     
@@ -79,11 +81,37 @@ struct CreatePlaylistView: View {
                         
                     }
                     
-                    HStack {
-                        Text(successSubtitle)
-                            .font(.josefinSansRegular(18))
+                    VStack(spacing: 25){
+                        HStack {
+                            Text(successSubtitle)
+                                .font(.josefinSansRegular(18))
+                            
+                            Spacer()
+                        }
+                        .fixedSize(horizontal: false, vertical: true)
                         
-                        Spacer()
+                        HStack {
+                            ZStack {
+                                if let url = chat.spotifyPlaylist?.url {
+                                    Button(
+                                        action: {
+                                            openURL(url)
+                                        },
+                                        label: {
+                                            Text(url.absoluteString)
+                                                .font(.josefinSansRegular(15))
+                                                .foregroundColor(.spotifyGreen)
+                                                .underline(pattern: .solid)
+                                            
+                                        }
+                                    )
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .frame(height: 0)
+                            
+                            Spacer()
+                        }
                     }
                     
                     Spacer()
