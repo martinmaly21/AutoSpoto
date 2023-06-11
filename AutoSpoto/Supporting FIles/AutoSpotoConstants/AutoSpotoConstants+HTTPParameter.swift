@@ -22,4 +22,7 @@ extension AutoSpotoConstants.HTTPParameter {
     static let name = "name"
     static let description = "description"
     static let uris = "uris"
+    static let fields = "fields"
+    static let id = "id"
+    static let images = "images"
 }
