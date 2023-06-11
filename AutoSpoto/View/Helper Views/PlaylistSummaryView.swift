@@ -16,6 +16,7 @@ struct PlaylistSummaryView: View {
     let width: CGFloat
     let height: CGFloat
     
+    @State private var isModifyingPlaylist = false
     @State private var optInToAutomaticPlaylistUpdates = true
     
     var spotifyPlaylist: SpotifyPlaylist? {
@@ -101,7 +102,9 @@ struct PlaylistSummaryView: View {
                                 title: AutoSpotoConstants.Strings.SYNC_TRACKS,
                                 action: {
                                     Task {
+                                        isModifyingPlaylist = true
                                         //TODO: update spotify playlist if new tracks
+                                        isModifyingPlaylist = false
                                     }
                                 }
                             )
@@ -109,7 +112,9 @@ struct PlaylistSummaryView: View {
                             Button(
                                 action: {
                                     Task {
+                                        isModifyingPlaylist = true
                                         await homeViewModel.disconnectPlaylist(for: chat)
+                                        isModifyingPlaylist = false
                                     }
                                 },
                                 label: {
@@ -127,7 +132,7 @@ struct PlaylistSummaryView: View {
                 
                 Spacer()
             }
-            
+            .disabled(isModifyingPlaylist)
             .padding(.horizontal, 16.5)
             .frame(height: height)
             .frame(width: width)
