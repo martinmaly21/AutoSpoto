@@ -268,6 +268,7 @@ class SpotifyManager {
     }
     
     //Use this method to check if a playist exists
+    //Note: even 'deleted' playlists are fetchable for 90 days after they're 'deleted'
     public static func checkIfPlaylistExists(for spotifyPlaylistID: String) async throws -> Bool {
         let spotifyPlaylist = try await fetchPlaylist(for: spotifyPlaylistID)
         return spotifyPlaylist != nil
