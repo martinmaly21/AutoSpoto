@@ -50,35 +50,43 @@ struct CreatePlaylistView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if successfullyCreatedPlaylist {
-                HStack {
-                    Text(AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST)
-                        .font(.josefinSansBold(22))
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack {
+                        Text(AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST)
+                            .font(.josefinSansBold(22))
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        
+                        Image("spotify-logo")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.spotifyGreen)
+                            .frame(width: 30, height: 30)
+                    }
+                    
+                    HStack {
+                        Text(successSubtitle)
+                            .font(.josefinSansRegular(18))
+                        
+                        Spacer()
+                    }
                     
                     Spacer()
                     
-                    Image("spotify-logo")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.spotifyGreen)
-                        .frame(width: 30, height: 30)
-                }
-                
-                Text(successSubtitle)
-                    .font(.josefinSansRegular(18))
-                
-                HStack {
-                    Spacer()
-                    
-                    Button(
-                        action: {
-                            self.showCreatePlaylistSheet = false
-                        },
-                        label: {
-                            Text(AutoSpotoConstants.Strings.DONE)
-                        }
-                    )
+                    HStack {
+                        Spacer()
+                        
+                        Button(
+                            action: {
+                                self.showCreatePlaylistSheet = false
+                            },
+                            label: {
+                                Text(AutoSpotoConstants.Strings.DONE)
+                            }
+                        )
+                    }
                 }
             } else {
                 HStack {
@@ -104,14 +112,14 @@ struct CreatePlaylistView: View {
                     TextField(AutoSpotoConstants.Strings.PLAYLIST_PLACEHOLDER_NAME, text: $playlistName)
                         .font(.josefinSansRegular(18))
                 }
-                .padding(.vertical)
+                .padding(.vertical, 8)
                 
                 Toggle(
                     isOn: $optInToAutomaticPlaylistUpdates,
                     label: {
                         Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
                             .font(.josefinSansRegular(16))
-                            .frame(height: 50)
+                            .frame(maxHeight: .infinity)
                     }
                 )
                 
