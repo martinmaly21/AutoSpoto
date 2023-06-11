@@ -106,7 +106,7 @@ extension AutoSpotoConstants.Strings {
     
     static let MODIFY_PLAYLIST_WITH_NAME = NSLocalizedString(
         "MODIFY_PLAYLIST",
-        value: "Modify '%@' playlist",
+        value: "Modify '%@' playlist connection",
         comment: "Title for button to allow the user to modify an existing playlist from a chat"
     )
 
@@ -311,8 +311,45 @@ extension AutoSpotoConstants.Strings {
     
     static let DISCONNECT_CHAT_FROM_PLAYLIST = NSLocalizedString(
         "DISCONNECT_CHAT_FROM_PLAYLIST",
-        value: "Disconnect chat from playlist",
+        value: "Disconnect chat",
         comment: "The text that appears next to the private switch (opting out of auto updates)"
     )
+    
+    static let SYNC_TRACKS = NSLocalizedString(
+        "SYNC_TRACKS",
+        value: "Sync tracks",
+        comment: "A button that allows user to force a track sync"
+    )
+    
+    static let FORCE_SYNC_BUTTON_OPTED_OUT_SUBTITLE = NSLocalizedString(
+        "FORCE_SYNC_BUTTON_OPTED_OUT_SUBTITLE",
+        value: "Since you've disabled automatic playlist updates for this chat, you will need to press this button whenever you'd like to update your playlist with the latest tracks.",
+        comment: "Button subtitle that allows user to force a track sync (opted out of automatic updates)"
+    )
+    
+    static let FORCE_SYNC_BUTTON_OPTED_IN_SUBTITLE = NSLocalizedString(
+        "FORCE_SYNC_BUTTON_OPTED_IN_SUBTITLE",
+        value: "Since you've enabled automatic playlist updates for this chat, this will automatically be done for you each hour.",
+        comment: "Button subtitle that allows user to force a track sync (opted in to automatic updates)"
+    )
+    
+    static let CONNECTED_TO = NSLocalizedString(
+        "CONNECTED_TO",
+        value: "Connected to:",
+        comment: "Button subtitle that allows user to force a track sync (opted in to automatic updates)"
+    )
+    
+    static let CHAT_NAME_PLACEHOLDER = NSLocalizedString(
+        "CHAT_NAME_PLACEHOLDER",
+        value: "My playlist",
+        comment: "Generic placeholder chat name"
+    )
+    
+    static let CHAT_URL_PLACEHOLDER = NSLocalizedString(
+        "CHAT_URL_PLACEHOLDER",
+        value: "https://open.spotify.com/playlist/xxxxxxxxxxxxxxxxxxxxxx",
+        comment: "Generic placeholder spotify url"
+    )
+    
 }
 

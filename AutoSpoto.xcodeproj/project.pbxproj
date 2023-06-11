@@ -90,6 +90,7 @@
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
 		50FB02E12A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */; };
 		50FB02E32A34C9A600D2CEB7 /* ModifyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E22A34C9A600D2CEB7 /* ModifyPlaylistView.swift */; };
+		50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E42A35A49600D2CEB7 /* SyncButton.swift */; };
 		9296FFF729CF5A4000853EF5 /* AccessContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 /* End PBXBuildFile section */
@@ -178,6 +179,7 @@
 		50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylist.swift; sourceTree = "<group>"; };
 		50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPlaylistButton.swift; sourceTree = "<group>"; };
 		50FB02E22A34C9A600D2CEB7 /* ModifyPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPlaylistView.swift; sourceTree = "<group>"; };
+		50FB02E42A35A49600D2CEB7 /* SyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncButton.swift; sourceTree = "<group>"; };
 		9296FFF629CF5A4000853EF5 /* AccessContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 				503BC30029B3A83800743ED5 /* OnboardingButton.swift */,
 				503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */,
 				50FB02E02A34BBDC00D2CEB7 /* ModifyPlaylistButton.swift */,
+				50FB02E42A35A49600D2CEB7 /* SyncButton.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
+				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
 				500610F4298ADE3700A50DA1 /* SwiftPythonInterface.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
 				509B08682A3203C800917AAC /* KeychainToken.swift in Sources */,
