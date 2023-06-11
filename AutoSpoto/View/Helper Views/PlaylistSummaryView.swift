@@ -15,6 +15,8 @@ struct PlaylistSummaryView: View {
     let width: CGFloat
     let height: CGFloat
     
+    @State private var optInToAutomaticPlaylistUpdates = true
+    
     var spotifyPlaylist: SpotifyPlaylist? {
         return chat.spotifyPlaylist
     }
@@ -23,21 +25,21 @@ struct PlaylistSummaryView: View {
         ZStack {
             Color.clear
                 .background(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.2), radius: 6, x: 4, y: -3)
+                .shadow(color: .gray.opacity(0.2), radius: 6, x: 4, y: -3)
                 .frame(height: height)
                 .frame(width: width)
             
-            HStack {
-                HStack {
-                    VStack {
+            HStack(alignment: .center) {
+                HStack(alignment: .center) {
+                    VStack(spacing: 8) {
                         HStack {
                             Text(AutoSpotoConstants.Strings.CONNECTED_TO)
-                                .font(.josefinSansBold(16))
+                                .font(.josefinSansSemibold(16))
                             
                             Spacer()
                         }
                         
-                        HStack(spacing: 10) {
+                        HStack(spacing: 12) {
                             KFImage(spotifyPlaylist?.imageURL)
                                 .placeholder {
                                     Image("spotify-logo")
@@ -54,10 +56,11 @@ struct PlaylistSummaryView: View {
                                 .cornerRadius(8)
                                 .aspectRatio(contentMode: .fill)
                             
-                            VStack(alignment: .leading, spacing: 6) {
+                            VStack(alignment: .leading, spacing: 0) {
                                 Text(spotifyPlaylist?.name ?? AutoSpotoConstants.Strings.CHAT_NAME_PLACEHOLDER)
-                                    .font(.josefinSansRegular(22))
+                                    .font(.josefinSansBold(22))
                                     .font(.headline)
+                                    .padding(.bottom, -2)
                                 
                                 Button(
                                     action: {
@@ -70,10 +73,19 @@ struct PlaylistSummaryView: View {
                                             .font(.josefinSansRegular(15))
                                             .foregroundColor(.spotifyGreen)
                                             .underline(pattern: .solid)
+                                            .padding(.bottom, 8)
                                         
                                     }
                                 )
                                 .buttonStyle(.plain)
+                                
+                                Toggle(
+                                    isOn: $optInToAutomaticPlaylistUpdates,
+                                    label: {
+                                        Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
+                                            .font(.josefinSansRegular(12))
+                                    }
+                                )
                             }
                             
                             Spacer()
