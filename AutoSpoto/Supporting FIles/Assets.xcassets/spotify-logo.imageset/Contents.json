@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "spotify-logo.png",
+      "filename" : "file-spotify-logo-png-4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "file-spotify-logo-png-4 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "file-spotify-logo-png-4 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
