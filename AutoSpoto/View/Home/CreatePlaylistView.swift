@@ -121,14 +121,12 @@ struct CreatePlaylistView: View {
                     HStack {
                         Spacer()
                         
-                        Button(
+                        DoneButton(
                             action: {
                                 self.showCreatePlaylistSheet = false
-                            },
-                            label: {
-                                Text(AutoSpotoConstants.Strings.DONE)
                             }
                         )
+                        .padding(.leading, 8)
                     }
                 }
             } else {
@@ -175,17 +173,14 @@ struct CreatePlaylistView: View {
                 HStack {
                     Spacer()
                     
-                    Button(
+                    CancelButton(
                         action: {
                             self.showCreatePlaylistSheet = false
-                        },
-                        label: {
-                            Text(AutoSpotoConstants.Strings.CANCEL)
                         }
                     )
                     .padding(.leading, 8)
                     
-                    Button(
+                    CreateButton(
                         action: {
                             self.isCreatingPlaylist = true
                             self.errorCreatingPlaylist = false
@@ -202,13 +197,10 @@ struct CreatePlaylistView: View {
                                     self.errorCreatingPlaylist = true
                                     self.isCreatingPlaylist = false
                                 }
-                                
                             }
-                        },
-                        label: {
-                            Text(AutoSpotoConstants.Strings.CREATE)
                         }
                     )
+                    .padding(.leading, 8)
                 }
             }
         }
@@ -216,7 +208,7 @@ struct CreatePlaylistView: View {
         .onAppear {
             playlistName = chat.displayName
         }
-        .frame(width: 450, height: errorCreatingPlaylist ? 270 : 230)
+        .frame(width: 450, height: errorCreatingPlaylist ? 275 : 235)
         .padding(.all, 25)
     }
 }
