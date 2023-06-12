@@ -192,7 +192,10 @@ struct CreatePlaylistView: View {
                                         desiredPlaylistName: playlistName
                                     )
                                     self.isCreatingPlaylist = false
-                                    self.successfullyCreatedPlaylist = true
+                                    
+                                    withAnimation {
+                                        self.successfullyCreatedPlaylist = true
+                                    }
                                 } catch {
                                     self.errorCreatingPlaylist = true
                                     self.isCreatingPlaylist = false
