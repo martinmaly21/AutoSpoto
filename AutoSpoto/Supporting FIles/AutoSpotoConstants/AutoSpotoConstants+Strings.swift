@@ -52,7 +52,7 @@ extension AutoSpotoConstants.Strings {
 
     static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: "Grant full disk access",
+        value: "1. Grant full disk access",
         comment: "Generic 'Continue' string"
     )
 
@@ -357,16 +357,28 @@ extension AutoSpotoConstants.Strings {
         comment: "Tell user that they may need to restart the app to see their disk access changes"
     )
     
+    static let DRAG_AND_DROP_INSTRUCTION = NSLocalizedString(
+        "DRAG_AND_DROP_INSTRUCTION",
+        value: "Drag and drop this icon on to the full Disk Access window.",
+        comment: "Instructional text of what to do with the app icon."
+    )
+    
     static let FULL_DISK_ACCESS_BUTTON_INFO = NSLocalizedString(
         "FULL_DISK_ACCESS_BUTTON_INFO",
-        value: "or go to System Settings > Privacy & Security > Full Disk Access",
+        value: "Or go to System Settings > Privacy & Security > Full Disk Access.",
         comment: "Extra information about how they can access a certain page if clicking the button fails"
     )
     
-    static let DRAG_AND_DROP_INSTRUCTION = NSLocalizedString(
-        "DRAG_AND_DROP_INSTRUCTION",
-        value: "Drag and drop this icon on to the Full Disk Access window.",
-        comment: "Instructional text of what to do with the app icon."
+    static let A_ONBOARDING_TEXT = NSLocalizedString(
+        "A_ONBOARDING_TEXT",
+        value: "a.",
+        comment: "Onboarding text denoting a. step"
+    )
+    
+    static let B_ONBOARDING_TEXT = NSLocalizedString(
+        "B_ONBOARDING_TEXT",
+        value: "b.",
+        comment: "Onboarding text denoting b. step"
     )
 }
 
