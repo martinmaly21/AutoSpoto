@@ -52,25 +52,19 @@ extension AutoSpotoConstants.Strings {
 
     static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: "AutoSpoto needs full disk access to continue.",
+        value: "Grant full disk access",
         comment: "Generic 'Continue' string"
     )
 
     static let FULL_DISK_ACCESS_PERMISSION_SUBTITLE = NSLocalizedString(
-        "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: """
-        Full disk access is required to access your iMessages.
-        Once access has been granted, you will be able to progress to logging in with your preferred music streaming service.
-
-        Note: a restart may be required.
-        """,
+        "FULL_DISK_ACCESS_PERMISSION_SUBTITLE",
+        value: "This is required so AutoSpoto can scan your messages for Spotify tracks you've shared and received.",
         comment: "Generic 'Continue' string"
     )
 
     static let OPEN_SETTINGS = NSLocalizedString(
         "OPEN_SETTINGS",
-        value: "Open settings",
-        
+        value: "Open System Settings",
         comment: "Button title that allows user to open settings"
     )
 
@@ -351,5 +345,28 @@ extension AutoSpotoConstants.Strings {
         comment: "Generic placeholder spotify url"
     )
     
+    static let PERMISSIONS_VIEW_TITLE = NSLocalizedString(
+        "PERMISSIONS_VIEW_TITLE",
+        value: "Complete these two tasks to set up AutoSpoto",
+        comment: "Title for permissions view"
+    )
+    
+    static let RESTART_INFO_SUBTITLE = NSLocalizedString(
+        "RESTART_INFO_SUBTITLE",
+        value: "You may need to restart AutoSpoto after you’ve given disk access.",
+        comment: "Tell user that they may need to restart the app to see their disk access changes"
+    )
+    
+    static let FULL_DISK_ACCESS_BUTTON_INFO = NSLocalizedString(
+        "FULL_DISK_ACCESS_BUTTON_INFO",
+        value: "or go to System Settings > Privacy & Security > Full Disk Access",
+        comment: "Extra information about how they can access a certain page if clicking the button fails"
+    )
+    
+    static let DRAG_AND_DROP_INSTRUCTION = NSLocalizedString(
+        "DRAG_AND_DROP_INSTRUCTION",
+        value: "Drag and drop this icon on to the Full Disk Access window.",
+        comment: "Instructional text of what to do with the app icon."
+    )
 }
 

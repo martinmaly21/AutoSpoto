@@ -116,7 +116,9 @@ struct OnboardingContainerView: View {
                                 }
                             }
                             
-                        }
+                        },
+                        width: 150,
+                        height: 35
                     )
                     .padding(.trailing, defaultHorizontalPadding)
                 }

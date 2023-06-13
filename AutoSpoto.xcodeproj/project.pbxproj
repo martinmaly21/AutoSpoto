@@ -10,6 +10,7 @@
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
+		5048A23D2A38C17B00790C36 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23C2A38C17B00790C36 /* Shake.swift */; };
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
@@ -46,6 +47,8 @@
 		50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
 		50B20D742A386A6F00212CE4 /* DiskAccessRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B20D732A386A6F00212CE4 /* DiskAccessRequestCell.swift */; };
 		50B20D762A386A7800212CE4 /* SpotifyAccessRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B20D752A386A7800212CE4 /* SpotifyAccessRequestCell.swift */; };
+		50B20D842A38B60700212CE4 /* Temp_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50B20D832A38B60700212CE4 /* Temp_Coaching.mov */; };
+		50B20D862A38BA4800212CE4 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B20D852A38BA4800212CE4 /* AVPlayerView.swift */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
@@ -54,10 +57,8 @@
 		50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */; };
 		50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */; };
 		50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */; };
+		50D0261D2A38BC9500DBD789 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0261C2A38BC9500DBD789 /* AVLooperPlayer.swift */; };
 		50D43F602985EAD5000DC525 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D43F5F2985EAD5000DC525 /* View.swift */; };
-		50D7A416298B333700943731 /* unload_plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A40F298B333700943731 /* unload_plist.sh */; };
-		50D7A419298B333800943731 /* load_plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A412298B333700943731 /* load_plist.sh */; };
-		50D7A41A298B333800943731 /* com.auto.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D7A413298B333700943731 /* com.auto.plist */; };
 		50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */; };
 		50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB079F2984B6A000BC5864 /* JosefinSansRegular.ttf */; };
 		50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A02984B6A000BC5864 /* JosefinSansSemibold.ttf */; };
@@ -91,6 +92,7 @@
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
+		5048A23C2A38C17B00790C36 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTracksResponse.swift; sourceTree = "<group>"; };
 		50B20D732A386A6F00212CE4 /* DiskAccessRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessRequestCell.swift; sourceTree = "<group>"; };
 		50B20D752A386A7800212CE4 /* SpotifyAccessRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAccessRequestCell.swift; sourceTree = "<group>"; };
+		50B20D832A38B60700212CE4 /* Temp_Coaching.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Temp_Coaching.mov; sourceTree = "<group>"; };
+		50B20D852A38BA4800212CE4 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Dimensions.swift"; sourceTree = "<group>"; };
 		50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+URL.swift"; sourceTree = "<group>"; };
 		50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicStreamingServiceView.swift; sourceTree = "<group>"; };
+		50D0261C2A38BC9500DBD789 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		50D43F5F2985EAD5000DC525 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		50D7A40F298B333700943731 /* unload_plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = unload_plist.sh; sourceTree = "<group>"; };
 		50D7A410298B333700943731 /* extract_script.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = extract_script.py; sourceTree = "<group>"; };
@@ -226,6 +231,14 @@
 			path = "Helper Views";
 			sourceTree = "<group>";
 		};
+		5048A23B2A38C16E00790C36 /* GeometryEffect */ = {
+			isa = PBXGroup;
+			children = (
+				5048A23C2A38C17B00790C36 /* Shake.swift */,
+			);
+			path = GeometryEffect;
+			sourceTree = "<group>";
+		};
 		504C2EB62A24F90B00097F5F /* Backend Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +324,14 @@
 			path = PermissionsRequestView;
 			sourceTree = "<group>";
 		};
+		50B20D822A38B5FD00212CE4 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				50B20D832A38B60700212CE4 /* Temp_Coaching.mov */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
 		50CFCE2C29896ED0009C3F4A /* AutoSpotoConstants */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +348,14 @@
 				50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */,
 			);
 			path = AutoSpotoConstants;
+			sourceTree = "<group>";
+		};
+		50D0261B2A38BC8B00DBD789 /* Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				50D0261C2A38BC9500DBD789 /* AVLooperPlayer.swift */,
+			);
+			path = Subclass;
 			sourceTree = "<group>";
 		};
 		50F178902995EAA9002AFC1C /* Onboarding */ = {
@@ -380,6 +409,7 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
+				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
 				50F34C65297659950059516B /* Colors.xcassets */,
 				50F34C692976611E0059516B /* Font */,
@@ -397,6 +427,7 @@
 				50D43F5F2985EAD5000DC525 /* View.swift */,
 				5069BF722999C0A6007F4037 /* String.swift */,
 				509B08702A32F1FD00917AAC /* Array.swift */,
+				50B20D852A38BA4800212CE4 /* AVPlayerView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,8 +450,10 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				503BC2FC29B38DC700743ED5 /* Helper Views */,
 				5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */,
+				5048A23B2A38C16E00790C36 /* GeometryEffect */,
+				50D0261B2A38BC8B00DBD789 /* Subclass */,
+				503BC2FC29B38DC700743ED5 /* Helper Views */,
 				5069BF6D2999AC0A007F4037 /* NSViewRepresentable */,
 				50F34C8F297662B00059516B /* View Modifiers */,
 				50F178902995EAA9002AFC1C /* Onboarding */,
@@ -512,13 +545,11 @@
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
 				50DB07A92984B6A000BC5864 /* JosefinSansBold.ttf in Resources */,
+				50B20D842A38B60700212CE4 /* Temp_Coaching.mov in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
-				50D7A41A298B333800943731 /* com.auto.plist in Resources */,
-				50D7A419298B333800943731 /* load_plist.sh in Resources */,
-				50D7A416298B333700943731 /* unload_plist.sh in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B20D862A38BA4800212CE4 /* AVPlayerView.swift in Sources */,
 				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
 				504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */,
@@ -547,6 +579,7 @@
 				503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */,
 				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
 				50A6922D2A371B6500E87BA2 /* CreateButton.swift in Sources */,
+				5048A23D2A38C17B00790C36 /* Shake.swift in Sources */,
 				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
@@ -565,6 +598,7 @@
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
+				50D0261D2A38BC9500DBD789 /* AVLooperPlayer.swift in Sources */,
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
 				509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
