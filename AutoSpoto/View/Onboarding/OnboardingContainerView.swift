@@ -10,19 +10,18 @@ import SwiftUI
 struct OnboardingContainerView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Binding var autoSpotoCurrentView: AutoSpotoContainerView.CurrentView
-
+    
     enum CurrentView {
         case getStarted
-        case diskAccessIntroductionView
-        case chooseMusicStreamingServiceView
-        case accessContactsView
+        case permissionsRequestView
     }
     @State private var onboardingCurrentView: CurrentView = .getStarted
+    @State var userAuthorizedDiskAccess: Bool = false
     @State var userAuthorizedSpotify: Bool = false
-
+    
     enum OnboardingGradient {
         case lightMode, darkMode
-
+        
         @ViewBuilder
         var shape: some View {
             switch self {
@@ -52,16 +51,16 @@ struct OnboardingContainerView: View {
             }
         }
     }
-
+    
     //title animation parameter
     @State private var topLeftLogoOpacity: CGFloat = 0
-
+    
     @State private var shouldAnimateLogoToTopLeft = false
     @State private var elementTransitionOpacity: CGFloat = 1.0
-
+    
     private let defaultHorizontalPadding: CGFloat = 16.5
     private let defaultBottomPadding: CGFloat = 10
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -72,13 +71,13 @@ struct OnboardingContainerView: View {
                         .padding(.leading, 18)
                         .padding(.top, 18)
                         .opacity(topLeftLogoOpacity)
-
+                    
                     Spacer()
                 }
-
+                
                 Spacer()
             }
-
+            
             switch onboardingCurrentView {
             case .getStarted:
                 GetStartedView(
@@ -87,24 +86,23 @@ struct OnboardingContainerView: View {
                     shouldAnimateLogoToTopLeft: $shouldAnimateLogoToTopLeft,
                     elementTransitionOpacity: $elementTransitionOpacity
                 )
-            case .diskAccessIntroductionView:
-                DiskAccessIntroductionView()
-            case .chooseMusicStreamingServiceView:
-                ChooseMusicStreamingServiceView(userAuthorizedSpotify: $userAuthorizedSpotify)
-            case .accessContactsView:
-                AccessContactsView()
+            case .permissionsRequestView:
+                PermissionsRequestView(
+                    userAuthorizedSpotify: $userAuthorizedSpotify,
+                    userAuthorizedDiskAcess: $userAuthorizedDiskAccess
+                )
             }
-
-            let shouldHideToolBar = onboardingCurrentView == .chooseMusicStreamingServiceView && !userAuthorizedSpotify
+            
+            let shouldHideToolBar = onboardingCurrentView == .permissionsRequestView && (!userAuthorizedSpotify || !userAuthorizedDiskAccess)
             //tool bar
             VStack {
                 Spacer()
-
+                
                 HStack {
                     Spacer()
-
+                    
                     OnboardingButton(
-                        title: onboardingCurrentView == .accessContactsView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
+                        title: onboardingCurrentView == .permissionsRequestView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
                         action: {
                             switch onboardingCurrentView {
                             case .getStarted:
@@ -112,11 +110,7 @@ struct OnboardingContainerView: View {
                                     shouldAnimateLogoToTopLeft = true
                                     elementTransitionOpacity = 0
                                 }
-                            case .diskAccessIntroductionView:
-                                onboardingCurrentView = .chooseMusicStreamingServiceView
-                            case .chooseMusicStreamingServiceView:
-                                onboardingCurrentView = .accessContactsView
-                            case .accessContactsView:
+                            case .permissionsRequestView:
                                 withAnimation {
                                     autoSpotoCurrentView = .home
                                 }
