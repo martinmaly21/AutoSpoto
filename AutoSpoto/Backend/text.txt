@@ -1,3 +1,0 @@
-/Users/martinmaly/AutoSpoto/AutoSpoto/Backend/.cache
-/Users/martinmaly/AutoSpoto/AutoSpoto/Backend/autospoto.db
-DBD9A071-1507-4104-A7B0-9302B102B4D4
