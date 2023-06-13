@@ -44,6 +44,7 @@ struct GetStartedView: View {
                 .opacity(elementTransitionOpacity)
 
             Divider()
+                .frame(height: 0.5)
                 .overlay(.white)
                 .padding(.bottom, 40)
                 .opacity(elementTransitionOpacity)

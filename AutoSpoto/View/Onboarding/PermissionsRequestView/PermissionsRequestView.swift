@@ -14,7 +14,12 @@ struct PermissionsRequestView: View {
     @Binding var userAuthorizedDiskAcess: Bool
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text(AutoSpotoConstants.Strings.PERMISSIONS_VIEW_TITLE)
+                .font(.josefinSansSemibold(32))
+                .foregroundColor(.textPrimaryWhite)
+                .padding(.top, 30)
+            
             DiskAccessRequestCell(userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
             
             SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify)
