@@ -24,6 +24,7 @@ struct DiskAccessRequestCell: View {
                 Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_TITLE)
                     .font(.josefinSansSemibold(26))
                     .foregroundColor(.textPrimaryWhite)
+                    .padding(.top, 8)
                 
                 Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_SUBTITLE)
                     .font(.josefinSansRegular(18))

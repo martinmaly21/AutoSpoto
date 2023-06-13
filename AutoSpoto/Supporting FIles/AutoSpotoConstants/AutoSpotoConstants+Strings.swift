@@ -52,7 +52,7 @@ extension AutoSpotoConstants.Strings {
 
     static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: "1. Grant full disk access",
+        value: "1. Grant Full Disk Access",
         comment: "Generic 'Continue' string"
     )
 
@@ -359,7 +359,7 @@ extension AutoSpotoConstants.Strings {
     
     static let DRAG_AND_DROP_INSTRUCTION = NSLocalizedString(
         "DRAG_AND_DROP_INSTRUCTION",
-        value: "Drag and drop this icon on to the full Disk Access window.",
+        value: "Drag and drop this icon on to the Full Disk Access window.",
         comment: "Instructional text of what to do with the app icon."
     )
     
