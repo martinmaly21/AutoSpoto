@@ -19,6 +19,9 @@ struct PermissionsRequestView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            
+            Spacer()
+                .frame(height: 80)
             Text(AutoSpotoConstants.Strings.JUST_A_COUPLE_THINGS_TEXT)
                 .font(.josefinSansSemibold(32))
                 .foregroundColor(.textPrimaryWhite)
@@ -26,6 +29,8 @@ struct PermissionsRequestView: View {
             DiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAcess)
             
             SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
+            
+            Spacer()
         }
         .padding(.horizontal, 18)
         .opacity(elementTransitionOpacity)
