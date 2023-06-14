@@ -187,7 +187,7 @@ class DatabaseManager {
             
             let result = try? await CNContactStore().requestAccess(for: .contacts)
             
-            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: Data?)]()
+            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: String?)]()
             
             if result ?? false {
                 //user has given AutoSpoto contact permissions
@@ -220,11 +220,11 @@ class DatabaseManager {
                     //we want to appenda  separate row in the DataFrame for each variation of the contact
                     //i.e. there should be a separate row for each contact #, each email, even if within the same contact
                     for result in result.phoneNumbers {
-                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: result.value.stringValue.digits, imageBlob: image))
+                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: result.value.stringValue.digits, imageBlob: image?.base64EncodedString()))
                     }
                     
                     for result in result.emailAddresses {
-                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image))
+                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image?.base64EncodedString()))
                     }
                 }
             }

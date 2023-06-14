@@ -9,7 +9,7 @@ import SwiftUI
 
 class Chat: Equatable, Identifiable {
     let type: ChatType
-    let image: String? //base 64 string I believe
+    let image: Data?
     let ids: [Int]
 
     //this indicates whether a playlist already exists for this chat

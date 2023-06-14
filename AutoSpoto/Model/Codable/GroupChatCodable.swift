@@ -10,6 +10,6 @@ import Foundation
 struct GroupChatCodable: Codable {
     let chat_ids: [Int]
     let display_name: String
-    let Image: String?
+    let Image: Data?
     let playlist_id: String?
 }

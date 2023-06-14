@@ -8,7 +8,7 @@
 import Foundation
 
 struct IndividualChatCodable: Codable {
-    let imageBlob: String?
+    let imageBlob: Data?
     let contactInfo: String
     let chatIDs: [Int]
     let firstName: String?
