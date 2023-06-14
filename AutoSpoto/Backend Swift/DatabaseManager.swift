@@ -23,15 +23,13 @@ class DatabaseManager {
                 throw AutoSpotoError.errorGettingAutoSpotoDB
             }
             try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-            let autospotoDBPath = directoryURL.appendingPathComponent ("autospoto.db")
-            try Data().write(to: autospotoDBPath)
             
             let homeDirectory = "\(NSHomeDirectory())"
             let chatDatabaseString = "\(homeDirectory)/Library/Messages/chat.db"
             
             // MARK: Open a SQLite database connection
             self.database = try Connection(
-                autospotoDBPath.path(),
+                directoryURL.path(percentEncoded: false).appending("autospoto.db"),
                 readonly: false
             )
             
