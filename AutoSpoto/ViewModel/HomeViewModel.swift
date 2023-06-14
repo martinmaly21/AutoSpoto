@@ -51,10 +51,7 @@ class HomeViewModel: ObservableObject {
     }
     
     init() {
-        #warning("Will need to update")
-        let databaseString = "/Users/martinmaly/Developer/AutoSpoto/AutoSpoto/Backend/autospoto.db"
-        let addressBookID = "0E0A58CC-863C-47F3-9C70-A81612E240C4"
-        DatabaseManager.shared = DatabaseManager(databaseString: databaseString, addressBookID: addressBookID)
+        DatabaseManager.shared = DatabaseManager()
     }
 
     public func fetchChats() async {

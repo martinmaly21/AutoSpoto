@@ -404,5 +404,11 @@ extension AutoSpotoConstants.Strings {
         value: "This is required so AutoSpoto can create Spotify playlists out of your message chats.",
         comment: "Title text for spotify subtitle"
     )
+    
+    static let ERROR_GETTING_AUTOSPOTO_DB = NSLocalizedString(
+        "ERROR_GETTING_AUTOSPOTO_DB",
+        value: "Error getting AutoSpoto DB",
+        comment: "Error when getting autospoto db failed. Maybe cuz user revoked permissions."
+    )
 }
 

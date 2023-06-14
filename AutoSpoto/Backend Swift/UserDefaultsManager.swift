@@ -32,4 +32,17 @@ class UserDefaultsManager {
             )
         }
     }
+    
+    static var addressBookID: String? {
+        get {
+            return UserDefaults.standard.string(forKey: AutoSpotoConstants.UserDefaults.addressBookID)
+        }
+        
+        set {
+            UserDefaults.standard.set(
+                newValue,
+                forKey: AutoSpotoConstants.UserDefaults.addressBookID
+            )
+        }
+    }
 }
