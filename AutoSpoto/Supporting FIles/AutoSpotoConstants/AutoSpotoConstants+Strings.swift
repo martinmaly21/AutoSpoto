@@ -369,6 +369,12 @@ extension AutoSpotoConstants.Strings {
         comment: "Extra information about how they can access a certain page if clicking the button fails"
     )
     
+    static let SPOTIFY_ACCESS_BUTTON_INFO = NSLocalizedString(
+        "SPOTIFY_ACCESS_BUTTON_INFO",
+        value: "BLAH BLAH THIS TEXT SHOULD BE REPLACED.",
+        comment: "Additional information about connecitng to Spotify"
+    )
+    
     static let A_ONBOARDING_TEXT = NSLocalizedString(
         "A_ONBOARDING_TEXT",
         value: "a.",
@@ -379,6 +385,24 @@ extension AutoSpotoConstants.Strings {
         "B_ONBOARDING_TEXT",
         value: "b.",
         comment: "Onboarding text denoting b. step"
+    )
+    
+    static let JUST_A_COUPLE_THINGS_TEXT = NSLocalizedString(
+        "JUST_A_COUPLE_THINGS_TEXT",
+        value: "Just a couple things to get started",
+        comment: "Title text for permissions screen"
+    )
+    
+    static let SPOTIFY_PERMISSION_TITLE = NSLocalizedString(
+        "SPOTIFY_PERMISSION_TITLE",
+        value: "2. Connect your Spotify",
+        comment: "Title text for spotify conncting"
+    )
+    
+    static let SPOTIFY_PERMISSION_SUBTITLE = NSLocalizedString(
+        "SPOTIFY_PERMISSION_SUBTITLE",
+        value: "This is required so AutoSpoto can create Spotify playlists out of your message chats.",
+        comment: "Title text for spotify subtitle"
     )
 }
 
