@@ -11,6 +11,7 @@ import WebKit
 struct SpotifyWebView: NSViewRepresentable {
     @Binding var isVisible: Bool
     @Binding var userAuthorizedSpotify: Bool
+    @Binding var isLoadingWebView: Bool
     
     func makeNSView(context: Context) -> WKWebView {
         return WKWebView()
@@ -49,6 +50,10 @@ struct SpotifyWebView: NSViewRepresentable {
             }
             
             decisionHandler(.allow)
+        }
+        
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            parent.isLoadingWebView = false
         }
         
         private func requestForCallbackURL(request: URLRequest) async throws {

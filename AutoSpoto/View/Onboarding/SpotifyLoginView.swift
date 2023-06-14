@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SpotifyLoginView: View {
+    @State var isLoadingWebView = true
     @Binding var isVisible: Bool
     @Binding var userAuthorizedSpotify: Bool
 
@@ -32,7 +33,13 @@ struct SpotifyLoginView: View {
                 .padding()
             }
 
-            SpotifyWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify)
+            ZStack {
+                SpotifyWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify, isLoadingWebView: $isLoadingWebView)
+                
+                if isLoadingWebView {
+                    ProgressView()
+                }
+            }
         }
         .frame(
             width: AutoSpotoConstants.Dimensions.loginWithSpotifyWindowWidth,
