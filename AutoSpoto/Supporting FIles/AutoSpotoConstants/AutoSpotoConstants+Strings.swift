@@ -40,7 +40,7 @@ extension AutoSpotoConstants.Strings {
 
     static let WHAT_IS_AUTOSPOTO_ANSWER = NSLocalizedString(
         "MADE_WITH_LOVE",
-        value: "AutoSpoto is a fully offline tool that converts your iMessage chats and groupchats into live updating playlists in your favourite music streaming services.  You’ll be guided through the set up process in the coming pages.",
+        value: "AutoSpoto is a local tool that converts your iMessage chats and groupchats into live updating playlists in Spotify.  You’ll be guided through the set up process on the following page.",
         comment: "Answer text to 'What is AutoSpoto?' on PermissionsRequestView."
     )
 
