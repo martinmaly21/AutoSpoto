@@ -12,5 +12,6 @@ extension AVPlayerView {
     open override func layout() {
         super.layout()
         self.controlsStyle = .none
+        self.player?.volume = 0
     }
 }

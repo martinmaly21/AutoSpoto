@@ -365,13 +365,13 @@ extension AutoSpotoConstants.Strings {
     
     static let FULL_DISK_ACCESS_BUTTON_INFO = NSLocalizedString(
         "FULL_DISK_ACCESS_BUTTON_INFO",
-        value: "Or go to System Settings > Privacy & Security > Full Disk Access.",
+        value: "Click the button or go to System Settings > Privacy & Security > Full Disk Access.",
         comment: "Extra information about how they can access a certain page if clicking the button fails"
     )
     
     static let SPOTIFY_ACCESS_BUTTON_INFO = NSLocalizedString(
         "SPOTIFY_ACCESS_BUTTON_INFO",
-        value: "BLAH BLAH THIS TEXT SHOULD BE REPLACED.",
+        value: "Click the button and then enter your Spotify log in credentials.",
         comment: "Additional information about connecitng to Spotify"
     )
     
