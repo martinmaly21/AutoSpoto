@@ -26,7 +26,7 @@ struct SpotifyAccessRequestCell: View {
                 .padding(.bottom, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            if userAuthorizedDiskAcess {
+            if userAuthorizedDiskAcess && !userAuthorizedSpotify {
                 HStack(spacing: 20) {
                     ZStack(alignment: .topLeading) {
                         VStack(alignment: .center, spacing: 0) {
@@ -50,20 +50,17 @@ struct SpotifyAccessRequestCell: View {
                                 .padding(.horizontal, 16.5)
                                 .foregroundColor(.textPrimaryWhite)
                         }
-                        
+                        .frame(maxWidth: .infinity)
+                        .padding()
                         .background(.regularMaterial)
                         .cornerRadius(8)
                     }
                     .cornerRadius(10)
                 }
-                .onChange(of: KeychainManager.authenticationTokenExists) { newValue in
-                    userAuthorizedSpotify = newValue
-                }
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: userAuthorizedDiskAcess ? 400 :  100)
-        .padding(.horizontal, 16.5)
+        .padding(.horizontal, 20)
         .background(.regularMaterial)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
