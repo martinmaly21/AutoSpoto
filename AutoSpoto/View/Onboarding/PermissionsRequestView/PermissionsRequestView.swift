@@ -37,7 +37,6 @@ struct PermissionsRequestView: View {
         .onReceive(timer) { input in
             withAnimation {
                 //disk access
-                let hasAccessToChatDB =
                 userAuthorizedDiskAcess = DiskAccessManager.userAuthorizedDiskAccess
             }
         }
