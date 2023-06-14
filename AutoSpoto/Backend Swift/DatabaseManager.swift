@@ -230,10 +230,10 @@ class DatabaseManager {
             }
             
             let contactsDataFrame: DataFrame = [
-                "firstName": contactsRowsTuple.map { $0.firstName },
-                "lastName": contactsRowsTuple.map { $0.lastName },
-                "contactInfo": contactsRowsTuple.map { $0.contactInfo },
-                "imageBlob": contactsRowsTuple.map { $0.imageBlob }
+                "firstName": contactsRowsTuple.map { $0.firstName }.isEmpty ? [""] : contactsRowsTuple.map { $0.firstName },
+                "lastName": contactsRowsTuple.map { $0.lastName }.isEmpty ? [""] : contactsRowsTuple.map { $0.lastName },
+                "contactInfo": contactsRowsTuple.map { $0.contactInfo }.isEmpty ? [""] : contactsRowsTuple.map { $0.contactInfo },
+                "imageBlob": contactsRowsTuple.map { $0.imageBlob }.isEmpty ? [""] : contactsRowsTuple.map { $0.imageBlob }
             ]
             
             //2
