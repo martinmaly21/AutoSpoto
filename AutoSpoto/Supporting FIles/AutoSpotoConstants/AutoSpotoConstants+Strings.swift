@@ -94,13 +94,19 @@ extension AutoSpotoConstants.Strings {
 
     static let CREATE_PLAYLIST = NSLocalizedString(
         "CREATE_PLAYLIST",
-        value: "Create playlist",
+        value: "Connect chat to playlist",
         comment: "Title for button to allow the user to create a playlist from a chat"
     )
     
     static let MODIFY_PLAYLIST = NSLocalizedString(
         "MODIFY_PLAYLIST",
-        value: "Modify playlist",
+        value: "Modify VERY COOL playlist",
+        comment: "Title for button to allow the user to modify an existing playlist from a chat"
+    )
+    
+    static let MODIFY_PLAYLIST_WITH_NAME = NSLocalizedString(
+        "MODIFY_PLAYLIST",
+        value: "Modify '%@' playlist connection",
         comment: "Title for button to allow the user to modify an existing playlist from a chat"
     )
 
@@ -154,7 +160,7 @@ extension AutoSpotoConstants.Strings {
 
     static let ENTER_PLAYLIST_NAME = NSLocalizedString(
         "ENTER_PLAYLIST_NAME",
-        value: "Enter your playlist name",
+        value: "Playlist name",
         comment: "Prompt for user to enter playlist name"
     )
 
@@ -248,5 +254,102 @@ extension AutoSpotoConstants.Strings {
         value: "This playlist should be private.",
         comment: "The text that appears next to the private switch"
     )
+    
+    static let AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT = NSLocalizedString(
+        "AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT",
+        value: "Automatically update your playlist with any new tracks shared between you and %@.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT = NSLocalizedString(
+        "AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT",
+        value: "Automatically update your playlist with any new tracks shared between in %@.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let ERROR_CREATING_PLAYLIST = NSLocalizedString(
+        "ERROR_CREATING_PLAYLIST",
+        value: "There was an error creating your playlist. Please try again.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let DONE = NSLocalizedString(
+        "DONE",
+        value: "Done",
+        comment: "Generic 'Done' string"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST",
+        value: "Your chat has been connected",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT",
+        value: "From now on, any time a Spotify track is shared between you and %@, it will be added to '%@' playlist.",
+        comment: "Subtitle success text after creating playlist."
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT",
+        value: "From now on, any time a Spotify track is shared in %@, it will be added to '%@' playlist.",
+        comment: "The text that appears next to the private switch"
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT",
+        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared between you and %@.",
+        comment: "Subtitle success text after creating playlist (opting out of auto updates)."
+    )
+    
+    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
+        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT",
+        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared in %@.",
+        comment: "The text that appears next to the private switch (opting out of auto updates)"
+    )
+    
+    static let DISCONNECT_CHAT_FROM_PLAYLIST = NSLocalizedString(
+        "DISCONNECT_CHAT_FROM_PLAYLIST",
+        value: "Disconnect chat",
+        comment: "The text that appears next to the private switch (opting out of auto updates)"
+    )
+    
+    static let SYNC_TRACKS = NSLocalizedString(
+        "SYNC_TRACKS",
+        value: "Manually sync tracks",
+        comment: "A button that allows user to force a track sync"
+    )
+    
+    static let FORCE_SYNC_BUTTON_OPTED_OUT_SUBTITLE = NSLocalizedString(
+        "FORCE_SYNC_BUTTON_OPTED_OUT_SUBTITLE",
+        value: "Since you've disabled automatic playlist updates for this chat, you will need to press this button whenever you'd like to update your playlist with the latest tracks.",
+        comment: "Button subtitle that allows user to force a track sync (opted out of automatic updates)"
+    )
+    
+    static let FORCE_SYNC_BUTTON_OPTED_IN_SUBTITLE = NSLocalizedString(
+        "FORCE_SYNC_BUTTON_OPTED_IN_SUBTITLE",
+        value: "Since you've enabled automatic playlist updates for this chat, this will automatically be done for you each hour.",
+        comment: "Button subtitle that allows user to force a track sync (opted in to automatic updates)"
+    )
+    
+    static let CONNECTED_TO = NSLocalizedString(
+        "CONNECTED_TO",
+        value: "Connected to:",
+        comment: "Button subtitle that allows user to force a track sync (opted in to automatic updates)"
+    )
+    
+    static let CHAT_NAME_PLACEHOLDER = NSLocalizedString(
+        "CHAT_NAME_PLACEHOLDER",
+        value: "My playlist",
+        comment: "Generic placeholder chat name"
+    )
+    
+    static let CHAT_URL_PLACEHOLDER = NSLocalizedString(
+        "CHAT_URL_PLACEHOLDER",
+        value: "https://open.spotify.com/playlist/xxxxxxxxxxxxxxxxxxxxxx",
+        comment: "Generic placeholder spotify url"
+    )
+    
 }
 

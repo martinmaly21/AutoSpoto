@@ -207,10 +207,9 @@ class SpotifyManager {
         }
         
         //create playlist
-        let playlistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-        chat.playlistID = playlistID
+        chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
         
-        try await updatePlaylist(for: playlistID, for: filteredTracksChunks)
+        try await updatePlaylist(for: chat)
     }
     
     private static func createPlaylist(
@@ -227,11 +226,19 @@ class SpotifyManager {
         return spotifyPlaylist.id
     }
     
+    //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
+    //OR more likely the lastUpdated param should be a property on Chat
     public static func updatePlaylist(
-        for spotifyPlaylistID: String,
-        for filteredTracksChunks: [[Track]]
+        for chat: Chat
     ) async throws {
-        //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID for chat")
+        }
+        
+        guard let filteredTracksChunks = try await filterChat(for: chat) else {
+            throw AutoSpotoError.chatHasNoValidIDs
+        }
+        
         //add tracks to playlist
         for filteredTracksChunk in filteredTracksChunks {
             let params: [String : Any] = [
@@ -256,5 +263,21 @@ class SpotifyManager {
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
         
         //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
+    }
+    
+    public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist? {
+        let params = [
+            AutoSpotoConstants.HTTPParameter.fields: "\(AutoSpotoConstants.HTTPParameter.id),\(AutoSpotoConstants.HTTPParameter.images),\(AutoSpotoConstants.HTTPParameter.name)"
+        ]
+        let data = try await http(method: .get(queryParams: params), path: "/playlists/\(spotifyPlaylistID)")
+        let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
+        return spotifyPlaylist
+    }
+    
+    //Use this method to check if a playist exists
+    //Note: even 'deleted' playlists are fetchable for 90 days after they're 'deleted'
+    public static func checkIfPlaylistExists(for spotifyPlaylistID: String) async throws -> Bool {
+        let spotifyPlaylist = try await fetchPlaylist(for: spotifyPlaylistID)
+        return spotifyPlaylist != nil
     }
 }

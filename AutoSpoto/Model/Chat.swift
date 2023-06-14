@@ -13,11 +13,14 @@ class Chat: Equatable, Identifiable {
     let ids: [Int]
 
     //this indicates whether a playlist already exists for this chat
-    var playlistID: String?
+    var spotifyPlaylistID: String?
 
-    var playlistExists: Bool {
-        return playlistID != nil
+    var spotifyPlaylistExists: Bool {
+        return spotifyPlaylistID != nil
     }
+    
+    //fetched from Spotify
+    var spotifyPlaylist: SpotifyPlaylist?
 
     var tracksPages: [[Track]] = []
     
@@ -27,6 +30,8 @@ class Chat: Equatable, Identifiable {
     
     //we will fetch metadata for 15 tracks at a time
     let numberOfTrackMetadataPerFetch = 15
+    
+    var optedInToAutomaticChatUpdates = true
 
     var hasNoTracks: Bool {
         return tracks.isEmpty && hasFetchedTracksIDs
@@ -42,6 +47,15 @@ class Chat: Equatable, Identifiable {
     
     var trackMetadataPagesBeingFetched: [Int] = []
     var trackMetadataPagesFetched: [Int] = []
+    
+    var isGroupChat: Bool {
+        switch type {
+        case .group(_):
+            return true
+        default:
+            return false
+        }
+    }
 
     var displayName: String {
         switch type {
@@ -72,14 +86,14 @@ class Chat: Equatable, Identifiable {
         )
         image = individualChatCodable.imageBlob
         ids = individualChatCodable.chatIDs
-        playlistID = individualChatCodable.spotifyPlaylistID //TODO: cahnge
+        spotifyPlaylistID = individualChatCodable.spotifyPlaylistID //TODO: cahnge
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
         type = .group(name: groupChatCodable.display_name)
         image = groupChatCodable.Image
         ids = groupChatCodable.chat_ids
-        playlistID = groupChatCodable.playlist_id
+        spotifyPlaylistID = groupChatCodable.playlist_id
     }
     
     func getPage(for spotifyID: String? = nil) -> Int? {

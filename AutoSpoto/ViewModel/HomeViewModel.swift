@@ -147,21 +147,54 @@ class HomeViewModel: ObservableObject {
     func createPlaylistAndAddSongs(
         chat: Chat,
         desiredPlaylistName: String
+    ) async throws {
+        //re-fetch tracks, just in case there were ones that were added since
+        await fetchTracks(for: chat)
+        
+        try await SpotifyManager.createPlaylistAndAddTracks(
+            for: chat,
+            desiredPlaylistName: desiredPlaylistName
+        )
+        
+        self.objectWillChange.send()
+    }
+    
+    func updatePlaylist(
+        for chat: Chat
     ) async {
         //re-fetch tracks, just in case there were ones that were added since
         await fetchTracks(for: chat)
         
         do {
-            //TODO: show loading indicator
-            try await SpotifyManager.createPlaylistAndAddTracks(
-                for: chat,
-                desiredPlaylistName: desiredPlaylistName
-            )
+            try await SpotifyManager.updatePlaylist(for: chat)
         } catch let error {
-            //TODO: handle if user has no valid IDs (AutoSpotoError.chatHasNoValidIDs error)
-            //TODO: hanlde error
+            //TODO: handle if update playlist fails
+        }
+       
+        
+        self.objectWillChange.send()
+    }
+    
+    func fetchPlaylist(
+        for chat: Chat
+    ) async {
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID")
+        }
+        do {
+            chat.spotifyPlaylist = try await SpotifyManager.fetchPlaylist(for: spotifyPlaylistID)
+        } catch let error {
+            //TODO: handle if fetch for playlist fails
         }
         
+        self.objectWillChange.send()
+    }
+    
+    func disconnectPlaylist(
+        for chat: Chat
+    ) async {
+        #warning("Need to update autospoto.db")
+        chat.spotifyPlaylistID = nil
         self.objectWillChange.send()
     }
     
