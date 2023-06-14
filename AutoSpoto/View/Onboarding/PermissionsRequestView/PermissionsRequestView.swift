@@ -43,7 +43,6 @@ struct PermissionsRequestView: View {
             withAnimation {
                 //disk access
                 userAuthorizedDiskAcess = DiskAccessManager.userAuthorizedDiskAccess
-                userAuthorizedSpotify = KeychainManager.authenticationTokenExists
             }
         }
     }
