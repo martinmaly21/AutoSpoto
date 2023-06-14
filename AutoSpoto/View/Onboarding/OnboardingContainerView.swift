@@ -105,6 +105,9 @@ struct OnboardingContainerView: View {
                         action: {
                             switch onboardingCurrentView {
                             case .getStarted:
+                                userAuthorizedDiskAccess = (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
+                                userAuthorizedSpotify = KeychainManager.authenticationTokenExists
+                                
                                 withAnimation {
                                     shouldAnimateLogoToTopLeft = true
                                     elementTransitionOpacity = 0
