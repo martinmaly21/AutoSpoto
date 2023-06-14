@@ -11,11 +11,12 @@ struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Namespace var bottomID
     
-    @State private var showModifyPlaylistSheeet = false
+    @State private var showCreatePlaylistSheet = false
     
     var body: some View {
-        let bottomPadding: CGFloat = 25
-        let buttonHeight: CGFloat = 40
+        let createButtonHeight: CGFloat = 60
+        let playlistSummaryHeight: CGFloat = 150
+        
         let heightOfToolbar: CGFloat = 80
         
         if let selectedChat = homeViewModel.selectedChat {
@@ -56,7 +57,7 @@ struct ChatView: View {
                                         }
                                         
                                         Spacer()
-                                            .frame(height: bottomPadding + buttonHeight + 30)
+                                            .frame(height: (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) + 15)
                                             .id(bottomID)
                                     }
                                     .frame(minHeight: proxy.size.height)
@@ -69,17 +70,30 @@ struct ChatView: View {
                                 })
                                 .frame(width: proxy.size.width)
                                 .introspectScrollView { scrollView in
-                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: 0, right: 0)
+                                    scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight, right: 0)
                                 }
                             }
                             
-                            ModifyPlaylistButton(
-                                playlistExists: selectedChat.playlistExists,
-                                action: {
-                                    showModifyPlaylistSheeet = true
+                            if selectedChat.spotifyPlaylistExists {
+                                PlaylistSummaryView(
+                                    chat: selectedChat,
+                                    width: proxy.size.width,
+                                    height: playlistSummaryHeight
+                                )
+                                .onAppear {
+                                    Task {
+                                        await homeViewModel.fetchPlaylist(for: selectedChat)
+                                    }
                                 }
-                            )
-                            .padding(.bottom, bottomPadding)
+                            } else {
+                                CreatePlaylistButton(
+                                    width: proxy.size.width,
+                                    height: createButtonHeight,
+                                    action: {
+                                        showCreatePlaylistSheet = true
+                                    }
+                                )
+                            }
                         }
                     }
                     .environmentObject(homeViewModel)
@@ -117,10 +131,10 @@ struct ChatView: View {
                 }
             }
             .sheet(
-                isPresented: $showModifyPlaylistSheeet,
+                isPresented: $showCreatePlaylistSheet,
                 content: {
-                    ModifyPlaylistView(
-                        showModifyPlaylistSheeet: $showModifyPlaylistSheeet,
+                    CreatePlaylistView(
+                        showCreatePlaylistSheet: $showCreatePlaylistSheet,
                         chat: selectedChat
                     )
                     .environmentObject(homeViewModel)

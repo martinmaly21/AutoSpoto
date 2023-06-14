@@ -27,7 +27,7 @@ struct ChatsListView: View {
                         ChatRow(
                             chatImage: chat.image,
                             chatDisplayName: chat.displayName,
-                            chatPlaylistExists: chat.playlistExists,
+                            chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
                             isSelected: chat == homeViewModel.selectedChat
                         )
                         .onTapGesture {

@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatRow: View {
     let chatImage: String?
     let chatDisplayName: String
-    let chatPlaylistExists: Bool
+    let chatSpotifyPlaylistExists: Bool
     
     let isSelected: Bool
 
@@ -31,7 +31,7 @@ struct ChatRow: View {
 
                 Spacer()
 
-                if chatPlaylistExists {
+                if chatSpotifyPlaylistExists {
                     Image(systemName: "music.note.list")
                         .resizable()
                         .frame(width: 20, height: 20)
