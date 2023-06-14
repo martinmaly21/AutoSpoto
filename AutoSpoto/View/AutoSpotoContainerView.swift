@@ -24,8 +24,8 @@ struct AutoSpotoContainerView: View {
             }
         }
         .onAppear {
-            //TODO: more fine grained checks. E.g. if user has granted disk access
-            if KeychainManager.authenticationTokenExists {
+            //Make sure user has logged into Spotify and has given Disk Access before showing them home view
+            if KeychainManager.authenticationTokenExists && DiskAccessManager.userAuthorizedDiskAccess {
                 //user has previously logged in
                 //we will assume Spotify profile exists too, since it's set at same time
                 autoSpotoCurrentView = .home
