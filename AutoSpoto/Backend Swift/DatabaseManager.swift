@@ -8,6 +8,7 @@
 import Foundation
 import SQLite
 import TabularData
+import Contacts
 
 class DatabaseManager {
     public static var shared: DatabaseManager!
@@ -34,14 +35,6 @@ class DatabaseManager {
             )
             
             try database.execute("attach '\(chatDatabaseString)' as cdb")
-            
-            // Execute the "attach" statements
-            if let addressBookID = UserDefaultsManager.addressBookID {
-                let addressBookDatabaseString = "\(homeDirectory)/Library/Application Support/AddressBook/Sources/\(addressBookID)/AddressBook-v22.abcddb"
-                
-                //if we can get address book, attach it to the db
-                try database.execute("attach '\(addressBookDatabaseString)' as adb")
-            }
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
             try database.execute("""
@@ -119,7 +112,7 @@ class DatabaseManager {
             ]
             
             return directoryTB
-        }catch let error{
+        } catch let error {
             fatalError("Error: \(error)")
         }
     }
@@ -179,74 +172,63 @@ class DatabaseManager {
         }
     }
     
-    func fetchIndividualChats() -> Data {
+    func fetchIndividualChats() async -> Data {
         do {
-            //1
-            let firstName = Expression<String?>("ZFIRSTNAME")
-            let lastName = Expression<String?>("ZLASTNAME")
-            let phoneNumber = Expression<String?>("ZFULLNUMBER")
-            let email = Expression<String?>("ZADDRESS")
-            let imageBlob = Expression<String?>("ZTHUMBNAILIMAGEDATA")
+            let contactStore = CNContactStore()
             
-            let owner = Expression<String>("ZOWNER")
-            let pk = Expression<String>("Z_PK")
+            let keysToFetch: [CNKeyDescriptor] = [
+                CNContactGivenNameKey as CNKeyDescriptor,
+                CNContactMiddleNameKey as CNKeyDescriptor,
+                CNContactFamilyNameKey as CNKeyDescriptor,
+                CNContactEmailAddressesKey as CNKeyDescriptor,
+                CNContactPhoneNumbersKey as CNKeyDescriptor,
+                CNContactThumbnailImageDataKey as CNKeyDescriptor
+            ]
             
-            let contactsTable = Table("ZABCDRECORD")
-            let phoneNumberTable = Table("ZABCDPHONENUMBER")
-            let emailTable = Table("ZABCDEMAILADDRESS")
+            let result = try? await CNContactStore().requestAccess(for: .contacts)
             
-            //MARK: - Phone number contact extraction
-            let phoneNumberJoinCondition = phoneNumberTable[owner] == contactsTable[pk]
-            let allPhoneNumberContactsTable = phoneNumberTable
-                .join(contactsTable, on: phoneNumberJoinCondition)
-                .select(firstName, lastName, phoneNumber, imageBlob)
+            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: Data?)]()
             
-            let phoneNumberContactsRows = try database.prepare(allPhoneNumberContactsTable)
-            
-            //Note: 'contactInfo' will be either an email or a string
-            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: String?)]()
-            // Iterate through the phone number rows and access the selected values
-            for contact in phoneNumberContactsRows {
-                let firstNameValue = contact[firstName]
-                let lastNameValue = contact[lastName]
-                
-                let imageBlobValue = contact[imageBlob]
-                
-                //the digits is an extension declared in String.swift to strip any non-numeric digits from phone number
-                if let phoneNumberValue = contact[phoneNumber]?.digits,
-                   //this code is used to prevent adding duplicate entries to contactsRowsTuple
-                   !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
-                       firstNameValue == fn && lastNameValue == ln && phoneNumberValue == ci && imageBlobValue == ib
-                   }) {
-                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: phoneNumberValue, imageBlob: imageBlobValue))
+            if result ?? false {
+                //user has given AutoSpoto contact permissions
+                var allContainers: [CNContainer] = []
+                do {
+                    allContainers = try contactStore.containers(matching: nil)
+                } catch let error {
+                    print("Error fetching containers: \(error)")
+                }
+
+                var results: [CNContact] = []
+
+                // Iterate all containers and append their contacts to our results array
+                for container in allContainers {
+                    let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                    do {
+                        let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch)
+                        results.append(contentsOf: containerResults)
+                    } catch {
+                        print("Error fetching results for container")
+                    }
+                }
+
+                //contacts data frame holds both the email and phone number contacts
+                for result in results {
+                    let firstName = result.givenName + result.middleName
+                    let lastName = result.familyName
+                    let image = result.thumbnailImageData
+                    
+                    //we want to appenda  separate row in the DataFrame for each variation of the contact
+                    //i.e. there should be a separate row for each contact #, each email, even if within the same contact
+                    for result in result.phoneNumbers {
+                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: result.value.stringValue.digits, imageBlob: image))
+                    }
+                    
+                    for result in result.emailAddresses {
+                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image))
+                    }
                 }
             }
             
-            //MARK: - Email contact extraction
-            let emailJoinCondition = emailTable[owner] == contactsTable[pk]
-            let allEmailContactsTable = emailTable
-                .join(contactsTable, on: emailJoinCondition)
-                .select(firstName, lastName, email, imageBlob)
-            
-            let emailContactsRows = try database.prepare(allEmailContactsTable)
-            
-            // Iterate through the email rows and access the selected values
-            for contact in emailContactsRows {
-                let firstNameValue = contact[firstName]
-                let lastNameValue = contact[lastName]
-                
-                let imageBlobValue = contact[imageBlob]
-                
-                //this code is used to prevent adding duplicate entries to emailContactsRowsTuple
-                if let emailValue = contact[email],
-                   !contactsRowsTuple.contains(where: { (fn: String?, ln: String?, ci: String?, ib: String?) in
-                       firstNameValue == fn && lastNameValue == ln && emailValue == ci && imageBlobValue == ib
-                   }) {
-                    contactsRowsTuple.append((firstName: firstNameValue, lastName: lastNameValue, contactInfo: emailValue, imageBlob: imageBlobValue))
-                }
-            }
-            
-            //contacts data frame holds both the email and phone number contacts
             let contactsDataFrame: DataFrame = [
                 "firstName": contactsRowsTuple.map { $0.firstName },
                 "lastName": contactsRowsTuple.map { $0.lastName },
