@@ -37,8 +37,8 @@ struct PermissionsRequestView: View {
         .onReceive(timer) { input in
             withAnimation {
                 //disk access
-                let hasAccessToChatDB = (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
-                userAuthorizedDiskAcess = hasAccessToChatDB
+                let hasAccessToChatDB =
+                userAuthorizedDiskAcess = DiskAccessManager.userAuthorizedDiskAccess
             }
         }
     }

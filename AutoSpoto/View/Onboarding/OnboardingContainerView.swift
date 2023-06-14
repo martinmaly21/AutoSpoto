@@ -105,7 +105,7 @@ struct OnboardingContainerView: View {
                         action: {
                             switch onboardingCurrentView {
                             case .getStarted:
-                                userAuthorizedDiskAccess = (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
+                                userAuthorizedDiskAccess = DiskAccessManager.userAuthorizedDiskAccess
                                 userAuthorizedSpotify = KeychainManager.authenticationTokenExists
                                 
                                 withAnimation {

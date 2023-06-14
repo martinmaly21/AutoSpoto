@@ -11,6 +11,7 @@
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
 		5048A23D2A38C17B00790C36 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23C2A38C17B00790C36 /* Shake.swift */; };
+		5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
@@ -93,6 +94,7 @@
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
 		5048A23C2A38C17B00790C36 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
+		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				509B08552A31B23200917AAC /* KeyChainManager.swift */,
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */,
+				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
 			);
 			path = "Backend Swift";
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				509B085A2A31B36B00917AAC /* SpotifyToken.swift in Sources */,
 				5069BF732999C0A6007F4037 /* String.swift in Sources */,
 				509B08712A32F1FD00917AAC /* Array.swift in Sources */,
+				5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
 				509B085C2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
 				509B08602A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
