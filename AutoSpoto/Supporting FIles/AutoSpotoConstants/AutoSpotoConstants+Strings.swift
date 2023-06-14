@@ -389,7 +389,7 @@ extension AutoSpotoConstants.Strings {
     
     static let JUST_A_COUPLE_THINGS_TEXT = NSLocalizedString(
         "JUST_A_COUPLE_THINGS_TEXT",
-        value: "Just a couple things to get started",
+        value: "Just a couple of things to get started",
         comment: "Title text for permissions screen"
     )
     
