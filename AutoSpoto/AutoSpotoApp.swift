@@ -12,6 +12,7 @@ struct AutoSpotoApp: App {
     var body: some Scene {
         WindowGroup {
             AutoSpotoContainerView()
+                .preferredColorScheme(.dark)
         }
         //disable resizing of the window
         .windowResizability(.contentSize)
