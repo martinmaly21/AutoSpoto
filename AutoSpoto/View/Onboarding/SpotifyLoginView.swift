@@ -23,13 +23,13 @@ struct SpotifyLoginView: View {
                     label: {
                         Image(systemName: "xmark.circle")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 30, height: 30)
                             .foregroundColor(Color.textPrimary)
                             .clipShape(Circle())
                     }
                 )
                 .buttonStyle(.plain)
-                .padding([.trailing, .top], 5)
+                .padding()
             }
 
             SpotifyWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify)
