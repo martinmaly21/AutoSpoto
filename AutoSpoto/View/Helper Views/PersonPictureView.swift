@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct PersonPictureView: View {
-    let base64ImageString: String?
+    let base64ImageData: Data?
     let dimension: CGFloat
     let isSelected: Bool
 
     var body: some View {
         ZStack {
-            if let base64ImageString = base64ImageString,
-               let base64ImageStringData = Data(base64Encoded: base64ImageString),
-               let nsImage = NSImage(data: base64ImageStringData) {
+            if let base64ImageData = base64ImageData,
+               let nsImage = NSImage(data: base64ImageData) {
                 Image(nsImage: nsImage)
                     .resizable()
             } else {

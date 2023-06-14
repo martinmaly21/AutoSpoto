@@ -101,7 +101,7 @@ struct ChatView: View {
                 VStack {
                     HStack(alignment: .center, spacing: 14) {
                         PersonPictureView(
-                            base64ImageString: selectedChat.image,
+                            base64ImageData: selectedChat.image,
                             dimension: 45,
                             isSelected: false
                         )

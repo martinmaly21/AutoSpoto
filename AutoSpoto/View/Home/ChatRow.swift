@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatRow: View {
-    let chatImage: String?
+    let chatImage: Data?
     let chatDisplayName: String
     let chatSpotifyPlaylistExists: Bool
     
@@ -18,7 +18,7 @@ struct ChatRow: View {
         VStack(spacing: 2) {
             HStack(alignment: .center, spacing: 15) {
                 PersonPictureView(
-                    base64ImageString: chatImage,
+                    base64ImageData: chatImage,
                     dimension: 40,
                     isSelected: isSelected
                 )
