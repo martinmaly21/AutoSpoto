@@ -15,15 +15,15 @@ struct PermissionsRequestView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(AutoSpotoConstants.Strings.PERMISSIONS_VIEW_TITLE)
+            Text(AutoSpotoConstants.Strings.JUST_A_COUPLE_THINGS_TEXT)
                 .font(.josefinSansSemibold(32))
                 .foregroundColor(.textPrimaryWhite)
-                .padding(.top, 30)
             
             DiskAccessRequestCell(userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
             
-            SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify)
+            SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
         }
+        .padding(.horizontal, 20)
         .opacity(elementTransitionOpacity)
         .onAppear {
             withAnimation {

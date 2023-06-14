@@ -37,8 +37,8 @@ struct DiskAccessRequestCell: View {
                         VStack(alignment: .center, spacing: 0) {
                             Image(systemName: "opticaldiscdrive.fill")
                                 .resizable()
-                                .frame(width: 150 * 0.9, height: 120 * 0.9)
-                                .padding(.bottom, 40)
+                                .frame(width: 150 * 0.86, height: 120 * 0.86)
+                                .padding(.bottom, 30)
                             
                             OnboardingButton(
                                 title: AutoSpotoConstants.Strings.OPEN_SETTINGS,
@@ -125,7 +125,6 @@ struct DiskAccessRequestCell: View {
                 .stroke(.regularMaterial, lineWidth: 2)
         )
         .cornerRadius(10)
-        .frame(maxWidth: .infinity)
         .onReceive(timer) { input in
             withAnimation {
                 shakeAppIcon += 1
