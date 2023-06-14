@@ -12,26 +12,38 @@ import TabularData
 class DatabaseManager {
     public static var shared: DatabaseManager!
     
-    private let databaseString: String
     private let database: Connection
     
-    init(databaseString: String, addressBookID: String) {
-        self.databaseString = databaseString
-        
-        let homeDirectory = "\(NSHomeDirectory())"
-        let chatDatabaseString = "\(homeDirectory)/Library/Messages/chat.db"
-        let addressBookDatabaseString = "\(homeDirectory)/Library/Application Support/AddressBook/Sources/\(addressBookID)/AddressBook-v22.abcddb"
-        
-        do {
-            // Open a SQLite database connection
+    init?() {
+        do  {
+            //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto
+            let fileManager = FileManager.default
+            let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto") else {
+                throw AutoSpotoError.errorGettingAutoSpotoDB
+            }
+            try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            let autospotoDBPath = directoryURL.appendingPathComponent ("autospoto.db")
+            try Data().write(to: autospotoDBPath)
+            
+            let homeDirectory = "\(NSHomeDirectory())"
+            let chatDatabaseString = "\(homeDirectory)/Library/Messages/chat.db"
+            
+            // MARK: Open a SQLite database connection
             self.database = try Connection(
-                databaseString,
+                autospotoDBPath.path(),
                 readonly: false
             )
             
-            // Execute the "attach" statements
             try database.execute("attach '\(chatDatabaseString)' as cdb")
-            try database.execute("attach '\(addressBookDatabaseString)' as adb")
+            
+            // Execute the "attach" statements
+            if let addressBookID = UserDefaultsManager.addressBookID {
+                let addressBookDatabaseString = "\(homeDirectory)/Library/Application Support/AddressBook/Sources/\(addressBookID)/AddressBook-v22.abcddb"
+                
+                //if we can get address book, attach it to the db
+                try database.execute("attach '\(addressBookDatabaseString)' as adb")
+            }
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
             try database.execute("""
@@ -42,9 +54,11 @@ class DatabaseManager {
                 )
             """)
         } catch let error {
-            fatalError("Error with database (\(databaseString): \(error)")
+            assertionFailure("Error with database: \(error.localizedDescription)")
+            return nil
         }
     }
+    
     func extractChatFromPath(input: String) -> String? {
         guard let rangeStart = input.range(of: "chat"),
               let rangeEnd = input.range(of: "%", range: rangeStart.upperBound..<input.endIndex) else {
