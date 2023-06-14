@@ -38,7 +38,7 @@ struct SpotifyAccessRequestCell: View {
                             OnboardingButton(
                                 title: AutoSpotoConstants.Strings.CONNECT_WITH_SPOTIFY,
                                 action: {
-                                    NSWorkspace.shared.open(AutoSpotoConstants.URL.fullDiskAccess)
+                                    showSpotifyLoginSheet = true
                                 },
                                 width: 220,
                                 height: 30
@@ -68,5 +68,11 @@ struct SpotifyAccessRequestCell: View {
         )
         .cornerRadius(10)
         .opacity(userAuthorizedDiskAcess ? 1 : 0.1)
+        .sheet(
+            isPresented: $showSpotifyLoginSheet,
+            content: {
+                SpotifyLoginView(isVisible: $showSpotifyLoginSheet, userAuthorizedSpotify: $userAuthorizedSpotify)
+            }
+        )
     }
 }
