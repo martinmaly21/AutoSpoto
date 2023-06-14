@@ -85,7 +85,7 @@ class HomeViewModel: ObservableObject {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
         guard individualChats.isEmpty else { return }
         
-        let indivualChatsJSON = DatabaseManager.shared.fetchIndividualChats()
+        let indivualChatsJSON = await DatabaseManager.shared.fetchIndividualChats()
         
         do {
             let decoder = JSONDecoder()
