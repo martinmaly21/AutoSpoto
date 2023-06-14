@@ -68,7 +68,9 @@ struct SpotifyWebView: NSViewRepresentable {
                 
                 DispatchQueue.main.async {
                     self.parent.isVisible = false
-                    self.parent.userAuthorizedSpotify = true
+                    withAnimation {
+                        self.parent.userAuthorizedSpotify = true
+                    }
                 }
             }
         }

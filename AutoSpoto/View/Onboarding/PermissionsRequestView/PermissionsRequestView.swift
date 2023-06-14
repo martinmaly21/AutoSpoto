@@ -39,9 +39,6 @@ struct PermissionsRequestView: View {
                 //disk access
                 let hasAccessToChatDB = (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
                 userAuthorizedDiskAcess = hasAccessToChatDB
-                                                                                     
-                //spotify access
-                userAuthorizedSpotify = KeychainManager.authenticationTokenExists
             }
         }
     }
