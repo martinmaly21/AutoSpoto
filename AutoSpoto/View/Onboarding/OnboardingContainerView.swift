@@ -93,13 +93,12 @@ struct OnboardingContainerView: View {
                 )
             }
             
-            let shouldHideToolBar = onboardingCurrentView == .permissionsRequestView && (!userAuthorizedSpotify || !userAuthorizedDiskAccess)
+            let shouldDisableToolBar = onboardingCurrentView == .permissionsRequestView && (!userAuthorizedSpotify || !userAuthorizedDiskAccess)
             //tool bar
             VStack {
                 Spacer()
                 
                 HStack {
-                    Spacer()
                     
                     OnboardingButton(
                         title: onboardingCurrentView == .permissionsRequestView ? AutoSpotoConstants.Strings.FINISH : AutoSpotoConstants.Strings.CONTINUE,
@@ -121,14 +120,14 @@ struct OnboardingContainerView: View {
                         height: 35
                     )
                     .padding(.trailing, defaultHorizontalPadding)
+                    .padding(.bottom, 20)
                 }
                 .frame(height: 60)
                 .frame(maxWidth: .infinity)
-                .background(.thinMaterial)
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
             }
-            .opacity(shouldHideToolBar ? 0 : 1)
+            .disabled(shouldDisableToolBar)
         }
         .multilineTextAlignment(.center)
         .padding(.horizontal, defaultHorizontalPadding)

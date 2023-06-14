@@ -13,6 +13,10 @@ struct PermissionsRequestView: View {
     @Binding var userAuthorizedSpotify: Bool
     @Binding var userAuthorizedDiskAcess: Bool
     
+    //used for polling for permission changes
+    @State var currentDate = Date.now
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(AutoSpotoConstants.Strings.JUST_A_COUPLE_THINGS_TEXT)
@@ -28,6 +32,16 @@ struct PermissionsRequestView: View {
         .onAppear {
             withAnimation {
                 elementTransitionOpacity = 1
+            }
+        }
+        .onReceive(timer) { input in
+            withAnimation {
+                //disk access
+                let hasAccessToChatDB = (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
+                userAuthorizedDiskAcess = hasAccessToChatDB
+                                                                                     
+                //spotify access
+                userAuthorizedSpotify = KeychainManager.authenticationTokenExists
             }
         }
     }
