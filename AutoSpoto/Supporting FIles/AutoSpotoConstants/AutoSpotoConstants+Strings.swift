@@ -410,5 +410,11 @@ extension AutoSpotoConstants.Strings {
         value: "Error getting AutoSpoto DB",
         comment: "Error when getting autospoto db failed. Maybe cuz user revoked permissions."
     )
+    
+    static let ONBOARDING_SUCCESS = NSLocalizedString(
+        "ONBOARDING_SUCCESS",
+        value: "You're all set up. Now, lets start making playlists!",
+        comment: "Displayed when user finishes onboarding."
+    )
 }
 

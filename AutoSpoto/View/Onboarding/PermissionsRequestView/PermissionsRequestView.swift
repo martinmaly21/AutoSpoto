@@ -30,6 +30,14 @@ struct PermissionsRequestView: View {
             
             SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
             
+            if userAuthorizedSpotify && userAuthorizedSpotify {
+                Text(AutoSpotoConstants.Strings.ONBOARDING_SUCCESS)
+                    .font(.josefinSansRegular(24))
+                    .foregroundColor(.textPrimaryWhite)
+                    .padding(.top, 50)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            
             Spacer()
         }
         .padding(.horizontal, 18)
