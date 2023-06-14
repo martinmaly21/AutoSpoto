@@ -18,11 +18,13 @@ struct SpotifyAccessRequestCell: View {
                 .font(.josefinSansSemibold(26))
                 .foregroundColor(.textPrimaryWhite)
                 .padding(.top, 8)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             Text(AutoSpotoConstants.Strings.SPOTIFY_PERMISSION_SUBTITLE)
                 .font(.josefinSansRegular(18))
                 .foregroundColor(.textPrimaryWhite)
                 .padding(.bottom, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             if userAuthorizedDiskAcess {
                 HStack(spacing: 20) {
@@ -54,7 +56,6 @@ struct SpotifyAccessRequestCell: View {
                     }
                     .cornerRadius(10)
                 }
-                .frame(maxWidth: .infinity)
                 .onChange(of: KeychainManager.authenticationTokenExists) { newValue in
                     userAuthorizedSpotify = newValue
                 }
@@ -62,6 +63,7 @@ struct SpotifyAccessRequestCell: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: userAuthorizedDiskAcess ? 400 :  100)
+        .padding(.horizontal, 16.5)
         .background(.regularMaterial)
         .overlay(
             RoundedRectangle(cornerRadius: 10)

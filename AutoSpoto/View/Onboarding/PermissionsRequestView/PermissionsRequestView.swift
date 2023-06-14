@@ -23,7 +23,7 @@ struct PermissionsRequestView: View {
             
             SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 18)
         .opacity(elementTransitionOpacity)
         .onAppear {
             withAnimation {
