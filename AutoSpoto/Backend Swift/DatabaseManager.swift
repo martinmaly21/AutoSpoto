@@ -45,11 +45,77 @@ class DatabaseManager {
             fatalError("Error with database (\(databaseString): \(error)")
         }
     }
+    func extractChatFromPath(input: String) -> String? {
+        guard let rangeStart = input.range(of: "chat"),
+              let rangeEnd = input.range(of: "%", range: rangeStart.upperBound..<input.endIndex) else {
+            return nil
+        }
+        
+        let startIndex = rangeStart.upperBound
+        let endIndex = rangeEnd.lowerBound
+        let extractedText = input[startIndex..<endIndex]
+        
+        return String(extractedText)
+    }
+    
+    func extractChatFromChatDB(input: String) -> String? {
+        guard let range = input.range(of: "chat") else {
+            return nil
+        }
+        
+        let startIndex = range.upperBound
+        let extractedText = input[startIndex...]
+        
+        return String(extractedText)
+    }
+    
+    func imageToBase64(filePath: String) -> String? {
+        let fileURL = URL(fileURLWithPath: filePath)
+        
+        do {
+            let imageData = try Data(contentsOf: fileURL)
+            let base64String = imageData.base64EncodedString()
+            return base64String
+        } catch {
+            print("Error converting image to Base64: \(error)")
+            return nil
+        }
+    }
+    
+    func getGroupImageFilePaths() -> DataFrame {
+        
+        do{
+            let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+            let directoryURL = homeDirectory.appendingPathComponent("Library/Intents/Images")
+            var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
+            
+            do {
+                let contents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
+                for fileURL in contents {
+                    let directory = fileURL.path
+                    if directory.hasSuffix("GroupPhotoImage.png"){
+                        directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
+                    }
+                }
+            } catch {
+                print("Error reading directory: \(error)")
+            }
+            let directoryTB: DataFrame = [
+                "directoryPath": directories.map {$0.DirPath},
+                "MessageID": directories.map {$0.ChatId},
+                "Base64Image": directories.map {$0.image}
+            ]
+            
+            return directoryTB
+        }catch let error{
+            fatalError("Error: \(error)")
+        }
+    }
     
     func fetchGroupChats() -> Data {
         do {
             
-            var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?)]()
+            var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
             
             
             let chat_ids = Expression<Int?>("ROWID")
@@ -63,18 +129,39 @@ class DatabaseManager {
                 let chatId = groupChat[chat_ids]
                 let name = groupChat[chat_name]
                 let uid = groupChat[guid]
-                contactsRowsTuple.append((chatID: chatId, displayName:name, unique_id: uid))
+                let MessageID = extractChatFromChatDB(input: uid!)
+                contactsRowsTuple.append((chatID: chatId, displayName:name, unique_id: uid, message_id:MessageID))
             }
             let groupChats: DataFrame = [
-                "Chat Id": contactsRowsTuple.map { $0.chatID },
-                "Chat Name": contactsRowsTuple.map { $0.displayName},
-                "Contact Info": contactsRowsTuple.map { $0.unique_id}
+                "ChatId": contactsRowsTuple.map { $0.chatID },
+                "ChatName": contactsRowsTuple.map { $0.displayName},
+                "ContactInfo": contactsRowsTuple.map { $0.unique_id},
+                "MessageID" : contactsRowsTuple.map { $0.message_id}
             ]
             
-            print("data: \(groupChats.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
+            let groupChatImages = getGroupImageFilePaths()
             
+            var groupChatsWithImage = groupChatImages.joined(groupChats, on: "MessageID", kind: .left)
+            var groupChatToUI = groupChatsWithImage.selecting(columnNames: "left.Base64Image", "right.ChatId", "right.ChatName")
+            
+            groupChatToUI.renameColumn("left.Base64Image", to: "image")
+            groupChatToUI.renameColumn("right.ChatId" , to: "chatID")
+            groupChatToUI.renameColumn("right.ChatName", to: "chatName")
+            let playlistDataFrame = retrievePlaylistsDataFrame()
+            
+            var finalGroupChatTable = groupChatToUI.joined(playlistDataFrame, on: "chatID", kind: .left)
+            
+            finalGroupChatTable.renameColumn("left.image", to: "image")
+            finalGroupChatTable.renameColumn("left.chatName" , to: "chatName")
+            finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
+            
+            
+            var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID")
+            
+            
+            print("data: \(renamedFinalGroupChatTable.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             return try groupChats.jsonRepresentation()
-
+            
         }catch let error{
             fatalError("Error: \(error)")
         }
