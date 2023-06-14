@@ -23,7 +23,7 @@ struct PermissionsRequestView: View {
                 .font(.josefinSansSemibold(32))
                 .foregroundColor(.textPrimaryWhite)
             
-            DiskAccessRequestCell(userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
+            DiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAcess)
             
             SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
         }

@@ -10,7 +10,7 @@ import AVKit
 import AppKit
 
 struct DiskAccessRequestCell: View {
-    @Binding var userAuthorizedDiskAcess: Bool
+    @Binding var userAuthorizedDiskAccess: Bool
     
     @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Temp_Coaching", withExtension: "mov")!)
     
@@ -21,19 +21,31 @@ struct DiskAccessRequestCell: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 5) {
-                Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_TITLE)
-                    .font(.josefinSansSemibold(26))
-                    .foregroundColor(.textPrimaryWhite)
-                    .padding(.top, 8)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                HStack {
+                    Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_TITLE)
+                        .font(.josefinSansSemibold(26))
+                        .foregroundColor(.textPrimaryWhite)
+                        .padding(.top, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, userAuthorizedDiskAccess ? 10 : 0)
+                        .strikethrough(userAuthorizedDiskAccess, pattern: .solid)
+                        .opacity(userAuthorizedDiskAccess ? 0.5 : 1)
+                    
+                    if userAuthorizedDiskAccess {
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .tint(.green)
+                    }
+                }
                 
-                Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_SUBTITLE)
-                    .font(.josefinSansRegular(18))
-                    .foregroundColor(.textPrimaryWhite)
-                    .padding(.bottom, 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                if !userAuthorizedDiskAcess {
+                if !userAuthorizedDiskAccess {
+                    Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_SUBTITLE)
+                        .font(.josefinSansRegular(18))
+                        .foregroundColor(.textPrimaryWhite)
+                        .padding(.bottom, 10)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     HStack(spacing: 20) {
                         ZStack(alignment: .topLeading) {
                             VStack(alignment: .center, spacing: 0) {
