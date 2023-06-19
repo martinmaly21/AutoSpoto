@@ -9,7 +9,7 @@ import Foundation
 import SQLite
 import TabularData
 class ExctractScript{
-    
+        
     func extractSpotifyTrackID(from url: String) -> String? {
         let pattern = #"https:\/\/open\.spotify\.com\/track\/(?![a-zA-Z0-9]{19}WHt)[a-zA-Z0-9]{22}"#
         
@@ -28,6 +28,27 @@ class ExctractScript{
         return nil
     }
     
+    
+    func formatDate(from posixDate: Int) -> String{
+        
+        let inputDateInSeconds = Double(posixDate) / 1_000_000_000.0
+
+        let referenceDate = Date(timeIntervalSinceReferenceDate: 0)
+
+        let referenceDateTimeIntervalSince1970 = referenceDate.timeIntervalSince1970
+
+        let outputTimeInterval = referenceDateTimeIntervalSince1970 + inputDateInSeconds
+
+        let outputDate = Date(timeIntervalSince1970: outputTimeInterval)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        let outputString = dateFormatter.string(from: outputDate)
+        
+        return outputString
+    }
+    
     func FetchChats(){
         let chatDatabaseString = "\(NSHomeDirectory())/Library/Messages/chat.db"
         do{
@@ -41,38 +62,36 @@ class ExctractScript{
             let handleTable = Table("handle")
             let chatMessageJoin = Table("chat_message_join")
             let handleID = Expression<Int>("handle_id")
-            let attributedBody = Expression<Data?>("attributedBody")
+            let payloadData = Expression<Data?>("attributedBody")
             let row  = Expression<Int>("ROWID")
             let date = Expression<Int>("date")
             let chatID = Expression<Int>("chat_id")
             let messageID = Expression<Int>("message_id")
             
-            var outputTuple = [(AttributedBody: String?, chatid: Int, Date: Int)]()
+            var outputTuple = [(AttributedBody: String?, chatid: Int, Date: String)]()
             
             let chosenChat = 10
-            for message in try database.prepare(messages.select(date, attributedBody, chatID).where(chatMessageJoin[chatID]==chosenChat).join(handleTable, on: handleTable[row]==messages[handleID]).join(chatMessageJoin, on: chatMessageJoin[messageID] == messages[row])){
+            for message in try database.prepare(messages.select(date, payloadData, chatID).filter(payloadData != nil).where(chatMessageJoin[chatID]==chosenChat).join(.leftOuter, handleTable, on: handleTable[row]==messages[handleID]).join(.leftOuter, chatMessageJoin, on: chatMessageJoin[messageID] == messages[row])){
                 
-                guard let attributedBodyData = message[attributedBody] else {
-                    let _: String? = nil
+                guard let attributedBodyData = message[payloadData] else {
                     return
                 }
-                
-                
+
                 let url = String(decoding: attributedBodyData, as: UTF8.self)
-                print(url)
                 let x = extractSpotifyTrackID(from: url)
-                
+//
                 if (x != nil){
-                    outputTuple.append((AttributedBody: x, chatid: message[chatID], Date: message[date]))
-                    print(outputTuple)
+                    
+                    let outputString = formatDate(from: message[date])
+                    outputTuple.append((AttributedBody: x, chatid: message[chatID], Date: outputString))
                 }
             }
-            
-//            let retrievedSongs: DataFrame = [
-//                "Songs": outputTuple.map {$0.AttributedBody},
-//                "chatId": outputTuple.map {$0.chatid},
-//                "Date": outputTuple.map {$0.Date}
-//            ]
+            //print(outputTuple)
+            let retrievedSongs: DataFrame = [
+                "Songs": outputTuple.map {$0.AttributedBody},
+                "chatId": outputTuple.map {$0.chatid},
+                "Date": outputTuple.map {$0.Date}
+            ]
 //
 //            print("data: \(retrievedSongs.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
 //
