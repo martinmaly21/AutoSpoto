@@ -161,11 +161,9 @@ class DatabaseManager {
             finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
             
             
-            var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID")
+            let renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID")
             
-            
-            print("data: \(renamedFinalGroupChatTable.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
-            return try groupChats.jsonRepresentation()
+            return try renamedFinalGroupChatTable.jsonRepresentation()
             
         }catch let error{
             fatalError("Error: \(error)")
@@ -238,7 +236,7 @@ class DatabaseManager {
             
             //2
             let guID = Expression<String?>("guid")
-            let chatID = Expression<String?>("ROWID")
+            let chatID = Expression<Int>("ROWID")
             
             let chatTable = Table("chat")
             
@@ -248,7 +246,7 @@ class DatabaseManager {
             
             let chatRows = try database.prepare(chatIDsQuery)
             
-            var chatRowsTuple = [(contactInfo: String?, chatID: Int?)]()
+            var chatRowsTuple = [(contactInfo: String?, chatID: Int)]()
             for chat in chatRows {
                 var contactInfo: String?
                 
@@ -261,7 +259,7 @@ class DatabaseManager {
                         contactInfo = parsedData.digits
                     }
                     
-                    chatRowsTuple.append((contactInfo: contactInfo, chatID: Int.random(in: 0...100000))) //TODO: fix this
+                    chatRowsTuple.append((contactInfo: contactInfo, chatID: chat[chatID])) //TODO: fix this
                 }
             }
             

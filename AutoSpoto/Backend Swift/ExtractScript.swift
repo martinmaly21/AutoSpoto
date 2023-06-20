@@ -49,7 +49,16 @@ class ExctractScript{
         return outputString
     }
     
-    func FetchChats(){
+    func removeSpotifyPrefix(from url: String) -> String {
+        let prefix = "https://open.spotify.com/track/"
+        if url.hasPrefix(prefix) {
+            let startIndex = url.index(url.startIndex, offsetBy: prefix.count)
+            return String(url[startIndex...])
+        }
+        return url
+    }
+    
+    func FetchChats(from selectedChatIDs: Int) ->[Track]{
         let chatDatabaseString = "\(NSHomeDirectory())/Library/Messages/chat.db"
         do{
             // MARK: Open a SQLite database connection
@@ -68,37 +77,35 @@ class ExctractScript{
             let chatID = Expression<Int>("chat_id")
             let messageID = Expression<Int>("message_id")
             
-            var outputTuple = [(AttributedBody: String?, chatid: Int, Date: String)]()
-            
-            let chosenChat = 10
+            //var outputTuple = [(AttributedBody: String?, Date: String)]()
+            var tracks: [Track] = []
+            let chosenChat = selectedChatIDs
             for message in try database.prepare(messages.select(date, payloadData, chatID).filter(payloadData != nil).where(chatMessageJoin[chatID]==chosenChat).join(.leftOuter, handleTable, on: handleTable[row]==messages[handleID]).join(.leftOuter, chatMessageJoin, on: chatMessageJoin[messageID] == messages[row])){
                 
                 guard let attributedBodyData = message[payloadData] else {
-                    return
+                    continue
                 }
 
-                let url = String(decoding: attributedBodyData, as: UTF8.self)
-                let x = extractSpotifyTrackID(from: url)
+                let decodedPayload = String(decoding: attributedBodyData, as: UTF8.self)
+                
+                let url = extractSpotifyTrackID(from: decodedPayload)
+                
+                
 //
-                if (x != nil){
+                if (url != nil){
                     
-                    let outputString = formatDate(from: message[date])
-                    outputTuple.append((AttributedBody: x, chatid: message[chatID], Date: outputString))
+                    let track = removeSpotifyPrefix(from: url!)
+                    let formattedDate = formatDate(from: message[date])
+                    tracks.append(Track(spotifyID: track, timeStamp: formattedDate))
                 }
             }
-            //print(outputTuple)
-            let retrievedSongs: DataFrame = [
-                "Songs": outputTuple.map {$0.AttributedBody},
-                "chatId": outputTuple.map {$0.chatid},
-                "Date": outputTuple.map {$0.Date}
-            ]
-//
-//            print("data: \(retrievedSongs.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
-//
+        
+            return tracks
             
         }catch let error {
             assertionFailure("Error with database: \(error.localizedDescription)")
+            let tracks: [Track] = []
+            return tracks
         }
-        
     }
 }
