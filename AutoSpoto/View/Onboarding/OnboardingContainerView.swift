@@ -89,7 +89,7 @@ struct OnboardingContainerView: View {
             case .permissionsRequestView:
                 PermissionsRequestView(
                     userAuthorizedSpotify: $userAuthorizedSpotify,
-                    userAuthorizedDiskAcess: $userAuthorizedDiskAccess
+                    userAuthorizedDiskAccess: $userAuthorizedDiskAccess
                 )
             }
             
