@@ -46,6 +46,7 @@
 		50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59922A468D6100E473CF /* FirebaseAnalytics */; };
 		50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59942A468D6100E473CF /* FirebaseCrashlytics */; };
 		50AC59972A468EFD00E473CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50AC59962A468EFD00E473CF /* GoogleService-Info.plist */; };
+		50AC59992A468F5800E473CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AC59982A468F5800E473CF /* AppDelegate.swift */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
@@ -130,6 +131,7 @@
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
 		50AC59962A468EFD00E473CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50AC59982A468F5800E473CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B19563299B4711002E7F65 /* IndividualChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualChatCodable.swift; sourceTree = "<group>"; };
 		50B19565299B471A002E7F65 /* GroupChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatCodable.swift; sourceTree = "<group>"; };
 		50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTracksResponse.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				50F34C692976611E0059516B /* Font */,
 				50CFCE2C29896ED0009C3F4A /* AutoSpotoConstants */,
 				504C2EB92A25BA9700097F5F /* Configuration.swift */,
+				50AC59982A468F5800E473CF /* AppDelegate.swift */,
 			);
 			path = "Supporting FIles";
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AC59992A468F5800E473CF /* AppDelegate.swift in Sources */,
 				50B20D862A38BA4800212CE4 /* AVPlayerView.swift in Sources */,
 				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,

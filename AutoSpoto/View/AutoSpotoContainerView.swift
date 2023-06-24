@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct AutoSpotoContainerView: View {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     enum CurrentView {
         case onboarding
         case home
