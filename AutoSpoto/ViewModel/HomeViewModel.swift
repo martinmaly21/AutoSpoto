@@ -16,8 +16,6 @@ class HomeViewModel: ObservableObject {
     @Published var selectedGroupChat: Chat?
 
     @Published var filterSelection: FilterChatType = .individual
-
-    @Published var scrollToBottom = false
     
     @Published var isFetchingIndividualChats = false
     @Published var isFetchingGroupChats = false
@@ -43,8 +41,6 @@ class HomeViewModel: ObservableObject {
             case .group:
                 selectedGroupChat = newValue
             }
-
-            scrollToBottom = true
         }
     }
 
@@ -89,7 +85,6 @@ class HomeViewModel: ObservableObject {
             fatalError("Could not decode chats: \(error)")
         }
         
-
         selectedGroupChat = groupChats.first
     }
 

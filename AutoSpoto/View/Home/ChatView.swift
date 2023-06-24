@@ -47,6 +47,7 @@ struct ChatView: View {
                                         LazyVStack {
                                             ForEach(selectedChat.tracks, id: \.id) { track in
                                                 TrackRow(track: track)
+                                                    .id(track.id)
                                                     .onAppear {
                                                         //fetch metadata when row appears
                                                         Task {
@@ -54,12 +55,11 @@ struct ChatView: View {
                                                         }
                                                     }
                                             }
-                                            
-                                            Spacer()
-                                                .frame(height: 0)
-                                                .id(bottomID)
+                                            .onChange(of: selectedChat.tracks.count) { _ in
+                                                reader.scrollTo(selectedChat.tracks.last?.id)
+                                            }
                                         }
-                                            .frame(minHeight: proxy.size.height, alignment: .bottom)
+                                        .frame(minHeight: proxy.size.height, alignment: .bottom)
                                     }
                                     .safeAreaInset(edge: .top) {
                                         Spacer()
@@ -87,12 +87,6 @@ struct ChatView: View {
                                             )
                                         }
                                     }
-                                    .onReceive(homeViewModel.$scrollToBottom, perform: { publish in
-                                        
-                                        //may need to change this when track fetching is async
-                                        //since the number of chats won't be determined until the query is finished
-                                        reader.scrollTo(bottomID)
-                                    })
                                     .frame(width: proxy.size.width)
                                 }
                             }
@@ -144,7 +138,7 @@ struct ChatView: View {
             } else {
                 //no chats
                 let emptyStateTitle = homeViewModel.filterSelection == .individual ? AutoSpotoConstants.Strings.NO_INDIVIDUAL_CHATS_EMPTY_STATE : AutoSpotoConstants.Strings.NO_GROUP_CHATS_EMPTY_STATE
-               
+                
                 VStack(spacing: 10) {
                     Image(systemName: "message")
                         .resizable()
