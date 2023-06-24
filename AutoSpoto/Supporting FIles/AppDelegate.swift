@@ -11,6 +11,13 @@ import FirebaseCore
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // on macOS, AppKit catches the exceptions thrown on the main thread to prevent the application from crashing.
+        // But this also prevents Crashlytics from catching them. To disable this behavior we have to set a special user
+        // default before initializing Crashlytic
+        UserDefaults.standard.register(
+            defaults: ["NSApplicationCrashOnExceptions" : true]
+        )
+        
         FirebaseApp.configure()
     }
 }
