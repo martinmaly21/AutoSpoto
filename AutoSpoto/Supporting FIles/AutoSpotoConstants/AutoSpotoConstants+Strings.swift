@@ -124,7 +124,7 @@ extension AutoSpotoConstants.Strings {
 
     static let ERROR_FETCHING_TRACK_METADATA = NSLocalizedString(
         "ERROR_FETCHING_TRACK_METADATA",
-        value: "Error fetching track information for: %@",
+        value: "Invalid Spotify track link",
         comment: "Text displayed when there's an error fetching metadata for a track"
     )
 
