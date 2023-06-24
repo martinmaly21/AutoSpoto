@@ -18,9 +18,8 @@ struct SpotifyAccessRequestCell: View {
                 Text(AutoSpotoConstants.Strings.SPOTIFY_PERMISSION_TITLE)
                     .font(.josefinSansSemibold(26))
                     .foregroundColor(.textPrimaryWhite)
-                    .padding(.top, userAuthorizedSpotify ? 0 : 8)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, userAuthorizedSpotify ? 16 : 0)
+                    .padding(.vertical, 16)
                     .strikethrough(userAuthorizedSpotify, pattern: .solid)
                     .opacity(userAuthorizedSpotify ? 0.5 : 1)
                 
