@@ -45,10 +45,6 @@ struct ChatView: View {
                                 ScrollViewReader { reader in
                                     ScrollView {
                                         LazyVStack {
-                                            Spacer()
-                                                .frame(height: heightOfToolbar)
-                                            
-                                            
                                             ForEach(selectedChat.tracks, id: \.id) { track in
                                                 TrackRow(track: track)
                                                     .onAppear {
@@ -60,10 +56,36 @@ struct ChatView: View {
                                             }
                                             
                                             Spacer()
-                                                .frame(height: (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) + 15)
+                                                .frame(height: 0)
                                                 .id(bottomID)
                                         }
                                             .frame(minHeight: proxy.size.height, alignment: .bottom)
+                                    }
+                                    .safeAreaInset(edge: .top) {
+                                        Spacer()
+                                            .frame(height: heightOfToolbar)
+                                    }
+                                    .safeAreaInset(edge: .bottom) {
+                                        if selectedChat.spotifyPlaylistExists {
+                                            PlaylistSummaryView(
+                                                chat: selectedChat,
+                                                width: proxy.size.width,
+                                                height: playlistSummaryHeight
+                                            )
+                                            .onAppear {
+                                                Task {
+                                                    await homeViewModel.fetchPlaylist(for: selectedChat)
+                                                }
+                                            }
+                                        } else {
+                                            CreatePlaylistButton(
+                                                width: proxy.size.width,
+                                                height: createButtonHeight,
+                                                action: {
+                                                    showCreatePlaylistSheet = true
+                                                }
+                                            )
+                                        }
                                     }
                                     .onReceive(homeViewModel.$scrollToBottom, perform: { publish in
                                         
@@ -72,30 +94,6 @@ struct ChatView: View {
                                         reader.scrollTo(bottomID)
                                     })
                                     .frame(width: proxy.size.width)
-                                    .introspectScrollView { scrollView in
-                                        scrollView.scrollerInsets = NSEdgeInsets(top: heightOfToolbar, left: 0, bottom: selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight, right: 0)
-                                    }
-                                }
-                                
-                                if selectedChat.spotifyPlaylistExists {
-                                    PlaylistSummaryView(
-                                        chat: selectedChat,
-                                        width: proxy.size.width,
-                                        height: playlistSummaryHeight
-                                    )
-                                    .onAppear {
-                                        Task {
-                                            await homeViewModel.fetchPlaylist(for: selectedChat)
-                                        }
-                                    }
-                                } else {
-                                    CreatePlaylistButton(
-                                        width: proxy.size.width,
-                                        height: createButtonHeight,
-                                        action: {
-                                            showCreatePlaylistSheet = true
-                                        }
-                                    )
                                 }
                             }
                         }
