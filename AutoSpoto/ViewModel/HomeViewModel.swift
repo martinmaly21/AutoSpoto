@@ -18,6 +18,13 @@ class HomeViewModel: ObservableObject {
     @Published var filterSelection: FilterChatType = .individual
 
     @Published var scrollToBottom = false
+    
+    @Published var isFetchingIndividualChats = false
+    @Published var isFetchingGroupChats = false
+    
+    public var isFetchingChats: Bool {
+        return isFetchingIndividualChats || isFetchingGroupChats
+    }
 
     var selectedChat: Chat? {
         get {
@@ -65,7 +72,12 @@ class HomeViewModel: ObservableObject {
 
     private func fetchGroupChats() async {
         //only fetch if group chats have not already been fetched (groupChats.isEmpty)
-        guard groupChats.isEmpty else { return }
+        guard !isFetchingGroupChats else { return }
+        isFetchingGroupChats = true
+        
+        defer {
+            isFetchingGroupChats = false
+        }
 
         let groupChatsJSON = DatabaseManager.shared.fetchGroupChats()
 
@@ -83,7 +95,12 @@ class HomeViewModel: ObservableObject {
 
     private func fetchIndividualChats() async {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
-        guard individualChats.isEmpty else { return }
+        guard !isFetchingIndividualChats else { return }
+        isFetchingIndividualChats = true
+        
+        defer {
+            isFetchingIndividualChats = false
+        }
         
         let indivualChatsJSON = await DatabaseManager.shared.fetchIndividualChats()
         

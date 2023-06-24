@@ -139,6 +139,18 @@ extension AutoSpotoConstants.Strings {
         value: "This chat does not appear to have any tracks yet",
         comment: "Text displayed when a chat has no tracks yet"
     )
+    
+    static let NO_INDIVIDUAL_CHATS_EMPTY_STATE = NSLocalizedString(
+        "NO_INDIVIDUAL_CHATS_EMPTY_STATE",
+        value: "It appears you don't have any individual chats",
+        comment: "Text displayed when a user has no individual chats"
+    )
+    
+    static let NO_GROUP_CHATS_EMPTY_STATE = NSLocalizedString(
+        "NO_GROUP_CHATS_EMPTY_STATE",
+        value: "It appears you don't have any group chats",
+        comment: "Text displayed when a user has no individual chatst"
+    )
 
     static let NUMBER_OF_TRACKS = NSLocalizedString(
         "NUMBER_OF_SONGS",
