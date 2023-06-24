@@ -102,15 +102,7 @@ class HomeViewModel: ObservableObject {
             isFetchingIndividualChats = false
         }
         
-        let indivualChatsJSON = await DatabaseManager.shared.fetchIndividualChats()
-        
-        do {
-            let decoder = JSONDecoder()
-            let tableData = try decoder.decode([IndividualChatCodable].self, from: indivualChatsJSON)
-            individualChats = tableData.map { Chat($0) }
-        } catch let error {
-            fatalError("Could not decode chats: \(error)")
-        }
+        self.individualChats = await DatabaseManager.shared.fetchIndividualChats()
         
         selectedIndividualChat = individualChats.first
     }
