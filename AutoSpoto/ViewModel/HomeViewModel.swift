@@ -121,9 +121,6 @@ class HomeViewModel: ObservableObject {
         chat.isFetchingTrackIDs = false
         
         self.objectWillChange.send()
-        
-        //then, fetch first page of metadata
-        await fetchTracksMetadata(for: chat)
     }
 
     //this trackID corresponds to the one passed in through 'onAppear'
