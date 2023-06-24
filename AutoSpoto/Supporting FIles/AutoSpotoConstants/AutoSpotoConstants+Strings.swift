@@ -416,5 +416,11 @@ extension AutoSpotoConstants.Strings {
         value: "You're all set up. Now, lets start making playlists!",
         comment: "Displayed when user finishes onboarding."
     )
+    
+    static let PRIVACY_NEVER_LEAVES_YOUR_DEVICE = NSLocalizedString(
+        "PRIVACY_NEVER_LEAVES_YOUR_DEVICE",
+        value: "Don't worry, your sensitive data never leaves your device.",
+        comment: "String that informs user their data is safe."
+    )
 }
 
