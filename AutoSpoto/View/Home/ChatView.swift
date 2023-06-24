@@ -48,7 +48,6 @@ struct ChatView: View {
                                             Spacer()
                                                 .frame(height: heightOfToolbar)
                                             
-                                            Spacer()
                                             
                                             ForEach(selectedChat.tracks, id: \.id) { track in
                                                 TrackRow(track: track)
@@ -64,7 +63,7 @@ struct ChatView: View {
                                                 .frame(height: (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) + 15)
                                                 .id(bottomID)
                                         }
-                                        .frame(minHeight: proxy.size.height)
+                                            .frame(minHeight: proxy.size.height, alignment: .bottom)
                                     }
                                     .onReceive(homeViewModel.$scrollToBottom, perform: { publish in
                                         
