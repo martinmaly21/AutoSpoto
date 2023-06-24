@@ -43,6 +43,8 @@
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59922A468D6100E473CF /* FirebaseAnalytics */; };
+		50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59942A468D6100E473CF /* FirebaseCrashlytics */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
@@ -192,6 +194,8 @@
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
+				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
+				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +498,8 @@
 				50F178A52995FA0F002AFC1C /* Introspect */,
 				5069BF6529994BDF007F4037 /* Kingfisher */,
 				504C2EBC2A25BC9500097F5F /* SQLite */,
+				50AC59922A468D6100E473CF /* FirebaseAnalytics */,
+				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -528,6 +534,7 @@
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */,
+				50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -852,6 +859,14 @@
 				version = 7.6.2;
 			};
 		};
+		50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -880,6 +895,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		50AC59922A468D6100E473CF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		50AC59942A468D6100E473CF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
