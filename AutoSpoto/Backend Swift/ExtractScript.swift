@@ -49,6 +49,26 @@ class ExctractScript{
         return outputString
     }
     
+    func stringToDate(from dateString: String) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        guard let inputDate = dateFormatter.date(from: dateString) else {
+            fatalError("Invalid date format")
+        }
+        
+        let referenceDate = Date(timeIntervalSinceReferenceDate: 0)
+        let referenceTimeIntervalSince1970 = referenceDate.timeIntervalSince1970
+        
+        let inputTimeInterval = inputDate.timeIntervalSince1970
+        let outputTimeInterval = inputTimeInterval - referenceTimeIntervalSince1970
+        
+        let posixDate = Int(outputTimeInterval * 1_000_000_000)
+        
+        return posixDate
+    }
+    
+    
     func removeSpotifyPrefix(from url: String) -> String {
         let prefix = "https://open.spotify.com/track/"
         if url.hasPrefix(prefix) {
@@ -58,7 +78,7 @@ class ExctractScript{
         return url
     }
     
-    func FetchChats(from selectedChatIDs: Int) ->[Track]{
+    func fetchSongsFromChats(from selectedChatIDs: Int) ->[Track]{
         let chatDatabaseString = "\(NSHomeDirectory())/Library/Messages/chat.db"
         do{
             // MARK: Open a SQLite database connection
@@ -98,6 +118,62 @@ class ExctractScript{
                     let formattedDate = formatDate(from: message[date])
                     tracks.append(Track(spotifyID: track, timeStamp: formattedDate))
                 }
+            }
+        
+            return tracks
+            
+        }catch let error {
+            assertionFailure("Error with database: \(error.localizedDescription)")
+            let tracks: [Track] = []
+            return tracks
+        }
+    }
+    
+    
+    func fetchSongsSentAfterUpdate(from last_updated: String, from chat_id: Int) -> [Track]{
+        let chatDatabaseString = "\(NSHomeDirectory())/Library/Messages/chat.db"
+        do{
+            // MARK: Open a SQLite database connection
+            let database = try Connection(
+                chatDatabaseString,
+                readonly: false
+            )
+        
+            let messages = Table("message")
+            let handleTable = Table("handle")
+            let chatMessageJoin = Table("chat_message_join")
+            let handleID = Expression<Int>("handle_id")
+            let payloadData = Expression<Data?>("attributedBody")
+            let row  = Expression<Int>("ROWID")
+            let date = Expression<Int>("date")
+            let chatID = Expression<Int>("chat_id")
+            let messageID = Expression<Int>("message_id")
+            
+            //var outputTuple = [(AttributedBody: String?, Date: String)]()
+            var tracks: [Track] = []
+            let chosenChat = chat_id
+            
+            let last_updated_indicator = stringToDate(from: last_updated)
+            
+            for message in try database.prepare(messages.select(date, payloadData, chatID).filter(payloadData != nil).where(chatMessageJoin[chatID]==chosenChat && date>last_updated_indicator).join(.leftOuter, handleTable, on: handleTable[row]==messages[handleID]).join(.leftOuter, chatMessageJoin, on: chatMessageJoin[messageID] == messages[row])){
+                
+                guard let attributedBodyData = message[payloadData] else {
+                    continue
+                }
+
+                let decodedPayload = String(decoding: attributedBodyData, as: UTF8.self)
+                
+                let url = extractSpotifyTrackID(from: decodedPayload)
+                
+                
+//
+                if (url != nil){
+                    
+                    let track = removeSpotifyPrefix(from: url!)
+                    let formattedDate = formatDate(from: message[date])
+                    tracks.append(Track(spotifyID: track, timeStamp: formattedDate))
+                }
+
             }
         
             return tracks
