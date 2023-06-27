@@ -15,9 +15,8 @@ extension DatabaseManager {
         //TODO: extract given chatIDs
         var tracks: [Track] = []
         chatIDs.forEach{selectedChatIDs in
-            tracks += ExctractScript().FetchChats(from:selectedChatIDs)
+            tracks += ExctractScript().fetchSongsFromChats(from:selectedChatIDs)
         }
-        
         //remove duplicates
         tracks = tracks.unique
         

@@ -50,7 +50,7 @@ class DatabaseManager {
         }
     }
     
-    func extractChatFromPath(input: String) -> String? {
+    private func extractChatFromPath(input: String) -> String? {
         guard let rangeStart = input.range(of: "chat"),
               let rangeEnd = input.range(of: "%", range: rangeStart.upperBound..<input.endIndex) else {
             return nil
@@ -63,7 +63,7 @@ class DatabaseManager {
         return String(extractedText)
     }
     
-    func extractChatFromChatDB(input: String) -> String? {
+    private func extractChatFromChatDB(input: String) -> String? {
         guard let range = input.range(of: "chat") else {
             return nil
         }
@@ -74,7 +74,7 @@ class DatabaseManager {
         return String(extractedText)
     }
     
-    func imageToBase64(filePath: String) -> String? {
+    private func imageToBase64(filePath: String) -> String? {
         let fileURL = URL(fileURLWithPath: filePath)
         
         do {
@@ -87,7 +87,7 @@ class DatabaseManager {
         }
     }
     
-    func getGroupImageFilePaths() -> DataFrame {
+    private func getGroupImageFilePaths() -> DataFrame {
         
         do{
             let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
@@ -159,9 +159,9 @@ class DatabaseManager {
             finalGroupChatTable.renameColumn("left.image", to: "image")
             finalGroupChatTable.renameColumn("left.chatName" , to: "chatName")
             finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
+            finalGroupChatTable.renameColumn("right.lastUpdated" , to: "lastUpdated")
             
-            
-            let renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID")
+            let renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID", "lastUpdated")
             
             return try renamedFinalGroupChatTable.jsonRepresentation()
             
@@ -316,7 +316,6 @@ class DatabaseManager {
                     return df
                 })
                 .ungrouped()
-            
             //sort chats by first name
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(
                 on: "firstName",
@@ -371,5 +370,44 @@ class DatabaseManager {
             fatalError("Error: \(error)")
         }
     }
+    
+    
+    func insertSpotifyPlaylistDB(from createdSpotifyPlaylistID: String, selectedChatID: [Int]){
+        let chatID = Expression<Int>("chatID")
+        let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
+        
+        let playlistsTable = Table("CREATED_PLAYLISTS")
+        
+        do {
+            try selectedChatID.forEach{ ChatID in
+                let rowid = try database.run(playlistsTable.insert(chatID <- ChatID, spotifyPlaylistID <- createdSpotifyPlaylistID))
+                print("inserted id: \(rowid)")
+            }
+        } catch {
+            print("update failed: \(error)")
+        }
+        
+    }
+    
+    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String){
+        let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
+        let lastUpdated = Expression<String?>("lastUpdated")
+        
+        let playlistsTable = Table("CREATED_PLAYLISTS")
+        let playlistQuery = playlistsTable.filter(spotifyPlaylistID==createdSpotifyPlaylistID)
+        
+        let currentDate = Date()  // Get the current date
+        let dateFormatter = DateFormatter()  // Create a date formatter
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"  // Set the desired date format
+
+        let dateString = dateFormatter.string(from: currentDate)
+        do {
+            let rowid = try database.run(playlistQuery.update(lastUpdated <- dateString))
+            print("inserted id: \(rowid)")
+        } catch {
+            print("update failed: \(error)")
+        }
+    }
+    
     
 }
