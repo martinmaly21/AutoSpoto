@@ -208,7 +208,7 @@ class SpotifyManager {
         
         //create playlist
         chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-        let _ = try DatabaseManager()!.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
+        let _ = try DatabaseManager.shared.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
         try await updatePlaylist(for: chat)
     }
     
@@ -262,7 +262,7 @@ class SpotifyManager {
         ]
         
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        let _ = try DatabaseManager()!.updateLastUpdatedDB(from: chat.spotifyPlaylistID!)
+        let _ = try DatabaseManager.shared.updateLastUpdatedDB(from: chat.spotifyPlaylistID!)
         //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
     }
     
