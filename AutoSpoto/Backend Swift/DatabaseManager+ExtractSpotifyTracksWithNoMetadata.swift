@@ -12,10 +12,9 @@ extension DatabaseManager {
     func fetchSpotifyTracksWithNoMetadata(
         for chatIDs: [Int]
     ) async -> [Track] {
-        //TODO: extract given chatIDs
         var tracks: [Track] = []
         chatIDs.forEach{selectedChatIDs in
-            tracks += ExtractScript().fetchSongsFromChats(from:selectedChatIDs)
+            tracks += extractScript.fetchSongsFromChats(from:selectedChatIDs)
         }
         //remove duplicates
         tracks = tracks.unique

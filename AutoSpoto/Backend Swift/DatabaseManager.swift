@@ -12,6 +12,7 @@ import Contacts
 
 class DatabaseManager {
     public static var shared: DatabaseManager!
+    internal let extractScript = ExtractScript()
     
     private let database: Connection
     
