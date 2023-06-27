@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501D16852A4B029000563990 /* ExtractScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D16842A4B029000563990 /* ExtractScript.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		501D16842A4B029000563990 /* ExtractScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractScript.swift; sourceTree = "<group>"; };
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */,
 				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
+				501D16842A4B029000563990 /* ExtractScript.swift */,
 			);
 			path = "Backend Swift";
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */,
+				501D16852A4B029000563990 /* ExtractScript.swift in Sources */,
 				50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */,
 				509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,

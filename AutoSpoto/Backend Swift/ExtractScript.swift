@@ -8,8 +8,8 @@
 import Foundation
 import SQLite
 import TabularData
-class ExctractScript{
-        
+
+class ExtractScript {
     func extractSpotifyTrackID(from url: String) -> String? {
         let pattern = #"https:\/\/open\.spotify\.com\/track\/(?![a-zA-Z0-9]{19}WHt)[a-zA-Z0-9]{22}"#
         
