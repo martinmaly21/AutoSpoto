@@ -219,6 +219,8 @@ class SpotifyManager {
             AutoSpotoConstants.HTTPParameter.name: desiredPlaylistName
         ]
         
+        try await SpotifyManager.fetchAndSaveUserSpotifyID()
+        
         let data = try await http(method: .post(data: params), path: "/users/\(UserDefaultsManager.spotifyUser.id)/playlists")
         
         let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)

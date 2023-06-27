@@ -11,7 +11,7 @@ struct PermissionsRequestView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
     
     @Binding var userAuthorizedSpotify: Bool
-    @Binding var userAuthorizedDiskAcess: Bool
+    @Binding var userAuthorizedDiskAccess: Bool
     
     //used for polling for permission changes
     @State var currentDate = Date.now
@@ -26,11 +26,11 @@ struct PermissionsRequestView: View {
                 .font(.josefinSansSemibold(32))
                 .foregroundColor(.textPrimaryWhite)
             
-            DiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAcess)
+            DiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAccess)
             
-            SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAcess)
+            SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAccess)
             
-            if userAuthorizedSpotify && userAuthorizedSpotify {
+            if userAuthorizedSpotify && userAuthorizedDiskAccess {
                 Text(AutoSpotoConstants.Strings.ONBOARDING_SUCCESS)
                     .font(.josefinSansRegular(24))
                     .foregroundColor(.textPrimaryWhite)
@@ -50,7 +50,7 @@ struct PermissionsRequestView: View {
         .onReceive(timer) { input in
             withAnimation {
                 //disk access
-                userAuthorizedDiskAcess = DiskAccessManager.userAuthorizedDiskAccess
+                userAuthorizedDiskAccess = DiskAccessManager.userAuthorizedDiskAccess
             }
         }
     }

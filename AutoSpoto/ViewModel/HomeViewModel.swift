@@ -16,8 +16,13 @@ class HomeViewModel: ObservableObject {
     @Published var selectedGroupChat: Chat?
 
     @Published var filterSelection: FilterChatType = .individual
-
-    @Published var scrollToBottom = false
+    
+    @Published var isFetchingIndividualChats = false
+    @Published var isFetchingGroupChats = false
+    
+    public var isFetchingChats: Bool {
+        return isFetchingIndividualChats || isFetchingGroupChats
+    }
 
     var selectedChat: Chat? {
         get {
@@ -36,8 +41,6 @@ class HomeViewModel: ObservableObject {
             case .group:
                 selectedGroupChat = newValue
             }
-
-            scrollToBottom = true
         }
     }
 
@@ -65,7 +68,12 @@ class HomeViewModel: ObservableObject {
 
     private func fetchGroupChats() async {
         //only fetch if group chats have not already been fetched (groupChats.isEmpty)
-        guard groupChats.isEmpty else { return }
+        guard !isFetchingGroupChats else { return }
+        isFetchingGroupChats = true
+        
+        defer {
+            isFetchingGroupChats = false
+        }
 
         let groupChatsJSON = DatabaseManager.shared.fetchGroupChats()
 
@@ -77,23 +85,19 @@ class HomeViewModel: ObservableObject {
             fatalError("Could not decode chats: \(error)")
         }
         
-
         selectedGroupChat = groupChats.first
     }
 
     private func fetchIndividualChats() async {
         //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
-        guard individualChats.isEmpty else { return }
+        guard !isFetchingIndividualChats else { return }
+        isFetchingIndividualChats = true
         
-        let indivualChatsJSON = await DatabaseManager.shared.fetchIndividualChats()
-        
-        do {
-            let decoder = JSONDecoder()
-            let tableData = try decoder.decode([IndividualChatCodable].self, from: indivualChatsJSON)
-            individualChats = tableData.map { Chat($0) }
-        } catch let error {
-            fatalError("Could not decode chats: \(error)")
+        defer {
+            isFetchingIndividualChats = false
         }
+        
+        self.individualChats = await DatabaseManager.shared.fetchIndividualChats()
         
         selectedIndividualChat = individualChats.first
     }
@@ -112,9 +116,6 @@ class HomeViewModel: ObservableObject {
         chat.isFetchingTrackIDs = false
         
         self.objectWillChange.send()
-        
-        //then, fetch first page of metadata
-        await fetchTracksMetadata(for: chat)
     }
 
     //this trackID corresponds to the one passed in through 'onAppear'

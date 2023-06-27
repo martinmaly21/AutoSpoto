@@ -86,9 +86,6 @@ struct ChatsListView: View {
                 .pickerStyle(.segmented)
                 .padding(.trailing, 6)
                 .padding(.bottom, 30)
-                .introspectSegmentedControl { segmentedControl in
-//                    segmentedControl.selectedSegmentBezelColor = .blue
-                }
             }
             .frame(height: topInset)
             .background(.ultraThinMaterial)

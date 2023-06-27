@@ -10,8 +10,7 @@ import Foundation
 //MARK: - this extension is for extracting the Spotify Track id's from a given chat
 extension DatabaseManager {
     func fetchSpotifyTracksWithNoMetadata(
-        for chatIDs: [Int],
-        after lastUpdatedDate: Date = Date(timeIntervalSince1970: 0) //if no explicit parameter is passed in for lastUpdatedDate, we will fetch all trackIDs after 1970. So, all of them ever.
+        for chatIDs: [Int]
     ) async -> [Track] {
         //TODO: extract given chatIDs
         var tracks: [Track] = []
