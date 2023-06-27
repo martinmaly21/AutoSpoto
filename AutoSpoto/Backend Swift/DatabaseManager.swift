@@ -170,7 +170,7 @@ class DatabaseManager {
         }
     }
     
-    func fetchIndividualChats() async -> Data {
+    func fetchIndividualChats() async -> [Chat] {
         do {
             let contactStore = CNContactStore()
             
@@ -269,6 +269,12 @@ class DatabaseManager {
                 "chatID": chatRowsTuple.map { $0.chatID }
             ]
             
+            guard !chatsDataFrame.isEmpty else {
+                //if there's no individual chats, return an empty array early
+                //this fixes crash when attempting to join on a data frame with no rows
+                return []
+            }
+            
             var chatsWithAssociatedContactsDataFrame = chatsDataFrame
                 .joined(contactsDataFrame, on: "contactInfo", kind: .left)
             
@@ -327,10 +333,11 @@ class DatabaseManager {
                 }
             )
             
-            //                can be useful for debugging:
-            //                print("grouped: \(chatsWithAssociatedContactsAndPlaylistIDDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
-            
-            return try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
+            let individualChatsJSON = try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
+            let decoder = JSONDecoder()
+            let tableData = try decoder.decode([IndividualChatCodable].self, from: individualChatsJSON)
+
+            return tableData.map { Chat($0) }
         } catch let error {
             fatalError("Error: \(error)")
         }

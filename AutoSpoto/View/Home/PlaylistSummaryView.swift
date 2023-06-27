@@ -27,7 +27,7 @@ struct PlaylistSummaryView: View {
         ZStack {
             Color.clear
                 .background(.ultraThinMaterial)
-                .shadow(color: .gray.opacity(0.2), radius: 6, x: 4, y: -3)
+                .shadow(color: .gray.opacity(0.05), radius: 6, x: 4, y: -3)
                 .frame(height: height)
                 .frame(width: width)
             

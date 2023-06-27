@@ -43,6 +43,10 @@
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
+		50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59922A468D6100E473CF /* FirebaseAnalytics */; };
+		50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 50AC59942A468D6100E473CF /* FirebaseCrashlytics */; };
+		50AC59972A468EFD00E473CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50AC59962A468EFD00E473CF /* GoogleService-Info.plist */; };
+		50AC59992A468F5800E473CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AC59982A468F5800E473CF /* AppDelegate.swift */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
@@ -126,6 +130,8 @@
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		50AA277428C3FE6A002FFC3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoSpoto.entitlements; sourceTree = "<group>"; };
+		50AC59962A468EFD00E473CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50AC59982A468F5800E473CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B19563299B4711002E7F65 /* IndividualChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualChatCodable.swift; sourceTree = "<group>"; };
 		50B19565299B471A002E7F65 /* GroupChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatCodable.swift; sourceTree = "<group>"; };
 		50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTracksResponse.swift; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
+				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
+				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,12 +420,14 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
+				50AC59962A468EFD00E473CF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
 				50F34C65297659950059516B /* Colors.xcassets */,
 				50F34C692976611E0059516B /* Font */,
 				50CFCE2C29896ED0009C3F4A /* AutoSpotoConstants */,
 				504C2EB92A25BA9700097F5F /* Configuration.swift */,
+				50AC59982A468F5800E473CF /* AppDelegate.swift */,
 			);
 			path = "Supporting FIles";
 			sourceTree = "<group>";
@@ -483,6 +493,7 @@
 				50AA276928C3FE69002FFC3F /* Sources */,
 				50AA276A28C3FE69002FFC3F /* Frameworks */,
 				50AA276B28C3FE69002FFC3F /* Resources */,
+				50AC599A2A4690E700E473CF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -494,6 +505,8 @@
 				50F178A52995FA0F002AFC1C /* Introspect */,
 				5069BF6529994BDF007F4037 /* Kingfisher */,
 				504C2EBC2A25BC9500097F5F /* SQLite */,
+				50AC59922A468D6100E473CF /* FirebaseAnalytics */,
+				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -528,6 +541,7 @@
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */,
+				50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -548,6 +562,7 @@
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
 				50DB07A92984B6A000BC5864 /* JosefinSansBold.ttf in Resources */,
+				50AC59972A468EFD00E473CF /* GoogleService-Info.plist in Resources */,
 				50B20D842A38B60700212CE4 /* Temp_Coaching.mov in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
@@ -559,11 +574,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50AC599A2A4690E700E473CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		50AA276928C3FE69002FFC3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AC59992A468F5800E473CF /* AppDelegate.swift in Sources */,
 				50B20D862A38BA4800212CE4 /* AVPlayerView.swift in Sources */,
 				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
@@ -762,11 +800,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
+				DEVELOPMENT_TEAM = 6242PWNU5W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AutoSpoto/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AutoSpoto;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to display the names of your iMessage chats.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -774,7 +814,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.martinmaly.AutoSpoto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -793,11 +833,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
+				DEVELOPMENT_TEAM = 6242PWNU5W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AutoSpoto/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AutoSpoto;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to display the names of your iMessage chats.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -805,7 +847,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.martinmaly.AutoSpoto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -852,6 +894,14 @@
 				version = 7.6.2;
 			};
 		};
+		50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -880,6 +930,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		50AC59922A468D6100E473CF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		50AC59942A468D6100E473CF /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
