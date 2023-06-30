@@ -16,6 +16,7 @@
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
+		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -197,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
@@ -510,6 +512,7 @@
 				504C2EBC2A25BC9500097F5F /* SQLite */,
 				50AC59922A468D6100E473CF /* FirebaseAnalytics */,
 				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
+				505DB2922A4ED6FF0092E600 /* Sparkle */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -545,6 +548,7 @@
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */,
 				50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -890,6 +894,14 @@
 				minimumVersion = 0.14.1;
 			};
 		};
+		505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -929,6 +941,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		505DB2922A4ED6FF0092E600 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 		5069BF6529994BDF007F4037 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
