@@ -30,5 +30,9 @@ struct AutoSpotoApp: App {
         .windowResizability(.contentSize)
         .windowToolbarStyle(UnifiedCompactWindowToolbarStyle())
         .windowStyle(HiddenTitleBarWindowStyle())
+        
+        Settings {
+            UpdaterSettingsView(updater: updaterController.updater)
+        }
     }
 }
