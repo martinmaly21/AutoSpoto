@@ -12,7 +12,7 @@ import AppKit
 struct DiskAccessRequestCell: View {
     @Binding var userAuthorizedDiskAccess: Bool
     
-    @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Temp_Coaching", withExtension: "mov")!)
+    @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Disk_Access_Coaching", withExtension: "mov")!)
     
     @State var currentDate = Date.now
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
@@ -113,7 +113,7 @@ struct DiskAccessRequestCell: View {
                                     
                                     VideoPlayer(player: player)
                                         .disabled(true)
-                                        .frame(width: 210 * 1.2, height: 189 * 1.2)
+                                        .frame(width: 210 * 1.12, height: 189 * 1.2)
                                         .cornerRadius(10)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
