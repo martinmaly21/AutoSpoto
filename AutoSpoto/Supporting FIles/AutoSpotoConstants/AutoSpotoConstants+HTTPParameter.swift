@@ -25,4 +25,5 @@ extension AutoSpotoConstants.HTTPParameter {
     static let fields = "fields"
     static let id = "id"
     static let images = "images"
+    static let playlistCoverImage = "playlistCoverImage"
 }

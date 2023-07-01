@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 class SpotifyManager {
     private static func url(
@@ -26,9 +27,12 @@ class SpotifyManager {
         return URL(string: urlString)!
     }
     
-    private static func headers(isTokenFetch: Bool) async throws -> [String: String] {
+    private static func headers(
+        isTokenFetch: Bool,
+        isImageUpload: Bool
+    ) async throws -> [String: String] {
         var headers = [
-            AutoSpotoConstants.HTTPHeaders.contentType: "application/x-www-form-urlencoded",
+            AutoSpotoConstants.HTTPHeaders.contentType: isImageUpload ? "image/jpeg" : "application/x-www-form-urlencoded",
         ]
         
         guard !isTokenFetch else {
@@ -60,15 +64,20 @@ class SpotifyManager {
         switch method {
         case .get(let queryParams):
             httpURL = url(path: path, params: queryParams, isTokenFetch: isTokenFetch)
-        case .post, .put, .delete:
+        case .post, .put, .putImage, .delete:
             httpURL = url(path: path, isTokenFetch: isTokenFetch)
         }
         
         var request = URLRequest(url: httpURL)
         request.httpMethod = method.httpMethod
         
+        var isImageUpload = false
+        if case .putImage = method {
+            isImageUpload = true
+        }
+        
         //update headers
-        let headers = try await headers(isTokenFetch: isTokenFetch)
+        let headers = try await headers(isTokenFetch: isTokenFetch, isImageUpload: isImageUpload)
         for (headerField, headerValue) in headers {
             request.setValue(
                 headerValue,
@@ -82,6 +91,13 @@ class SpotifyManager {
                 data = methodData.map { "\($0)=\($1)" }
                     .joined(separator: "&")
                     .data(using: .utf8)
+            } else if isImageUpload {
+                //special case for when a user
+                guard let imageBase64Data = methodData[AutoSpotoConstants.HTTPParameter.playlistCoverImage] as? Data else {
+                    fatalError("Could not get base64image")
+                }
+                
+                data = imageBase64Data
             } else {
                 data = try? JSONSerialization.data(withJSONObject: methodData)
             }
@@ -202,14 +218,13 @@ class SpotifyManager {
         for chat: Chat,
         desiredPlaylistName: String
     ) async throws {
-        guard let filteredTracksChunks = try await filterChat(for: chat) else {
-            throw AutoSpotoError.chatHasNoValidIDs
-        }
-        
         //create playlist
         chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-        let _ = try DatabaseManager.shared.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
+        DatabaseManager.shared.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
         try await updatePlaylist(for: chat)
+        
+        //finally, update cover image for chat
+        try await addCoverImageToPlaylist(for: chat)
     }
     
     private static func createPlaylist(
@@ -262,8 +277,22 @@ class SpotifyManager {
         ]
         
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        let _ = try DatabaseManager.shared.updateLastUpdatedDB(from: chat.spotifyPlaylistID!)
-        //TODO: After the songs are updated we update the time in the last updated column of the database (dateUpdated)
+        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID)
+    }
+    
+    public static func addCoverImageToPlaylist(for chat: Chat) async throws {
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID,
+              let autoSpotoPlaylistImage = NSImage(named: "PlaylistCoverImage") else {
+            fatalError("Could not get spotifyPlaylistID for chat")
+        }
+        
+        let autoSpotoPlaylistImageBase64Data = autoSpotoPlaylistImage.jpegData().base64EncodedData()
+        
+        let params: [String : Any] = [
+            AutoSpotoConstants.HTTPParameter.playlistCoverImage: autoSpotoPlaylistImageBase64Data
+        ]
+        
+        let _ = try await http(method: .putImage(data: params), path: "/playlists/\(spotifyPlaylistID)/images")
     }
     
     public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist? {
