@@ -49,7 +49,7 @@ class SpotifyManager {
                 keychainToken = try await refreshAndSaveToken(expiredKeychainToken: keychainToken)
             }
             
-            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(keychainToken.access_token))"
+            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(keychainToken.access_token)"
         }
         
         return headers
