@@ -16,6 +16,10 @@
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
+		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
+		505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */; };
+		505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */; };
+		505DB29A2A4ED84A0092E600 /* UpdaterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2992A4ED84A0092E600 /* UpdaterSettingsView.swift */; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -103,6 +107,9 @@
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesViewModel.swift; sourceTree = "<group>"; };
+		505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
+		505DB2992A4ED84A0092E600 /* UpdaterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterSettingsView.swift; sourceTree = "<group>"; };
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
 		5069BF6929999504007F4037 /* FilterChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChatType.swift; sourceTree = "<group>"; };
 		5069BF6B2999AB2D007F4037 /* SpotifyLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginView.swift; sourceTree = "<group>"; };
@@ -197,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
@@ -263,6 +271,15 @@
 				501D16842A4B029000563990 /* ExtractScript.swift */,
 			);
 			path = "Backend Swift";
+			sourceTree = "<group>";
+		};
+		505DB2982A4ED8380092E600 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */,
+				505DB2992A4ED84A0092E600 /* UpdaterSettingsView.swift */,
+			);
+			path = Updates;
 			sourceTree = "<group>";
 		};
 		5069BF6D2999AC0A007F4037 /* NSViewRepresentable */ = {
@@ -416,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				50F1789D2995F092002AFC1C /* HomeViewModel.swift */,
+				505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -466,6 +484,7 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				505DB2982A4ED8380092E600 /* Updates */,
 				5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */,
 				5048A23B2A38C16E00790C36 /* GeometryEffect */,
 				50D0261B2A38BC8B00DBD789 /* Subclass */,
@@ -510,6 +529,7 @@
 				504C2EBC2A25BC9500097F5F /* SQLite */,
 				50AC59922A468D6100E473CF /* FirebaseAnalytics */,
 				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
+				505DB2922A4ED6FF0092E600 /* Sparkle */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -545,6 +565,7 @@
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */,
 				50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -620,6 +641,7 @@
 				509B08712A32F1FD00917AAC /* Array.swift in Sources */,
 				5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
+				505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */,
 				509B085C2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
 				509B08602A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
 				503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */,
@@ -628,6 +650,7 @@
 				5048A23D2A38C17B00790C36 /* Shake.swift in Sources */,
 				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,
+				505DB29A2A4ED84A0092E600 /* UpdaterSettingsView.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
@@ -671,6 +694,7 @@
 				50FB02E12A34BBDC00D2CEB7 /* PlaylistSummaryView.swift in Sources */,
 				5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */,
 				50B20D762A386A7800212CE4 /* SpotifyAccessRequestCell.swift in Sources */,
+				505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,7 +828,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 6242PWNU5W;
+				DEVELOPMENT_TEAM = 8Q8ZUVJXW9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -817,8 +841,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.macos;
+				MARKETING_VERSION = 0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -837,7 +861,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 6242PWNU5W;
+				DEVELOPMENT_TEAM = 8Q8ZUVJXW9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -850,8 +874,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.macos;
+				MARKETING_VERSION = 0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -888,6 +912,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.14.1;
+			};
+		};
+		505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -929,6 +961,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		505DB2922A4ED6FF0092E600 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 		5069BF6529994BDF007F4037 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
