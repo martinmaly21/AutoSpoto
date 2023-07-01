@@ -28,6 +28,12 @@ enum HTTPMethodType: Equatable {
             } else {
                 return false
             }
+        case .putImage:
+            if case .putImage = rhs {
+                return true
+            } else {
+                return false
+            }
         case .delete:
             if case .delete = rhs {
                 return true
@@ -40,6 +46,7 @@ enum HTTPMethodType: Equatable {
     case get(queryParams: [String:Any]?)
     case post(data: [String:Any]?)
     case put(data: [String:Any]?)
+    case putImage(data: [String:Any]?)
     case delete(data: [String:Any]?)
     
     var httpMethod: String {
@@ -48,7 +55,7 @@ enum HTTPMethodType: Equatable {
             return "GET"
         case .post:
             return "POST"
-        case .put:
+        case .put, .putImage:
             return "PUT"
         case .delete:
             return "DELETE"
@@ -66,6 +73,12 @@ enum HTTPMethodType: Equatable {
             
             return data
         case .put(let data):
+            guard let data = data else {
+                return nil
+            }
+            
+            return data
+        case .putImage(let data):
             guard let data = data else {
                 return nil
             }

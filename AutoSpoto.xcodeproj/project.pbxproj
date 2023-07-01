@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		501D16852A4B029000563990 /* ExtractScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501D16842A4B029000563990 /* ExtractScript.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
+		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		501D16842A4B029000563990 /* ExtractScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractScript.swift; sourceTree = "<group>"; };
 		50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Disk_Access_Coaching.mov; sourceTree = "<group>"; };
+		50283F5F2A5033B900E9121B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				5069BF722999C0A6007F4037 /* String.swift */,
 				509B08702A32F1FD00917AAC /* Array.swift */,
 				50B20D852A38BA4800212CE4 /* AVPlayerView.swift */,
+				50283F5F2A5033B900E9121B /* NSImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
+				50283F602A5033B900E9121B /* NSImage.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */,
 				503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */,
