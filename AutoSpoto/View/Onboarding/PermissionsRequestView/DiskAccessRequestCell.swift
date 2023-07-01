@@ -98,7 +98,7 @@ struct DiskAccessRequestCell: View {
                                                         .stroke(.white.opacity(0.4), lineWidth: 0.5)
                                                 )
                                             
-                                            Image("AutoSpotoAppLogo")
+                                            Image("AppIcon")
                                                 .resizable()
                                                 .frame(width: 150, height: 150)
                                                 .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
