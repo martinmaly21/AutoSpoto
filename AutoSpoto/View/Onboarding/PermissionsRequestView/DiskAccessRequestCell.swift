@@ -98,9 +98,9 @@ struct DiskAccessRequestCell: View {
                                                         .stroke(.white.opacity(0.4), lineWidth: 0.5)
                                                 )
                                             
-                                            Image("AppIcon")
+                                            Image("OnboardingAppIcon")
                                                 .resizable()
-                                                .frame(width: 150, height: 150)
+                                                .frame(width: 180, height: 180)
                                                 .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
                                                 .draggable(Bundle.main.bundleURL)
                                         }
