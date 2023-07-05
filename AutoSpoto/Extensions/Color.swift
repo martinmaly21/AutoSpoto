@@ -31,4 +31,6 @@ extension Color {
 
     static let refreshButtonBackgroundColor = Color("Refresh Button Background Color")
     static let refreshButtonTextColor = Color("Refresh Button Text Color")
+    
+    static let sectionHeaderGray = Color("Section Header Gray")
 }

@@ -446,5 +446,17 @@ extension AutoSpotoConstants.Strings {
         value: "Chats with no tracks",
         comment: "Section title for section of chats with no tracks"
     )
+    
+    static let SPOTIFY_PLAYLIST_EXISTS_SECTION = NSLocalizedString(
+        "SPOTIFY_PLAYLIST_EXISTS_SECTION",
+        value: "Connected chats",
+        comment: "Section title for section of chats connected to playlists"
+    )
+    
+    static let CHAT_SECTION_EMPTY_STATE = NSLocalizedString(
+        "CHAT_SECTION_EMPTY_STATE",
+        value: "No chats",
+        comment: "Empty state for chat with no tracks"
+    )
 }
 
