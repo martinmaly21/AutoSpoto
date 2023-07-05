@@ -102,19 +102,9 @@ class HomeViewModel: ObservableObject {
         selectedIndividualChat = individualChats.first
     }
     
-    func fetchTracks(for chat: Chat) async {
-        //MARK: - first fetch track IDs to show row count
-        guard !chat.hasFetchedTracksIDs && !chat.isFetchingTrackIDs else { return }
-        
-        chat.isFetchingTrackIDs = true
-        
+    private func fetchTracks(for chat: Chat) async {
         let tracksWithNoMetadata = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: chat.ids)
-        
         chat.tracksPages = tracksWithNoMetadata.splitIntoChunks(of: chat.numberOfTrackMetadataPerFetch)
-        
-        chat.hasFetchedTracksIDs = true
-        chat.isFetchingTrackIDs = false
-        
         self.objectWillChange.send()
     }
 

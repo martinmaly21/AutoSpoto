@@ -12,9 +12,8 @@ import Contacts
 
 class DatabaseManager {
     public static var shared: DatabaseManager!
-    internal let extractScript = ExtractScript()
     
-    private let database: Connection
+    internal let database: Connection
     
     init?() {
         do  {
@@ -89,40 +88,33 @@ class DatabaseManager {
     }
     
     private func getGroupImageFilePaths() -> DataFrame {
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        let directoryURL = homeDirectory.appendingPathComponent("Library/Intents/Images")
+        var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
         
-        do{
-            let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-            let directoryURL = homeDirectory.appendingPathComponent("Library/Intents/Images")
-            var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
-            
-            do {
-                let contents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-                for fileURL in contents {
-                    let directory = fileURL.path
-                    if directory.hasSuffix("GroupPhotoImage.png"){
-                        directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
-                    }
+        do {
+            let contents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
+            for fileURL in contents {
+                let directory = fileURL.path
+                if directory.hasSuffix("GroupPhotoImage.png"){
+                    directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
                 }
-            } catch {
-                print("Error reading directory: \(error)")
             }
-            let directoryTB: DataFrame = [
-                "directoryPath": directories.map {$0.DirPath},
-                "MessageID": directories.map {$0.ChatId},
-                "Base64Image": directories.map {$0.image}
-            ]
-            
-            return directoryTB
-        } catch let error {
-            fatalError("Error: \(error)")
+        } catch {
+            print("Error reading directory: \(error)")
         }
+        let directoryTB: DataFrame = [
+            "directoryPath": directories.map {$0.DirPath},
+            "MessageID": directories.map {$0.ChatId},
+            "Base64Image": directories.map {$0.image}
+        ]
+        
+        return directoryTB
     }
     
     func fetchGroupChats() -> Data {
         do {
-            
             var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
-            
             
             let chat_ids = Expression<Int?>("ROWID")
             let chat_name = Expression<String?>("display_name")
@@ -147,7 +139,7 @@ class DatabaseManager {
             
             let groupChatImages = getGroupImageFilePaths()
             
-            var groupChatsWithImage = groupChatImages.joined(groupChats, on: "MessageID", kind: .left)
+            let groupChatsWithImage = groupChatImages.joined(groupChats, on: "MessageID", kind: .left)
             var groupChatToUI = groupChatsWithImage.selecting(columnNames: "left.Base64Image", "right.ChatId", "right.ChatName")
             
             groupChatToUI.renameColumn("left.Base64Image", to: "image")
@@ -166,7 +158,7 @@ class DatabaseManager {
             
             return try renamedFinalGroupChatTable.jsonRepresentation()
             
-        }catch let error{
+        } catch let error {
             fatalError("Error: \(error)")
         }
     }
@@ -336,8 +328,26 @@ class DatabaseManager {
             let individualChatsJSON = try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
             let decoder = JSONDecoder()
             let tableData = try decoder.decode([IndividualChatCodable].self, from: individualChatsJSON)
-
-            return tableData.map { Chat($0) }
+            
+            //now fetch chats for each
+            let chats = tableData.map { Chat($0) }
+            
+            //now fetch track IDs for each chat
+            await withTaskGroup(of: Void.self) { group in
+                for chat in chats {
+                    group.addTask {
+                        let tracksWithNoMetadata = await self.fetchSpotifyTracksWithNoMetadata(for: chat.ids)
+                        
+                        chat.tracksPages = tracksWithNoMetadata.splitIntoChunks(of: chat.numberOfTrackMetadataPerFetch)
+                    }
+                }
+                
+                for await _ in group { }
+                
+                return
+            }
+            
+            return chats
         } catch let error {
             fatalError("Error: \(error)")
         }

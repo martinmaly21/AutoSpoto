@@ -21,24 +21,6 @@ struct HomeContainerView: View {
                 await homeViewModel.fetchChats()
             }
         }
-        .onReceive(
-            homeViewModel.$selectedIndividualChat,
-            perform: { chat in
-                Task {
-                    guard let chat else { return }
-                    await homeViewModel.fetchTracks(for: chat)
-                }
-            }
-        )
-        .onReceive(
-            homeViewModel.$selectedGroupChat,
-            perform: { chat in
-                Task {
-                    guard let chat else { return }
-                    await homeViewModel.fetchTracks(for: chat)
-                }
-            }
-        )
         .onChange(
             of: homeViewModel.filterSelection,
             perform: { _ in
