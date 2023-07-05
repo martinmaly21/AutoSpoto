@@ -179,17 +179,22 @@ class DatabaseManager {
                 return
             }
             
+            let connectedChatsSection = ChatSection(
+                title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
+                chats: chats.filter { $0.spotifyPlaylistExists }
+            )
+            
             let chatsWithTrackSection = ChatSection(
                 title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
-                chats: chats.filter { $0.hasTracks }
+                chats: chats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
             )
             
             let chatsWithNoTrackSection = ChatSection(
                 title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
-                chats: chats.filter { !$0.hasTracks }
+                chats: chats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
             )
             
-            return [chatsWithTrackSection, chatsWithNoTrackSection]
+            return [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
         } catch let error {
             fatalError("Error: \(error)")
         }
@@ -379,17 +384,22 @@ class DatabaseManager {
                 return
             }
             
+            let connectedChatsSection = ChatSection(
+                title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
+                chats: chats.filter { $0.spotifyPlaylistExists }
+            )
+            
             let chatsWithTrackSection = ChatSection(
                 title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
-                chats: chats.filter { $0.hasTracks }
+                chats: chats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
             )
             
             let chatsWithNoTrackSection = ChatSection(
                 title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
-                chats: chats.filter { !$0.hasTracks }
+                chats: chats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
             )
             
-            return [chatsWithTrackSection, chatsWithNoTrackSection]
+            return [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
         } catch let error {
             fatalError("Error: \(error)")
         }

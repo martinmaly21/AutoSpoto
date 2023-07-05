@@ -53,6 +53,5 @@ struct ChatRow: View {
         .frame(maxHeight: 60)
         .contentShape(Rectangle())
         .background(isSelected ? Color.primaryBlue : Color.clear)
-        .cornerRadius(6)
     }
 }

@@ -24,16 +24,32 @@ struct ChatsListView: View {
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
                     ForEach(homeViewModel.chatSections, id: \.id) { chatSection in
-                        Section(header: Text(chatSection.title)) {
-                            ForEach(chatSection.chats, id: \.id) { chat in
-                                ChatRow(
-                                    chatImage: chat.image,
-                                    chatDisplayName: chat.displayName,
-                                    chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
-                                    isSelected: chat == homeViewModel.selectedChat
-                                )
-                                .onTapGesture {
-                                    homeViewModel.selectedChat = chat
+                        VStack(spacing: 0) {
+                            HStack {
+                                Text(chatSection.title)
+                                    .font(.josefinSansRegular(18))
+                                    .padding(.leading, 8)
+                                    .padding(.vertical, 4)
+                                
+                                Spacer()
+                            }
+                            .background(Color.sectionHeaderGray)
+                            
+                            if chatSection.chats.isEmpty {
+                                Text(AutoSpotoConstants.Strings.CHAT_SECTION_EMPTY_STATE)
+                                    .font(.josefinSansLight(16))
+                                    .padding(.vertical, 10)
+                            } else {
+                                ForEach(chatSection.chats, id: \.id) { chat in
+                                    ChatRow(
+                                        chatImage: chat.image,
+                                        chatDisplayName: chat.displayName,
+                                        chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
+                                        isSelected: chat == homeViewModel.selectedChat
+                                    )
+                                    .onTapGesture {
+                                        homeViewModel.selectedChat = chat
+                                    }
                                 }
                             }
                         }
