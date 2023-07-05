@@ -112,7 +112,7 @@ class DatabaseManager {
         return directoryTB
     }
     
-    func fetchGroupChats() -> Data {
+    func fetchGroupChats() async -> [Chat] {
         do {
             var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
             
@@ -156,8 +156,30 @@ class DatabaseManager {
             
             let renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID", "lastUpdated")
             
-            return try renamedFinalGroupChatTable.jsonRepresentation()
+            let groupChatsJSON = try renamedFinalGroupChatTable.jsonRepresentation()
             
+            let decoder = JSONDecoder()
+            let tableData = try decoder.decode([GroupChatCodable].self, from: groupChatsJSON)
+            
+            //now fetch chats for each
+            let chats = tableData.map { Chat($0) }
+            
+            //now fetch track IDs for each chat
+            await withTaskGroup(of: Void.self) { group in
+                for chat in chats {
+                    group.addTask {
+                        let tracksWithNoMetadata = await self.fetchSpotifyTracksWithNoMetadata(for: chat.ids)
+                        
+                        chat.tracksPages = tracksWithNoMetadata.splitIntoChunks(of: chat.numberOfTrackMetadataPerFetch)
+                    }
+                }
+                
+                for await _ in group { }
+                
+                return
+            }
+            
+            return chats
         } catch let error {
             fatalError("Error: \(error)")
         }

@@ -75,15 +75,7 @@ class HomeViewModel: ObservableObject {
             isFetchingGroupChats = false
         }
 
-        let groupChatsJSON = DatabaseManager.shared.fetchGroupChats()
-
-        do {
-            let decoder = JSONDecoder()
-            let tableData = try decoder.decode([GroupChatCodable].self, from: groupChatsJSON)
-            groupChats = tableData.map { Chat($0) }
-        } catch let error {
-            fatalError("Could not decode chats: \(error)")
-        }
+        self.groupChats = await DatabaseManager.shared.fetchGroupChats()
         
         selectedGroupChat = groupChats.first
     }
