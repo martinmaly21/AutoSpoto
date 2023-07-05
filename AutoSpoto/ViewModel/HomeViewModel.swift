@@ -74,10 +74,10 @@ class HomeViewModel: ObservableObject {
         defer {
             isFetchingGroupChats = false
         }
-
+        
         self.groupChatSections = await DatabaseManager.shared.fetchGroupChats()
         
-        selectedGroupChat = groupChatSections.first?.chats.first
+        selectedGroupChat = groupChatSections.flatMap { $0.chats }.first
     }
 
     private func fetchIndividualChats() async {
@@ -91,7 +91,7 @@ class HomeViewModel: ObservableObject {
         
         self.individualChatSections = await DatabaseManager.shared.fetchIndividualChats()
         
-        selectedIndividualChat = individualChatSections.first?.chats.first
+        selectedIndividualChat = individualChatSections.flatMap { $0.chats }.first
     }
     
     private func fetchTracks(for chat: Chat) async {
