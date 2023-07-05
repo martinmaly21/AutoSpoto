@@ -54,6 +54,7 @@ struct TrackRow: View {
                         Text(track.url.absoluteString)
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimary)
+                            .lineLimit(1)
                         
                         Text(AutoSpotoConstants.Strings.ERROR_FETCHING_TRACK_METADATA)
                             .font(.josefinSansLight(18))
@@ -62,6 +63,7 @@ struct TrackRow: View {
                         Text(track.name ?? AutoSpotoConstants.Strings.TRACK_NAME_METADATA_PLACEHOLDER)
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimary)
+                            .lineLimit(1)
                         
                         Text(track.artist ?? AutoSpotoConstants.Strings.TRACK_ARTIST_METADATA_PLACEHOLDER)
                             .font(.josefinSansLight(18))
