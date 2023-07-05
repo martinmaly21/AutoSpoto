@@ -16,7 +16,6 @@ struct ChatView: View {
     var body: some View {
         let createButtonHeight: CGFloat = 60
         let playlistSummaryHeight: CGFloat = 150
-        
         let heightOfToolbar: CGFloat = 80
         
         if homeViewModel.isFetchingChats {
@@ -25,11 +24,7 @@ struct ChatView: View {
             if let selectedChat = homeViewModel.selectedChat {
                 //there exists at least one chat
                 ZStack(alignment: .center) {
-                    let tracksAreLoading = selectedChat.hasNotFetchedAndIsFetchingTracks
-                    
-                    if tracksAreLoading {
-                        ProgressView()
-                    } else if selectedChat.hasNoTracks {
+                    if !selectedChat.hasTracks {
                         VStack(spacing: 20) {
                             Image(systemName: "headphones")
                                 .resizable()
@@ -115,7 +110,6 @@ struct ChatView: View {
                             )
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimary)
-                            .redacted(reason: tracksAreLoading ? .placeholder : [])
                         }
                         .padding(.horizontal, 16.5)
                         .frame(height: heightOfToolbar)

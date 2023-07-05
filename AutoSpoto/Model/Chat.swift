@@ -33,17 +33,9 @@ class Chat: Equatable, Identifiable {
     
     var optedInToAutomaticChatUpdates = true
 
-    var hasNoTracks: Bool {
-        return tracks.isEmpty && hasFetchedTracksIDs
+    var hasTracks: Bool {
+        return !tracks.isEmpty
     }
-
-    //this boolean is used to show loading indicator UI
-    var hasNotFetchedAndIsFetchingTracks: Bool {
-        return !hasFetchedTracksIDs && isFetchingTrackIDs
-    }
-
-    var hasFetchedTracksIDs = false
-    var isFetchingTrackIDs = false
     
     var trackMetadataPagesBeingFetched: [Int] = []
     var trackMetadataPagesFetched: [Int] = []
@@ -97,7 +89,7 @@ class Chat: Equatable, Identifiable {
     }
     
     func getPage(for spotifyID: String? = nil) -> Int? {
-        guard !hasNoTracks else {
+        guard hasTracks else {
             return nil
         }
         
