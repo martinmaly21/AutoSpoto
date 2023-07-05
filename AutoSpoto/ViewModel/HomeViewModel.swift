@@ -97,6 +97,10 @@ class HomeViewModel: ObservableObject {
     private func fetchTracks(for chat: Chat) async {
         let tracksWithNoMetadata = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: chat.ids)
         chat.tracksPages = tracksWithNoMetadata.splitIntoChunks(of: chat.numberOfTrackMetadataPerFetch)
+        
+        chat.trackMetadataPagesBeingFetched = []
+        chat.trackMetadataPagesFetched = []
+        
         self.objectWillChange.send()
     }
 
@@ -144,6 +148,7 @@ class HomeViewModel: ObservableObject {
     ) async {
         //re-fetch tracks, just in case there were ones that were added since
         await fetchTracks(for: chat)
+        print("HEre")
         
         do {
             try await SpotifyManager.updatePlaylist(for: chat)
