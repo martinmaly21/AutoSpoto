@@ -434,5 +434,17 @@ extension AutoSpotoConstants.Strings {
         value: "Don't worry, your sensitive data never leaves your device.",
         comment: "String that informs user their data is safe."
     )
+    
+    static let CHATS_WITH_TRACKS = NSLocalizedString(
+        "CHATS_WITH_TRACKS",
+        value: "Chats with tracks",
+        comment: "Section title for section of chats with tracks"
+    )
+    
+    static let CHATS_WITH_NO_TRACKS = NSLocalizedString(
+        "CHATS_WITH_NO_TRACKS",
+        value: "Chats with no tracks",
+        comment: "Section title for section of chats with no tracks"
+    )
 }
 

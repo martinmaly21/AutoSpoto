@@ -112,7 +112,7 @@ class DatabaseManager {
         return directoryTB
     }
     
-    func fetchGroupChats() async -> [Chat] {
+    func fetchGroupChats() async -> [ChatSection] {
         do {
             var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
             
@@ -179,13 +179,23 @@ class DatabaseManager {
                 return
             }
             
-            return chats
+            let chatsWithTrackSection = ChatSection(
+                title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
+                chats: chats.filter { $0.hasTracks }
+            )
+            
+            let chatsWithNoTrackSection = ChatSection(
+                title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
+                chats: chats.filter { !$0.hasTracks }
+            )
+            
+            return [chatsWithTrackSection, chatsWithNoTrackSection]
         } catch let error {
             fatalError("Error: \(error)")
         }
     }
     
-    func fetchIndividualChats() async -> [Chat] {
+    func fetchIndividualChats() async -> [ChatSection] {
         do {
             let contactStore = CNContactStore()
             
@@ -369,7 +379,17 @@ class DatabaseManager {
                 return
             }
             
-            return chats
+            let chatsWithTrackSection = ChatSection(
+                title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
+                chats: chats.filter { $0.hasTracks }
+            )
+            
+            let chatsWithNoTrackSection = ChatSection(
+                title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
+                chats: chats.filter { !$0.hasTracks }
+            )
+            
+            return [chatsWithTrackSection, chatsWithNoTrackSection]
         } catch let error {
             fatalError("Error: \(error)")
         }
