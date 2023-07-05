@@ -83,10 +83,10 @@ struct TrackRow: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, -2)
+        .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
         
         Divider()
             .padding(.horizontal, 16)
             .frame(maxHeight: 50)
-            .redacted(reason: trackMetadataIsLoading ? .placeholder : [])
     }
 }
