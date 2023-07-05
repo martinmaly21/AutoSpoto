@@ -26,7 +26,7 @@ struct ChatsListView: View {
                     ForEach(homeViewModel.chatSections, id: \.id) { chatSection in
                         VStack(spacing: 0) {
                             HStack {
-                                Text(chatSection.title)
+                                Text("\(chatSection.title) (\(chatSection.chats.count))")
                                     .font(.josefinSansRegular(18))
                                     .padding(.leading, 8)
                                     .padding(.vertical, 4)
