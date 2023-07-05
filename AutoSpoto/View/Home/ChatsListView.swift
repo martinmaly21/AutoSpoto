@@ -23,15 +23,19 @@ struct ChatsListView: View {
                 Spacer()
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
-                    ForEach(homeViewModel.chats, id: \.id) { chat in
-                        ChatRow(
-                            chatImage: chat.image,
-                            chatDisplayName: chat.displayName,
-                            chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
-                            isSelected: chat == homeViewModel.selectedChat
-                        )
-                        .onTapGesture {
-                            homeViewModel.selectedChat = chat
+                    ForEach(homeViewModel.chatSections, id: \.id) { chatSection in
+                        Section(header: Text(chatSection.title)) {
+                            ForEach(chatSection.chats, id: \.id) { chat in
+                                ChatRow(
+                                    chatImage: chat.image,
+                                    chatDisplayName: chat.displayName,
+                                    chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
+                                    isSelected: chat == homeViewModel.selectedChat
+                                )
+                                .onTapGesture {
+                                    homeViewModel.selectedChat = chat
+                                }
+                            }
                         }
                     }
                 }

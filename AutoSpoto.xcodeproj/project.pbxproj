@@ -12,6 +12,7 @@
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
+		504069802A55A9D400414D3D /* ChatSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040697F2A55A9D400414D3D /* ChatSection.swift */; };
 		5048A23D2A38C17B00790C36 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23C2A38C17B00790C36 /* Shake.swift */; };
 		5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
@@ -104,6 +105,7 @@
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
+		5040697F2A55A9D400414D3D /* ChatSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSection.swift; sourceTree = "<group>"; };
 		5048A23C2A38C17B00790C36 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -426,8 +428,9 @@
 			isa = PBXGroup;
 			children = (
 				50B19562299B4706002E7F65 /* Codable */,
-				50F1789A2995EE0B002AFC1C /* Chat.swift */,
 				50C1790B29980ED8009CD58F /* Track.swift */,
+				50F1789A2995EE0B002AFC1C /* Chat.swift */,
+				5040697F2A55A9D400414D3D /* ChatSection.swift */,
 				5069BF67299994BC007F4037 /* ChatType.swift */,
 				5069BF6929999504007F4037 /* FilterChatType.swift */,
 				509B08532A31AD1400917AAC /* HTTPMethodType.swift */,
@@ -701,6 +704,7 @@
 				50F34C64297657DB0059516B /* Color.swift in Sources */,
 				50FB02E12A34BBDC00D2CEB7 /* PlaylistSummaryView.swift in Sources */,
 				5069BF6C2999AB2D007F4037 /* SpotifyLoginView.swift in Sources */,
+				504069802A55A9D400414D3D /* ChatSection.swift in Sources */,
 				50B20D762A386A7800212CE4 /* SpotifyAccessRequestCell.swift in Sources */,
 				505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */,
 			);

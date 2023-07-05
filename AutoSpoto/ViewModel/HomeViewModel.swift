@@ -9,8 +9,8 @@ import Foundation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published var individualChats: [Chat] = []
-    @Published var groupChats: [Chat] = []
+    @Published var individualChatSections: [ChatSection] = []
+    @Published var groupChatSections: [ChatSection] = []
 
     @Published var selectedIndividualChat: Chat?
     @Published var selectedGroupChat: Chat?
@@ -44,12 +44,12 @@ class HomeViewModel: ObservableObject {
         }
     }
 
-    var chats: [Chat] {
+    var chatSections: [ChatSection] {
         switch filterSelection {
         case .individual:
-            return individualChats
+            return individualChatSections
         case .group:
-            return groupChats
+            return groupChatSections
         }
     }
     
@@ -75,9 +75,9 @@ class HomeViewModel: ObservableObject {
             isFetchingGroupChats = false
         }
 
-        self.groupChats = await DatabaseManager.shared.fetchGroupChats()
+        self.groupChatSections = await DatabaseManager.shared.fetchGroupChats()
         
-        selectedGroupChat = groupChats.first
+        selectedGroupChat = groupChatSections.first?.chats.first
     }
 
     private func fetchIndividualChats() async {
@@ -89,9 +89,9 @@ class HomeViewModel: ObservableObject {
             isFetchingIndividualChats = false
         }
         
-        self.individualChats = await DatabaseManager.shared.fetchIndividualChats()
+        self.individualChatSections = await DatabaseManager.shared.fetchIndividualChats()
         
-        selectedIndividualChat = individualChats.first
+        selectedIndividualChat = individualChatSections.first?.chats.first
     }
     
     private func fetchTracks(for chat: Chat) async {
@@ -179,8 +179,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func resetModel() async {
-        individualChats = []
-        groupChats = []
+        individualChatSections = []
+        groupChatSections = []
 
         selectedIndividualChat = nil
         selectedGroupChat = nil
