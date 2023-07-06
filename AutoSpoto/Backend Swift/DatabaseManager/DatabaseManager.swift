@@ -210,9 +210,9 @@ class DatabaseManager {
                 } catch let error {
                     print("Error fetching containers: \(error)")
                 }
-
+                
                 var results: [CNContact] = []
-
+                
                 // Iterate all containers and append their contacts to our results array
                 for container in allContainers {
                     let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
@@ -223,7 +223,7 @@ class DatabaseManager {
                         print("Error fetching results for container")
                     }
                 }
-
+                
                 //contacts data frame holds both the email and phone number contacts
                 for result in results {
                     let firstName = result.givenName + result.middleName
@@ -241,14 +241,34 @@ class DatabaseManager {
                     }
                 }
             }
+            var contactRows: [ContactRow] = []
+            
+            // Iterate through the original array
+            for row in contactsRowsTuple {
+                // Check if contactInfo already exists in contactStruct
+                let contactInfo = row.contactInfo
+                let contactInfoExists = contactRows.contains { $0.contactInfo == contactInfo }
+                
+                // Add the row only if contactInfo doesn't exist in contactStruct
+                if !contactInfoExists {
+                    let customRow = contactRow(
+                        firstName: row.firstName,
+                        lastName: row.lastName,
+                        contactInfo: row.contactInfo,
+                        imageBlob: row.imageBlob
+                    )
+                    contactRows.append(customRow)
+                }
+            }
+            
+            contactRows = contactRows.unique
             
             let contactsDataFrame: DataFrame = [
-                "firstName": contactsRowsTuple.map { $0.firstName }.isEmpty ? [""] : contactsRowsTuple.map { $0.firstName },
-                "lastName": contactsRowsTuple.map { $0.lastName }.isEmpty ? [""] : contactsRowsTuple.map { $0.lastName },
-                "contactInfo": contactsRowsTuple.map { $0.contactInfo }.isEmpty ? [""] : contactsRowsTuple.map { $0.contactInfo },
-                "imageBlob": contactsRowsTuple.map { $0.imageBlob }.isEmpty ? [""] : contactsRowsTuple.map { $0.imageBlob }
+                "firstName": contactRows.map { $0.firstName }.isEmpty ? [""] : contactRows.map { $0.firstName },
+                "lastName": contactRows.map { $0.lastName }.isEmpty ? [""] : contactRows.map { $0.lastName },
+                "contactInfo": contactRows.map { $0.contactInfo }.isEmpty ? [""] : contactRows.map { $0.contactInfo },
+                "imageBlob": contactRows.map { $0.imageBlob }.isEmpty ? [""] : contactRows.map { $0.imageBlob }
             ]
-            
             //2
             let guID = Expression<String?>("guid")
             let chatID = Expression<Int>("ROWID")
@@ -283,7 +303,6 @@ class DatabaseManager {
                 "contactInfo": chatRowsTuple.map { $0.contactInfo },
                 "chatID": chatRowsTuple.map { $0.chatID }
             ]
-            
             guard !chatsDataFrame.isEmpty else {
                 //if there's no individual chats, return an empty array early
                 //this fixes crash when attempting to join on a data frame with no rows
@@ -291,8 +310,9 @@ class DatabaseManager {
             }
             
             var chatsWithAssociatedContactsDataFrame = chatsDataFrame
-                .joined(contactsDataFrame, on: "contactInfo", kind: .left)
+                .joined(contactsDataFrame, on: "contactInfo", kind: .inner)
             
+            //print("data: \(chatsWithAssociatedContactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             //rename columns back to previous pre-join values
             chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
             chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
@@ -303,7 +323,6 @@ class DatabaseManager {
             let playlistsDataFrame = retrievePlaylistsDataFrame()
             var chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsDataFrame
                 .joined(playlistsDataFrame, on: "chatID", kind: .left)
-            
             //rename columns (this makes the JSON easier to read)
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.contactInfo", to: "contactInfo")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.firstName", to: "firstName")
@@ -311,7 +330,6 @@ class DatabaseManager {
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.imageBlob", to: "imageBlob")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.spotifyPlaylistID", to: "spotifyPlaylistID")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("right.lastUpdated", to: "lastUpdated")
-            
             //This method is responsible for grouping together chatID's for the same
             //phone number. This can sometimes happen if a user has a chat with
             //a certain phone number over iMessage AND text message
@@ -408,6 +426,26 @@ class DatabaseManager {
         
     }
     
+    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]{
+        do {
+            let chatID = Expression<Int>("chatID")
+            let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
+            let lastUpdated = Expression<String?>("lastUpdated")
+            
+            let playlistsTable = Table("CREATED_PLAYLISTS")
+            let allPlaylistsTable = playlistsTable.select(chatID, spotifyPlaylistID, lastUpdated)
+            let playlistsRows = try database.prepare(allPlaylistsTable)
+            
+            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]()
+            for row in playlistsRows {
+                playlistsRowsTuple.append((chatID: row[chatID], spotifyPlaylistID: row[spotifyPlaylistID], lastUpdated: row[lastUpdated]))
+            }
+            return playlistsRowsTuple
+        } catch let error {
+            fatalError("Error: \(error)")
+        }
+    }
+    
     func updateLastUpdatedDB(from createdSpotifyPlaylistID: String){
         let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
         let lastUpdated = Expression<String?>("lastUpdated")
@@ -418,7 +456,7 @@ class DatabaseManager {
         let currentDate = Date()  // Get the current date
         let dateFormatter = DateFormatter()  // Create a date formatter
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"  // Set the desired date format
-
+        
         let dateString = dateFormatter.string(from: currentDate)
         do {
             let rowid = try database.run(playlistQuery.update(lastUpdated <- dateString))

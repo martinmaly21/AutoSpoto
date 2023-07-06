@@ -11,7 +11,7 @@ class Chat: Equatable, Identifiable {
     let type: ChatType
     let image: Data?
     let ids: [Int]
-
+    let lastUpdated: String?
     //this indicates whether a playlist already exists for this chat
     var spotifyPlaylistID: String?
 
@@ -78,7 +78,8 @@ class Chat: Equatable, Identifiable {
         )
         image = individualChatCodable.imageBlob
         ids = individualChatCodable.chatIDs
-        spotifyPlaylistID = individualChatCodable.spotifyPlaylistID //TODO: cahnge
+        spotifyPlaylistID = individualChatCodable.spotifyPlaylistID
+        lastUpdated = individualChatCodable.lastUpdated//TODO: cahnge
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
@@ -86,6 +87,7 @@ class Chat: Equatable, Identifiable {
         image = groupChatCodable.Image
         ids = groupChatCodable.chat_ids
         spotifyPlaylistID = groupChatCodable.playlist_id
+        lastUpdated = groupChatCodable.last_updated
     }
     
     func getPage(for spotifyID: String? = nil) -> Int? {

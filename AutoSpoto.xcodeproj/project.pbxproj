@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
@@ -96,10 +97,60 @@
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
 		50FB02E12A34BBDC00D2CEB7 /* PlaylistSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */; };
 		50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E42A35A49600D2CEB7 /* SyncButton.swift */; };
+		920B21FD2A564AD000904CDD /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
+		92F554B32A55E25A006E1CAA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F554B22A55E25A006E1CAA /* main.swift */; };
+		92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
+		92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
+		92F554B92A55E39F006E1CAA /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08552A31B23200917AAC /* KeyChainManager.swift */; };
+		92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */; };
+		92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */; };
+		92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
+		92F554BD2A55E39F006E1CAA /* (null) in Sources */ = {isa = PBXBuildFile; };
+		92F554BE2A55E39F006E1CAA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
+		92F554BF2A55E39F006E1CAA /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08702A32F1FD00917AAC /* Array.swift */; };
+		92F554C02A55E39F006E1CAA /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
+		92F554C12A55E39F006E1CAA /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
+		92F554C22A55E39F006E1CAA /* AutoSpotoConstants+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */; };
+		92F554C32A55E39F006E1CAA /* AutoSpotoConstants+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */; };
+		92F554C42A55E39F006E1CAA /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
+		92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */; };
+		92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085B2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift */; };
+		92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085D2A31BB5800917AAC /* AutoSpotoConstants+HTTPParameter.swift */; };
+		92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085F2A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift */; };
+		92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */; };
+		92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
+		92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08592A31B36B00917AAC /* SpotifyToken.swift */; };
+		92F554CC2A55E39F006E1CAA /* KeychainToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08672A3203C800917AAC /* KeychainToken.swift */; };
+		92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
+		92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
+		92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
+		92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086A2A32108A00917AAC /* SpotifyUser.swift */; };
+		92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
+		92F554D22A55E39F006E1CAA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789A2995EE0B002AFC1C /* Chat.swift */; };
+		92F554D32A55E39F006E1CAA /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
+		92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
+		92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
+		92F554D62A55E39F006E1CAA /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
+		92F554D72A55E39F006E1CAA /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
+		92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
+		92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 92F554D92A55E3DB006E1CAA /* SQLite */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		92F554AE2A55E25A006E1CAA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		500215E22A57B64900978C20 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Disk_Access_Coaching.mov; sourceTree = "<group>"; };
 		50283F5F2A5033B900E9121B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
@@ -199,6 +250,8 @@
 		50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylist.swift; sourceTree = "<group>"; };
 		50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSummaryView.swift; sourceTree = "<group>"; };
 		50FB02E42A35A49600D2CEB7 /* SyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncButton.swift; sourceTree = "<group>"; };
+		92F554B02A55E25A006E1CAA /* testing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testing; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F554B22A55E25A006E1CAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +266,14 @@
 				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
 				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F554AD2A55E25A006E1CAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +373,9 @@
 			isa = PBXGroup;
 			children = (
 				50AA276F28C3FE69002FFC3F /* AutoSpoto */,
+				92F554B12A55E25A006E1CAA /* testing */,
 				50AA276E28C3FE69002FFC3F /* Products */,
+				92F554A72A550895006E1CAA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -320,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				50AA276D28C3FE69002FFC3F /* AutoSpoto.app */,
+				92F554B02A55E25A006E1CAA /* testing */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,6 +499,7 @@
 				5069BF6929999504007F4037 /* FilterChatType.swift */,
 				509B08532A31AD1400917AAC /* HTTPMethodType.swift */,
 				509B08612A31C31400917AAC /* AutoSpotoError.swift */,
+				500215E22A57B64900978C20 /* ContactRow.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +581,21 @@
 			path = "View Modifiers";
 			sourceTree = "<group>";
 		};
+		92F554A72A550895006E1CAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92F554B12A55E25A006E1CAA /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				92F554B22A55E25A006E1CAA /* main.swift */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -546,6 +626,26 @@
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
 			productType = "com.apple.product-type.application";
 		};
+		92F554AF2A55E25A006E1CAA /* testing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "testing" */;
+			buildPhases = (
+				92F554AC2A55E25A006E1CAA /* Sources */,
+				92F554AD2A55E25A006E1CAA /* Frameworks */,
+				92F554AE2A55E25A006E1CAA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testing;
+			packageProductDependencies = (
+				92F554D92A55E3DB006E1CAA /* SQLite */,
+			);
+			productName = testing;
+			productReference = 92F554B02A55E25A006E1CAA /* testing */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -553,11 +653,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				KnownAssetTags = (
+					New,
+				);
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					50AA276C28C3FE69002FFC3F = {
 						CreatedOnToolsVersion = 14.0;
+					};
+					92F554AF2A55E25A006E1CAA = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -583,6 +689,7 @@
 			projectRoot = "";
 			targets = (
 				50AA276C28C3FE69002FFC3F /* AutoSpoto */,
+				92F554AF2A55E25A006E1CAA /* testing */,
 			);
 		};
 /* End PBXProject section */
@@ -683,6 +790,7 @@
 				509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
 				509B08642A31FEDF00917AAC /* UserDefaultsManager.swift in Sources */,
 				50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */,
+				500215E32A57B64900978C20 /* ContactRow.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
 				50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */,
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
@@ -707,6 +815,49 @@
 				504069802A55A9D400414D3D /* ChatSection.swift in Sources */,
 				50B20D762A386A7800212CE4 /* SpotifyAccessRequestCell.swift in Sources */,
 				505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F554AC2A55E25A006E1CAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				920B21FD2A564AD000904CDD /* NSImage.swift in Sources */,
+				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,
+				92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */,
+				92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */,
+				92F554B92A55E39F006E1CAA /* KeyChainManager.swift in Sources */,
+				92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */,
+				92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
+				92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */,
+				92F554BD2A55E39F006E1CAA /* (null) in Sources */,
+				92F554BE2A55E39F006E1CAA /* String.swift in Sources */,
+				92F554BF2A55E39F006E1CAA /* Array.swift in Sources */,
+				92F554C02A55E39F006E1CAA /* AutoSpotoConstants.swift in Sources */,
+				92F554C12A55E39F006E1CAA /* AutoSpotoConstants+Strings.swift in Sources */,
+				92F554C22A55E39F006E1CAA /* AutoSpotoConstants+Dimensions.swift in Sources */,
+				92F554C32A55E39F006E1CAA /* AutoSpotoConstants+URL.swift in Sources */,
+				92F554C42A55E39F006E1CAA /* AutoSpotoConstants+Regex.swift in Sources */,
+				92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */,
+				92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
+				92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */,
+				92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
+				92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */,
+				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
+				92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */,
+				92F554CC2A55E39F006E1CAA /* KeychainToken.swift in Sources */,
+				92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */,
+				92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */,
+				92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */,
+				92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */,
+				92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */,
+				92F554D22A55E39F006E1CAA /* Chat.swift in Sources */,
+				92F554D32A55E39F006E1CAA /* Track.swift in Sources */,
+				92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */,
+				92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */,
+				92F554D62A55E39F006E1CAA /* HTTPMethodType.swift in Sources */,
+				92F554D72A55E39F006E1CAA /* AutoSpotoError.swift in Sources */,
+				92F554B32A55E25A006E1CAA /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,7 +985,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoSpoto/AutoSpoto.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -857,6 +1008,7 @@
 				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -868,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoSpoto/AutoSpoto.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -890,7 +1042,44 @@
 				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		92F554B52A55E25A006E1CAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development: acarava3@uwo.ca (V6MS6FMUW9)";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = TODO_UPDATE_TEAM_ID;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = /Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/testing/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testing.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		92F554B62A55E25A006E1CAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development: acarava3@uwo.ca (V6MS6FMUW9)";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = TODO_UPDATE_TEAM_ID;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = /Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/testing/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testing.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -912,6 +1101,15 @@
 			buildConfigurations = (
 				50AA277D28C3FE6A002FFC3F /* Debug */,
 				50AA277E28C3FE6A002FFC3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "testing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92F554B52A55E25A006E1CAA /* Debug */,
+				92F554B62A55E25A006E1CAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1004,6 +1202,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */;
 			productName = PythonKit;
+		};
+		92F554D92A55E3DB006E1CAA /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

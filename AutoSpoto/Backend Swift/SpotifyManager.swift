@@ -5,6 +5,13 @@
 //  Created by Martin Maly on 2023-06-08.
 //
 
+//
+//  SpotifyManager.swift
+//  AutoSpoto
+//
+//  Created by Martin Maly on 2023-06-08.
+//
+
 import Foundation
 import AppKit
 
@@ -195,7 +202,20 @@ class SpotifyManager {
         for chat: Chat
     ) async throws -> [[Track]]? {
         //this contains an array of arrays of a maximum of 50 length. Note: some of the IDs in these arrays may be invalid
-        let unfilteredTrackChunks = chat.tracks.splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
+        
+        
+        var unfilteredTrackChunks: [[Track]] = []
+        
+        if (chat.lastUpdated != nil){
+            for (index,element) in chat.ids.enumerated(){
+                unfilteredTrackChunks += ExtractScript().fetchSongsSentAfterUpdate(from: chat.lastUpdated!, from: chat.ids[index]).splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
+           
+            }
+        }
+        else{
+            unfilteredTrackChunks = chat.tracks.splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
+        }
+        
         
         var filteredTracksChunks: [[Track]] = []
         
@@ -218,6 +238,10 @@ class SpotifyManager {
         for chat: Chat,
         desiredPlaylistName: String
     ) async throws {
+        guard let filteredTracksChunks = try await filterChat(for: chat) else {
+            return
+        }
+        
         //create playlist
         chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
         DatabaseManager.shared.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
@@ -252,7 +276,7 @@ class SpotifyManager {
         }
         
         guard let filteredTracksChunks = try await filterChat(for: chat) else {
-            throw AutoSpotoError.chatHasNoValidIDs
+           return
         }
         
         //add tracks to playlist

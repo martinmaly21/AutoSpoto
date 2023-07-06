@@ -25,13 +25,16 @@ final class KeychainManager {
     static let standard = KeychainManager()
     private init() {}
     
+    
+    let keychainAccessGroupName = "TODO_UPDATE_TEAM_ID.com.keychainGroup"
     func save(_ data: Data, service: String, account: String) {
 
         let query = [
             kSecValueData: data,
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessGroup: keychainAccessGroupName
         ] as [CFString : Any] as CFDictionary
 
         // Add data in query to keychain
@@ -43,6 +46,7 @@ final class KeychainManager {
                 kSecAttrService: service,
                 kSecAttrAccount: account,
                 kSecClass: kSecClassGenericPassword,
+                kSecAttrAccessGroup: keychainAccessGroupName
             ] as [CFString : Any] as CFDictionary
 
             let attributesToUpdate = [kSecValueData: data] as CFDictionary
@@ -58,7 +62,8 @@ final class KeychainManager {
             kSecAttrService: service,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
-            kSecReturnData: true
+            kSecReturnData: true,
+            kSecAttrAccessGroup: keychainAccessGroupName
         ] as [CFString : Any] as CFDictionary
         
         var result: AnyObject?
@@ -73,6 +78,7 @@ final class KeychainManager {
             kSecAttrService: service,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
+            kSecAttrAccessGroup: keychainAccessGroupName
         ] as [CFString : Any] as CFDictionary
         
         // Delete item from keychain
