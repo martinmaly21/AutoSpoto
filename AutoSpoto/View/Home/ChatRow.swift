@@ -16,12 +16,13 @@ struct ChatRow: View {
 
     var body: some View {
         VStack(spacing: 2) {
-            HStack(alignment: .center, spacing: 15) {
+            HStack(alignment: .center, spacing: 5) {
                 PersonPictureView(
                     base64ImageData: chatImage,
                     dimension: 40,
                     isSelected: isSelected
                 )
+                .padding(.trailing, 5)
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(chatDisplayName)
