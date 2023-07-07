@@ -10,7 +10,7 @@ import SQLite
 
 //MARK: - this extension is for extracting the Spotify Track id's from a given chat
 extension DatabaseManager {
-    internal func fetchSpotifyTracksWithNoMetadata(
+    public func fetchSpotifyTracksWithNoMetadata(
         for chatIDs: [Int]
     ) async -> [Track] {
         var tracks: [Track] = []

@@ -159,10 +159,16 @@ class HomeViewModel: ObservableObject {
     ) async {
         //re-fetch tracks, just in case there were ones that were added since
         await fetchTracks(for: chat)
-        print("HEre")
         
         do {
-            try await SpotifyManager.updatePlaylist(for: chat)
+            guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+                fatalError("Could not get spotifyPlaylistID from Chat")
+            }
+            try await SpotifyManager.updatePlaylist(
+                spotifyPlaylistID: spotifyPlaylistID,
+                tracks: chat.tracks,
+                lastUpdated: chat.lastUpdated
+            )
         } catch let error {
             //TODO: handle if update playlist fails
         }

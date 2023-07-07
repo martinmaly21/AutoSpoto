@@ -5,26 +5,23 @@
 //  Created by Andrew Caravaggio on 2023-07-05.
 //
 
+import Foundation
 
-let databaseManager = DatabaseManager()
-let trackedChats = databaseManager.retrieveTrackedChats()
+DatabaseManager.shared = DatabaseManager()
+let trackedChats = DatabaseManager.shared.retrieveTrackedChats()
 
-print(trackedChats)
-
-//for playlistsRow in playlistsRowsTuple {
-//
-//    let chatID = playlistsRow.0 ?? -1
-//
-//    let individualChat = IndividualChatCodable(
-//    imageBlob: nil,
-//    contactInfo: "Scheduler",
-//    chatIDs: [chatID],
-//    firstName: nil,
-//    lastName: nil,
-//    spotifyPlaylistID: playlistsRow.1,
-//    lastUpdated: playlistsRow.2
-//    )
-//
-//    let newChat = Chat(individualChat)
-//    try await SpotifyManager.updatePlaylist(for: newChat)
-//}
+for trackedChat in trackedChats.rows {
+    guard let trackedChatID = trackedChat["chatID"] as? Int,
+          let trackedChatSpotifyPlaylistID = trackedChat["spotifyPlaylistID"] as? String,
+          let trackedChatLastUpdated = trackedChat["lastUpdated"] as? Double else {
+        fatalError("Could not get tracked chat information")
+    }
+    
+    let trackedChatTracks = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: [trackedChatID])
+    
+    try await SpotifyManager.updatePlaylist(
+        spotifyPlaylistID: trackedChatSpotifyPlaylistID,
+        tracks: trackedChatTracks,
+        lastUpdated: Date(timeIntervalSince1970: trackedChatLastUpdated)
+    )
+}
