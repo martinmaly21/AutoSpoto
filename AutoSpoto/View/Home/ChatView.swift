@@ -41,7 +41,7 @@ struct ChatView: View {
                                                     }
                                             }
                                         }
-                                        .frame(minHeight: proxy.size.height, alignment: .bottom)
+                                        .frame(minHeight: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) - 8, alignment: .bottom)
                                     } else {
                                         VStack(spacing: 20) {
                                             Image(systemName: "headphones")
