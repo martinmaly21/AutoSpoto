@@ -96,7 +96,6 @@
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
 		50FB02E12A34BBDC00D2CEB7 /* PlaylistSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */; };
 		50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E42A35A49600D2CEB7 /* SyncButton.swift */; };
-		92F05DF8298D894600796C4C /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92F05DF7298D894600796C4C /* PythonKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,7 +195,6 @@
 				505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
-				92F05DF8298D894600796C4C /* PythonKit in Frameworks */,
 				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
 				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
@@ -500,7 +498,6 @@
 			);
 			name = AutoSpoto;
 			packageProductDependencies = (
-				92F05DF7298D894600796C4C /* PythonKit */,
 				50F178A52995FA0F002AFC1C /* Introspect */,
 				5069BF6529994BDF007F4037 /* Kingfisher */,
 				504C2EBC2A25BC9500097F5F /* SQLite */,
@@ -965,11 +962,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
-		};
-		92F05DF7298D894600796C4C /* PythonKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */;
-			productName = PythonKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
