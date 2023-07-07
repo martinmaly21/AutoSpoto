@@ -15,7 +15,7 @@ struct ChatView: View {
     
     var body: some View {
         let createButtonHeight: CGFloat = 60
-        let playlistSummaryHeight: CGFloat = 150
+        let playlistSummaryHeight: CGFloat = 110
         let heightOfToolbar: CGFloat = 80
         
         if homeViewModel.isFetchingChats {
