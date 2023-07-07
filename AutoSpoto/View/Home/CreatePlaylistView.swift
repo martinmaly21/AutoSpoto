@@ -155,15 +155,6 @@ struct CreatePlaylistView: View {
                 }
                 .padding(.vertical, 8)
                 
-                Toggle(
-                    isOn: $optInToAutomaticPlaylistUpdates,
-                    label: {
-                        Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
-                            .font(.josefinSansRegular(16))
-                            .frame(maxHeight: .infinity)
-                    }
-                )
-                
                 if errorCreatingPlaylist {
                     Text(AutoSpotoConstants.Strings.ERROR_CREATING_PLAYLIST)
                         .font(.josefinSansRegular(16))

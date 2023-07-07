@@ -261,18 +261,6 @@ extension AutoSpotoConstants.Strings {
         comment: "The text that appears next to the private switch"
     )
     
-    static let AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT = NSLocalizedString(
-        "AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT",
-        value: "Automatically update your playlist with any new tracks shared between you and %@.",
-        comment: "The text that appears next to the private switch"
-    )
-    
-    static let AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT = NSLocalizedString(
-        "AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT",
-        value: "Automatically update your playlist with any new tracks shared between in %@.",
-        comment: "The text that appears next to the private switch"
-    )
-    
     static let ERROR_CREATING_PLAYLIST = NSLocalizedString(
         "ERROR_CREATING_PLAYLIST",
         value: "There was an error creating your playlist. Please try again.",

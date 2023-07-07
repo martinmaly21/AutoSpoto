@@ -82,14 +82,6 @@ struct PlaylistSummaryView: View {
                                         }
                                     )
                                     .buttonStyle(.plain)
-                                    
-                                    Toggle(
-                                        isOn: $optInToAutomaticPlaylistUpdates,
-                                        label: {
-                                            Text(String.localizedStringWithFormat(chat.isGroupChat ? AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_GROUP_CHAT : AutoSpotoConstants.Strings.AUTOMATIC_PLAYLIST_UPDATES_SINGLE_CHAT, chat.displayName))
-                                                .font(.josefinSansRegular(12))
-                                        }
-                                    )
                                 }
                                 
                                 Spacer()
