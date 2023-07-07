@@ -159,12 +159,6 @@
 		50CFCE312989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicStreamingServiceView.swift; sourceTree = "<group>"; };
 		50D0261C2A38BC9500DBD789 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		50D43F5F2985EAD5000DC525 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		50D7A40F298B333700943731 /* unload_plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = unload_plist.sh; sourceTree = "<group>"; };
-		50D7A410298B333700943731 /* extract_script.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = extract_script.py; sourceTree = "<group>"; };
-		50D7A412298B333700943731 /* load_plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_plist.sh; sourceTree = "<group>"; };
-		50D7A413298B333700943731 /* com.auto.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.auto.plist; sourceTree = "<group>"; };
-		50D7A414298B333700943731 /* spotify_apis.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = spotify_apis.py; sourceTree = "<group>"; };
-		50D7A415298B333700943731 /* db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = db.py; sourceTree = "<group>"; };
 		50DB079E2984B6A000BC5864 /* JosefinSansThin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThin.ttf; sourceTree = "<group>"; };
 		50DB079F2984B6A000BC5864 /* JosefinSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansRegular.ttf; sourceTree = "<group>"; };
 		50DB07A02984B6A000BC5864 /* JosefinSansSemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansSemibold.ttf; sourceTree = "<group>"; };
@@ -173,13 +167,6 @@
 		50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansBoldItalic.ttf; sourceTree = "<group>"; };
 		50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThinItalic.ttf; sourceTree = "<group>"; };
 		50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansLight.ttf; sourceTree = "<group>"; };
-		50DFB9732994A84500E9A3D9 /* spotipy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spotipy; sourceTree = "<group>"; };
-		50DFB9752994A8A000E9A3D9 /* requests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = requests; sourceTree = "<group>"; };
-		50DFB9792994A8E600E9A3D9 /* charset_normalizer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = charset_normalizer; sourceTree = "<group>"; };
-		50DFB97B2994A90400E9A3D9 /* idna */ = {isa = PBXFileReference; lastKnownFileType = folder; path = idna; sourceTree = "<group>"; };
-		50DFB97D2994A95900E9A3D9 /* certifi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = certifi; sourceTree = "<group>"; };
-		50DFB9832994AB4400E9A3D9 /* chardet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chardet; sourceTree = "<group>"; };
-		50DFB9852994AD3100E9A3D9 /* urllib3 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = urllib3; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -219,26 +206,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		500610F2298ADDBA00A50DA1 /* Backend */ = {
-			isa = PBXGroup;
-			children = (
-				50DFB9852994AD3100E9A3D9 /* urllib3 */,
-				50DFB9832994AB4400E9A3D9 /* chardet */,
-				50DFB97D2994A95900E9A3D9 /* certifi */,
-				50DFB97B2994A90400E9A3D9 /* idna */,
-				50DFB9792994A8E600E9A3D9 /* charset_normalizer */,
-				50DFB9752994A8A000E9A3D9 /* requests */,
-				50DFB9732994A84500E9A3D9 /* spotipy */,
-				50D7A413298B333700943731 /* com.auto.plist */,
-				50D7A415298B333700943731 /* db.py */,
-				50D7A410298B333700943731 /* extract_script.py */,
-				50D7A412298B333700943731 /* load_plist.sh */,
-				50D7A414298B333700943731 /* spotify_apis.py */,
-				50D7A40F298B333700943731 /* unload_plist.sh */,
-			);
-			path = Backend;
-			sourceTree = "<group>";
-		};
 		503BC2FC29B38DC700743ED5 /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +298,6 @@
 				50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */,
 				50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */,
 				504C2EB62A24F90B00097F5F /* Backend Swift */,
-				500610F2298ADDBA00A50DA1 /* Backend */,
 				50F34C62297657BF0059516B /* Extensions */,
 				50F34C5B2976526C0059516B /* Supporting FIles */,
 				50F34C8E297662A80059516B /* View */,
