@@ -32,9 +32,9 @@ struct ChatRow: View {
                 Spacer()
 
                 if chatSpotifyPlaylistExists {
-                    Image(systemName: "music.note.list")
+                    Image("spotify-logo")
                         .resizable()
-                        .frame(width: 20, height: 20)
+                        .frame(width: 30, height: 30)
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.spotifyGreen)
                 }
