@@ -11,6 +11,7 @@ struct ChatRow: View {
     let chatImage: Data?
     let chatDisplayName: String
     let chatSpotifyPlaylistExists: Bool
+    let numberOfTracks: Int
     
     let isSelected: Bool
 
@@ -24,9 +25,13 @@ struct ChatRow: View {
                 )
                 .padding(.trailing, 5)
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 0) {
                     Text(chatDisplayName)
                         .font(.josefinSansRegular(18))
+                        .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
+                    
+                    Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.NUMBER_OF_TRACKS, numberOfTracks))
+                        .font(.josefinSansLight(16))
                         .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
                 }
 
