@@ -51,7 +51,7 @@ struct ChatView: View {
                                             Text(AutoSpotoConstants.Strings.NO_TRACKS_EMPTY_STATE)
                                                 .font(.josefinSansRegular(18))
                                         }
-                                        .frame(height: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight))
+                                        .frame(height: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) - 8)
                                         .frame(maxWidth: .infinity)
                                         .foregroundColor(.emptyStateTintColor)
                                     }
