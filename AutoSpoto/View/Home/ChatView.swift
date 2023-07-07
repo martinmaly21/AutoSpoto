@@ -36,7 +36,15 @@ struct ChatView: View {
                                                     .onAppear {
                                                         if homeViewModel.shouldScrollToBottom {
                                                             homeViewModel.shouldScrollToBottom = false
+                                                            
                                                             reader.scrollTo(selectedChat.tracks.last?.id)
+                                                            
+                                                            //after scrolling chat to bottom, fetch the playlist if it exists
+                                                            if selectedChat.spotifyPlaylistExists {
+                                                                Task {
+                                                                    await homeViewModel.fetchPlaylist(for: selectedChat)
+                                                                }
+                                                            }
                                                         }
                                                         
                                                         //fetch metadata when row appears
@@ -76,11 +84,6 @@ struct ChatView: View {
                                 width: proxy.size.width,
                                 height: playlistSummaryHeight
                             )
-                            .onAppear {
-                                Task {
-                                    await homeViewModel.fetchPlaylist(for: selectedChat)
-                                }
-                            }
                         } else {
                             CreatePlaylistButton(
                                 width: proxy.size.width,

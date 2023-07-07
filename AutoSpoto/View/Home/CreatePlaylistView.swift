@@ -187,6 +187,8 @@ struct CreatePlaylistView: View {
                                     withAnimation {
                                         self.successfullyCreatedPlaylist = true
                                     }
+                                    
+                                    await homeViewModel.fetchPlaylist(for: chat)
                                 } catch {
                                     self.errorCreatingPlaylist = true
                                     self.isCreatingPlaylist = false
