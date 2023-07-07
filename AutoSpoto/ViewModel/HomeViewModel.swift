@@ -20,6 +20,8 @@ class HomeViewModel: ObservableObject {
     @Published var isFetchingIndividualChats = false
     @Published var isFetchingGroupChats = false
     
+    @Published var shouldScrollToBottom = false
+    
     public var isFetchingChats: Bool {
         return isFetchingIndividualChats || isFetchingGroupChats
     }
@@ -41,6 +43,8 @@ class HomeViewModel: ObservableObject {
             case .group:
                 selectedGroupChat = newValue
             }
+            
+            shouldScrollToBottom = true
         }
     }
 

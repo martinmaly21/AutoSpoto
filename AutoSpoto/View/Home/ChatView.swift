@@ -34,7 +34,10 @@ struct ChatView: View {
                                                 TrackRow(track: track)
                                                     .id(track.id)
                                                     .onAppear {
-                                                        reader.scrollTo(selectedChat.tracks.last?.id)
+                                                        if homeViewModel.shouldScrollToBottom {
+                                                            homeViewModel.shouldScrollToBottom = false
+                                                            reader.scrollTo(selectedChat.tracks.last?.id)
+                                                        }
                                                         
                                                         //fetch metadata when row appears
                                                         Task {
