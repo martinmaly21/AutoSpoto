@@ -35,14 +35,6 @@ struct PlaylistSummaryView: View {
                 HStack(alignment: .center) {
                     HStack(alignment: .center) {
                         VStack(spacing: 8) {
-                            HStack {
-                                Text(AutoSpotoConstants.Strings.CONNECTED_TO)
-                                    .font(.josefinSansSemibold(18))
-                                
-                                Spacer()
-                            }
-                            .padding(.bottom, 2)
-                            
                             HStack(spacing: 12) {
                                 KFImage(spotifyPlaylist?.imageURL)
                                     .placeholder {
@@ -78,7 +70,7 @@ struct PlaylistSummaryView: View {
                                                 .foregroundColor(.spotifyGreen)
                                                 .underline(pattern: .solid)
                                                 .padding(.bottom, 8)
-                                            
+                                                .lineLimit(1)
                                         }
                                     )
                                     .buttonStyle(.plain)
