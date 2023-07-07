@@ -23,22 +23,12 @@ struct ChatView: View {
         } else {
             if let selectedChat = homeViewModel.selectedChat {
                 //there exists at least one chat
-                ZStack(alignment: .center) {
-                    if !selectedChat.hasTracks {
-                        VStack(spacing: 20) {
-                            Image(systemName: "headphones")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                            
-                            Text(AutoSpotoConstants.Strings.NO_TRACKS_EMPTY_STATE)
-                                .font(.josefinSansRegular(18))
-                        }
-                        .foregroundColor(.emptyStateTintColor)
-                    } else {
-                        GeometryReader { proxy in
-                            ZStack(alignment: .bottom) {
-                                ScrollViewReader { reader in
-                                    ScrollView {
+                GeometryReader { proxy in
+                    ZStack(alignment: .center) {
+                        ZStack(alignment: .bottom) {
+                            ScrollViewReader { reader in
+                                ScrollView {
+                                    if selectedChat.hasTracks {
                                         LazyVStack {
                                             ForEach(selectedChat.tracks, id: \.id) { track in
                                                 TrackRow(track: track)
@@ -50,44 +40,53 @@ struct ChatView: View {
                                                         }
                                                     }
                                             }
-                                            .onChange(of: selectedChat.tracks.count) { _ in
-                                                reader.scrollTo(selectedChat.tracks.last?.id)
-                                            }
                                         }
                                         .frame(minHeight: proxy.size.height, alignment: .bottom)
-                                    }
-                                    .safeAreaInset(edge: .top) {
-                                        Spacer()
-                                            .frame(height: heightOfToolbar)
-                                    }
-                                    .safeAreaInset(edge: .bottom) {
-                                        if selectedChat.spotifyPlaylistExists {
-                                            PlaylistSummaryView(
-                                                chat: selectedChat,
-                                                width: proxy.size.width,
-                                                height: playlistSummaryHeight
-                                            )
-                                            .onAppear {
-                                                Task {
-                                                    await homeViewModel.fetchPlaylist(for: selectedChat)
-                                                }
-                                            }
-                                        } else {
-                                            CreatePlaylistButton(
-                                                width: proxy.size.width,
-                                                height: createButtonHeight,
-                                                action: {
-                                                    showCreatePlaylistSheet = true
-                                                }
-                                            )
+                                    } else {
+                                        VStack(spacing: 20) {
+                                            Image(systemName: "headphones")
+                                                .resizable()
+                                                .frame(width: 60, height: 60)
+                                            
+                                            Text(AutoSpotoConstants.Strings.NO_TRACKS_EMPTY_STATE)
+                                                .font(.josefinSansRegular(18))
                                         }
+                                        .frame(height: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight))
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(.emptyStateTintColor)
                                     }
-                                    .frame(width: proxy.size.width)
+                                }
+                                .safeAreaInset(edge: .top) {
+                                    Spacer()
+                                        .frame(height: heightOfToolbar)
                                 }
                             }
                         }
-                        .environmentObject(homeViewModel)
                     }
+                    .environmentObject(homeViewModel)
+                    .safeAreaInset(edge: .bottom) {
+                        if selectedChat.spotifyPlaylistExists {
+                            PlaylistSummaryView(
+                                chat: selectedChat,
+                                width: proxy.size.width,
+                                height: playlistSummaryHeight
+                            )
+                            .onAppear {
+                                Task {
+                                    await homeViewModel.fetchPlaylist(for: selectedChat)
+                                }
+                            }
+                        } else {
+                            CreatePlaylistButton(
+                                width: proxy.size.width,
+                                height: createButtonHeight,
+                                action: {
+                                    showCreatePlaylistSheet = true
+                                }
+                            )
+                        }
+                    }
+                    .frame(width: proxy.size.width)
                     VStack {
                         HStack(alignment: .center, spacing: 14) {
                             PersonPictureView(
