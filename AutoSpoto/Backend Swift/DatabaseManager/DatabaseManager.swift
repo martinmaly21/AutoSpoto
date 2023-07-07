@@ -112,7 +112,7 @@ class DatabaseManager {
         return directoryTB
     }
     
-    func fetchGroupChats() async -> [ChatSection] {
+    func fetchGroupChats() async -> [Chat] {
         do {
             var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
             
@@ -179,28 +179,13 @@ class DatabaseManager {
                 return
             }
             
-            let connectedChatsSection = ChatSection(
-                title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
-                chats: chats.filter { $0.spotifyPlaylistExists }
-            )
-            
-            let chatsWithTrackSection = ChatSection(
-                title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
-                chats: chats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
-            )
-            
-            let chatsWithNoTrackSection = ChatSection(
-                title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
-                chats: chats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
-            )
-            
-            return [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
+            return chats
         } catch let error {
             fatalError("Error: \(error)")
         }
     }
     
-    func fetchIndividualChats() async -> [ChatSection] {
+    func fetchIndividualChats() async -> [Chat] {
         do {
             let contactStore = CNContactStore()
             
@@ -346,21 +331,6 @@ class DatabaseManager {
                     return df
                 })
                 .ungrouped()
-            //sort chats by first name
-            chatsWithAssociatedContactsAndPlaylistIDDataFrame.sort(
-                on: "firstName",
-                String?.self,
-                by: { lhs, rhs in
-                    guard let lhs = lhs else {
-                        return false
-                    }
-                    guard let rhs = rhs else {
-                        return true
-                    }
-                    
-                    return lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedAscending
-                }
-            )
             
             let individualChatsJSON = try chatsWithAssociatedContactsAndPlaylistIDDataFrame.jsonRepresentation()
             let decoder = JSONDecoder()
@@ -384,22 +354,8 @@ class DatabaseManager {
                 return
             }
             
-            let connectedChatsSection = ChatSection(
-                title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
-                chats: chats.filter { $0.spotifyPlaylistExists }
-            )
             
-            let chatsWithTrackSection = ChatSection(
-                title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
-                chats: chats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
-            )
-            
-            let chatsWithNoTrackSection = ChatSection(
-                title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
-                chats: chats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
-            )
-            
-            return [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
+            return chats
         } catch let error {
             fatalError("Error: \(error)")
         }

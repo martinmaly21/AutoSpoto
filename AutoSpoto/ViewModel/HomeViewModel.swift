@@ -9,11 +9,11 @@ import Foundation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published var individualChatSections: [ChatSection] = []
-    @Published var groupChatSections: [ChatSection] = []
+    @Published private var individualChatSections: [ChatSection] = []
+    @Published private var groupChatSections: [ChatSection] = []
 
-    @Published var selectedIndividualChat: Chat?
-    @Published var selectedGroupChat: Chat?
+    @Published private var selectedIndividualChat: Chat?
+    @Published private var selectedGroupChat: Chat?
 
     @Published var filterSelection: FilterChatType = .individual
     
@@ -45,11 +45,22 @@ class HomeViewModel: ObservableObject {
     }
 
     var chatSections: [ChatSection] {
-        switch filterSelection {
-        case .individual:
-            return individualChatSections
-        case .group:
-            return groupChatSections
+        get {
+            switch filterSelection {
+            case .individual:
+                return individualChatSections
+            case .group:
+                return groupChatSections
+            }
+        }
+        
+        set {
+            switch filterSelection {
+            case .individual:
+                individualChatSections = newValue
+            case .group:
+                groupChatSections = newValue
+            }
         }
     }
     
@@ -75,9 +86,8 @@ class HomeViewModel: ObservableObject {
             isFetchingGroupChats = false
         }
         
-        self.groupChatSections = await DatabaseManager.shared.fetchGroupChats()
-        
-        selectedGroupChat = groupChatSections.flatMap { $0.chats }.first
+        let groupChats = await DatabaseManager.shared.fetchGroupChats()
+        updateChatSections(allChats: groupChats)
     }
 
     private func fetchIndividualChats() async {
@@ -89,9 +99,8 @@ class HomeViewModel: ObservableObject {
             isFetchingIndividualChats = false
         }
         
-        self.individualChatSections = await DatabaseManager.shared.fetchIndividualChats()
-        
-        selectedIndividualChat = individualChatSections.flatMap { $0.chats }.first
+        let individualChats = await DatabaseManager.shared.fetchIndividualChats()
+        updateChatSections(allChats: individualChats)
     }
     
     private func fetchTracks(for chat: Chat) async {
@@ -140,6 +149,8 @@ class HomeViewModel: ObservableObject {
             desiredPlaylistName: desiredPlaylistName
         )
         
+        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
+        
         self.objectWillChange.send()
     }
     
@@ -156,6 +167,8 @@ class HomeViewModel: ObservableObject {
             //TODO: handle if update playlist fails
         }
        
+        //update chat sections
+        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
         
         self.objectWillChange.send()
     }
@@ -180,7 +193,45 @@ class HomeViewModel: ObservableObject {
     ) async {
         #warning("Need to update autospoto.db")
         chat.spotifyPlaylistID = nil
+        
+        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
+        
         self.objectWillChange.send()
+    }
+    
+    //this is called whenever a user updates a chat, since it may be moved to a different section
+    //the sitations i can think of
+    //1. a user disconnects a chat, so it should be moved to either 'chats with tracks' or 'chats with no tracks'
+    //2. a user connects a chat, so it should be moved to 'connected chats'
+    private func updateChatSections(allChats: [Chat], updatedChat: Chat? = nil) {
+        var connectedChats = allChats.filter { $0.spotifyPlaylistExists }
+        connectedChats.sort(by: { $0.displayName < $1.displayName })
+        let connectedChatsSection = ChatSection(
+            title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
+            chats: connectedChats
+        )
+        
+        var chatsWithTracks = allChats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
+        chatsWithTracks.sort(by: { $0.displayName < $1.displayName })
+        let chatsWithTrackSection = ChatSection(
+            title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
+            chats: chatsWithTracks
+        )
+        
+        var chatsWithNoTracks = allChats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
+        chatsWithNoTracks.sort(by: { $0.displayName < $1.displayName })
+        let chatsWithNoTrackSection = ChatSection(
+            title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
+            chats: chatsWithNoTracks
+        )
+        
+        chatSections = [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
+        
+        if let updatedChat = updatedChat {
+            selectedChat = updatedChat
+        } else {
+            selectedChat = chatSections.flatMap { $0.chats }.first
+        }
     }
     
     func resetModel() async {
