@@ -409,7 +409,7 @@ class DatabaseManager {
     }
     
     
-    func insertSpotifyPlaylistDB(from createdSpotifyPlaylistID: String, selectedChatID: [Int]){
+    func insertSpotifyPlaylistDB(from createdSpotifyPlaylistID: String, selectedChatID: [Int]) {
         let chatID = Expression<Int>("chatID")
         let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
         
@@ -423,10 +423,9 @@ class DatabaseManager {
         } catch {
             print("update failed: \(error)")
         }
-        
     }
     
-    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]{
+    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)] {
         do {
             let chatID = Expression<Int>("chatID")
             let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
@@ -446,25 +445,18 @@ class DatabaseManager {
         }
     }
     
-    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String){
+    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String, dateUpdatedString: String) {
         let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
         let lastUpdated = Expression<String?>("lastUpdated")
         
         let playlistsTable = Table("CREATED_PLAYLISTS")
         let playlistQuery = playlistsTable.filter(spotifyPlaylistID==createdSpotifyPlaylistID)
         
-        let currentDate = Date()  // Get the current date
-        let dateFormatter = DateFormatter()  // Create a date formatter
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"  // Set the desired date format
-        
-        let dateString = dateFormatter.string(from: currentDate)
         do {
-            let rowid = try database.run(playlistQuery.update(lastUpdated <- dateString))
+            let rowid = try database.run(playlistQuery.update(lastUpdated <- dateUpdatedString))
             print("inserted id: \(rowid)")
         } catch {
             print("update failed: \(error)")
         }
     }
-    
-    
 }

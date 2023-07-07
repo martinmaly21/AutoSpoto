@@ -197,23 +197,16 @@ class SpotifyManager {
         return tracksWithMetadata
     }
     
-    //this method is responsible for filtering out all invalid IDs from a chat
+    //this method is responsible for filtering out all invalid IDs from a chat before creating a playlist on Spotify
     private static func filterChat(
         for chat: Chat
     ) async throws -> [[Track]]? {
+        let lastUpdated = chat.lastUpdated ?? Date(timeIntervalSince1970: 0)
         //this contains an array of arrays of a maximum of 50 length. Note: some of the IDs in these arrays may be invalid
-        var unfilteredTrackChunks: [[Track]] = []
-        
-        if (chat.lastUpdated != nil){
-            for (index,element) in chat.ids.enumerated(){
-                unfilteredTrackChunks += DatabaseManager.shared.fetchSongsSentAfterUpdate(from: chat.lastUpdated!, from: chat.ids[index]).splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
-           
-            }
-        }
-        else{
-            unfilteredTrackChunks = chat.tracks.splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
-        }
-        
+        let unfilteredTrackChunks: [[Track]] = chat
+            .tracks
+            .filter { $0.timeStamp > lastUpdated }
+            .splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
         
         var filteredTracksChunks: [[Track]] = []
         
@@ -236,10 +229,6 @@ class SpotifyManager {
         for chat: Chat,
         desiredPlaylistName: String
     ) async throws {
-        guard let filteredTracksChunks = try await filterChat(for: chat) else {
-            return
-        }
-        
         //create playlist
         chat.spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
         DatabaseManager.shared.insertSpotifyPlaylistDB(from: chat.spotifyPlaylistID!, selectedChatID: chat.ids)
@@ -264,8 +253,6 @@ class SpotifyManager {
         return spotifyPlaylist.id
     }
     
-    //TODO: filter out tracks that have already been added? Maybe pass in lastUPdated param to this method and check that to the time stamp of each track
-    //OR more likely the lastUpdated param should be a property on Chat
     public static func updatePlaylist(
         for chat: Chat
     ) async throws {
@@ -291,15 +278,17 @@ class SpotifyManager {
         dateFormatter.timeZone = Calendar.current.timeZone
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
+        let dateUpdatedString = dateFormatter.string(from: dateUpdated)
+        
         let params: [String : Any] = [
             AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
                 AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
-                dateFormatter.string(from: dateUpdated)
+                dateUpdatedString
             )
         ]
         
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID)
+        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID, dateUpdatedString: dateUpdatedString)
     }
     
     public static func addCoverImageToPlaylist(for chat: Chat) async throws {

@@ -74,7 +74,7 @@ struct TrackRow: View {
                 Spacer()
                 
                 VStack {
-                    Text(track.timeStamp)
+                    Text(track.timeStamp.formatted())
                         .font(.josefinSansLight(16))
                         .foregroundColor(.textPrimary)
                     
