@@ -34,12 +34,12 @@ struct ChatView: View {
                                                 TrackRow(track: track)
                                                     .id(track.id)
                                                     .onAppear {
+                                                        reader.scrollTo(selectedChat.tracks.last?.id)
+                                                        
                                                         //fetch metadata when row appears
                                                         Task {
                                                             await homeViewModel.fetchTracksMetadata(for: selectedChat, spotifyID: track.spotifyID)
                                                         }
-                                                        
-                                                        reader.scrollTo(selectedChat.tracks.last?.id)
                                                     }
                                             }
                                         }
