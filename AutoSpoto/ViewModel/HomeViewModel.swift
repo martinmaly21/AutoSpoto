@@ -206,23 +206,29 @@ class HomeViewModel: ObservableObject {
     private func updateChatSections(allChats: [Chat], updatedChat: Chat? = nil) {
         var connectedChats = allChats.filter { $0.spotifyPlaylistExists }
         connectedChats.sort(by: { $0.displayName < $1.displayName })
+        let connectedChatsNames = connectedChats.filter { $0.displayName.digits != $0.displayName }
+        let connectedChatsNumbers = connectedChats.filter { $0.displayName.digits == $0.displayName }
         let connectedChatsSection = ChatSection(
             title: AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION,
-            chats: connectedChats
+            chats: connectedChatsNames + connectedChatsNumbers
         )
         
         var chatsWithTracks = allChats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
         chatsWithTracks.sort(by: { $0.displayName < $1.displayName })
+        let chatsWithTracksNames = chatsWithTracks.filter { $0.displayName.digits != $0.displayName }
+        let chatsWithTracksNumbers = chatsWithTracks.filter { $0.displayName.digits == $0.displayName }
         let chatsWithTrackSection = ChatSection(
             title: AutoSpotoConstants.Strings.CHATS_WITH_TRACKS,
-            chats: chatsWithTracks
+            chats: chatsWithTracksNames + chatsWithTracksNumbers
         )
         
         var chatsWithNoTracks = allChats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
         chatsWithNoTracks.sort(by: { $0.displayName < $1.displayName })
+        let chatsWithNoTracksNames = chatsWithNoTracks.filter { $0.displayName.digits != $0.displayName }
+        let chatsWithNoTracksNumbers = chatsWithNoTracks.filter { $0.displayName.digits == $0.displayName }
         let chatsWithNoTrackSection = ChatSection(
             title: AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS,
-            chats: chatsWithNoTracks
+            chats: chatsWithNoTracksNames + chatsWithNoTracksNumbers
         )
         
         chatSections = [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
