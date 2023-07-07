@@ -111,7 +111,7 @@ struct ChatsListView: View {
             .frame(height: topInset)
             .background(.ultraThinMaterial)
         }
-        .frame(width: 300)
+        .frame(minWidth: 300)
         .frame(maxWidth: .infinity)
     }
 }

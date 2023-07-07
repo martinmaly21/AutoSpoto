@@ -14,6 +14,7 @@ struct HomeContainerView: View {
         NavigationView {
             ChatsListView()
             ChatView()
+                .frame(minWidth: 600)
         }
         .environmentObject(homeViewModel)
         .onAppear {
