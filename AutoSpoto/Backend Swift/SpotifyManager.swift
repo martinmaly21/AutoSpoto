@@ -278,17 +278,15 @@ class SpotifyManager {
         dateFormatter.timeZone = Calendar.current.timeZone
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        let dateUpdatedString = dateFormatter.string(from: dateUpdated)
-        
         let params: [String : Any] = [
             AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
                 AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
-                dateUpdatedString
+                dateFormatter.string(from: dateUpdated)
             )
         ]
         
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID, dateUpdatedString: dateUpdatedString)
+        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID, lastUpdatedDouble: dateUpdated.timeIntervalSince1970)
     }
     
     public static func addCoverImageToPlaylist(for chat: Chat) async throws {

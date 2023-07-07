@@ -54,25 +54,6 @@ extension DatabaseManager {
         return outputDate
     }
     
-    private func stringToDate(from dateString: String) -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        guard let inputDate = dateFormatter.date(from: dateString) else {
-            fatalError("Invalid date format")
-        }
-        
-        let referenceDate = Date(timeIntervalSinceReferenceDate: 0)
-        let referenceTimeIntervalSince1970 = referenceDate.timeIntervalSince1970
-        
-        let inputTimeInterval = inputDate.timeIntervalSince1970
-        let outputTimeInterval = inputTimeInterval - referenceTimeIntervalSince1970
-        
-        let posixDate = Int(outputTimeInterval * 1_000_000_000)
-        
-        return posixDate
-    }
-    
     private func removeSpotifyPrefix(from url: String) -> String {
         let prefix = "https://open.spotify.com/track/"
         if url.hasPrefix(prefix) {

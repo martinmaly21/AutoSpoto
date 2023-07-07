@@ -69,8 +69,6 @@ class Chat: Equatable, Identifiable {
             }
         }
     }
-    
-    private let dateFormatter = DateFormatter()
 
     init(_ individualChatCodable: IndividualChatCodable) {
         type = .individual(
@@ -82,7 +80,7 @@ class Chat: Equatable, Identifiable {
         ids = individualChatCodable.chatIDs
         spotifyPlaylistID = individualChatCodable.spotifyPlaylistID
         if let lastUpdated = individualChatCodable.lastUpdated {
-            self.lastUpdated = dateFormatter.date(from: lastUpdated) //TODO: change to same name as GroupChatCodable property
+            self.lastUpdated = Date(timeIntervalSince1970: lastUpdated)
         } else {
             self.lastUpdated = nil
         }
@@ -93,8 +91,8 @@ class Chat: Equatable, Identifiable {
         image = groupChatCodable.Image
         ids = groupChatCodable.chat_ids
         spotifyPlaylistID = groupChatCodable.playlist_id
-        if let lastUpdated = groupChatCodable.last_updated {
-            self.lastUpdated = dateFormatter.date(from: lastUpdated)
+        if let lastUpdated = groupChatCodable.lastUpdated {
+            self.lastUpdated = Date(timeIntervalSince1970: lastUpdated)
         } else {
             self.lastUpdated = nil
         }

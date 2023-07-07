@@ -24,8 +24,6 @@ class Track: Equatable, Identifiable {
         }
         return url
     }
-    
-    private let dateFormatter = DateFormatter()
 
     init(spotifyID: String, timeStamp: Date) {
         self.spotifyID = spotifyID

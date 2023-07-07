@@ -41,7 +41,7 @@ class DatabaseManager {
                 CREATE TABLE IF NOT EXISTS CREATED_PLAYLISTS (
                     chatID INTEGER,
                     spotifyPlaylistID TEXT,
-                    lastUpdated TEXT
+                    lastUpdated DOUBLE
                 )
             """)
         } catch let error {
@@ -344,7 +344,7 @@ class DatabaseManager {
                     df["lastName", String?.self] = Column(name: "lastName", contents: [slice["lastName"].first as? String])
                     df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["imageBlob"].first as? String])
                     df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["spotifyPlaylistID"].first as? String])
-                    df["lastUpdated", String?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? String])
+                    df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
                     
                     return df
                 })
@@ -385,13 +385,13 @@ class DatabaseManager {
         do {
             let chatID = Expression<Int>("chatID")
             let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-            let lastUpdated = Expression<String?>("lastUpdated")
+            let lastUpdated = Expression<Double?>("lastUpdated")
             
             let playlistsTable = Table("CREATED_PLAYLISTS")
             let allPlaylistsTable = playlistsTable.select(chatID, spotifyPlaylistID, lastUpdated)
             let playlistsRows = try database.prepare(allPlaylistsTable)
             
-            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]()
+            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: Double?)]()
             for row in playlistsRows {
                 playlistsRowsTuple.append((chatID: row[chatID], spotifyPlaylistID: row[spotifyPlaylistID], lastUpdated: row[lastUpdated]))
             }
@@ -425,17 +425,17 @@ class DatabaseManager {
         }
     }
     
-    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)] {
+    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: Double?)] {
         do {
             let chatID = Expression<Int>("chatID")
             let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-            let lastUpdated = Expression<String?>("lastUpdated")
+            let lastUpdated = Expression<Double?>("lastUpdated")
             
             let playlistsTable = Table("CREATED_PLAYLISTS")
             let allPlaylistsTable = playlistsTable.select(chatID, spotifyPlaylistID, lastUpdated)
             let playlistsRows = try database.prepare(allPlaylistsTable)
             
-            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: String?)]()
+            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: Double?)]()
             for row in playlistsRows {
                 playlistsRowsTuple.append((chatID: row[chatID], spotifyPlaylistID: row[spotifyPlaylistID], lastUpdated: row[lastUpdated]))
             }
@@ -445,15 +445,15 @@ class DatabaseManager {
         }
     }
     
-    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String, dateUpdatedString: String) {
+    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String, lastUpdatedDouble: Double) {
         let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-        let lastUpdated = Expression<String?>("lastUpdated")
+        let lastUpdated = Expression<Double?>("lastUpdated")
         
         let playlistsTable = Table("CREATED_PLAYLISTS")
         let playlistQuery = playlistsTable.filter(spotifyPlaylistID==createdSpotifyPlaylistID)
         
         do {
-            let rowid = try database.run(playlistQuery.update(lastUpdated <- dateUpdatedString))
+            let rowid = try database.run(playlistQuery.update(lastUpdated <- lastUpdatedDouble))
             print("inserted id: \(rowid)")
         } catch {
             print("update failed: \(error)")
