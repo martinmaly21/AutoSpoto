@@ -446,5 +446,17 @@ extension AutoSpotoConstants.Strings {
         value: "No chats",
         comment: "Empty state for chat with no tracks"
     )
+    
+    static let LAST_UPDATED = NSLocalizedString(
+        "LAST_UPDATED",
+        value: "Last updated: %@",
+        comment: "Text displayed on PlaylistSummaryView"
+    )
+    
+    static let LAST_UPDATED_FALLBACK = NSLocalizedString(
+        "LAST_UPDATED_FALLBACK",
+        value: "N/A",
+        comment: "Fallback for last updated value. Should never occur."
+    )
 }
 

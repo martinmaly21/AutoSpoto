@@ -52,11 +52,10 @@ struct PlaylistSummaryView: View {
                                     .cornerRadius(8)
                                     .aspectRatio(contentMode: .fill)
                                 
-                                VStack(alignment: .leading, spacing: 0) {
+                                VStack(alignment: .leading, spacing: 6) {
                                     Text(spotifyPlaylist?.name ?? AutoSpotoConstants.Strings.CHAT_NAME_PLACEHOLDER)
                                         .font(.josefinSansBold(22))
                                         .font(.headline)
-                                        .padding(.bottom, -2)
                                     
                                     Button(
                                         action: {
@@ -69,11 +68,14 @@ struct PlaylistSummaryView: View {
                                                 .font(.josefinSansRegular(15))
                                                 .foregroundColor(.spotifyGreen)
                                                 .underline(pattern: .solid)
-                                                .padding(.bottom, 8)
                                                 .lineLimit(1)
                                         }
                                     )
                                     .buttonStyle(.plain)
+                                    
+//                                    Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.LAST_UPDATED, chat.lastUpdated?.formatted() ?? AutoSpotoConstants.Strings.LAST_UPDATED_FALLBACK))
+//                                        .font(.josefinSansLight(16))
+//                                        .font(.headline)
                                 }
                                 
                                 Spacer()
