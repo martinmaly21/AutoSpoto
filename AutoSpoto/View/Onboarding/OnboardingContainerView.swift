@@ -30,7 +30,7 @@ struct OnboardingContainerView: View {
                     gradient: Gradient(
                         colors: [
                             Color.backgroundPrimary,
-                            Color.primaryBlue,
+                            Color.backgroundSecondary,
                         ]
                     ),
                     center: .topTrailing,
@@ -41,8 +41,8 @@ struct OnboardingContainerView: View {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.primaryBlue,
-                            Color.backgroundPrimary
+                            Color.backgroundPrimary,
+                            Color.backgroundSecondary
                         ]
                     ),
                     startPoint: .topLeading,
