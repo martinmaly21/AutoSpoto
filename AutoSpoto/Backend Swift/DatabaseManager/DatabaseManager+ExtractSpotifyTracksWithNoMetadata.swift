@@ -126,7 +126,7 @@ extension DatabaseManager {
         }
     }
 
-    private func fetchSongsSentAfterUpdate(from last_updated: String, from chat_id: Int) -> [Track]{
+    internal func fetchSongsSentAfterUpdate(from last_updated: String, from chat_id: Int) -> [Track]{
         do {
             let messages = Table("message")
             let handleTable = Table("handle")

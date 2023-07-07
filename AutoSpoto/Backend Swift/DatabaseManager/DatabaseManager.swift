@@ -251,7 +251,7 @@ class DatabaseManager {
                 
                 // Add the row only if contactInfo doesn't exist in contactStruct
                 if !contactInfoExists {
-                    let customRow = contactRow(
+                    let customRow = ContactRow(
                         firstName: row.firstName,
                         lastName: row.lastName,
                         contactInfo: row.contactInfo,

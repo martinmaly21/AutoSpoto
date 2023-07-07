@@ -202,13 +202,11 @@ class SpotifyManager {
         for chat: Chat
     ) async throws -> [[Track]]? {
         //this contains an array of arrays of a maximum of 50 length. Note: some of the IDs in these arrays may be invalid
-        
-        
         var unfilteredTrackChunks: [[Track]] = []
         
         if (chat.lastUpdated != nil){
             for (index,element) in chat.ids.enumerated(){
-                unfilteredTrackChunks += ExtractScript().fetchSongsSentAfterUpdate(from: chat.lastUpdated!, from: chat.ids[index]).splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
+                unfilteredTrackChunks += DatabaseManager.shared.fetchSongsSentAfterUpdate(from: chat.lastUpdated!, from: chat.ids[index]).splitIntoChunks(of: AutoSpotoConstants.Limits.maximumNumberOfSpotifyTracksPerMetadataFetchCall)
            
             }
         }
