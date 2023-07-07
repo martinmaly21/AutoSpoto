@@ -6,22 +6,25 @@
 //
 
 
-let playlistsRowsTuple = DatabaseManager()!.schedulerRetrievePlaylists()
+let databaseManager = DatabaseManager()
+let trackedChats = databaseManager.retrieveTrackedChats()
 
-for playlistsRow in playlistsRowsTuple {
-    
-    let chatID = playlistsRow.0 ?? -1
-    
-    let individualChat = IndividualChatCodable(
-    imageBlob: nil,
-    contactInfo: "Scheduler",
-    chatIDs: [chatID],
-    firstName: nil,
-    lastName: nil,
-    spotifyPlaylistID: playlistsRow.1,
-    lastUpdated: playlistsRow.2
-    )
+print(trackedChats)
 
-    let newChat = Chat(individualChat)
-    try await SpotifyManager.updatePlaylist(for: newChat)
-}
+//for playlistsRow in playlistsRowsTuple {
+//
+//    let chatID = playlistsRow.0 ?? -1
+//
+//    let individualChat = IndividualChatCodable(
+//    imageBlob: nil,
+//    contactInfo: "Scheduler",
+//    chatIDs: [chatID],
+//    firstName: nil,
+//    lastName: nil,
+//    spotifyPlaylistID: playlistsRow.1,
+//    lastUpdated: playlistsRow.2
+//    )
+//
+//    let newChat = Chat(individualChat)
+//    try await SpotifyManager.updatePlaylist(for: newChat)
+//}

@@ -15,7 +15,7 @@ class DatabaseManager {
     
     internal let database: Connection
     
-    init?() {
+    init() {
         do  {
             //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto
             let fileManager = FileManager.default
@@ -45,8 +45,7 @@ class DatabaseManager {
                 )
             """)
         } catch let error {
-            assertionFailure("Error with database: \(error.localizedDescription)")
-            return nil
+            fatalError("Could not initialize autospoto.db: \(error.localizedDescription)")
         }
     }
     
@@ -145,9 +144,9 @@ class DatabaseManager {
             groupChatToUI.renameColumn("left.Base64Image", to: "image")
             groupChatToUI.renameColumn("right.ChatId" , to: "chatID")
             groupChatToUI.renameColumn("right.ChatName", to: "chatName")
-            let playlistDataFrame = retrievePlaylistsDataFrame()
+            let trackedChatsDataFrame = retrieveTrackedChats()
             
-            var finalGroupChatTable = groupChatToUI.joined(playlistDataFrame, on: "chatID", kind: .left)
+            var finalGroupChatTable = groupChatToUI.joined(trackedChatsDataFrame, on: "chatID", kind: .left)
             
             finalGroupChatTable.renameColumn("left.image", to: "image")
             finalGroupChatTable.renameColumn("left.chatName" , to: "chatName")
@@ -320,9 +319,9 @@ class DatabaseManager {
             chatsWithAssociatedContactsDataFrame.renameColumn("right.imageBlob", to: "imageBlob")
             
             //associate 'spotifyPlaylistID' and 'lastUpdated' (if they exist), with the chat
-            let playlistsDataFrame = retrievePlaylistsDataFrame()
+            let trackedChatsDataFrame = retrieveTrackedChats()
             var chatsWithAssociatedContactsAndPlaylistIDDataFrame = chatsWithAssociatedContactsDataFrame
-                .joined(playlistsDataFrame, on: "chatID", kind: .left)
+                .joined(trackedChatsDataFrame, on: "chatID", kind: .left)
             //rename columns (this makes the JSON easier to read)
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.contactInfo", to: "contactInfo")
             chatsWithAssociatedContactsAndPlaylistIDDataFrame.renameColumn("left.firstName", to: "firstName")
@@ -379,9 +378,7 @@ class DatabaseManager {
         }
     }
     
-    //retrieve a table that stores whether each chat
-    //currently has a playlist associated with it
-    private func retrievePlaylistsDataFrame() -> DataFrame {
+    public func retrieveTrackedChats() -> DataFrame {
         do {
             let chatID = Expression<Int>("chatID")
             let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
@@ -408,7 +405,6 @@ class DatabaseManager {
         }
     }
     
-    
     func insertSpotifyPlaylistDB(from createdSpotifyPlaylistID: String, selectedChatID: [Int]) {
         let chatID = Expression<Int>("chatID")
         let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
@@ -422,26 +418,6 @@ class DatabaseManager {
             }
         } catch {
             print("update failed: \(error)")
-        }
-    }
-    
-    func schedulerRetrievePlaylists() -> [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: Double?)] {
-        do {
-            let chatID = Expression<Int>("chatID")
-            let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-            let lastUpdated = Expression<Double?>("lastUpdated")
-            
-            let playlistsTable = Table("CREATED_PLAYLISTS")
-            let allPlaylistsTable = playlistsTable.select(chatID, spotifyPlaylistID, lastUpdated)
-            let playlistsRows = try database.prepare(allPlaylistsTable)
-            
-            var playlistsRowsTuple = [(chatID: Int?, spotifyPlaylistID: String?, lastUpdated: Double?)]()
-            for row in playlistsRows {
-                playlistsRowsTuple.append((chatID: row[chatID], spotifyPlaylistID: row[spotifyPlaylistID], lastUpdated: row[lastUpdated]))
-            }
-            return playlistsRowsTuple
-        } catch let error {
-            fatalError("Error: \(error)")
         }
     }
     

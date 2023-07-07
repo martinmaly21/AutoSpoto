@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
+		500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
@@ -846,6 +847,7 @@
 				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
 				92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */,
 				92F554CC2A55E39F006E1CAA /* KeychainToken.swift in Sources */,
+				500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */,
 				92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */,
 				92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */,
 				92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */,
@@ -1053,6 +1055,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development: acarava3@uwo.ca (V6MS6FMUW9)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -1071,6 +1074,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development: acarava3@uwo.ca (V6MS6FMUW9)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
