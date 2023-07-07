@@ -38,6 +38,8 @@ struct ChatView: View {
                                                         Task {
                                                             await homeViewModel.fetchTracksMetadata(for: selectedChat, spotifyID: track.spotifyID)
                                                         }
+                                                        
+                                                        reader.scrollTo(selectedChat.tracks.last?.id)
                                                     }
                                             }
                                         }
