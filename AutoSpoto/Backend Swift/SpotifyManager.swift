@@ -1,9 +1,3 @@
-//
-//  SpotifyManager.swift
-//  AutoSpoto
-//
-//  Created by Martin Maly on 2023-06-08.
-//
 
 import Foundation
 import AppKit
@@ -40,16 +34,11 @@ class SpotifyManager {
             return headers
         }
         
-        if var keychainToken = KeychainManager.standard.read(
-            service: AutoSpotoConstants.KeyChain.service,
-            account: AutoSpotoConstants.KeyChain.account,
-            type: KeychainToken.self
-        ) {
-            if keychainToken.accessTokenHasExpired {
-                keychainToken = try await refreshAndSaveToken(expiredKeychainToken: keychainToken)
+        if var jsonToken = SpotifyTokenManager.readJsonTokenFile() {
+            if SpotifyTokenManager.accessTokenHasExpired(date: jsonToken.expiryDate) {
+                jsonToken = try await refreshAndSaveToken(expiredJsonToken: jsonToken)
             }
-            
-            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(keychainToken.access_token)"
+            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(jsonToken.access_token)"
         }
         
         return headers
@@ -148,22 +137,25 @@ class SpotifyManager {
             AutoSpotoConstants.HTTPParameter.code: code,
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
+        
         let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
         
-        _ = KeychainManager.saveSpotifyTokenInKeychain(spotifyToken: spotifyToken)
+        SpotifyTokenManager.writeJsonTokenFile(spotifyToken: spotifyToken)
+
     }
     
-    public static func refreshAndSaveToken(expiredKeychainToken: KeychainToken) async throws -> KeychainToken {
+    public static func refreshAndSaveToken(expiredJsonToken: JsonToken) async throws -> JsonToken {
         let params = [
             AutoSpotoConstants.HTTPParameter.grant_type: "refresh_token",
-            AutoSpotoConstants.HTTPParameter.refresh_token: expiredKeychainToken.refresh_token
+            AutoSpotoConstants.HTTPParameter.refresh_token: expiredJsonToken.refresh_token
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
+    
         let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
+            
+        SpotifyTokenManager.writeJsonTokenFile(spotifyToken: spotifyToken)
         
-        let keychainToken = KeychainManager.saveSpotifyTokenInKeychain(spotifyToken: spotifyToken)
-        
-        return keychainToken
+        return JsonToken.init(spotifyToken: spotifyToken)
     }
     
     public static func fetchAndSaveUserSpotifyID() async throws {
