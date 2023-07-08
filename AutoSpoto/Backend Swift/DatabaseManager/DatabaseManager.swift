@@ -184,6 +184,19 @@ class DatabaseManager {
             fatalError("Error: \(error)")
         }
     }
+    struct contactRow: Equatable {
+        let firstName: String?
+        let lastName: String?
+        let contactInfo: String
+        let imageBlob: String?
+
+        static func ==(lhs: contactRow, rhs: contactRow) -> Bool {
+            return lhs.firstName == rhs.firstName &&
+                lhs.lastName == rhs.lastName &&
+                lhs.contactInfo == rhs.contactInfo &&
+                lhs.imageBlob == rhs.imageBlob
+        }
+    }
     
     func fetchIndividualChats() async -> [Chat] {
         do {
@@ -242,11 +255,33 @@ class DatabaseManager {
                 }
             }
             
+            var contactStruct: [contactRow] = []
+
+            // Iterate through the original array
+            for row in contactsRowsTuple {
+                // Check if contactInfo already exists in contactStruct
+                let contactInfo = row.contactInfo
+                let contactInfoExists = contactStruct.contains { $0.contactInfo == contactInfo }
+                
+                // Add the row only if contactInfo doesn't exist in contactStruct
+                if !contactInfoExists {
+                    let customRow = contactRow(
+                        firstName: row.firstName,
+                        lastName: row.lastName,
+                        contactInfo: row.contactInfo,
+                        imageBlob: row.imageBlob
+                    )
+                    contactStruct.append(customRow)
+                }
+            }
+            
+            contactStruct = contactStruct.unique
+            
             let contactsDataFrame: DataFrame = [
-                "firstName": contactsRowsTuple.map { $0.firstName }.isEmpty ? [""] : contactsRowsTuple.map { $0.firstName },
-                "lastName": contactsRowsTuple.map { $0.lastName }.isEmpty ? [""] : contactsRowsTuple.map { $0.lastName },
-                "contactInfo": contactsRowsTuple.map { $0.contactInfo }.isEmpty ? [""] : contactsRowsTuple.map { $0.contactInfo },
-                "imageBlob": contactsRowsTuple.map { $0.imageBlob }.isEmpty ? [""] : contactsRowsTuple.map { $0.imageBlob }
+                "firstName": contactStruct.map { $0.firstName }.isEmpty ? [""] : contactStruct.map { $0.firstName },
+                "lastName": contactsRowsTuple.map { $0.lastName }.isEmpty ? [""] : contactStruct.map { $0.lastName },
+                "contactInfo": contactsRowsTuple.map { $0.contactInfo }.isEmpty ? [""] : contactStruct.map { $0.contactInfo },
+                "imageBlob": contactStruct.map { $0.imageBlob }.isEmpty ? [""] : contactStruct.map { $0.imageBlob }
             ]
             
             //2
@@ -291,7 +326,7 @@ class DatabaseManager {
             }
             
             var chatsWithAssociatedContactsDataFrame = chatsDataFrame
-                .joined(contactsDataFrame, on: "contactInfo", kind: .left)
+                .joined(contactsDataFrame, on: "contactInfo", kind: .inner)
             
             //rename columns back to previous pre-join values
             chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
