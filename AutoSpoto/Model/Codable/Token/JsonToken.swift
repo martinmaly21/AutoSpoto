@@ -23,7 +23,7 @@ struct JsonToken: Codable {
         guard let refreshToken  = spotifyToken.refresh_token ?? SpotifyTokenManager.readJsonTokenFile()?.refresh_token else {
             //this should never occur, because a user will always have a refresh token if they have retrieved a new acccess token
             //but if it somehow does, we delete existing token so user can start app fresh
-            
+            SpotifyTokenManager.deleteJSONTokenFile()
             fatalError("Could not get keychain token")
         }
         self.refresh_token = refreshToken
