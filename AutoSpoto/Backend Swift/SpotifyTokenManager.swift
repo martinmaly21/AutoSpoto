@@ -45,6 +45,16 @@ class SpotifyTokenManager{
         return nil
     }
     
+    static func deleteJSONTokenFile(){
+        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
+            do {
+                try FileManager.default.removeItem(at: directoryURL)
+            }
+            catch { fatalError("Could not delete token") }
+        }
+    }
+    
     static func jsonTokenExist()->Bool{
         return readJsonTokenFile(
         ) != nil
