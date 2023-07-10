@@ -14,7 +14,7 @@ struct ChooseMusicStreamingServiceView: View {
 
     var body: some View {
         VStack {
-            if !KeychainManager.authenticationTokenExists {
+            if !SpotifyTokenManager.authenticationTokenExists {
                 Text(AutoSpotoConstants.Strings.CONNECT_YOUR_SPOTIFY)
                     .font(.josefinSansSemibold(30))
                     .foregroundColor(.textPrimaryWhite)

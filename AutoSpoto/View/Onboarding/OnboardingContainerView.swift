@@ -106,7 +106,7 @@ struct OnboardingContainerView: View {
                             switch onboardingCurrentView {
                             case .getStarted:
                                 userAuthorizedDiskAccess = DiskAccessManager.userAuthorizedDiskAccess
-                                userAuthorizedSpotify = KeychainManager.authenticationTokenExists
+                                userAuthorizedSpotify = SpotifyTokenManager.authenticationTokenExists
                                 
                                 withAnimation {
                                     shouldAnimateLogoToTopLeft = true
