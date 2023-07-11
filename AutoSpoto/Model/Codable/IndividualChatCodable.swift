@@ -14,5 +14,6 @@ struct IndividualChatCodable: Codable {
     let firstName: String?
     let lastName: String?
     let spotifyPlaylistID: String?
+    let lastUpdated: Double?
 }
     

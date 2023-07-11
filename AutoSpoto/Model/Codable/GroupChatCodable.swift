@@ -12,4 +12,5 @@ struct GroupChatCodable: Codable {
     let display_name: String
     let Image: Data?
     let playlist_id: String?
+    let lastUpdated: Double?
 }

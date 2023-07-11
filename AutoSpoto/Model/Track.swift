@@ -9,7 +9,7 @@ import Foundation
 
 class Track: Equatable, Identifiable {
     let spotifyID: String
-    let timeStamp: String //time stamp for when song was sent
+    let timeStamp: Date //time stamp for when song was sent
 
     var imageURL: URL?
     var name: String?
@@ -25,7 +25,7 @@ class Track: Equatable, Identifiable {
         return url
     }
 
-    init(spotifyID: String, timeStamp: String) {
+    init(spotifyID: String, timeStamp: Date) {
         self.spotifyID = spotifyID
         self.timeStamp = timeStamp
     }
