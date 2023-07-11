@@ -241,7 +241,7 @@
 			path = GeometryEffect;
 			sourceTree = "<group>";
 		};
-		504C2EB62A24F90B00097F5F /* Backend Swift */ = {
+		504C2EB62A24F90B00097F5F /* Backend */ = {
 			isa = PBXGroup;
 			children = (
 				5040697D2A5594D900414D3D /* DatabaseManager */,
@@ -251,7 +251,7 @@
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
 			);
-			path = "Backend Swift";
+			path = Backend;
 			sourceTree = "<group>";
 		};
 		505DB2982A4ED8380092E600 /* Updates */ = {
@@ -303,7 +303,7 @@
 				50F34C90297706270059516B /* Info.plist */,
 				50AA277928C3FE6A002FFC3F /* AutoSpoto.entitlements */,
 				50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */,
-				504C2EB62A24F90B00097F5F /* Backend Swift */,
+				504C2EB62A24F90B00097F5F /* Backend */,
 				50F34C62297657BF0059516B /* Extensions */,
 				50F34C5B2976526C0059516B /* Supporting FIles */,
 				50F34C8E297662A80059516B /* View */,
