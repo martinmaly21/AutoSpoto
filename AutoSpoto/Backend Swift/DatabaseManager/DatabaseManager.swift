@@ -136,17 +136,15 @@ class DatabaseManager {
                 "ContactInfo": contactsRowsTuple.map { $0.unique_id},
                 "MessageID" : contactsRowsTuple.map { $0.message_id}
             ]
-            
             let groupChatImages = getGroupImageFilePaths()
             
-            let groupChatsWithImage = groupChatImages.joined(groupChats, on: "MessageID", kind: .left)
-            var groupChatToUI = groupChatsWithImage.selecting(columnNames: "left.Base64Image", "right.ChatId", "right.ChatName")
+            let groupChatsWithImage = groupChats.joined(groupChatImages, on: "MessageID", kind: .left)
+            var groupChatToUI = groupChatsWithImage.selecting(columnNames: "right.Base64Image", "left.ChatId", "left.ChatName")
             
-            groupChatToUI.renameColumn("left.Base64Image", to: "image")
-            groupChatToUI.renameColumn("right.ChatId" , to: "chatID")
-            groupChatToUI.renameColumn("right.ChatName", to: "chatName")
+            groupChatToUI.renameColumn("right.Base64Image", to: "image")
+            groupChatToUI.renameColumn("left.ChatId" , to: "chatID")
+            groupChatToUI.renameColumn("left.ChatName", to: "chatName")
             let playlistDataFrame = retrievePlaylistsDataFrame()
-            
             var finalGroupChatTable = groupChatToUI.joined(playlistDataFrame, on: "chatID", kind: .left)
             
             finalGroupChatTable.renameColumn("left.image", to: "image")
@@ -154,7 +152,16 @@ class DatabaseManager {
             finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
             finalGroupChatTable.renameColumn("right.lastUpdated" , to: "lastUpdated")
             
-            let renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID", "lastUpdated")
+            var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID", "lastUpdated")
+            
+            renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "chatName").mapGroups({slice in
+                var df = DataFrame()
+                df["chat_ids", [Int].self] = Column(name: "chat_ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
+                df["display_name", String?.self] = Column(name: "display_name", contents: [slice["chatName"].first as? String])
+                df["Image", String?.self] = Column(name: "Image", contents: [slice["image"].first as? String])
+                df["playlist_id", String?.self] = Column(name: "playlist_id", contents: [slice["playlistID"].first as? String])
+                return df
+            }).ungrouped()
             
             let groupChatsJSON = try renamedFinalGroupChatTable.jsonRepresentation()
             
