@@ -18,6 +18,7 @@
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
+		50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */ = {isa = PBXBuildFile; fileRef = 50526EEC2A5E19E400844274 /* AutoSpotoScheduler */; };
 		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
 		505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */; };
 		505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */; };
@@ -111,6 +112,7 @@
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		50526EEC2A5E19E400844274 /* AutoSpotoScheduler */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AutoSpotoScheduler; sourceTree = "<group>"; };
 		505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesViewModel.swift; sourceTree = "<group>"; };
 		505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
 		505DB2992A4ED84A0092E600 /* UpdaterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterSettingsView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
+				50526EEC2A5E19E400844274 /* AutoSpotoScheduler */,
 				50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
@@ -570,6 +573,7 @@
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
+				50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */,
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
