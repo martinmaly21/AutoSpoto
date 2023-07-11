@@ -23,8 +23,9 @@ class SpotifyTokenManager{
             do{
                 let jsonData = try jsonEncoder.encode(jsonToken)
                 try jsonData.write(to: directoryURL)
+            } catch {
+                #warning("Handle error")
             }
-            catch{print("Error Writing Spotify token to JSON")}
         }
     }
     
@@ -39,8 +40,9 @@ class SpotifyTokenManager{
                 let data = try Data(contentsOf: directoryURL)
                 let jsonToken = try decoder.decode(JsonToken.self, from: data)
                 return jsonToken
+            } catch let error {
+                #warning("Handle error")
             }
-            catch{print("No Spotify Token Found")}
         }
         return nil
     }
@@ -50,8 +52,9 @@ class SpotifyTokenManager{
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
             do {
                 try FileManager.default.removeItem(at: directoryURL)
+            } catch let error {
+                #warning("Handle error")
             }
-            catch { fatalError("Could not delete token") }
         }
     }
     

@@ -318,7 +318,6 @@ class DatabaseManager {
             var chatsWithAssociatedContactsDataFrame = chatsDataFrame
                 .joined(contactsDataFrame, on: "contactInfo", kind: .inner)
             
-            //print("data: \(chatsWithAssociatedContactsDataFrame.description(options: .init(maximumLineWidth: 1000, maximumRowCount: 1000)))")
             //rename columns back to previous pre-join values
             chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
             chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
@@ -421,10 +420,9 @@ class DatabaseManager {
         do {
             try selectedChatID.forEach{ ChatID in
                 let rowid = try database.run(playlistsTable.insert(chatID <- ChatID, spotifyPlaylistID <- createdSpotifyPlaylistID))
-                print("inserted id: \(rowid)")
             }
         } catch {
-            print("update failed: \(error)")
+            #warning("Handle error")
         }
     }
     
@@ -437,9 +435,8 @@ class DatabaseManager {
         
         do {
             let rowid = try database.run(playlistQuery.update(lastUpdated <- lastUpdatedDouble))
-            print("inserted id: \(rowid)")
         } catch {
-            print("update failed: \(error)")
+            #warning("Handle error")
         }
     }
 }
