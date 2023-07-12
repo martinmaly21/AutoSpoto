@@ -62,7 +62,7 @@ class Chat: Equatable, Identifiable {
                 return phoneNumber
             }
         case .group(let name, let nameID):
-            if let name = name {
+            if let name = name, !name.isEmpty {
                 return name
             } else {
                 return String.localizedStringWithFormat(AutoSpotoConstants.Strings.GROUP_CHAT_DISPLAY_NAME_FALLBACK, nameID)

@@ -113,27 +113,28 @@ class DatabaseManager {
     
     func fetchGroupChats() async -> [Chat] {
         do {
-            var contactsRowsTuple = [(chatID: Int?, displayName: String?, unique_id: String?, message_id: String?)]()
+            var contactsRowsTuple = [(chatID: Int, displayName: String?, guID: String, messageID: String?)]()
             
             let chat_ids = Expression<Int?>("ROWID")
             let chat_name = Expression<String?>("display_name")
             let guid = Expression<String?>("guid")
             let chatTable = Table("chat")
             
-            let query = chatTable.select(chat_ids, chat_name, guid).filter(chat_name != "")
+            let query = chatTable.select(chat_ids, chat_name, guid).filter(guid.like("%chat%"))
             
             for groupChat in try database.prepare(query){
-                let chatId = groupChat[chat_ids]
-                let name = groupChat[chat_name]
-                let uid = groupChat[guid]
-                let MessageID = extractChatFromChatDB(input: uid!)
-                contactsRowsTuple.append((chatID: chatId, displayName:name, unique_id: uid, message_id:MessageID))
+                if let chatID = groupChat[chat_ids],
+                   let guID = groupChat[guid],
+                   let messageID = extractChatFromChatDB(input: guID) {
+                    let name = groupChat[chat_name]
+                    contactsRowsTuple.append((chatID: chatID, displayName: name, guID: guID, messageID: messageID))
+                }
             }
             let groupChats: DataFrame = [
                 "ChatId": contactsRowsTuple.map { $0.chatID },
                 "ChatName": contactsRowsTuple.map { $0.displayName},
-                "ContactInfo": contactsRowsTuple.map { $0.unique_id},
-                "MessageID" : contactsRowsTuple.map { $0.message_id}
+                "ContactInfo": contactsRowsTuple.map { $0.guID },
+                "MessageID" : contactsRowsTuple.map { $0.messageID }
             ]
             
             guard !groupChats.isEmpty else {
@@ -145,7 +146,7 @@ class DatabaseManager {
             let groupChatImages = getGroupImageFilePaths()
             
             let groupChatsWithImage = groupChats.joined(groupChatImages, on: "MessageID", kind: .left)
-            var groupChatToUI = groupChatsWithImage.selecting(columnNames: "right.Base64Image", "left.ChatId", "left.ChatName")
+            var groupChatToUI = groupChatsWithImage.selecting(columnNames: "right.Base64Image", "left.ChatId", "left.ChatName", "MessageID")
             
             groupChatToUI.renameColumn("right.Base64Image", to: "image")
             groupChatToUI.renameColumn("left.ChatId" , to: "chatID")
@@ -155,15 +156,17 @@ class DatabaseManager {
             
             finalGroupChatTable.renameColumn("left.image", to: "image")
             finalGroupChatTable.renameColumn("left.chatName" , to: "displayName")
+            finalGroupChatTable.renameColumn("left.MessageID" , to: "MessageID")
             finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
             finalGroupChatTable.renameColumn("right.lastUpdated" , to: "lastUpdated")
             
-            var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "playlistID", "lastUpdated")
+            var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "MessageID", "playlistID", "lastUpdated")
             
-            renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "chatName").mapGroups({slice in
+            renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "MessageID").mapGroups({slice in
                 var df = DataFrame()
                 df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
                 df["name", String?.self] = Column(name: "name", contents: [slice["chatName"].first as? String])
+                df["nameID", String.self] = Column(name: "nameID", contents: [slice["MessageID"].first as! String])
                 df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["image"].first as? String])
                 df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String])
                 df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
