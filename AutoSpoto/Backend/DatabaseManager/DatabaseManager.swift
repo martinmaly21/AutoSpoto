@@ -419,7 +419,7 @@ class DatabaseManager {
         
         do {
             try selectedChatID.forEach{ ChatID in
-                let rowid = try database.run(playlistsTable.insert(chatID <- ChatID, spotifyPlaylistID <- createdSpotifyPlaylistID))
+                try database.run(playlistsTable.insert(chatID <- ChatID, spotifyPlaylistID <- createdSpotifyPlaylistID))
             }
         } catch {
             #warning("Handle error")
@@ -434,7 +434,7 @@ class DatabaseManager {
         let playlistQuery = playlistsTable.filter(spotifyPlaylistID==createdSpotifyPlaylistID)
         
         do {
-            let rowid = try database.run(playlistQuery.update(lastUpdated <- lastUpdatedDouble))
+            try database.run(playlistQuery.update(lastUpdated <- lastUpdatedDouble))
         } catch {
             #warning("Handle error")
         }
