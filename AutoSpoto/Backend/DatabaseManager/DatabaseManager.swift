@@ -300,7 +300,7 @@ class DatabaseManager {
                 var contactInfo: String?
                 
                 if let guIDrow = chat[guID],
-                   let range = guIDrow.range(of: "iMessage;-;") {
+                   let range = guIDrow.range(of: ";-;") {
                     //this is the data without the 'iMessage;-;' prefix
                     let parsedData = String(guIDrow[range.upperBound...])
                     
@@ -308,10 +308,9 @@ class DatabaseManager {
                         contactInfo = parsedData.digits
                     }
                     
-                    chatRowsTuple.append((contactInfo: contactInfo, chatID: chat[chatID])) //TODO: fix this
+                    chatRowsTuple.append((contactInfo: contactInfo, chatID: chat[chatID]))
                 }
             }
-            
             //contacts data frame holds both the email and phone number contacts
             let chatsDataFrame: DataFrame = [
                 "contactInfo": chatRowsTuple.map { $0.contactInfo },
