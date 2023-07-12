@@ -135,6 +135,13 @@ class DatabaseManager {
                 "ContactInfo": contactsRowsTuple.map { $0.unique_id},
                 "MessageID" : contactsRowsTuple.map { $0.message_id}
             ]
+            
+            guard !groupChats.isEmpty else {
+                //if there's no group chats, return an empty array early
+                //this fixes crash when attempting to join on a data frame with no rows
+                return []
+            }
+            
             let groupChatImages = getGroupImageFilePaths()
             
             let groupChatsWithImage = groupChats.joined(groupChatImages, on: "MessageID", kind: .left)
