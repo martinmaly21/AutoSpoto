@@ -32,7 +32,7 @@ struct ChatsListView: View {
                             
                             if chatSection.chats.isEmpty {
                                 Text(AutoSpotoConstants.Strings.CHAT_SECTION_EMPTY_STATE)
-                                    .font(.josefinSansLight(16))
+                                    .font(.josefinSansRegular(16))
                                     .padding(.vertical, 10)
                             } else {
                                 ForEach(chatSection.chats, id: \.id) { chat in

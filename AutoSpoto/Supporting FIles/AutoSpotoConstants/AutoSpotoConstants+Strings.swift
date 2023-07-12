@@ -425,7 +425,7 @@ extension AutoSpotoConstants.Strings {
     
     static let CHAT_SECTION_EMPTY_STATE = NSLocalizedString(
         "CHAT_SECTION_EMPTY_STATE",
-        value: "No chats",
+        value: "No chats yet",
         comment: "Empty state for chat with no tracks"
     )
     
