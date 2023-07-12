@@ -154,7 +154,7 @@ class DatabaseManager {
             var finalGroupChatTable = groupChatToUI.joined(trackedChatsDataFrame, on: "chatID", kind: .left)
             
             finalGroupChatTable.renameColumn("left.image", to: "image")
-            finalGroupChatTable.renameColumn("left.chatName" , to: "chatName")
+            finalGroupChatTable.renameColumn("left.chatName" , to: "displayName")
             finalGroupChatTable.renameColumn("right.spotifyPlaylistID" , to: "playlistID")
             finalGroupChatTable.renameColumn("right.lastUpdated" , to: "lastUpdated")
             
@@ -162,10 +162,10 @@ class DatabaseManager {
             
             renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "chatName").mapGroups({slice in
                 var df = DataFrame()
-                df["chat_ids", [Int].self] = Column(name: "chat_ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
-                df["display_name", String?.self] = Column(name: "display_name", contents: [slice["chatName"].first as? String])
-                df["Image", String?.self] = Column(name: "Image", contents: [slice["image"].first as? String])
-                df["playlist_id", String?.self] = Column(name: "playlist_id", contents: [slice["playlistID"].first as? String])
+                df["chatIDs", [Int].self] = Column(name: "chatIDs", contents: [slice["chatID"].compactMap { $0 as? Int }])
+                df["displayName", String?.self] = Column(name: "displayName", contents: [slice["chatName"].first as? String])
+                df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["image"].first as? String])
+                df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String])
                 df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
                 return df
             }).ungrouped()

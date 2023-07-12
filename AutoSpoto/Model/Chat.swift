@@ -87,10 +87,10 @@ class Chat: Equatable, Identifiable {
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
-        type = .group(name: groupChatCodable.display_name)
-        image = groupChatCodable.Image
-        ids = groupChatCodable.chat_ids
-        spotifyPlaylistID = groupChatCodable.playlist_id
+        type = .group(name: groupChatCodable.displayName)
+        image = groupChatCodable.imageBlob
+        ids = groupChatCodable.chatIDs
+        spotifyPlaylistID = groupChatCodable.spotifyPlaylistID
         if let lastUpdated = groupChatCodable.lastUpdated {
             self.lastUpdated = Date(timeIntervalSince1970: lastUpdated)
         } else {
