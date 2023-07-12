@@ -42,7 +42,7 @@ class Chat: Equatable, Identifiable {
     
     var isGroupChat: Bool {
         switch type {
-        case .group(_):
+        case .group(_, _):
             return true
         default:
             return false
