@@ -452,5 +452,11 @@ extension AutoSpotoConstants.Strings {
         value: "Group chat ID: %@",
         comment: "Fallback for group chat name"
     )
+    
+    static let UKNOWN_NUMBER = NSLocalizedString(
+        "UKNOWN_NUMBER",
+        value: "Unknown number",
+        comment: "Fallback for individual chat name"
+    )
 }
 

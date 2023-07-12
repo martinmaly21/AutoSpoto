@@ -8,6 +8,6 @@
 import Foundation
 
 enum ChatType: Hashable {
-    case individual(firstName: String?, lastName: String?, phoneNumber: String)
+    case individual(firstName: String?, lastName: String?, phoneNumberOrEmail: String)
     case group(name: String?, nameID: String)
 }

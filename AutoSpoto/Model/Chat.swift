@@ -51,15 +51,17 @@ class Chat: Equatable, Identifiable {
 
     var displayName: String {
         switch type {
-        case .individual(let firstName, let lastName, let phoneNumber):
+        case .individual(let firstName, let lastName, let phoneNumberOrEmail):
             if let firstName = firstName, let lastName = lastName {
                 return "\(firstName) \(lastName)"
             } else if let firstName = firstName {
                 return firstName
             } else if let lastName = lastName {
                 return lastName
+            } else if !phoneNumberOrEmail.isEmpty {
+                return phoneNumberOrEmail
             } else {
-                return phoneNumber
+                return AutoSpotoConstants.Strings.UKNOWN_NUMBER
             }
         case .group(let name, let nameID):
             if let name = name, !name.isEmpty {
@@ -74,7 +76,7 @@ class Chat: Equatable, Identifiable {
         type = .individual(
             firstName: individualChatCodable.firstName,
             lastName: individualChatCodable.lastName,
-            phoneNumber: individualChatCodable.contactInfo
+            phoneNumberOrEmail: individualChatCodable.contactInfo
         )
         image = individualChatCodable.imageBlob
         ids = individualChatCodable.ids
