@@ -23,7 +23,7 @@ struct ChatsListView: View {
                             HStack {
                                 Text("\(chatSection.title) (\(chatSection.chats.count))")
                                     .font(.josefinSansRegular(18))
-                                    .padding(.leading, 8)
+                                    .padding(.leading, 14)
                                     .padding(.vertical, 4)
                                 
                                 Spacer()
@@ -94,8 +94,8 @@ struct ChatsListView: View {
                     .buttonStyle(.plain)
 
                 }
-                .padding(.horizontal, 18)
-                .padding(.top, 20)
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
                 .padding(.bottom, -10)
                 
             }
