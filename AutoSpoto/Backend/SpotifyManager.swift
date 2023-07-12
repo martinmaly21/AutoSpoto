@@ -41,11 +41,11 @@ class SpotifyManager {
             return headers
         }
         
-        if var jsonToken = SpotifyTokenManager.readJsonTokenFile() {
-            if SpotifyTokenManager.accessTokenHasExpired(date: jsonToken.expiryDate) {
-                jsonToken = try await refreshAndSaveToken(expiredJsonToken: jsonToken)
+        if var token = SpotifyTokenManager.readToken() {
+            if token.accessTokenHasExpired {
+                token = try await refreshAndSaveToken(expiredToken: token)
             }
-            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(jsonToken.access_token)"
+            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Bearer \(token.access_token)"
         }
         
         return headers
@@ -147,22 +147,21 @@ class SpotifyManager {
         
         let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
         
-        SpotifyTokenManager.writeJsonTokenFile(spotifyToken: spotifyToken)
-
+        SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
     }
     
-    public static func refreshAndSaveToken(expiredJsonToken: JsonToken) async throws -> JsonToken {
+    public static func refreshAndSaveToken(expiredToken: JSONToken) async throws -> JSONToken {
         let params = [
             AutoSpotoConstants.HTTPParameter.grant_type: "refresh_token",
-            AutoSpotoConstants.HTTPParameter.refresh_token: expiredJsonToken.refresh_token
+            AutoSpotoConstants.HTTPParameter.refresh_token: expiredToken.refresh_token
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
     
         let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
             
-        SpotifyTokenManager.writeJsonTokenFile(spotifyToken: spotifyToken)
+        SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
         
-        return JsonToken.init(spotifyToken: spotifyToken)
+        return JSONToken(spotifyToken: spotifyToken)
     }
     
     public static func fetchAndSaveUserSpotifyID() async throws {

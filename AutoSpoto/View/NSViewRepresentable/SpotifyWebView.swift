@@ -40,12 +40,11 @@ struct SpotifyWebView: NSViewRepresentable {
                     try await requestForCallbackURL(request: navigationAction.request)
                 } catch let error {
                     //delete keychain item if it exists
-                    KeychainManager.standard.delete(
-                        service: AutoSpotoConstants.KeyChain.service,
-                        account: AutoSpotoConstants.KeyChain.account
-                    )
+                    SpotifyTokenManager.deleteToken()
                     
-                    #warning("HANDLE ERROR")
+                    self.parent.isVisible = false
+                    
+                    assertionFailure("Error authenticating Spotify: \(error.localizedDescription)")
                 }
             }
             

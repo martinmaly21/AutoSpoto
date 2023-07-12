@@ -22,7 +22,6 @@
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
 		50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */ = {isa = PBXBuildFile; fileRef = 50526EEC2A5E19E400844274 /* AutoSpotoScheduler */; };
 		50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
-		50526EEF2A5E26B200844274 /* JsonToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE62A58B4B500B4CFB4 /* JsonToken.swift */; };
 		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
 		505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */; };
 		505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */; };
@@ -34,9 +33,9 @@
 		5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */; };
 		5069BF732999C0A6007F4037 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
 		5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */; };
+		506B34032A5EA764002938D3 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
 		509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
 		509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
-		509B08562A31B23200917AAC /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08552A31B23200917AAC /* KeyChainManager.swift */; };
 		509B08582A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */; };
 		509B085A2A31B36B00917AAC /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08592A31B36B00917AAC /* SpotifyToken.swift */; };
 		509B085C2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085B2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift */; };
@@ -45,7 +44,6 @@
 		509B08622A31C31400917AAC /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
 		509B08642A31FEDF00917AAC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */; };
 		509B08662A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */; };
-		509B08682A3203C800917AAC /* KeychainToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08672A3203C800917AAC /* KeychainToken.swift */; };
 		509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086A2A32108A00917AAC /* SpotifyUser.swift */; };
 		509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */; };
 		509B08712A32F1FD00917AAC /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08702A32F1FD00917AAC /* Array.swift */; };
@@ -103,11 +101,9 @@
 		50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E42A35A49600D2CEB7 /* SyncButton.swift */; };
 		920B21FD2A564AD000904CDD /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		92357DE32A582F6900B4CFB4 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
-		92357DE72A58B4B500B4CFB4 /* JsonToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE62A58B4B500B4CFB4 /* JsonToken.swift */; };
 		92F554B32A55E25A006E1CAA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F554B22A55E25A006E1CAA /* main.swift */; };
 		92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
-		92F554B92A55E39F006E1CAA /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08552A31B23200917AAC /* KeyChainManager.swift */; };
 		92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */; };
 		92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */; };
 		92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
@@ -126,7 +122,6 @@
 		92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */; };
 		92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08592A31B36B00917AAC /* SpotifyToken.swift */; };
-		92F554CC2A55E39F006E1CAA /* KeychainToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08672A3203C800917AAC /* KeychainToken.swift */; };
 		92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
@@ -176,9 +171,9 @@
 		5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWebView.swift; sourceTree = "<group>"; };
 		5069BF722999C0A6007F4037 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoContainerView.swift; sourceTree = "<group>"; };
+		506B34022A5EA764002938D3 /* JSONToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONToken.swift; sourceTree = "<group>"; };
 		509B08512A31A82100917AAC /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		509B08532A31AD1400917AAC /* HTTPMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodType.swift; sourceTree = "<group>"; };
-		509B08552A31B23200917AAC /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+KeyChain.swift"; sourceTree = "<group>"; };
 		509B08592A31B36B00917AAC /* SpotifyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyToken.swift; sourceTree = "<group>"; };
 		509B085B2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+HTTPHeaders.swift"; sourceTree = "<group>"; };
@@ -187,7 +182,6 @@
 		509B08612A31C31400917AAC /* AutoSpotoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoError.swift; sourceTree = "<group>"; };
 		509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+UserDefaults.swift"; sourceTree = "<group>"; };
-		509B08672A3203C800917AAC /* KeychainToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainToken.swift; sourceTree = "<group>"; };
 		509B086A2A32108A00917AAC /* SpotifyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyUser.swift; sourceTree = "<group>"; };
 		509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift"; sourceTree = "<group>"; };
 		509B08702A32F1FD00917AAC /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -244,7 +238,6 @@
 		50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSummaryView.swift; sourceTree = "<group>"; };
 		50FB02E42A35A49600D2CEB7 /* SyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncButton.swift; sourceTree = "<group>"; };
 		92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTokenManager.swift; sourceTree = "<group>"; };
-		92357DE62A58B4B500B4CFB4 /* JsonToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonToken.swift; sourceTree = "<group>"; };
 		92F554B02A55E25A006E1CAA /* AutoSpoto-Scheduler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoSpoto-Scheduler"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F554B22A55E25A006E1CAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,7 +304,6 @@
 				5040697D2A5594D900414D3D /* DatabaseManager */,
 				509B08512A31A82100917AAC /* SpotifyManager.swift */,
 				92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */,
-				509B08552A31B23200917AAC /* KeyChainManager.swift */,
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
 			);
@@ -339,8 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				509B08592A31B36B00917AAC /* SpotifyToken.swift */,
-				509B08672A3203C800917AAC /* KeychainToken.swift */,
-				92357DE62A58B4B500B4CFB4 /* JsonToken.swift */,
+				506B34022A5EA764002938D3 /* JSONToken.swift */,
 			);
 			path = Token;
 			sourceTree = "<group>";
@@ -724,12 +715,12 @@
 				50F178A02995F441002AFC1C /* ChatRow.swift in Sources */,
 				50F178982995ED11002AFC1C /* ChatView.swift in Sources */,
 				504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */,
+				506B34032A5EA764002938D3 /* JSONToken.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
 				5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */,
 				50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */,
 				509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,
-				92357DE72A58B4B500B4CFB4 /* JsonToken.swift in Sources */,
 				509B085A2A31B36B00917AAC /* SpotifyToken.swift in Sources */,
 				5069BF732999C0A6007F4037 /* String.swift in Sources */,
 				509B08712A32F1FD00917AAC /* Array.swift in Sources */,
@@ -748,7 +739,6 @@
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
-				509B08682A3203C800917AAC /* KeychainToken.swift in Sources */,
 				50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */,
 				92357DE32A582F6900B4CFB4 /* SpotifyTokenManager.swift in Sources */,
 				50F34C6829765DC00059516B /* Font.swift in Sources */,
@@ -757,7 +747,6 @@
 				5069BF68299994BC007F4037 /* ChatType.swift in Sources */,
 				50B20D742A386A6F00212CE4 /* DiskAccessRequestCell.swift in Sources */,
 				509B08622A31C31400917AAC /* AutoSpotoError.swift in Sources */,
-				509B08562A31B23200917AAC /* KeyChainManager.swift in Sources */,
 				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
@@ -805,7 +794,6 @@
 				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,
 				92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */,
 				92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */,
-				92F554B92A55E39F006E1CAA /* KeyChainManager.swift in Sources */,
 				92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */,
 				92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
 				92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */,
@@ -820,12 +808,10 @@
 				92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */,
 				92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
 				92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */,
-				50526EEF2A5E26B200844274 /* JsonToken.swift in Sources */,
 				92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
 				92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */,
 				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
 				92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */,
-				92F554CC2A55E39F006E1CAA /* KeychainToken.swift in Sources */,
 				500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */,
 				92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */,
 				92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */,

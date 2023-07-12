@@ -9,13 +9,9 @@ import Foundation
 
 
 class SpotifyTokenManager{
-
-    static func writeJsonTokenFile(spotifyToken: SpotifyToken){
-        
-        
-        let jsonToken = JsonToken.init(spotifyToken: spotifyToken)
+    static func writeToken(spotifyToken: SpotifyToken) {
+        let jsonToken = JSONToken(spotifyToken: spotifyToken)
         let jsonEncoder = JSONEncoder()
-        
         
         if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
@@ -24,52 +20,40 @@ class SpotifyTokenManager{
                 let jsonData = try jsonEncoder.encode(jsonToken)
                 try jsonData.write(to: directoryURL)
             } catch {
-                #warning("Handle error")
+                fatalError("Error writing JSON token: \(error.localizedDescription)")
             }
         }
     }
     
-    static func readJsonTokenFile()->JsonToken?{
-        
+    static func readToken() -> JSONToken? {
         let decoder = JSONDecoder()
         
         if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
             
-            do{
+            do {
                 let data = try Data(contentsOf: directoryURL)
-                let jsonToken = try decoder.decode(JsonToken.self, from: data)
-                return jsonToken
+                let JSONToken = try decoder.decode(JSONToken.self, from: data)
+                return JSONToken
             } catch let error {
-                #warning("Handle error")
+                fatalError("Error reading JSON token: \(error.localizedDescription)")
             }
         }
         return nil
     }
     
-    static func deleteJSONTokenFile(){
+    static func deleteToken() {
         if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
             do {
                 try FileManager.default.removeItem(at: directoryURL)
             } catch let error {
-                #warning("Handle error")
+                fatalError("Error deleting JSON token: \(error.localizedDescription)")
             }
         }
     }
     
-    static func jsonTokenExist()->Bool{
-        return readJsonTokenFile(
-        ) != nil
-    }
-   
-    static func accessTokenHasExpired(date: Date) -> Bool {
-        return date < Date()
-    }
-    
     public static var authenticationTokenExists: Bool {
-        return self.readJsonTokenFile()
-        != nil
+        return readToken() != nil
     }
-    
 }
