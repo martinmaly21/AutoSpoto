@@ -10,7 +10,7 @@ import SwiftUI
 class Chat: Equatable, Identifiable {
     let type: ChatType
     let image: Data?
-    let ids: [Int]
+    let ids: [Int] //this is an array because each chat can have a text message or imessage thread associated with it
     let lastUpdated: Date?
     //this indicates whether a playlist already exists for this chat
     var spotifyPlaylistID: String?

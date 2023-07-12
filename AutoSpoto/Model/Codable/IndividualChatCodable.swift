@@ -10,7 +10,7 @@ import Foundation
 struct IndividualChatCodable: Codable {
     let imageBlob: Data?
     let contactInfo: String
-    let chatIDs: [Int]
+    let chatIDs: [Int] //this is an array because each chat can have a text message or imessage thread associated with it
     let firstName: String?
     let lastName: String?
     let spotifyPlaylistID: String?
