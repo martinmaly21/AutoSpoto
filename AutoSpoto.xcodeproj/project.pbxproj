@@ -21,6 +21,8 @@
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
 		50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */ = {isa = PBXBuildFile; fileRef = 50526EEC2A5E19E400844274 /* AutoSpotoScheduler */; };
+		50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
+		50526EEF2A5E26B200844274 /* JsonToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE62A58B4B500B4CFB4 /* JsonToken.swift */; };
 		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
 		505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */; };
 		505DB2972A4ED7860092E600 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */; };
@@ -798,6 +800,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */,
 				920B21FD2A564AD000904CDD /* NSImage.swift in Sources */,
 				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,
 				92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */,
@@ -817,6 +820,7 @@
 				92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */,
 				92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
 				92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */,
+				50526EEF2A5E26B200844274 /* JsonToken.swift in Sources */,
 				92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
 				92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */,
 				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
