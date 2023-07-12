@@ -73,9 +73,9 @@ struct PlaylistSummaryView: View {
                                     )
                                     .buttonStyle(.plain)
                                     
-//                                    Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.LAST_UPDATED, chat.lastUpdated?.formatted() ?? AutoSpotoConstants.Strings.LAST_UPDATED_FALLBACK))
-//                                        .font(.josefinSansLight(16))
-//                                        .font(.headline)
+                                    Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.LAST_UPDATED, chat.lastUpdated?.formatted() ?? AutoSpotoConstants.Strings.LAST_UPDATED_FALLBACK))
+                                        .font(.josefinSansLight(16))
+                                        .font(.headline)
                                 }
                                 
                                 Spacer()
