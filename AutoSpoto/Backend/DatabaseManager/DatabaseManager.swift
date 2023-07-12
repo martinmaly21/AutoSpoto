@@ -323,7 +323,7 @@ class DatabaseManager {
             }
             
             var chatsWithAssociatedContactsDataFrame = chatsDataFrame
-                .joined(contactsDataFrame, on: "contactInfo", kind: .inner)
+                .joined(contactsDataFrame, on: "contactInfo", kind: .left)
             
             //rename columns back to previous pre-join values
             chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
