@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  testing
+//  AutoSpoto-Scheduler
 //
 //  Created by Andrew Caravaggio on 2023-07-05.
 //
