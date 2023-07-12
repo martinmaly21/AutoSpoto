@@ -61,6 +61,12 @@ struct ChatsListView: View {
                     Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
                         .font(.josefinSansBold(26))
                         .foregroundColor(.textPrimary)
+                    
+                    UpgradeToProButton(
+                        action: {
+                            #warning("TODO: present pro payment screen")
+                        }
+                    )
 
                     Spacer()
 
@@ -90,12 +96,13 @@ struct ChatsListView: View {
                 }
                 .padding(.horizontal, 18)
                 .padding(.top, 20)
-                .padding(.bottom, 10)
+                .padding(.bottom, -10)
+                
             }
             .frame(height: topInset)
             .background(.ultraThinMaterial)
         }
-        .frame(minWidth: 300)
+        .frame(minWidth: 370)
         .frame(maxWidth: .infinity)
     }
 }

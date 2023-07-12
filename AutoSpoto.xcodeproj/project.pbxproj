@@ -34,6 +34,7 @@
 		5069BF732999C0A6007F4037 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
 		5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */; };
 		506B34032A5EA764002938D3 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
+		506B34052A5EB4AC002938D3 /* UpgradeToProButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */; };
 		509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
 		509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
 		509B08582A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */; };
@@ -172,6 +173,7 @@
 		5069BF722999C0A6007F4037 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoContainerView.swift; sourceTree = "<group>"; };
 		506B34022A5EA764002938D3 /* JSONToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONToken.swift; sourceTree = "<group>"; };
+		506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToProButton.swift; sourceTree = "<group>"; };
 		509B08512A31A82100917AAC /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		509B08532A31AD1400917AAC /* HTTPMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodType.swift; sourceTree = "<group>"; };
 		509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+KeyChain.swift"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				50A6922C2A371B6500E87BA2 /* CreateButton.swift */,
 				50A6922E2A371B6F00E87BA2 /* CancelButton.swift */,
 				50A692302A371B7900E87BA2 /* DoneButton.swift */,
+				506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */,
 				500215E32A57B64900978C20 /* ContactRow.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
+				506B34052A5EB4AC002938D3 /* UpgradeToProButton.swift in Sources */,
 				50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */,
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,

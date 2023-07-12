@@ -285,18 +285,6 @@ extension AutoSpotoConstants.Strings {
         comment: "The text that appears next to the private switch"
     )
     
-    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
-        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT",
-        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared between you and %@.",
-        comment: "Subtitle success text after creating playlist (opting out of auto updates)."
-    )
-    
-    static let SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT = NSLocalizedString(
-        "SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT",
-        value: "Since you opted out of automatic playlist updates, you will need to open AutoSpoto and manually sync '%@' playlist to add any new Spotify tracks shared in %@.",
-        comment: "The text that appears next to the private switch (opting out of auto updates)"
-    )
-    
     static let DISCONNECT_CHAT_FROM_PLAYLIST = NSLocalizedString(
         "DISCONNECT_CHAT_FROM_PLAYLIST",
         value: "Disconnect chat",
@@ -451,6 +439,12 @@ extension AutoSpotoConstants.Strings {
         "LAST_UPDATED_FALLBACK",
         value: "N/A",
         comment: "Fallback for last updated value. Should never occur."
+    )
+    
+    static let UPGRADE_TO_PRO = NSLocalizedString(
+        "UPGRADE_TO_PRO",
+        value: "Upgrade to Pro",
+        comment: "Label to upgrade to AutoSpoto Pro"
     )
 }
 

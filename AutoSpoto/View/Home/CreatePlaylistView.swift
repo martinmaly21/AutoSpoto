@@ -22,15 +22,6 @@ struct CreatePlaylistView: View {
     @State private var isCreatingPlaylist = false
     
     private var successSubtitle: String {
-        guard optInToAutomaticPlaylistUpdates else {
-            return String.localizedStringWithFormat(
-                chat.isGroupChat ? AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT :
-                    AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT_SCHEDULER_OPT_OUT,
-                playlistName,
-                chat.displayName
-            )
-        }
-        
         return String.localizedStringWithFormat(
             chat.isGroupChat ? AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT :
                 AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_INDIVIDUAL_CHAT,
