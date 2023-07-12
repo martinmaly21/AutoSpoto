@@ -162,8 +162,8 @@ class DatabaseManager {
             
             renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "chatName").mapGroups({slice in
                 var df = DataFrame()
-                df["chatIDs", [Int].self] = Column(name: "chatIDs", contents: [slice["chatID"].compactMap { $0 as? Int }])
-                df["displayName", String?.self] = Column(name: "displayName", contents: [slice["chatName"].first as? String])
+                df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
+                df["name", String?.self] = Column(name: "name", contents: [slice["chatName"].first as? String])
                 df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["image"].first as? String])
                 df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String])
                 df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
@@ -351,7 +351,7 @@ class DatabaseManager {
                 .mapGroups({ slice in
                     var df = DataFrame()
                     
-                    df["chatIDs", [Int].self] = Column(name: "chatIDs", contents: [slice["chatID"].compactMap { $0 as? Int }])
+                    df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
                     df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
                     df["firstName", String?.self] = Column(name: "firstName", contents: [slice["firstName"].first as? String])
                     df["lastName", String?.self] = Column(name: "lastName", contents: [slice["lastName"].first as? String])

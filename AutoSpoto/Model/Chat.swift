@@ -61,11 +61,11 @@ class Chat: Equatable, Identifiable {
             } else {
                 return phoneNumber
             }
-        case .group(let name):
+        case .group(let name, let nameID):
             if let name = name {
                 return name
             } else {
-                fatalError("Group chat has no name")
+                return String.localizedStringWithFormat(AutoSpotoConstants.Strings.GROUP_CHAT_DISPLAY_NAME_FALLBACK, nameID)
             }
         }
     }
@@ -77,7 +77,7 @@ class Chat: Equatable, Identifiable {
             phoneNumber: individualChatCodable.contactInfo
         )
         image = individualChatCodable.imageBlob
-        ids = individualChatCodable.chatIDs
+        ids = individualChatCodable.ids
         spotifyPlaylistID = individualChatCodable.spotifyPlaylistID
         if let lastUpdated = individualChatCodable.lastUpdated {
             self.lastUpdated = Date(timeIntervalSince1970: lastUpdated)
@@ -87,9 +87,9 @@ class Chat: Equatable, Identifiable {
     }
 
     init(_ groupChatCodable: GroupChatCodable) {
-        type = .group(name: groupChatCodable.displayName)
+        type = .group(name: groupChatCodable.name, nameID: groupChatCodable.nameID)
         image = groupChatCodable.imageBlob
-        ids = groupChatCodable.chatIDs
+        ids = groupChatCodable.ids
         spotifyPlaylistID = groupChatCodable.spotifyPlaylistID
         if let lastUpdated = groupChatCodable.lastUpdated {
             self.lastUpdated = Date(timeIntervalSince1970: lastUpdated)

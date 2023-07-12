@@ -446,5 +446,11 @@ extension AutoSpotoConstants.Strings {
         value: "Upgrade to Pro",
         comment: "Label to upgrade to AutoSpoto Pro"
     )
+    
+    static let GROUP_CHAT_DISPLAY_NAME_FALLBACK = NSLocalizedString(
+        "GROUP_CHAT_DISPLAY_NAME_FALLBACK",
+        value: "Group chat ID: %@",
+        comment: "Fallback for group chat name"
+    )
 }
 
