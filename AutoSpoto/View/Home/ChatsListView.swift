@@ -10,11 +10,6 @@ import SwiftUI
 struct ChatsListView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
 
-    private var filterOptions: [FilterChatType] = [
-        .individual,
-        .group
-    ]
-
     var body: some View {
         let topInset: CGFloat = 80
 
@@ -96,17 +91,6 @@ struct ChatsListView: View {
                 .padding(.horizontal, 18)
                 .padding(.top, 20)
                 .padding(.bottom, 10)
-
-                Picker("", selection: $homeViewModel.filterSelection) {
-                    ForEach(filterOptions, id: \.self) {
-                        Text($0.localizedString)
-                            .foregroundColor(.secondaryBlue)
-                            .font(.josefinSansRegular(16))
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding(.trailing, 6)
-                .padding(.bottom, 30)
             }
             .frame(height: topInset)
             .background(.ultraThinMaterial)

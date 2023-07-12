@@ -20,10 +20,8 @@ struct CreatePlaylistView: View {
     @State private var errorCreatingPlaylist = false
     @State private var successfullyCreatedPlaylist = false
     @State private var isCreatingPlaylist = false
-    @State private var optInToAutomaticPlaylistUpdates = true
     
     private var successSubtitle: String {
-        
         guard optInToAutomaticPlaylistUpdates else {
             return String.localizedStringWithFormat(
                 chat.isGroupChat ? AutoSpotoConstants.Strings.SUCCESSFULLY_CREATED_PLAYLIST_SUBTITLE_GROUP_CHAT_SCHEDULER_OPT_OUT :

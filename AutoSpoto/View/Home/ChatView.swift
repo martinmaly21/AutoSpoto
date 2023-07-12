@@ -138,7 +138,7 @@ struct ChatView: View {
                 )
             } else {
                 //no chats
-                let emptyStateTitle = homeViewModel.filterSelection == .individual ? AutoSpotoConstants.Strings.NO_INDIVIDUAL_CHATS_EMPTY_STATE : AutoSpotoConstants.Strings.NO_GROUP_CHATS_EMPTY_STATE
+                let emptyStateTitle = AutoSpotoConstants.Strings.NO_CHATS_EMPTY_STATE
                 
                 VStack(spacing: 10) {
                     Image(systemName: "message")

@@ -16,7 +16,7 @@ class SpotifyTokenManager{
         if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
             
-            do{
+            do {
                 let jsonData = try jsonEncoder.encode(jsonToken)
                 try jsonData.write(to: directoryURL)
             } catch {
@@ -35,8 +35,8 @@ class SpotifyTokenManager{
                 let data = try Data(contentsOf: directoryURL)
                 let JSONToken = try decoder.decode(JSONToken.self, from: data)
                 return JSONToken
-            } catch let error {
-                fatalError("Error reading JSON token: \(error.localizedDescription)")
+            } catch {
+                return nil
             }
         }
         return nil

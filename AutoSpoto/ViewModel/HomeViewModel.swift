@@ -9,102 +9,32 @@ import Foundation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published private var individualChatSections: [ChatSection] = []
-    @Published private var groupChatSections: [ChatSection] = []
-
-    @Published private var selectedIndividualChat: Chat?
-    @Published private var selectedGroupChat: Chat?
-
-    @Published var filterSelection: FilterChatType = .individual
-    
-    @Published var isFetchingIndividualChats = false
-    @Published var isFetchingGroupChats = false
-    
-    @Published var shouldScrollToBottom = false
-    
-    public var isFetchingChats: Bool {
-        return isFetchingIndividualChats || isFetchingGroupChats
-    }
-
-    var selectedChat: Chat? {
-        get {
-            switch filterSelection {
-            case .individual:
-                return selectedIndividualChat
-            case .group:
-                return selectedGroupChat
-            }
-        }
-
-        set {
-            switch filterSelection {
-            case .individual:
-                selectedIndividualChat = newValue
-            case .group:
-                selectedGroupChat = newValue
-            }
-            
+    @Published var chatSections: [ChatSection] = []
+    @Published var selectedChat: Chat? {
+        willSet {
             shouldScrollToBottom = true
         }
     }
-
-    var chatSections: [ChatSection] {
-        get {
-            switch filterSelection {
-            case .individual:
-                return individualChatSections
-            case .group:
-                return groupChatSections
-            }
-        }
-        
-        set {
-            switch filterSelection {
-            case .individual:
-                individualChatSections = newValue
-            case .group:
-                groupChatSections = newValue
-            }
-        }
-    }
     
+    @Published var isFetchingChats = false
+    @Published var shouldScrollToBottom = false
+
     init() {
         DatabaseManager.shared = DatabaseManager()
     }
 
     public func fetchChats() async {
-        switch filterSelection {
-        case .individual:
-            await fetchIndividualChats()
-        case .group:
-            await fetchGroupChats()
-        }
-    }
-
-    private func fetchGroupChats() async {
-        //only fetch if group chats have not already been fetched (groupChats.isEmpty)
-        guard !isFetchingGroupChats else { return }
-        isFetchingGroupChats = true
+        guard !isFetchingChats else { return }
+        isFetchingChats = true
         
         defer {
-            isFetchingGroupChats = false
+            isFetchingChats = false
         }
-        
+
         let groupChats = await DatabaseManager.shared.fetchGroupChats()
-        updateChatSections(allChats: groupChats)
-    }
-
-    private func fetchIndividualChats() async {
-        //only fetch if individual chats have not already been fetched (individualChats.isEmpty)
-        guard !isFetchingIndividualChats else { return }
-        isFetchingIndividualChats = true
-        
-        defer {
-            isFetchingIndividualChats = false
-        }
-        
         let individualChats = await DatabaseManager.shared.fetchIndividualChats()
-        updateChatSections(allChats: individualChats)
+        
+        updateChatSections(allChats: groupChats + individualChats)
     }
     
     private func fetchTracks(for chat: Chat) async {
@@ -251,11 +181,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func resetModel() async {
-        individualChatSections = []
-        groupChatSections = []
-
-        selectedIndividualChat = nil
-        selectedGroupChat = nil
+        chatSections = []
+        selectedChat = nil
 
         await fetchChats()
     }
