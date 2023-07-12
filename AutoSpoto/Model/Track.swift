@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Track: Equatable, Identifiable {
+class Track: Equatable, Identifiable, Comparable {
     let spotifyID: String
     let timeStamp: Date //time stamp for when song was sent
 
@@ -47,5 +47,9 @@ class Track: Equatable, Identifiable {
 
     static func == (lhs: Track, rhs: Track) -> Bool {
         return lhs.url == rhs.url
+    }
+    
+    static func < (lhs: Track, rhs: Track) -> Bool {
+        return lhs.timeStamp < rhs.timeStamp
     }
 }

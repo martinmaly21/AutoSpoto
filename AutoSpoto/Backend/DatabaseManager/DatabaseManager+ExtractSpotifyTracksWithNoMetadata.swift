@@ -22,6 +22,9 @@ extension DatabaseManager {
         //remove duplicates
         tracks = tracks.unique
         
+        //sort tracks
+        tracks.sort()
+        
         return tracks
     }
     
