@@ -166,6 +166,7 @@ class DatabaseManager {
                 df["display_name", String?.self] = Column(name: "display_name", contents: [slice["chatName"].first as? String])
                 df["Image", String?.self] = Column(name: "Image", contents: [slice["image"].first as? String])
                 df["playlist_id", String?.self] = Column(name: "playlist_id", contents: [slice["playlistID"].first as? String])
+                df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
                 return df
             }).ungrouped()
             
