@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @Namespace var bottomID
     
     @State private var showCreatePlaylistSheet = false
     
