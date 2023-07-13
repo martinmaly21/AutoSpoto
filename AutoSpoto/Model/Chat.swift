@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhoneNumberKit
 
 class Chat: Equatable, Identifiable {
     let type: ChatType
@@ -59,7 +60,12 @@ class Chat: Equatable, Identifiable {
             } else if let lastName = lastName {
                 return lastName
             } else if !phoneNumberOrEmail.isEmpty {
-                return phoneNumberOrEmail
+                do {
+                    let phoneNumber = try PhoneNumberManager.phoneNumberKit.parse(phoneNumberOrEmail)
+                    return PhoneNumberManager.phoneNumberKit.format(phoneNumber, toType: .international)
+                } catch {
+                    return phoneNumberOrEmail
+                }
             } else {
                 return AutoSpotoConstants.Strings.UKNOWN_NUMBER
             }
