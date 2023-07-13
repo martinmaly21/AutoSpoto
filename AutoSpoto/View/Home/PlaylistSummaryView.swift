@@ -17,7 +17,6 @@ struct PlaylistSummaryView: View {
     let height: CGFloat
     
     @State private var isModifyingPlaylist = false
-    @State private var optInToAutomaticPlaylistUpdates = true
     
     var spotifyPlaylist: SpotifyPlaylist? {
         return chat.spotifyPlaylist
