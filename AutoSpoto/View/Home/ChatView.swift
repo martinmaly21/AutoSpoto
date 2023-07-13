@@ -100,7 +100,8 @@ struct ChatView: View {
                             PersonPictureView(
                                 base64ImageData: selectedChat.image,
                                 dimension: 45,
-                                isSelected: false
+                                isSelected: false,
+                                isGroupChat: selectedChat.isGroupChat
                             )
                             
                             Text(selectedChat.displayName)

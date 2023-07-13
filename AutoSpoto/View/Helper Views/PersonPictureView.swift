@@ -11,6 +11,7 @@ struct PersonPictureView: View {
     let base64ImageData: Data?
     let dimension: CGFloat
     let isSelected: Bool
+    let isGroupChat: Bool
 
     var body: some View {
         ZStack {
@@ -19,7 +20,7 @@ struct PersonPictureView: View {
                 Image(nsImage: nsImage)
                     .resizable()
             } else {
-                Image(systemName: "person.crop.circle")
+                Image(systemName: isGroupChat ? "person.2.circle" : "person.circle")
                     .resizable()
                     .foregroundColor(isSelected ? Color.selectedPersonPictureTintColor : Color.unselectedPersonPictureTintColor)
             }

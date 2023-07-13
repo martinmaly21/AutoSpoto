@@ -14,6 +14,7 @@ struct ChatRow: View {
     let numberOfTracks: Int
     
     let isSelected: Bool
+    let isGroupChat: Bool
 
     var body: some View {
         VStack(spacing: 2) {
@@ -21,7 +22,8 @@ struct ChatRow: View {
                 PersonPictureView(
                     base64ImageData: chatImage,
                     dimension: 40,
-                    isSelected: isSelected
+                    isSelected: isSelected,
+                    isGroupChat: isGroupChat
                 )
                 .padding(.trailing, 5)
 

@@ -41,7 +41,8 @@ struct ChatsListView: View {
                                         chatDisplayName: chat.displayName,
                                         chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
                                         numberOfTracks: chat.tracks.count,
-                                        isSelected: chat == homeViewModel.selectedChat
+                                        isSelected: chat == homeViewModel.selectedChat,
+                                        isGroupChat: chat.isGroupChat
                                     )
                                     .onTapGesture {
                                         homeViewModel.selectedChat = chat
