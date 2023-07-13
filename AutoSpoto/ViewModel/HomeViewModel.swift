@@ -108,11 +108,12 @@ class HomeViewModel: ObservableObject {
             guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
                 fatalError("Could not get spotifyPlaylistID from Chat")
             }
-            try await SpotifyManager.updatePlaylist(
+            let dateUpdated = try await SpotifyManager.updatePlaylist(
                 spotifyPlaylistID: spotifyPlaylistID,
                 tracks: chat.tracks,
                 lastUpdated: chat.lastUpdated
             )
+            chat.lastUpdated = dateUpdated
         } catch let error {
             //TODO: handle if update playlist fails
         }
@@ -147,6 +148,7 @@ class HomeViewModel: ObservableObject {
         }
         DatabaseManager.shared.remove(spotifyPlaylistID)
         chat.spotifyPlaylistID = nil
+        chat.lastUpdated = nil
         
         updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
         
