@@ -18,6 +18,10 @@ class HomeViewModel: ObservableObject {
     
     @Published var isFetchingChats = false
     @Published var shouldScrollToBottom = false
+    
+    @Published var connectedChatsIsExpanded = true
+    @Published var chatsWithTracksIsExpanded = true
+    @Published var chatsWithNoTracksIsExpanded = false
 
     init() {
         DatabaseManager.shared = DatabaseManager()

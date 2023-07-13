@@ -19,9 +19,15 @@ struct ChatsListView: View {
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
                     ForEach(homeViewModel.chatSections, id: \.id) { chatSection in
+                        let chatSectionIsExpanded = (
+                            chatSection.title == AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION && homeViewModel.connectedChatsIsExpanded ||
+                            chatSection.title == AutoSpotoConstants.Strings.CHATS_WITH_TRACKS && homeViewModel.chatsWithTracksIsExpanded ||
+                            chatSection.title == AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS && homeViewModel.chatsWithNoTracksIsExpanded
+                        )
+                        
                         VStack(spacing: 0) {
                             HStack {
-                                Text("\(chatSection.title) (\(chatSection.chats.count))")
+                                Text("\(chatSectionIsExpanded ? "􀆈" : "􀆊") \(chatSection.title) (\(chatSection.chats.count))")
                                     .font(.josefinSansRegular(18))
                                     .padding(.leading, 14)
                                     .padding(.vertical, 4)
@@ -29,23 +35,40 @@ struct ChatsListView: View {
                                 Spacer()
                             }
                             .background(Color.sectionHeaderGray)
+                            .onTapGesture {
+                                withAnimation {
+                                    switch chatSection.title {
+                                    case AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION:
+                                        homeViewModel.connectedChatsIsExpanded.toggle()
+                                    case AutoSpotoConstants.Strings.CHATS_WITH_TRACKS:
+                                        homeViewModel.chatsWithTracksIsExpanded.toggle()
+                                    case AutoSpotoConstants.Strings.CHATS_WITH_NO_TRACKS:
+                                        homeViewModel.chatsWithNoTracksIsExpanded.toggle()
+                                    default:
+                                        fatalError("Unexpected section title")
+                                    }
+                                }
+                            }
                             
                             if chatSection.chats.isEmpty {
                                 Text(AutoSpotoConstants.Strings.CHAT_SECTION_EMPTY_STATE)
                                     .font(.josefinSansRegular(16))
                                     .padding(.vertical, 10)
                             } else {
-                                ForEach(chatSection.chats, id: \.id) { chat in
-                                    ChatRow(
-                                        chatImage: chat.image,
-                                        chatDisplayName: chat.displayName,
-                                        chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
-                                        numberOfTracks: chat.tracks.count,
-                                        isSelected: chat == homeViewModel.selectedChat,
-                                        isGroupChat: chat.isGroupChat
-                                    )
-                                    .onTapGesture {
-                                        homeViewModel.selectedChat = chat
+                                
+                                if chatSectionIsExpanded {
+                                    ForEach(chatSection.chats, id: \.id) { chat in
+                                        ChatRow(
+                                            chatImage: chat.image,
+                                            chatDisplayName: chat.displayName,
+                                            chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
+                                            numberOfTracks: chat.tracks.count,
+                                            isSelected: chat == homeViewModel.selectedChat,
+                                            isGroupChat: chat.isGroupChat
+                                        )
+                                        .onTapGesture {
+                                            homeViewModel.selectedChat = chat
+                                        }
                                     }
                                 }
                             }
