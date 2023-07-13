@@ -64,7 +64,7 @@ class DatabaseManager {
             fatalError("Could not initialize autospoto.db: \(error.localizedDescription)")
         }
         
-        if onTrackedChatsDBUpdate != nil {
+        if onTrackedChatsDBUpdatedOutsideOfApp != nil {
             Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTrackedChats), userInfo: nil, repeats: true)
         }
     }
