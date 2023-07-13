@@ -12,7 +12,14 @@ struct PlaylistSummaryView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @Environment(\.openURL) private var openURL
     
-    let chat: Chat
+    var chat: Chat {
+        guard let chat = homeViewModel.selectedChat else {
+            fatalError("Could not get chat")
+        }
+        
+        return chat
+    }
+    
     let width: CGFloat
     let height: CGFloat
     
