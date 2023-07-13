@@ -181,7 +181,7 @@ class HomeViewModel: ObservableObject {
             selectedChat = updatedChat
         } else if let selectedChat = selectedChat {
             self.selectedChat = nil
-            self.selectedChat = selectedChat
+            self.selectedChat = chatSections.flatMap { $0.chats }.first(where: { $0.ids == selectedChat.ids })
         } else {
             selectedChat = chatSections.flatMap { $0.chats }.first
         }
