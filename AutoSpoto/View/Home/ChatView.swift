@@ -30,7 +30,7 @@ struct ChatView: View {
                                     if selectedChat.hasTracks {
                                         LazyVStack {
                                             ForEach(selectedChat.tracks, id: \.id) { track in
-                                                TrackRow(track: track)
+                                                TrackRow(chat: selectedChat, track: track)
                                                     .id(track.id)
                                                     .onAppear {
                                                         if homeViewModel.shouldScrollToBottom {

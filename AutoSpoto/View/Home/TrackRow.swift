@@ -12,7 +12,16 @@ import Kingfisher
 struct TrackRow: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     
+    let chat: Chat
     let track: Track
+    
+    private var isTrackUploaded: Bool? {
+        guard let lastUpdated = chat.lastUpdated else {
+            return nil
+        }
+        
+        return track.timeStamp < lastUpdated
+    }
     
     var body: some View {
         let trackMetadataIsLoading = !track.errorFetchingTrackMetadata && !track.metadataHasBeenFetched
@@ -73,12 +82,21 @@ struct TrackRow: View {
                 
                 Spacer()
                 
-                VStack {
-                    Text(track.timeStamp.formatted())
-                        .font(.josefinSansLight(16))
-                        .foregroundColor(.textPrimary)
+                VStack(alignment: .trailing) {
+                    HStack {
+                        Text(track.timeStamp.formatted())
+                            .font(.josefinSansLight(16))
+                            .foregroundColor(.textPrimary)
+                    }
                     
                     Spacer()
+                    
+                    if let isTrackUploaded = isTrackUploaded {
+                        Text(isTrackUploaded ? AutoSpotoConstants.Strings.SYNCED : AutoSpotoConstants.Strings.NOT_SYNCED)
+                            .font(.josefinSansLight(18))
+                            .foregroundColor(isTrackUploaded ? Color.spotifyGreen : Color.red)
+                    }
+                    
                 }
             }
             .multilineTextAlignment(.leading)

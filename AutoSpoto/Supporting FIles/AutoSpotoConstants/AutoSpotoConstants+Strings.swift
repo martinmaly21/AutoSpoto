@@ -458,5 +458,17 @@ extension AutoSpotoConstants.Strings {
         value: "Unknown number",
         comment: "Fallback for individual chat name"
     )
+    
+    static let SYNCED = NSLocalizedString(
+        "SYNCED",
+        value: "Synced",
+        comment: "Generic 'Synced' text"
+    )
+    
+    static let NOT_SYNCED = NSLocalizedString(
+        "NOT_SYNCED",
+        value: "Not synced",
+        comment: "Generic 'Not synced' text"
+    )
 }
 

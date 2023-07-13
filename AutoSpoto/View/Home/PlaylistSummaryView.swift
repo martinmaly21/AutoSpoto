@@ -94,6 +94,7 @@ struct PlaylistSummaryView: View {
                                     }
                                 }
                             )
+                            .disabled(!chat.hasUnsyncedTracks)
                             
                             Button(
                                 action: {
