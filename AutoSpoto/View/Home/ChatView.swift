@@ -67,6 +67,13 @@ struct ChatView: View {
                                         .frame(height: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) - 8)
                                         .frame(maxWidth: .infinity)
                                         .foregroundColor(.emptyStateTintColor)
+                                        .onAppear {
+                                            if selectedChat.spotifyPlaylistExists {
+                                                Task {
+                                                    await homeViewModel.fetchPlaylist(for: selectedChat)
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 .safeAreaInset(edge: .top) {
