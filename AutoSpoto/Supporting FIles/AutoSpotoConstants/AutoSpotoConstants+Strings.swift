@@ -449,7 +449,7 @@ extension AutoSpotoConstants.Strings {
     
     static let GROUP_CHAT_DISPLAY_NAME_FALLBACK = NSLocalizedString(
         "GROUP_CHAT_DISPLAY_NAME_FALLBACK",
-        value: "Group chat ID: %@",
+        value: "Group chat #%@ (Unnamed)",
         comment: "Fallback for group chat name"
     )
     

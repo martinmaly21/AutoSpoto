@@ -73,7 +73,7 @@ class Chat: Equatable, Identifiable {
             if let name = name, !name.isEmpty {
                 return name
             } else {
-                return String.localizedStringWithFormat(AutoSpotoConstants.Strings.GROUP_CHAT_DISPLAY_NAME_FALLBACK, nameID)
+                return String.localizedStringWithFormat(AutoSpotoConstants.Strings.GROUP_CHAT_DISPLAY_NAME_FALLBACK, "\(nameID.prefix(3))")
             }
         }
     }
