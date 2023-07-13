@@ -93,7 +93,7 @@ class HomeViewModel: ObservableObject {
             desiredPlaylistName: desiredPlaylistName
         )
         
-        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
+        updateChatSections(allChats: chatSections.flatMap { $0.chats })
         
         self.objectWillChange.send()
     }
@@ -119,7 +119,7 @@ class HomeViewModel: ObservableObject {
         }
        
         //update chat sections
-        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
+        updateChatSections(allChats: chatSections.flatMap { $0.chats })
         
         self.objectWillChange.send()
     }
@@ -150,7 +150,7 @@ class HomeViewModel: ObservableObject {
         chat.spotifyPlaylistID = nil
         chat.lastUpdated = nil
         
-        updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)
+        updateChatSections(allChats: chatSections.flatMap { $0.chats })
         
         self.objectWillChange.send()
     }
@@ -159,7 +159,7 @@ class HomeViewModel: ObservableObject {
     //the sitations i can think of
     //1. a user disconnects a chat, so it should be moved to either 'chats with tracks' or 'chats with no tracks'
     //2. a user connects a chat, so it should be moved to 'connected chats'
-    private func updateChatSections(allChats: [Chat], updatedChat: Chat? = nil) {
+    private func updateChatSections(allChats: [Chat]) {
         var connectedChats = allChats.filter { $0.spotifyPlaylistExists }
         connectedChats.sort(by: { $0.displayName < $1.displayName })
         let connectedChatsWithContactsOrChatNames = connectedChats.filter { $0.hasContactOrChatName }
@@ -189,10 +189,7 @@ class HomeViewModel: ObservableObject {
         
         chatSections = [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
         
-        if let updatedChat = updatedChat {
-            selectedChat = updatedChat
-        } else if let selectedChat = selectedChat {
-            self.selectedChat = nil
+        if let selectedChat = selectedChat {
             self.selectedChat = chatSections.flatMap { $0.chats }.first(where: { $0.ids == selectedChat.ids })
         } else {
             selectedChat = chatSections.flatMap { $0.chats }.first
