@@ -17,7 +17,7 @@ struct ChatView: View {
         let playlistSummaryHeight: CGFloat = 110
         let heightOfToolbar: CGFloat = 80
         
-        if homeViewModel.isFetchingChats {
+        if homeViewModel.isFetchingChats && homeViewModel.chatSections.isEmpty {
             ProgressView()
         } else {
             if let selectedChat = homeViewModel.selectedChat {

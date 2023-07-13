@@ -24,7 +24,13 @@ class HomeViewModel: ObservableObject {
     @Published var chatsWithNoTracksIsExpanded = false
 
     init() {
-        DatabaseManager.shared = DatabaseManager()
+        DatabaseManager.shared = DatabaseManager(
+            onTrackedChatsDBUpdatedOutsideOfApp: {
+                Task {
+                    await self.fetchChats()
+                }
+            }
+        )
     }
 
     public func fetchChats() async {

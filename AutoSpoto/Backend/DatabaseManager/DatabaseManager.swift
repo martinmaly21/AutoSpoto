@@ -14,8 +14,24 @@ class DatabaseManager {
     public static var shared: DatabaseManager!
     
     internal let database: Connection
+    //this closure is called when the "AutoSpoto-PlaylistUpdater" updates autospoto.db
+    internal let onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)?
+    //this flag prevents the 'onTrackedChatsDBUpdatedOutsideOfApp' closure from running from updates to autospoto.db via the app
+    private var ignoreTrackedChatsUpdate = true
+    internal var trackedChats: DataFrame? {
+        willSet {
+            if newValue != trackedChats {
+                guard !ignoreTrackedChatsUpdate else {
+                    ignoreTrackedChatsUpdate = false
+                    return
+                }
+                onTrackedChatsDBUpdatedOutsideOfApp?()
+            }
+        }
+    }
     
-    init() {
+    init(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
+        self.onTrackedChatsDBUpdatedOutsideOfApp = onTrackedChatsDBUpdatedOutsideOfApp
         do  {
             //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto
             let fileManager = FileManager.default
@@ -47,6 +63,14 @@ class DatabaseManager {
         } catch let error {
             fatalError("Could not initialize autospoto.db: \(error.localizedDescription)")
         }
+        
+        if onTrackedChatsDBUpdate != nil {
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTrackedChats), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func updateTrackedChats() {
+        trackedChats = retrieveTrackedChats()
     }
     
     private func extractChatFromPath(input: String) -> String? {
@@ -429,6 +453,7 @@ class DatabaseManager {
         do {
             try selectedChatIDs.forEach{ chatID in
                 try database.run(playlistsTable.insert(chatIDExpression <- chatID, spotifyPlaylistIDExpression <- spotifyPlaylistID))
+                ignoreTrackedChatsUpdate = true
             }
         } catch {
             #warning("Handle error")
@@ -442,6 +467,7 @@ class DatabaseManager {
 
         do {
             try database.run(playlistQuery.delete())
+            ignoreTrackedChatsUpdate = true
         } catch {
             #warning("Handle error")
         }
@@ -455,6 +481,7 @@ class DatabaseManager {
         
         do {
             try database.run(playlistQuery.update(lastUpdatedExpression <- lastUpdatedDouble))
+            ignoreTrackedChatsUpdate = true
         } catch {
             #warning("Handle error")
         }
