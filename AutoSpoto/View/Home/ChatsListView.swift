@@ -26,10 +26,15 @@ struct ChatsListView: View {
                         )
                         
                         VStack(spacing: 0) {
-                            HStack {
-                                Text("\(chatSectionIsExpanded ? "􀆈" : "􀆊") \(chatSection.title) (\(chatSection.chats.count))")
+                            HStack(spacing: 6) {
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 18, weight: .semibold))
+                                    .frame(width: 25)
+                                    .rotationEffect(chatSectionIsExpanded ? .radians(.pi / 2) : .radians(0))
+                                    .padding(.leading, 12)
+                                    
+                                Text("\(chatSection.title) (\(chatSection.chats.count))")
                                     .font(.josefinSansRegular(18))
-                                    .padding(.leading, 14)
                                     .padding(.vertical, 4)
                                 
                                 Spacer()
