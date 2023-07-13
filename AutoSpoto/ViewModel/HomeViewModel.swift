@@ -179,14 +179,13 @@ class HomeViewModel: ObservableObject {
         
         if let updatedChat = updatedChat {
             selectedChat = updatedChat
-        } else {
+        } else if selectedChat == nil {
             selectedChat = chatSections.flatMap { $0.chats }.first
         }
     }
     
     func resetModel() async {
         chatSections = []
-        selectedChat = nil
 
         await fetchChats()
     }
