@@ -71,6 +71,15 @@ class Chat: Equatable, Identifiable {
             }
         }
     }
+    
+    var hasContactOrChatName: Bool {
+        switch type {
+        case .individual(let firstName, let lastName, _):
+            return !(firstName?.isEmpty ?? true && lastName?.isEmpty ?? true)
+        case .group(let name, _):
+            return !(name?.isEmpty ?? true)
+        }
+    }
 
     init(_ individualChatCodable: IndividualChatCodable) {
         type = .individual(
