@@ -68,6 +68,7 @@ struct ChatsListView: View {
                                             chatDisplayName: chat.displayName,
                                             chatSpotifyPlaylistExists: chat.spotifyPlaylistExists,
                                             numberOfTracks: chat.tracks.count,
+                                            numberOfUnsyncedTracks: chat.numberOfUnsyncedTracks,
                                             isSelected: chat == homeViewModel.selectedChat,
                                             isGroupChat: chat.isGroupChat
                                         )

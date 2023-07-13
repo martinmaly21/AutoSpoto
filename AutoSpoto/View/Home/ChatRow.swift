@@ -12,6 +12,7 @@ struct ChatRow: View {
     let chatDisplayName: String
     let chatSpotifyPlaylistExists: Bool
     let numberOfTracks: Int
+    let numberOfUnsyncedTracks: Int
     
     let isSelected: Bool
     let isGroupChat: Bool
@@ -32,9 +33,17 @@ struct ChatRow: View {
                         .font(.josefinSansRegular(18))
                         .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
                     
-                    Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.NUMBER_OF_TRACKS, numberOfTracks))
-                        .font(.josefinSansLight(16))
-                        .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
+                    HStack {
+                        Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.NUMBER_OF_TRACKS, numberOfTracks))
+                            .font(.josefinSansLight(16))
+                            .foregroundColor(isSelected ? .textPrimaryWhite : .textPrimary)
+                        
+                        if chatSpotifyPlaylistExists && numberOfUnsyncedTracks > 0 {
+                            Text(String.localizedStringWithFormat(AutoSpotoConstants.Strings.NUMBER_OF_UNSYNCED_TRACKS, numberOfUnsyncedTracks))
+                                .font(.josefinSansLight(16))
+                                .foregroundColor(Color.red)
+                        }
+                    }
                 }
 
                 Spacer()

@@ -38,12 +38,15 @@ class Chat: Equatable, Identifiable {
         return !tracks.isEmpty
     }
     
-    var hasUnsyncedTracks: Bool {
+    var numberOfUnsyncedTracks: Int {
         guard let lastUpdated = lastUpdated else {
-            return true
+            return tracks.count
         }
-        let unsyncedTrack = tracks.first(where: { $0.timeStamp > lastUpdated })
-        return unsyncedTrack != nil
+        return tracks.filter { $0.timeStamp > lastUpdated }.count
+    }
+    
+    var hasUnsyncedTracks: Bool {
+        return numberOfUnsyncedTracks > 0
     }
     
     var trackMetadataPagesBeingFetched: [Int] = []

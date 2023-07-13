@@ -151,6 +151,12 @@ extension AutoSpotoConstants.Strings {
         value: "%d tracks",
         comment: "Number of tracks in the chat"
     )
+    
+    static let NUMBER_OF_UNSYNCED_TRACKS = NSLocalizedString(
+        "NUMBER_OF_UNSYNCED_TRACKS",
+        value: "(%d unsynced)",
+        comment: "Number of unsynced tracks in the chat"
+    )
 
     static let ENTER_PLAYLIST_DETAILS = NSLocalizedString(
         "ENTER_PLAYLIST_DETAILS",
