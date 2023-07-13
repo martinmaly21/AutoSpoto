@@ -179,7 +179,10 @@ class HomeViewModel: ObservableObject {
         
         if let updatedChat = updatedChat {
             selectedChat = updatedChat
-        } else if selectedChat == nil {
+        } else if let selectedChat = selectedChat {
+            self.selectedChat = nil
+            self.selectedChat = selectedChat
+        } else {
             selectedChat = chatSections.flatMap { $0.chats }.first
         }
     }
