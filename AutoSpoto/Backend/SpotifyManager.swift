@@ -220,7 +220,7 @@ class SpotifyManager {
         let spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
             
         chat.spotifyPlaylistID = spotifyPlaylistID
-        DatabaseManager.shared.insertSpotifyPlaylistDB(from: spotifyPlaylistID, selectedChatID: chat.ids)
+        DatabaseManager.shared.insert(spotifyPlaylistID, for: chat.ids)
         try await updatePlaylist(spotifyPlaylistID: spotifyPlaylistID, tracks: chat.tracks, lastUpdated: chat.lastUpdated)
         
         //finally, update cover image for chat
@@ -271,7 +271,7 @@ class SpotifyManager {
         ]
         
         let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        DatabaseManager.shared.updateLastUpdatedDB(from: spotifyPlaylistID, lastUpdatedDouble: dateUpdated.timeIntervalSince1970)
+        DatabaseManager.shared.updateLastUpdated(for: spotifyPlaylistID, with: dateUpdated.timeIntervalSince1970)
     }
     
     public static func addCoverImageToPlaylist(for chat: Chat) async throws {

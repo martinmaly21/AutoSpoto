@@ -136,6 +136,10 @@ class HomeViewModel: ObservableObject {
         for chat: Chat
     ) async {
         #warning("Need to update autospoto.db")
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID for chat to remove")
+        }
+        DatabaseManager.shared.remove(spotifyPlaylistID)
         chat.spotifyPlaylistID = nil
         
         updateChatSections(allChats: chatSections.flatMap { $0.chats }, updatedChat: chat)

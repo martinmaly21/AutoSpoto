@@ -421,30 +421,40 @@ class DatabaseManager {
         }
     }
     
-    func insertSpotifyPlaylistDB(from createdSpotifyPlaylistID: String, selectedChatID: [Int]) {
-        let chatID = Expression<Int>("chatID")
-        let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-        
+    func insert(_ spotifyPlaylistID: String, for selectedChatIDs: [Int]) {
+        let chatIDExpression = Expression<Int>("chatID")
+        let spotifyPlaylistIDExpression = Expression<String?>("spotifyPlaylistID")
         let playlistsTable = Table("CREATED_PLAYLISTS")
         
         do {
-            try selectedChatID.forEach{ ChatID in
-                try database.run(playlistsTable.insert(chatID <- ChatID, spotifyPlaylistID <- createdSpotifyPlaylistID))
+            try selectedChatIDs.forEach{ chatID in
+                try database.run(playlistsTable.insert(chatIDExpression <- chatID, spotifyPlaylistIDExpression <- spotifyPlaylistID))
             }
         } catch {
             #warning("Handle error")
         }
     }
     
-    func updateLastUpdatedDB(from createdSpotifyPlaylistID: String, lastUpdatedDouble: Double) {
-        let spotifyPlaylistID = Expression<String?>("spotifyPlaylistID")
-        let lastUpdated = Expression<Double?>("lastUpdated")
-        
+    func remove(_ spotifyPlaylistID: String) {
+        let spotifyPlaylistIDExpression = Expression<String?>("spotifyPlaylistID")
         let playlistsTable = Table("CREATED_PLAYLISTS")
-        let playlistQuery = playlistsTable.filter(spotifyPlaylistID==createdSpotifyPlaylistID)
+        let playlistQuery = playlistsTable.filter(spotifyPlaylistIDExpression == spotifyPlaylistID)
+
+        do {
+            try database.run(playlistQuery.delete())
+        } catch {
+            #warning("Handle error")
+        }
+    }
+    
+    func updateLastUpdated(for spotifyPlaylistID: String, with lastUpdatedDouble: Double) {
+        let spotifyPlaylistIDExpression = Expression<String?>("spotifyPlaylistID")
+        let lastUpdatedExpression = Expression<Double?>("lastUpdated")
+        let playlistsTable = Table("CREATED_PLAYLISTS")
+        let playlistQuery = playlistsTable.filter(spotifyPlaylistIDExpression == spotifyPlaylistID)
         
         do {
-            try database.run(playlistQuery.update(lastUpdated <- lastUpdatedDouble))
+            try database.run(playlistQuery.update(lastUpdatedExpression <- lastUpdatedDouble))
         } catch {
             #warning("Handle error")
         }
