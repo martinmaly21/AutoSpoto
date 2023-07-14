@@ -24,12 +24,22 @@ class HomeViewModel: ObservableObject {
     
     @Published var isFilteringIndividualChat = true {
         didSet {
-            refreshChatSections()
+            if !isFilteringIndividualChat && !isFilteringGroupChat {
+                //don't let user turn both filters off
+                isFilteringGroupChat = true
+            } else {
+                refreshChatSections()
+            }
         }
     }
     @Published var isFilteringGroupChat = true {
         didSet {
-            refreshChatSections()
+            if !isFilteringIndividualChat && !isFilteringGroupChat {
+                //don't let user turn both filters off
+                isFilteringIndividualChat = true
+            } else {
+                refreshChatSections()
+            }
         }
     }
     
