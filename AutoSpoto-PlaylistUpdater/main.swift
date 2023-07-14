@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  AutoSpoto-Scheduler
+//  AutoSpoto-PlaylistUpdater
 //
 //  Created by Andrew Caravaggio on 2023-07-05.
 //

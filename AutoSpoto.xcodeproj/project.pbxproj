@@ -20,7 +20,6 @@
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
-		50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */ = {isa = PBXBuildFile; fileRef = 50526EEC2A5E19E400844274 /* AutoSpotoScheduler */; };
 		50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
 		505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 505DB2922A4ED6FF0092E600 /* Sparkle */; };
 		505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */; };
@@ -169,7 +168,6 @@
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		50526EEC2A5E19E400844274 /* AutoSpotoScheduler */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AutoSpotoScheduler; sourceTree = "<group>"; };
 		505DB2942A4ED74C0092E600 /* CheckForUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesViewModel.swift; sourceTree = "<group>"; };
 		505DB2962A4ED7860092E600 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
 		505DB2992A4ED84A0092E600 /* UpdaterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterSettingsView.swift; sourceTree = "<group>"; };
@@ -253,7 +251,7 @@
 		50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSummaryView.swift; sourceTree = "<group>"; };
 		50FB02E42A35A49600D2CEB7 /* SyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncButton.swift; sourceTree = "<group>"; };
 		92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTokenManager.swift; sourceTree = "<group>"; };
-		92F554B02A55E25A006E1CAA /* AutoSpoto-Scheduler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoSpoto-Scheduler"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoSpoto-PlaylistUpdater"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F554B22A55E25A006E1CAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				50AA276F28C3FE69002FFC3F /* AutoSpoto */,
-				92F554B12A55E25A006E1CAA /* AutoSpoto-Scheduler */,
+				92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 				50AA276E28C3FE69002FFC3F /* Products */,
 				92F554A72A550895006E1CAA /* Frameworks */,
 			);
@@ -369,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				50AA276D28C3FE69002FFC3F /* AutoSpoto.app */,
-				92F554B02A55E25A006E1CAA /* AutoSpoto-Scheduler */,
+				92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -521,7 +519,6 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				50526EEC2A5E19E400844274 /* AutoSpotoScheduler */,
 				50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
@@ -594,12 +591,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92F554B12A55E25A006E1CAA /* AutoSpoto-Scheduler */ = {
+		92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
 			isa = PBXGroup;
 			children = (
 				92F554B22A55E25A006E1CAA /* main.swift */,
 			);
-			path = "AutoSpoto-Scheduler";
+			path = "AutoSpoto-PlaylistUpdater";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,9 +629,9 @@
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
 			productType = "com.apple.product-type.application";
 		};
-		92F554AF2A55E25A006E1CAA /* AutoSpoto-Scheduler */ = {
+		92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-Scheduler" */;
+			buildConfigurationList = 92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdater" */;
 			buildPhases = (
 				92F554AC2A55E25A006E1CAA /* Sources */,
 				92F554AD2A55E25A006E1CAA /* Frameworks */,
@@ -644,12 +641,12 @@
 			);
 			dependencies = (
 			);
-			name = "AutoSpoto-Scheduler";
+			name = "AutoSpoto-PlaylistUpdater";
 			packageProductDependencies = (
 				92F554D92A55E3DB006E1CAA /* SQLite */,
 			);
 			productName = testing;
-			productReference = 92F554B02A55E25A006E1CAA /* AutoSpoto-Scheduler */;
+			productReference = 92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -695,7 +692,7 @@
 			projectRoot = "";
 			targets = (
 				50AA276C28C3FE69002FFC3F /* AutoSpoto */,
-				92F554AF2A55E25A006E1CAA /* AutoSpoto-Scheduler */,
+				92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 			);
 		};
 /* End PBXProject section */
@@ -714,7 +711,6 @@
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
-				50526EED2A5E19E400844274 /* AutoSpotoScheduler in Resources */,
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
@@ -1072,7 +1068,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-scheduler.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-playlistupdater.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1089,7 +1085,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-scheduler.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-playlistupdater.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1117,7 +1113,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-Scheduler" */ = {
+		92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdater" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92F554B52A55E25A006E1CAA /* Debug */,

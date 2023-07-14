@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92F554AF2A55E25A006E1CAA"
-               BuildableName = "AutoSpoto-Scheduler"
-               BlueprintName = "AutoSpoto-Scheduler"
+               BuildableName = "AutoSpoto-PlaylistUpdater"
+               BlueprintName = "AutoSpoto-PlaylistUpdater"
                ReferencedContainer = "container:AutoSpoto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92F554AF2A55E25A006E1CAA"
-            BuildableName = "AutoSpoto-Scheduler"
-            BlueprintName = "AutoSpoto-Scheduler"
+            BuildableName = "AutoSpoto-PlaylistUpdater"
+            BlueprintName = "AutoSpoto-PlaylistUpdater"
             ReferencedContainer = "container:AutoSpoto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92F554AF2A55E25A006E1CAA"
-            BuildableName = "AutoSpoto-Scheduler"
-            BlueprintName = "AutoSpoto-Scheduler"
+            BuildableName = "AutoSpoto-PlaylistUpdater"
+            BlueprintName = "AutoSpoto-PlaylistUpdater"
             ReferencedContainer = "container:AutoSpoto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -73,6 +73,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "AutoSpoto-PlaylistUpdater"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
