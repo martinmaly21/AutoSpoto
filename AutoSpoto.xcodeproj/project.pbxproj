@@ -71,6 +71,7 @@
 		50B20D762A386A7800212CE4 /* SpotifyAccessRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B20D752A386A7800212CE4 /* SpotifyAccessRequestCell.swift */; };
 		50B20D862A38BA4800212CE4 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B20D852A38BA4800212CE4 /* AVPlayerView.swift */; };
 		50C0F97B2A613BB3008E6743 /* PlaylistUpdaterDiskAccessRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0F97A2A613BB3008E6743 /* PlaylistUpdaterDiskAccessRequestCell.swift */; };
+		50C0F97D2A614A02008E6743 /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50C0F97C2A614A02008E6743 /* AutoSpoto-PlaylistUpdater */; };
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
@@ -215,6 +216,7 @@
 		50B20D752A386A7800212CE4 /* SpotifyAccessRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAccessRequestCell.swift; sourceTree = "<group>"; };
 		50B20D852A38BA4800212CE4 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		50C0F97A2A613BB3008E6743 /* PlaylistUpdaterDiskAccessRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistUpdaterDiskAccessRequestCell.swift; sourceTree = "<group>"; };
+		50C0F97C2A614A02008E6743 /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
+				50C0F97C2A614A02008E6743 /* AutoSpoto-PlaylistUpdater */,
 				50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
@@ -713,6 +716,7 @@
 				50F4A3C42A5010F0002C19EF /* GoogleService-Info.plist in Resources */,
 				50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */,
 				50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */,
+				50C0F97D2A614A02008E6743 /* AutoSpoto-PlaylistUpdater in Resources */,
 				50DB07A62984B6A000BC5864 /* JosefinSansThin.ttf in Resources */,
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
