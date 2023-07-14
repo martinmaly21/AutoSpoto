@@ -652,7 +652,6 @@
 			);
 			mainGroup = 50AA276428C3FE69002FFC3F;
 			packageReferences = (
-				92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */,
 				50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				5069BF6429994BDF007F4037 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */,
@@ -1137,14 +1136,6 @@
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		92F05DF6298D894600796C4C /* XCRemoteSwiftPackageReference "PythonKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pvieito/PythonKit";
 			requirement = {
 				branch = master;
 				kind = branch;
