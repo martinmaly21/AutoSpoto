@@ -219,6 +219,7 @@
 		50C0F97A2A613BB3008E6743 /* PlaylistUpdaterDiskAccessRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistUpdaterDiskAccessRequestCell.swift; sourceTree = "<group>"; };
 		50C0F97C2A614A02008E6743 /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
 		50C0F97E2A6154CB008E6743 /* Playlist_Updater_Coaching.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Playlist_Updater_Coaching.mov; sourceTree = "<group>"; };
+		50C0F98A2A616C28008E6743 /* AutoSpoto-PlaylistUpdater.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AutoSpoto-PlaylistUpdater.entitlements"; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -603,6 +604,7 @@
 		92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
 			isa = PBXGroup;
 			children = (
+				50C0F98A2A616C28008E6743 /* AutoSpoto-PlaylistUpdater.entitlements */,
 				92F554B22A55E25A006E1CAA /* main.swift */,
 			);
 			path = "AutoSpoto-PlaylistUpdater";
@@ -1073,13 +1075,13 @@
 		92F554B52A55E25A006E1CAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-playlistupdater.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1090,13 +1092,13 @@
 		92F554B62A55E25A006E1CAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto-playlistupdater.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
