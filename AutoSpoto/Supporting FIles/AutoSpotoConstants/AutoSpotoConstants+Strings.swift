@@ -476,5 +476,17 @@ extension AutoSpotoConstants.Strings {
         value: "Not synced",
         comment: "Generic 'Not synced' text"
     )
+    
+    static let INDIVIDUAL = NSLocalizedString(
+        "INDIVIDUAL",
+        value: "Individual",
+        comment: "Generic 'Individual' text"
+    )
+    
+    static let GROUP = NSLocalizedString(
+        "GROUP",
+        value: "Group",
+        comment: "Generic 'Group' text"
+    )
 }
 

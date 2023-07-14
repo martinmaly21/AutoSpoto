@@ -11,7 +11,7 @@ struct ChatsListView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
 
     var body: some View {
-        let topInset: CGFloat = 80
+        let topInset: CGFloat = 90
 
         ZStack(alignment: .top) {
             ScrollView {
@@ -86,7 +86,7 @@ struct ChatsListView: View {
                 scrollView.scrollerInsets = NSEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
             }
 
-            VStack(spacing: 0) {
+            VStack(spacing: 20) {
                 HStack(alignment: .center) {
                     Text(AutoSpotoConstants.Strings.AUTO_SPOTO_APP_NAME)
                         .font(.josefinSansBold(26))
@@ -125,9 +125,10 @@ struct ChatsListView: View {
 
                 }
                 .padding(.horizontal, 16)
-                .padding(.top, 10)
                 .padding(.bottom, -10)
                 
+                ChatTypeFilter()
+                    .padding(.bottom, 5)
             }
             .frame(height: topInset)
             .background(.ultraThinMaterial)

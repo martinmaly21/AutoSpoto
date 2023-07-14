@@ -16,6 +16,9 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    @Published var isFilteringIndividualChat = true
+    @Published var isFilteringGroupChat = true
+    
     @Published var isFetchingChats = false
     @Published var shouldScrollToBottom = false
     
