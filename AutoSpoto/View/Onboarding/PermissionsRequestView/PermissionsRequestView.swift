@@ -12,6 +12,7 @@ struct PermissionsRequestView: View {
     
     @Binding var userAuthorizedSpotify: Bool
     @Binding var userAuthorizedDiskAccess: Bool
+    @Binding var userAuthorizedPlaylistUpdater: Bool
     
     //used for polling for permission changes
     @State var currentDate = Date.now
@@ -26,9 +27,18 @@ struct PermissionsRequestView: View {
                 .font(.josefinSansSemibold(32))
                 .foregroundColor(.textPrimaryWhite)
             
-            DiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAccess)
+            AutoSpotoDiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAccess)
             
-            SpotifyAccessRequestCell(userAuthorizedSpotify: $userAuthorizedSpotify, userAuthorizedDiskAcess: $userAuthorizedDiskAccess)
+            PlaylistUpdaterDiskAccessRequestCell(
+                userAuthorizedDiskAccess: $userAuthorizedDiskAccess,
+                userAuthorizedPlaylistUpdater: $userAuthorizedPlaylistUpdater
+            )
+            
+            SpotifyAccessRequestCell(
+                userAuthorizedSpotify: $userAuthorizedSpotify,
+                userAuthorizedDiskAcess: $userAuthorizedDiskAccess,
+                userAuthorizedPlaylistUpdater: $userAuthorizedPlaylistUpdater
+            )
             
             if userAuthorizedSpotify && userAuthorizedDiskAccess {
                 Text(AutoSpotoConstants.Strings.ONBOARDING_SUCCESS)

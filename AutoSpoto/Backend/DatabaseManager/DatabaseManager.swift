@@ -30,7 +30,7 @@ class DatabaseManager {
         }
     }
     
-    init(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
+    init?(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
         self.onTrackedChatsDBUpdatedOutsideOfApp = onTrackedChatsDBUpdatedOutsideOfApp
         do  {
             //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto
@@ -61,7 +61,8 @@ class DatabaseManager {
                 )
             """)
         } catch let error {
-            fatalError("Could not initialize autospoto.db: \(error.localizedDescription)")
+            print("Could not initialize autospoto.db: \(error.localizedDescription)")
+            return nil
         }
         
         if onTrackedChatsDBUpdatedOutsideOfApp != nil {

@@ -7,7 +7,11 @@
 
 import Foundation
 
-DatabaseManager.shared = DatabaseManager()
+guard let db = DatabaseManager() else {
+    exit(1)
+}
+
+DatabaseManager.shared = db
 let trackedChats = DatabaseManager.shared.retrieveTrackedChats()
 
 for trackedChat in trackedChats.rows {
@@ -33,3 +37,5 @@ for trackedChat in trackedChats.rows {
         continue //fail silently
     }
 }
+
+exit(0)

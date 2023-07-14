@@ -1,16 +1,17 @@
 //
-//  DiskAccessRequestCell.swift
+//  PlaylistUpdaterDiskAccessRequestCell.swift
 //  AutoSpoto
 //
-//  Created by Martin Maly on 2023-06-13.
+//  Created by Martin Maly on 2023-07-14.
 //
 
 import SwiftUI
 import AVKit
 import AppKit
 
-struct DiskAccessRequestCell: View {
+struct PlaylistUpdaterDiskAccessRequestCell: View {
     @Binding var userAuthorizedDiskAccess: Bool
+    @Binding var userAuthorizedPlaylistUpdater: Bool
     
     @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Disk_Access_Coaching", withExtension: "mov")!)
     
@@ -18,21 +19,40 @@ struct DiskAccessRequestCell: View {
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     @State private var shakeAppIcon = 0
     
+    private var opacity: Double {
+        if userAuthorizedPlaylistUpdater {
+            return 0.5
+        } else if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
+            return 1
+        } else {
+            return 0.1
+        }
+    }
+    
+    private var bottomSpacing: Double {
+        if userAuthorizedPlaylistUpdater {
+            return 10
+        } else if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
+            return 0
+        } else {
+            return 10
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack(alignment: .center, spacing: 0) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_TITLE)
+                        Text(AutoSpotoConstants.Strings.PLAYLIST_UPDATER_PERMISSION_TITLE)
                             .font(.josefinSansSemibold(26))
                             .foregroundColor(.textPrimaryWhite)
                             .padding(.top, 8)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.bottom, userAuthorizedDiskAccess ? 10 : 0)
-                            .strikethrough(userAuthorizedDiskAccess, pattern: .solid)
-                            .opacity(userAuthorizedDiskAccess ? 0.5 : 1)
+                            .padding(.bottom, bottomSpacing)
+                            .strikethrough(userAuthorizedPlaylistUpdater, pattern: .solid)
                         
-                        if userAuthorizedDiskAccess {
+                        if userAuthorizedPlaylistUpdater {
                             Image(systemName: "checkmark.circle.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
@@ -40,8 +60,8 @@ struct DiskAccessRequestCell: View {
                         }
                     }
                     
-                    if !userAuthorizedDiskAccess {
-                        Text(AutoSpotoConstants.Strings.FULL_DISK_ACCESS_PERMISSION_SUBTITLE)
+                    if !userAuthorizedPlaylistUpdater && userAuthorizedDiskAccess {
+                        Text(AutoSpotoConstants.Strings.PLAYLIST_UPDATER__PERMISSION_SUBTITLE)
                             .font(.josefinSansRegular(18))
                             .foregroundColor(.textPrimaryWhite)
                             .padding(.bottom, 10)
@@ -98,7 +118,7 @@ struct DiskAccessRequestCell: View {
                                                         .stroke(.white.opacity(0.4), lineWidth: 0.5)
                                                 )
                                             
-                                            Image("OnboardingAppIcon")
+                                            Image("executable")
                                                 .resizable()
                                                 .frame(width: 180, height: 180)
                                                 .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
@@ -149,7 +169,7 @@ struct DiskAccessRequestCell: View {
                 .padding(.horizontal, 20)
                 .cornerRadius(10)
                 
-                if !userAuthorizedDiskAccess {
+                if !userAuthorizedPlaylistUpdater && userAuthorizedDiskAccess {
                     Text(AutoSpotoConstants.Strings.PRIVACY_NEVER_LEAVES_YOUR_DEVICE)
                         .font(.josefinSansLight(14))
                         .foregroundColor(Color.gray)
@@ -166,5 +186,6 @@ struct DiskAccessRequestCell: View {
                 .stroke(.regularMaterial, lineWidth: 2)
         )
         .cornerRadius(10)
+        .opacity(opacity)
     }
 }

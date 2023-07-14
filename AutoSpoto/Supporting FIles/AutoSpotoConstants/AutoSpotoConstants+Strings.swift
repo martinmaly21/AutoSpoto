@@ -52,10 +52,22 @@ extension AutoSpotoConstants.Strings {
 
     static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: "1. Grant Full Disk Access",
+        value: "1. Grant AutoSpoto Full Disk Access",
         comment: "Generic 'Continue' string"
     )
+    
+    static let PLAYLIST_UPDATER_PERMISSION_TITLE = NSLocalizedString(
+        "PLAYLIST_UPDATER_PERMISSION_TITLE",
+        value: "2. Grant AutoSpoto Playlist Updater Full Disk Access",
+        comment: "String explaining why user should allow disk access for updater"
+    )
 
+    static let PLAYLIST_UPDATER__PERMISSION_SUBTITLE = NSLocalizedString(
+        "PLAYLIST_UPDATER__PERMISSION_SUBTITLE",
+        value: "This is required so AutoSpoto can automatically update your Spotify playlists whenever you send or receive tracks.",
+        comment: "Generic 'Continue' string"
+    )
+    
     static let FULL_DISK_ACCESS_PERMISSION_SUBTITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_SUBTITLE",
         value: "This is required so AutoSpoto can scan your messages for Spotify tracks you've shared and received.",
@@ -377,7 +389,7 @@ extension AutoSpotoConstants.Strings {
     
     static let JUST_A_COUPLE_THINGS_TEXT = NSLocalizedString(
         "JUST_A_COUPLE_THINGS_TEXT",
-        value: "Just a couple of things to get started",
+        value: "Just a few things to get set up",
         comment: "Title text for permissions screen"
     )
     

@@ -11,6 +11,7 @@ struct SpotifyAccessRequestCell: View {
     @State private var showSpotifyLoginSheet: Bool = false
     @Binding var userAuthorizedSpotify: Bool
     @Binding var userAuthorizedDiskAcess: Bool
+    @Binding var userAuthorizedPlaylistUpdater: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -31,8 +32,7 @@ struct SpotifyAccessRequestCell: View {
                 }
             }
             
-            
-            if userAuthorizedDiskAcess && !userAuthorizedSpotify {
+            if userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater && !userAuthorizedSpotify {
                 
                 Text(AutoSpotoConstants.Strings.SPOTIFY_PERMISSION_SUBTITLE)
                     .font(.josefinSansRegular(18))
@@ -83,7 +83,7 @@ struct SpotifyAccessRequestCell: View {
                 .stroke(.regularMaterial, lineWidth: 2)
         )
         .cornerRadius(10)
-        .opacity(userAuthorizedDiskAcess ? 1 : 0.1)
+        .opacity(userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater ? 1 : 0.1)
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {

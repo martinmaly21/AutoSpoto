@@ -18,6 +18,7 @@ struct OnboardingContainerView: View {
     @State private var onboardingCurrentView: CurrentView = .getStarted
     @State var userAuthorizedDiskAccess: Bool = false
     @State var userAuthorizedSpotify: Bool = false
+    @State var userAuthorizedPlaylistUpdater: Bool = false
     
     enum OnboardingGradient {
         case lightMode, darkMode
@@ -89,11 +90,12 @@ struct OnboardingContainerView: View {
             case .permissionsRequestView:
                 PermissionsRequestView(
                     userAuthorizedSpotify: $userAuthorizedSpotify,
-                    userAuthorizedDiskAccess: $userAuthorizedDiskAccess
+                    userAuthorizedDiskAccess: $userAuthorizedDiskAccess,
+                    userAuthorizedPlaylistUpdater: $userAuthorizedPlaylistUpdater
                 )
             }
             
-            let shouldDisableToolBar = onboardingCurrentView == .permissionsRequestView && (!userAuthorizedSpotify || !userAuthorizedDiskAccess)
+            let shouldHideToolBar = onboardingCurrentView == .permissionsRequestView && (!userAuthorizedSpotify || !userAuthorizedPlaylistUpdater || !userAuthorizedDiskAccess)
             //tool bar
             VStack {
                 Spacer()
@@ -129,8 +131,9 @@ struct OnboardingContainerView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, -defaultHorizontalPadding)
                 .padding(.bottom, -defaultBottomPadding)
+                .opacity(shouldHideToolBar ? 0 : 1)
             }
-            .disabled(shouldDisableToolBar)
+            .disabled(shouldHideToolBar)
         }
         .multilineTextAlignment(.center)
         .padding(.horizontal, defaultHorizontalPadding)
