@@ -86,6 +86,7 @@ struct ChatView: View {
                     .safeAreaInset(edge: .bottom) {
                         if selectedChat.spotifyPlaylistExists {
                             PlaylistSummaryView(
+                                chat: selectedChat,
                                 width: proxy.size.width,
                                 height: playlistSummaryHeight
                             )

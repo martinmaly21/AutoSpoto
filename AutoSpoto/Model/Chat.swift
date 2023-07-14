@@ -152,6 +152,6 @@ class Chat: Equatable, Identifiable {
     }
 
     static func == (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.ids == rhs.ids
+        return lhs.ids == rhs.ids && lhs.lastUpdated == rhs.lastUpdated
     }
 }
