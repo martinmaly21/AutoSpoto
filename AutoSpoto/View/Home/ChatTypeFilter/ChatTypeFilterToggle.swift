@@ -14,6 +14,6 @@ struct ChatTypeFilterToggle: View {
     
     var body: some View {
         Toggle(isOn: $isEnabled) { }
-        .toggleStyle(ChatTypeFilterToggleStyle(title: title))
+            .toggleStyle(ChatTypeFilterToggleStyle(title: title))
     }
 }

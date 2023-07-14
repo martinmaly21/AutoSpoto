@@ -18,7 +18,7 @@ struct ChatsListView: View {
                 Spacer()
                     .frame(height: topInset)
                 LazyVStack(spacing: 0) {
-                    ForEach(homeViewModel.chatSections, id: \.id) { chatSection in
+                    ForEach(homeViewModel.filteredChatSections, id: \.id) { chatSection in
                         let chatSectionIsExpanded = (
                             chatSection.title == AutoSpotoConstants.Strings.SPOTIFY_PLAYLIST_EXISTS_SECTION && homeViewModel.connectedChatsIsExpanded ||
                             chatSection.title == AutoSpotoConstants.Strings.CHATS_WITH_TRACKS && homeViewModel.chatsWithTracksIsExpanded ||

@@ -24,5 +24,6 @@ struct ChatTypeFilter: View {
             Spacer()
         }
         .padding(.leading, 14)
+        .disabled(homeViewModel.isFetchingChats)
     }
 }

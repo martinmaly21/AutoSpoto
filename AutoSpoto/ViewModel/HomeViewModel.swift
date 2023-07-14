@@ -9,15 +9,29 @@ import Foundation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published var chatSections: [ChatSection] = []
+    private var chats: [Chat] = [] {
+        didSet {
+            refreshChatSections()
+        }
+    }
+    @Published var filteredChatSections: [ChatSection] = []
+    
     @Published var selectedChat: Chat? {
         willSet {
             shouldScrollToBottom = true
         }
     }
     
-    @Published var isFilteringIndividualChat = true
-    @Published var isFilteringGroupChat = true
+    @Published var isFilteringIndividualChat = true {
+        didSet {
+            refreshChatSections()
+        }
+    }
+    @Published var isFilteringGroupChat = true {
+        didSet {
+            refreshChatSections()
+        }
+    }
     
     @Published var isFetchingChats = false
     @Published var shouldScrollToBottom = false
@@ -47,7 +61,7 @@ class HomeViewModel: ObservableObject {
         let groupChats = await DatabaseManager.shared.fetchGroupChats()
         let individualChats = await DatabaseManager.shared.fetchIndividualChats()
         
-        updateChatSections(allChats: groupChats + individualChats)
+        self.chats = groupChats + individualChats
     }
     
     private func fetchTracks(for chat: Chat) async {
@@ -96,9 +110,7 @@ class HomeViewModel: ObservableObject {
             desiredPlaylistName: desiredPlaylistName
         )
         
-        updateChatSections(allChats: chatSections.flatMap { $0.chats })
-        
-        self.objectWillChange.send()
+        refreshChatSections()
     }
     
     func updatePlaylist(
@@ -122,9 +134,7 @@ class HomeViewModel: ObservableObject {
         }
        
         //update chat sections
-        updateChatSections(allChats: chatSections.flatMap { $0.chats })
-        
-        self.objectWillChange.send()
+        refreshChatSections()
     }
     
     func fetchPlaylist(
@@ -153,17 +163,20 @@ class HomeViewModel: ObservableObject {
         chat.spotifyPlaylistID = nil
         chat.lastUpdated = nil
         
-        updateChatSections(allChats: chatSections.flatMap { $0.chats })
-        
-        self.objectWillChange.send()
+        refreshChatSections()
     }
     
     //this is called whenever a user updates a chat, since it may be moved to a different section
     //the sitations i can think of
     //1. a user disconnects a chat, so it should be moved to either 'chats with tracks' or 'chats with no tracks'
     //2. a user connects a chat, so it should be moved to 'connected chats'
-    private func updateChatSections(allChats: [Chat]) {
-        var connectedChats = allChats.filter { $0.spotifyPlaylistExists }
+    private func refreshChatSections() {
+        let filteredChats = chats.filter {
+            $0.isGroupChat && isFilteringGroupChat ||
+            !$0.isGroupChat && isFilteringIndividualChat
+        }
+        
+        var connectedChats = filteredChats.filter { $0.spotifyPlaylistExists }
         connectedChats.sort(by: { $0.displayName < $1.displayName })
         let connectedChatsWithContactsOrChatNames = connectedChats.filter { $0.hasContactOrChatName }
         let connectedChatsWithNoContactsOrChatNames = connectedChats.filter { !$0.hasContactOrChatName }
@@ -172,7 +185,7 @@ class HomeViewModel: ObservableObject {
             chats: connectedChatsWithContactsOrChatNames + connectedChatsWithNoContactsOrChatNames
         )
         
-        var chatsWithTracks = allChats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
+        var chatsWithTracks = filteredChats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
         chatsWithTracks.sort(by: { $0.displayName < $1.displayName })
         let chatsWithTracksWithContactsOrChatNames = chatsWithTracks.filter { $0.hasContactOrChatName }
         let chatsWithTracksWithNoContactsOrChatNames = chatsWithTracks.filter { !$0.hasContactOrChatName }
@@ -181,7 +194,7 @@ class HomeViewModel: ObservableObject {
             chats: chatsWithTracksWithContactsOrChatNames + chatsWithTracksWithNoContactsOrChatNames
         )
         
-        var chatsWithNoTracks = allChats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
+        var chatsWithNoTracks = filteredChats.filter { !$0.hasTracks && !$0.spotifyPlaylistExists }
         chatsWithNoTracks.sort(by: { $0.displayName < $1.displayName })
         let chatsWithNoTracksWithContactsOrChatNames = chatsWithNoTracks.filter { $0.hasContactOrChatName }
         let chatsWithNoTracksWithNoContactsOrChatNames = chatsWithNoTracks.filter { !$0.hasContactOrChatName }
@@ -190,17 +203,21 @@ class HomeViewModel: ObservableObject {
             chats: chatsWithNoTracksWithContactsOrChatNames + chatsWithNoTracksWithNoContactsOrChatNames
         )
         
-        chatSections = [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
+        filteredChatSections = [connectedChatsSection, chatsWithTrackSection, chatsWithNoTrackSection]
         
-        if let selectedChat = selectedChat {
-            self.selectedChat = chatSections.flatMap { $0.chats }.first(where: { $0.ids == selectedChat.ids })
+        if let selectedChat = selectedChat,
+           let chat = filteredChatSections.flatMap({ $0.chats }).first(where: { $0.ids == selectedChat.ids }) {
+            self.selectedChat = chat
         } else {
-            selectedChat = chatSections.flatMap { $0.chats }.first
+            selectedChat = filteredChatSections.flatMap { $0.chats }.first
         }
+        
+        self.objectWillChange.send()
     }
     
     func resetModel() async {
-        chatSections = []
+        chats = []
+        filteredChatSections = []
 
         await fetchChats()
     }
