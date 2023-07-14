@@ -13,7 +13,7 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
     @Binding var userAuthorizedDiskAccess: Bool
     @Binding var userAuthorizedPlaylistUpdater: Bool
     
-    @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Disk_Access_Coaching", withExtension: "mov")!)
+    @State private var player = AVLooperPlayer(url: Bundle.main.url(forResource: "Playlist_Updater_Coaching", withExtension: "mov")!)
     
     @State var currentDate = Date.now
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
@@ -122,7 +122,7 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
                                                 .resizable()
                                                 .frame(width: 180, height: 180)
                                                 .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
-                                                .draggable(Bundle.main.bundleURL)
+                                                .draggable(Bundle.main.url(forResource: "AutoSpoto-PlaylistUpdater", withExtension: nil)!)
                                         }
                                         
                                         Text(AutoSpotoConstants.Strings.DRAG_AND_DROP_INSTRUCTION)
