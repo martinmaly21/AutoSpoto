@@ -62,6 +62,9 @@
 		50ACE0342A61052700DE0344 /* ChatTypeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0332A61052700DE0344 /* ChatTypeFilter.swift */; };
 		50ACE0372A61056800DE0344 /* ChatTypeFilterToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0362A61056800DE0344 /* ChatTypeFilterToggle.swift */; };
 		50ACE0392A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0382A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift */; };
+		50ACE03B2A6133C700DE0344 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
+		50ACE0412A61366000DE0344 /* SpotifyManager+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0402A61366000DE0344 /* SpotifyManager+App.swift */; };
+		50ACE0432A6136FA00DE0344 /* DataBaseManager+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0422A6136FA00DE0344 /* DataBaseManager+App.swift */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
 		50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
 		50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
@@ -133,7 +136,6 @@
 		92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
 		92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086A2A32108A00917AAC /* SpotifyUser.swift */; };
 		92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
-		92F554D22A55E39F006E1CAA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F1789A2995EE0B002AFC1C /* Chat.swift */; };
 		92F554D32A55E39F006E1CAA /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -205,6 +207,8 @@
 		50ACE0332A61052700DE0344 /* ChatTypeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeFilter.swift; sourceTree = "<group>"; };
 		50ACE0362A61056800DE0344 /* ChatTypeFilterToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeFilterToggle.swift; sourceTree = "<group>"; };
 		50ACE0382A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeFilterToggleStyle.swift; sourceTree = "<group>"; };
+		50ACE0402A61366000DE0344 /* SpotifyManager+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpotifyManager+App.swift"; sourceTree = "<group>"; };
+		50ACE0422A6136FA00DE0344 /* DataBaseManager+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataBaseManager+App.swift"; sourceTree = "<group>"; };
 		50B19563299B4711002E7F65 /* IndividualChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualChatCodable.swift; sourceTree = "<group>"; };
 		50B19565299B471A002E7F65 /* GroupChatCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatCodable.swift; sourceTree = "<group>"; };
 		50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTracksResponse.swift; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				504C2EB72A24F93B00097F5F /* DatabaseManager.swift */,
+				50ACE0422A6136FA00DE0344 /* DataBaseManager+App.swift */,
 				509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */,
 			);
 			path = DatabaseManager;
@@ -314,8 +319,8 @@
 		504C2EB62A24F90B00097F5F /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				50ACE03C2A61361800DE0344 /* SpotifyManager */,
 				5040697D2A5594D900414D3D /* DatabaseManager */,
-				509B08512A31A82100917AAC /* SpotifyManager.swift */,
 				92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */,
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
@@ -393,6 +398,15 @@
 				50ACE0382A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift */,
 			);
 			path = ChatTypeFilter;
+			sourceTree = "<group>";
+		};
+		50ACE03C2A61361800DE0344 /* SpotifyManager */ = {
+			isa = PBXGroup;
+			children = (
+				509B08512A31A82100917AAC /* SpotifyManager.swift */,
+				50ACE0402A61366000DE0344 /* SpotifyManager+App.swift */,
+			);
+			path = SpotifyManager;
 			sourceTree = "<group>";
 		};
 		50B19562299B4706002E7F65 /* Codable */ = {
@@ -798,9 +812,11 @@
 				50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */,
 				503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */,
 				50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */,
+				50ACE0412A61366000DE0344 /* SpotifyManager+App.swift in Sources */,
 				509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */,
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
 				504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */,
+				50ACE0432A6136FA00DE0344 /* DataBaseManager+App.swift in Sources */,
 				503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
 				50CFCE2929896983009C3F4A /* PermissionsRequestView.swift in Sources */,
@@ -825,6 +841,7 @@
 				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,
 				92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */,
 				92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */,
+				50ACE03B2A6133C700DE0344 /* JSONToken.swift in Sources */,
 				92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */,
 				92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
 				92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */,
@@ -849,7 +866,6 @@
 				92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */,
 				92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */,
 				92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */,
-				92F554D22A55E39F006E1CAA /* Chat.swift in Sources */,
 				92F554D32A55E39F006E1CAA /* Track.swift in Sources */,
 				92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */,
 				92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */,

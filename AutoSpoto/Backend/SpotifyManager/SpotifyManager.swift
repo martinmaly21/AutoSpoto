@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 
+//this is where shared Spotify code b/t scheduler and main app goes
 class SpotifyManager {
     private static func url(
         path: String,
@@ -51,7 +52,7 @@ class SpotifyManager {
         return headers
     }
     
-    private static func http(
+    internal static func http(
         method: HTTPMethodType,
         path: String,
         isTokenFetch: Bool = false
@@ -140,20 +141,6 @@ class SpotifyManager {
             return false
         }
     }
-   
-    //MARK: - Auth
-    public static func fetchAndSaveToken(code: String) async throws {
-        let params = [
-            AutoSpotoConstants.HTTPParameter.grant_type: "authorization_code",
-            AutoSpotoConstants.HTTPParameter.redirect_uri: redirectURI,
-            AutoSpotoConstants.HTTPParameter.code: code,
-        ]
-        let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
-        
-        let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
-        
-        SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
-    }
     
     public static func refreshAndSaveToken(expiredToken: JSONToken) async throws -> JSONToken {
         let params = [
@@ -169,28 +156,38 @@ class SpotifyManager {
         return JSONToken(spotifyToken: spotifyToken)
     }
     
-    public static func fetchAndSaveUserSpotifyID() async throws {
-        let data = try await http(method: .get(queryParams: nil), path: "/me")
-        let spotifyUser = try JSONDecoder().decode(SpotifyUser.self, from: data)
-        UserDefaultsManager.spotifyUser = spotifyUser
-    }
-    
-    //MARK: - Playlists
-    public static func fetchTrackMetadata(for tracks: [Track]) async throws -> [Track] {
-        let params = [
-            AutoSpotoConstants.HTTPParameter.ids: tracks.map { $0.spotifyID }.joined(separator: ","),
-        ]
+    public static func updatePlaylist(
+        spotifyPlaylistID: String,
+        tracks: [Track],
+        lastUpdated: Date?
+    ) async throws -> Date {
+        let filteredTracksChunks = try await filterChat(for: tracks, lastUpdated: lastUpdated ?? Date(timeIntervalSince1970: 0))
         
-        let data = try await http(method: .get(queryParams: params), path: "/tracks")
-        
-        let spotifyTracks = try JSONDecoder().decode(SpotifyTracksResponse.self, from: data)
-        
-        var tracksWithMetadata: [Track] = []
-        for (index, spotifyTrack) in spotifyTracks.tracks.enumerated() {
-            tracksWithMetadata.append(Track(longTrackCodable: spotifyTrack, existingTrack: tracks[index]))
+        //add tracks to playlist
+        for filteredTracksChunk in filteredTracksChunks {
+            let params: [String : Any] = [
+                AutoSpotoConstants.HTTPParameter.uris: filteredTracksChunk.map { "spotify:track:\($0.spotifyID)" }
+            ]
+
+            let _ = try await http(method: .post(data: params), path: "/playlists/\(spotifyPlaylistID)/tracks")
         }
         
-        return tracksWithMetadata
+        let dateUpdated = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let params: [String : Any] = [
+            AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
+                AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
+                dateFormatter.string(from: dateUpdated)
+            )
+        ]
+        
+        let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
+        DatabaseManager.shared.updateLastUpdated(for: spotifyPlaylistID, with: dateUpdated.timeIntervalSince1970)
+        
+        return dateUpdated
     }
     
     //this method is responsible for filtering out all invalid IDs from a chat before creating a playlist on Spotify
@@ -216,100 +213,20 @@ class SpotifyManager {
         return filteredTracksChunks
     }
     
-    //returns the playlist ID of the created spotify playlist
-    public static func createPlaylistAndAddTracks(
-        for chat: Chat,
-        desiredPlaylistName: String
-    ) async throws {
-        //create playlist
-        let spotifyPlaylistID = try await createPlaylist(desiredPlaylistName: desiredPlaylistName)
-            
-        chat.spotifyPlaylistID = spotifyPlaylistID
-        DatabaseManager.shared.insert(spotifyPlaylistID, for: chat.ids)
-        let dateUpdated = try await updatePlaylist(spotifyPlaylistID: spotifyPlaylistID, tracks: chat.tracks, lastUpdated: chat.lastUpdated)
-        chat.lastUpdated = dateUpdated
-        
-        //finally, update cover image for chat
-        try await addCoverImageToPlaylist(for: chat)
-    }
-    
-    private static func createPlaylist(
-        desiredPlaylistName: String
-    ) async throws -> String {
-        let params: [String : Any] = [
-            AutoSpotoConstants.HTTPParameter.name: desiredPlaylistName
-        ]
-        
-        try await SpotifyManager.fetchAndSaveUserSpotifyID()
-        
-        let data = try await http(method: .post(data: params), path: "/users/\(UserDefaultsManager.spotifyUser.id)/playlists")
-        
-        let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
-        return spotifyPlaylist.id
-    }
-    
-    public static func updatePlaylist(
-        spotifyPlaylistID: String,
-        tracks: [Track],
-        lastUpdated: Date?
-    ) async throws -> Date {
-        let filteredTracksChunks = try await filterChat(for: tracks, lastUpdated: lastUpdated ?? Date(timeIntervalSince1970: 0))
-        
-        //add tracks to playlist
-        for filteredTracksChunk in filteredTracksChunks {
-            let params: [String : Any] = [
-                AutoSpotoConstants.HTTPParameter.uris: filteredTracksChunk.map { "spotify:track:\($0.spotifyID)"}
-            ]
-
-            let _ = try await http(method: .post(data: params), path: "/playlists/\(spotifyPlaylistID)/tracks")
-        }
-        
-        let dateUpdated = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = Calendar.current.timeZone
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let params: [String : Any] = [
-            AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
-                AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
-                dateFormatter.string(from: dateUpdated)
-            )
-        ]
-        
-        let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        DatabaseManager.shared.updateLastUpdated(for: spotifyPlaylistID, with: dateUpdated.timeIntervalSince1970)
-        
-        return dateUpdated
-    }
-    
-    public static func addCoverImageToPlaylist(for chat: Chat) async throws {
-        guard let spotifyPlaylistID = chat.spotifyPlaylistID,
-              let autoSpotoPlaylistImage = NSImage(named: "PlaylistCoverImage") else {
-            fatalError("Could not get spotifyPlaylistID for chat")
-        }
-        
-        let autoSpotoPlaylistImageBase64Data = autoSpotoPlaylistImage.jpegData().base64EncodedData()
-        
-        let params: [String : Any] = [
-            AutoSpotoConstants.HTTPParameter.playlistCoverImage: autoSpotoPlaylistImageBase64Data
-        ]
-        
-        let _ = try await http(method: .putImage(data: params), path: "/playlists/\(spotifyPlaylistID)/images")
-    }
-    
-    public static func fetchPlaylist(for spotifyPlaylistID: String) async throws -> SpotifyPlaylist? {
+    public static func fetchTrackMetadata(for tracks: [Track]) async throws -> [Track] {
         let params = [
-            AutoSpotoConstants.HTTPParameter.fields: "\(AutoSpotoConstants.HTTPParameter.id),\(AutoSpotoConstants.HTTPParameter.images),\(AutoSpotoConstants.HTTPParameter.name)"
+            AutoSpotoConstants.HTTPParameter.ids: tracks.map { $0.spotifyID }.joined(separator: ","),
         ]
-        let data = try await http(method: .get(queryParams: params), path: "/playlists/\(spotifyPlaylistID)")
-        let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
-        return spotifyPlaylist
-    }
-    
-    //Use this method to check if a playist exists
-    //Note: even 'deleted' playlists are fetchable for 90 days after they're 'deleted'
-    public static func checkIfPlaylistExists(for spotifyPlaylistID: String) async throws -> Bool {
-        let spotifyPlaylist = try await fetchPlaylist(for: spotifyPlaylistID)
-        return spotifyPlaylist != nil
+        
+        let data = try await http(method: .get(queryParams: params), path: "/tracks")
+        
+        let spotifyTracks = try JSONDecoder().decode(SpotifyTracksResponse.self, from: data)
+        
+        var tracksWithMetadata: [Track] = []
+        for (index, spotifyTrack) in spotifyTracks.tracks.enumerated() {
+            tracksWithMetadata.append(Track(longTrackCodable: spotifyTrack, existingTrack: tracks[index]))
+        }
+        
+        return tracksWithMetadata
     }
 }

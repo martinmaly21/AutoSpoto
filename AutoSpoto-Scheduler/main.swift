@@ -14,13 +14,13 @@ for trackedChat in trackedChats.rows {
     guard let trackedChatID = trackedChat["chatID"] as? Int,
           let trackedChatSpotifyPlaylistID = trackedChat["spotifyPlaylistID"] as? String,
           let trackedChatLastUpdated = trackedChat["lastUpdated"] as? Double else {
-        fatalError("Could not get tracked chat information")
+        continue //fail silently
     }
     
     let trackedChatTracks = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: [trackedChatID])
     
     do {
-        try await SpotifyManager.updatePlaylist(
+        _ = try await SpotifyManager.updatePlaylist(
             spotifyPlaylistID: trackedChatSpotifyPlaylistID,
             tracks: trackedChatTracks,
             lastUpdated: Date(timeIntervalSince1970: trackedChatLastUpdated)
@@ -29,8 +29,7 @@ for trackedChat in trackedChats.rows {
         if error == .chatWasDeleted {
             DatabaseManager.shared.remove(trackedChatSpotifyPlaylistID)
         }
-    } catch let error {
-        //fail silently
+    } catch {
+        continue //fail silently
     }
-    
 }
