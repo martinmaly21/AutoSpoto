@@ -19,9 +19,18 @@ for trackedChat in trackedChats.rows {
     
     let trackedChatTracks = await DatabaseManager.shared.fetchSpotifyTracksWithNoMetadata(for: [trackedChatID])
     
-    try await SpotifyManager.updatePlaylist(
-        spotifyPlaylistID: trackedChatSpotifyPlaylistID,
-        tracks: trackedChatTracks,
-        lastUpdated: Date(timeIntervalSince1970: trackedChatLastUpdated)
-    )
+    do {
+        try await SpotifyManager.updatePlaylist(
+            spotifyPlaylistID: trackedChatSpotifyPlaylistID,
+            tracks: trackedChatTracks,
+            lastUpdated: Date(timeIntervalSince1970: trackedChatLastUpdated)
+        )
+    } catch let error as AutoSpotoError {
+        if error == .chatWasDeleted {
+            DatabaseManager.shared.remove(trackedChatSpotifyPlaylistID)
+        }
+    } catch let error {
+        //fail silently
+    }
+    
 }

@@ -108,8 +108,13 @@ class SpotifyManager {
                   validStatusCode(httpURLResponse.statusCode) else {
                 
                 let parsedData = String(decoding: data, as: UTF8.self)
-                print("‼️ ERROR: \(parsedData)")
-                throw AutoSpotoError.unexpectedHTTPUrlResponse
+                
+                //Is there a better way of handling this?? What if another non-chat update http request returns a 403?
+                if parsedData.contains("\"status\" : 403") {
+                    throw AutoSpotoError.chatWasDeleted
+                } else {
+                    throw AutoSpotoError.unexpectedHTTPUrlResponse
+                }
             }
             
             return data

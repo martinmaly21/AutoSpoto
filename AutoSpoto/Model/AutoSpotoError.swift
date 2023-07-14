@@ -12,6 +12,7 @@ enum AutoSpotoError: LocalizedError {
     case errorLoggingInToSpotify
     case chatHasNoValidIDs
     case errorGettingAutoSpotoDB
+    case chatWasDeleted
     
     var errorDescription: String? {
         switch self {
@@ -23,6 +24,8 @@ enum AutoSpotoError: LocalizedError {
             return AutoSpotoConstants.Strings.CHAT_HAS_NO_VALID_IDS
         case .errorGettingAutoSpotoDB:
             return AutoSpotoConstants.Strings.ERROR_GETTING_AUTOSPOTO_DB
+        case .chatWasDeleted:
+            return AutoSpotoConstants.Strings.CHAT_WAS_DELETED
         }
     }
 }

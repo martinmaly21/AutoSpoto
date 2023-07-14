@@ -129,18 +129,25 @@ class HomeViewModel: ObservableObject {
         //re-fetch tracks, just in case there were ones that were added since
         await fetchTracks(for: chat)
         
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID from Chat")
+        }
+        
         do {
-            guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
-                fatalError("Could not get spotifyPlaylistID from Chat")
-            }
             let dateUpdated = try await SpotifyManager.updatePlaylist(
                 spotifyPlaylistID: spotifyPlaylistID,
                 tracks: chat.tracks,
                 lastUpdated: chat.lastUpdated
             )
             chat.lastUpdated = dateUpdated
+        } catch let error as AutoSpotoError {
+            if error == .chatWasDeleted {
+                DatabaseManager.shared.remove(spotifyPlaylistID)
+                chat.lastUpdated = nil
+                chat.spotifyPlaylistID = nil
+            }
         } catch let error {
-            //TODO: handle if update playlist fails
+            #warning("TODO: handle erorr")
         }
        
         //update chat sections

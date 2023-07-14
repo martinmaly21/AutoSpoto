@@ -488,5 +488,11 @@ extension AutoSpotoConstants.Strings {
         value: "Group",
         comment: "Generic 'Group' text"
     )
+    
+    static let CHAT_WAS_DELETED = NSLocalizedString(
+        "CHAT_WAS_DELETED",
+        value: "It appears this chat was deleted in Spotify.",
+        comment: "Error message when adding to a playlist that was deleted."
+    )
 }
 
