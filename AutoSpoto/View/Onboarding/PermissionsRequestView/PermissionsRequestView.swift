@@ -61,6 +61,7 @@ struct PermissionsRequestView: View {
             withAnimation {
                 //disk access
                 userAuthorizedDiskAccess = DiskAccessManager.userAuthorizedDiskAccess
+                userAuthorizedPlaylistUpdater = DiskAccessManager.userAuthorizedPlaylistUpdaterDiskAccess
             }
         }
     }

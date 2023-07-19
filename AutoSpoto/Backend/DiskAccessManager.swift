@@ -12,4 +12,9 @@ class DiskAccessManager {
         //determine disk access by checking whether we can access chat.db
         return (try? FileManager.default.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/Messages")) != nil
     }
+    
+    public static var userAuthorizedPlaylistUpdaterDiskAccess: Bool {
+        //determine disk access by checking whether we can access chat.db
+        return false //TODO
+    }
 }
