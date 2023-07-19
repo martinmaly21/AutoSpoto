@@ -22,12 +22,13 @@ struct SpotifyAccessRequestCell: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 16)
                     .strikethrough(userAuthorizedSpotify, pattern: .solid)
-                    .opacity(userAuthorizedSpotify ? 0.3 : 1)
+                    .opacity((userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater && !userAuthorizedSpotify) ? 1 : 0.3)
                 
                 Image(systemName: userAuthorizedSpotify ? "checkmark.circle.fill" : "circle")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .tint(.green)
+                    .opacity((userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater) ? 1 : 0.3)
             }
             
             if userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater && !userAuthorizedSpotify {
@@ -81,7 +82,6 @@ struct SpotifyAccessRequestCell: View {
                 .stroke(.regularMaterial, lineWidth: 2)
         )
         .cornerRadius(10)
-        .opacity(userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater ? 1 : 0.1)
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {
