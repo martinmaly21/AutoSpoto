@@ -30,14 +30,12 @@ struct AutoSpotoDiskAccessRequestCell: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.bottom, userAuthorizedDiskAccess ? 10 : 0)
                             .strikethrough(userAuthorizedDiskAccess, pattern: .solid)
-                            .opacity(userAuthorizedDiskAccess ? 0.5 : 1)
+                            .opacity(userAuthorizedDiskAccess ? 0.3 : 1)
                         
-                        if userAuthorizedDiskAccess {
-                            Image(systemName: "checkmark.circle.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .tint(.green)
-                        }
+                        Image(systemName: userAuthorizedDiskAccess ? "checkmark.circle.fill" : "circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .tint(.green)
                     }
                     
                     if !userAuthorizedDiskAccess {

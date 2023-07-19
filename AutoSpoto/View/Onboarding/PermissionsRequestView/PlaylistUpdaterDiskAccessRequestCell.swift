@@ -20,19 +20,15 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
     @State private var shakeAppIcon = 0
     
     private var opacity: Double {
-        if userAuthorizedPlaylistUpdater {
-            return 0.5
-        } else if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
+        if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
             return 1
         } else {
-            return 0.1
+            return 0.3
         }
     }
     
     private var bottomSpacing: Double {
-        if userAuthorizedPlaylistUpdater {
-            return 10
-        } else if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
+        if userAuthorizedDiskAccess && !userAuthorizedPlaylistUpdater {
             return 0
         } else {
             return 10
@@ -51,13 +47,12 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.bottom, bottomSpacing)
                             .strikethrough(userAuthorizedPlaylistUpdater, pattern: .solid)
+                            .opacity(opacity)
                         
-                        if userAuthorizedPlaylistUpdater {
-                            Image(systemName: "checkmark.circle.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .tint(.green)
-                        }
+                        Image(systemName: userAuthorizedPlaylistUpdater ? "checkmark.circle.fill" : "circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .tint(.green)
                     }
                     
                     if !userAuthorizedPlaylistUpdater && userAuthorizedDiskAccess {
@@ -186,6 +181,5 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
                 .stroke(.regularMaterial, lineWidth: 2)
         )
         .cornerRadius(10)
-        .opacity(opacity)
     }
 }

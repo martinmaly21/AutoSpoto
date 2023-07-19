@@ -22,14 +22,12 @@ struct SpotifyAccessRequestCell: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 16)
                     .strikethrough(userAuthorizedSpotify, pattern: .solid)
-                    .opacity(userAuthorizedSpotify ? 0.5 : 1)
+                    .opacity(userAuthorizedSpotify ? 0.3 : 1)
                 
-                if userAuthorizedSpotify {
-                    Image(systemName: "checkmark.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .tint(.green)
-                }
+                Image(systemName: userAuthorizedSpotify ? "checkmark.circle.fill" : "circle")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .tint(.green)
             }
             
             if userAuthorizedDiskAcess && userAuthorizedPlaylistUpdater && !userAuthorizedSpotify {
