@@ -53,6 +53,7 @@ struct PlaylistUpdaterDiskAccessRequestCell: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                             .tint(.green)
+                            .opacity(opacity)
                     }
                     
                     if !userAuthorizedPlaylistUpdater && userAuthorizedDiskAccess {
