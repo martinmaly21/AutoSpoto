@@ -11,6 +11,7 @@
 		500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
+		5038FFDB2A67B61E000AF367 /* LaunchAgent in Frameworks */ = {isa = PBXBuildFile; productRef = 5038FFDA2A67B61E000AF367 /* LaunchAgent */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
@@ -272,6 +273,7 @@
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
 				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
+				5038FFDB2A67B61E000AF367 /* LaunchAgent in Frameworks */,
 				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
 			);
@@ -635,6 +637,7 @@
 				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
 				505DB2922A4ED6FF0092E600 /* Sparkle */,
 				506B34072A5FAD47002938D3 /* PhoneNumberKit */,
+				5038FFDA2A67B61E000AF367 /* LaunchAgent */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -697,6 +700,7 @@
 				50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				506B34062A5FAD47002938D3 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -1139,6 +1143,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/emorydunn/LaunchAgent";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -1190,6 +1202,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5038FFDA2A67B61E000AF367 /* LaunchAgent */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */;
+			productName = LaunchAgent;
+		};
 		504C2EBC2A25BC9500097F5F /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
