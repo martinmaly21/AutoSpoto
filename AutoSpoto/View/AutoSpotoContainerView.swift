@@ -28,7 +28,7 @@ struct AutoSpotoContainerView: View {
         }
         .onAppear {
             //Make sure user has logged into Spotify and has given Disk Access before showing them home view
-            if SpotifyTokenManager.authenticationTokenExists && DiskAccessManager.userAuthorizedPlaylistUpdaterDiskAccess && DiskAccessManager.userAuthorizedDiskAccess {
+            if SpotifyTokenManager.authenticationTokenExists && DiskAccessManager.userAuthorizedDiskAccess {
                 //user has previously logged in
                 //we will assume Spotify profile exists too, since it's set at same time
                 autoSpotoCurrentView = .home

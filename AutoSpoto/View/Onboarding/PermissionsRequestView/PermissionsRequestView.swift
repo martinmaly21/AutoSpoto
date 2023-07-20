@@ -12,7 +12,6 @@ struct PermissionsRequestView: View {
     
     @Binding var userAuthorizedSpotify: Bool
     @Binding var userAuthorizedDiskAccess: Bool
-    @Binding var userAuthorizedPlaylistUpdater: Bool
     
     //used for polling for permission changes
     @State var currentDate = Date.now
@@ -29,15 +28,9 @@ struct PermissionsRequestView: View {
             
             AutoSpotoDiskAccessRequestCell(userAuthorizedDiskAccess: $userAuthorizedDiskAccess)
             
-            PlaylistUpdaterDiskAccessRequestCell(
-                userAuthorizedDiskAccess: $userAuthorizedDiskAccess,
-                userAuthorizedPlaylistUpdater: $userAuthorizedPlaylistUpdater
-            )
-            
             SpotifyAccessRequestCell(
                 userAuthorizedSpotify: $userAuthorizedSpotify,
-                userAuthorizedDiskAcess: $userAuthorizedDiskAccess,
-                userAuthorizedPlaylistUpdater: $userAuthorizedPlaylistUpdater
+                userAuthorizedDiskAcess: $userAuthorizedDiskAccess
             )
             
             if userAuthorizedSpotify && userAuthorizedDiskAccess {
@@ -61,7 +54,6 @@ struct PermissionsRequestView: View {
             withAnimation {
                 //disk access
                 userAuthorizedDiskAccess = DiskAccessManager.userAuthorizedDiskAccess
-                userAuthorizedPlaylistUpdater = DiskAccessManager.userAuthorizedPlaylistUpdaterDiskAccess
             }
         }
     }
