@@ -11,6 +11,21 @@ guard let db = DatabaseManager() else {
     exit(1)
 }
 
+//log time that script has succesfully accessed chat.db
+//this is used for onboarding to determine when playlist updater has been given full disk access
+do {
+    let fileManager = FileManager.default
+    let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+    guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto/PlaylistUpdaterValidation.json") else {
+        exit(2)
+    }
+    let jsonEncoder = JSONEncoder()
+    let jsonData = try jsonEncoder.encode(Date().timeIntervalSince1970)
+    try jsonData.write(to: directoryURL)
+} catch {
+    exit(3)
+}
+
 DatabaseManager.shared = db
 let trackedChats = DatabaseManager.shared.retrieveTrackedChats()
 
@@ -37,5 +52,3 @@ for trackedChat in trackedChats.rows {
         continue //fail silently
     }
 }
-
-exit(0)
