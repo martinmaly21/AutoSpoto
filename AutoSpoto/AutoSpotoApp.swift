@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Sparkle
+import ServiceManagement
 
 @main
 struct AutoSpotoApp: App {
