@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LaunchAgent
 
 struct PermissionsRequestView: View {
     @State private var elementTransitionOpacity: CGFloat = 0
@@ -57,9 +56,6 @@ struct PermissionsRequestView: View {
             withAnimation {
                 elementTransitionOpacity = 1
             }
-            
-            //set up launch agent
-            let launchAgent = LaunchAgent(label: "com.autospoto.app.playlistupdater", program: [])
         }
         .onReceive(timer) { input in
             withAnimation {
