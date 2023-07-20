@@ -13,14 +13,13 @@ import Contacts
 extension DatabaseManager {
     func fetchGroupChats() async -> [Chat] {
         do {
-            var contactsRowsTuple = [(chatID: Int, displayName: String?, guID: String, messageID: String?)]()
+            var contactsRowsTuple = [(chatID: Int, displayName: String, guID: String, messageID: String?)]()
             
             let chat_ids = Expression<Int?>("ROWID")
-            let chat_name = Expression<String?>("display_name")
+            let chat_name = Expression<String>("display_name")
             let guid = Expression<String?>("guid")
             let chatTable = Table("chat")
-            
-            let query = chatTable.select(chat_ids, chat_name, guid).filter(guid.like("%chat%"))
+            let query = chatTable.select(chat_ids, chat_name, guid).filter(chat_name != "")
             
             for groupChat in try database.prepare(query){
                 if let chatID = groupChat[chat_ids],
@@ -30,13 +29,29 @@ extension DatabaseManager {
                     contactsRowsTuple.append((chatID: chatID, displayName: name, guID: guID, messageID: messageID))
                 }
             }
-            let groupChats: DataFrame = [
+            var groupChats: DataFrame = [
                 "ChatId": contactsRowsTuple.map { $0.chatID },
                 "ChatName": contactsRowsTuple.map { $0.displayName},
                 "ContactInfo": contactsRowsTuple.map { $0.guID },
                 "MessageID" : contactsRowsTuple.map { $0.messageID }
             ]
+            //Here we are formatted the group chats that have a display name in the same format (array<string>) as the returned dataframe from fetchCahtsNoName
+            groupChats = groupChats.grouped(by: "ChatId")
+                .mapGroups({ slice in
+                    var df = DataFrame()
+                    
+                    df["ChatId", Int.self] = Column(name: "ChatId", contents: [slice["ChatId"].first as! Int])
+                    df["ChatName", [String].self] = Column(name: "ChatName", contents: [slice["ChatName"].compactMap { $0 as? String }])
+                    df["ContactInfo", String.self] = Column(name: "ContactInfo", contents: [slice["ContactInfo"].first as! String])
+                    df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
+                    
+                    return df
+                }).ungrouped()
+            var chatsWithNoDisplayName  = await fetchGroupChatsNoNames()
             
+            
+            groupChats.append(chatsWithNoDisplayName)
+          
             guard !groupChats.isEmpty else {
                 //if there's no group chats, return an empty array early
                 //this fixes crash when attempting to join on a data frame with no rows
@@ -51,6 +66,8 @@ extension DatabaseManager {
             groupChatToUI.renameColumn("right.Base64Image", to: "image")
             groupChatToUI.renameColumn("left.ChatId" , to: "chatID")
             groupChatToUI.renameColumn("left.ChatName", to: "chatName")
+            
+            
             let trackedChatsDataFrame = retrieveTrackedChats()
             var finalGroupChatTable = groupChatToUI.joined(trackedChatsDataFrame, on: "chatID", kind: .left)
             
@@ -62,10 +79,22 @@ extension DatabaseManager {
             
             var renamedFinalGroupChatTable = finalGroupChatTable.selecting(columnNames: "image", "chatID", "chatName", "MessageID", "playlistID", "lastUpdated")
             
+            //Now for the dataframe returned to the UI we change the output from an array of strings to a single string containing all of the array elements
+            renamedFinalGroupChatTable["chatName"] = renamedFinalGroupChatTable["chatName", [String].self].map { value -> String in
+                guard let value = value else
+                {
+                    return ""
+                }
+                
+                let string = value.joined(separator: ", ")
+                return string
+            }
+            // Create a new column that will hold the converted values
+            
             renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "MessageID").mapGroups({slice in
                 var df = DataFrame()
                 df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
-                df["name", String?.self] = Column(name: "name", contents: [slice["chatName"].first as? String])
+                df["chatName", String.self] = Column(name: "chatName", contents: [slice["chatName"].first as! String])
                 df["nameID", String.self] = Column(name: "nameID", contents: [slice["MessageID"].first as! String])
                 df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["image"].first as? String])
                 df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String])
@@ -73,6 +102,8 @@ extension DatabaseManager {
                 return df
             }).ungrouped()
             
+            
+            renamedFinalGroupChatTable.renameColumn("chatName", to: "name")
             let groupChatsJSON = try renamedFinalGroupChatTable.jsonRepresentation()
             
             let decoder = JSONDecoder()
@@ -102,8 +133,107 @@ extension DatabaseManager {
         }
     }
     
-    func fetchIndividualChats() async -> [Chat] {
-        do {
+    func fetchGroupChatsNoNames() async -> DataFrame{
+            
+            do{
+                
+                var contactsRowsTuple = [(chat_identifier: String, contact_info: String?, chat_id: Int)]()
+                
+                let chatIdentifier = Expression<String>("chat_identifier")
+                let ID = Expression<String?>("id")
+                let chatID = Expression<Int>("chat_id")
+                let displayName = Expression<String?>("display_name")
+                let rowID = Expression<Int>("rowid")
+                let handleID = Expression<Int?>("handle_id")
+                
+                let chatMessageJoin = Table("chat_message_join")
+                let message = Table("message")
+                let chatHandleJoin = Table("chat_handle_join")
+                let handle = Table("handle")
+                let chat = Table("chat")
+                
+                //Query that joins handle, chat, chat_handle_join and message
+                let query = chat.select(chat[chatIdentifier], handle[ID], chatMessageJoin[chatID]).where(chatIdentifier.like("%chat%") && displayName == "").join(chatMessageJoin, on: chatMessageJoin[chatID]==chat[rowID]).join(chatHandleJoin, on: chatHandleJoin[chatID]==chat[rowID]).join(handle, on:handle[rowID]==chatHandleJoin[handleID]).group(chat[chatIdentifier], handle[ID])
+                
+                for groupChat in try database.prepare(query){
+                    //Here we are removing the + in front of the phone number so that the value can be joined with the phone number from the fetchContacts()
+                    var contact_info = groupChat[handle[ID]]
+                    if ((contact_info?.hasPrefix("+")) != false){
+                        contact_info?.removeFirst()
+                    }
+                    
+                    contactsRowsTuple.append((chat_identifier:groupChat[chat[chatIdentifier]], contact_info: contact_info, chat_id: groupChat[chatMessageJoin[chatID]]))
+                }
+                
+                let chatsDataFrame: DataFrame = [
+                    "MessageID": contactsRowsTuple.map { $0.chat_identifier },
+                    "contactInfo": contactsRowsTuple.map { $0.contact_info },
+                    "chatID": contactsRowsTuple.map { $0.chat_id },
+                    "imageBlob": contactsRowsTuple.map {_ in nil}
+                ]
+                
+                var contactDF = await fetchContacts()
+                
+                var chatsWithAssociatedContactsDataFrame = chatsDataFrame
+                    .joined(contactDF, on: "contactInfo", kind: .left)
+                
+                chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
+                chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
+                chatsWithAssociatedContactsDataFrame.renameColumn("right.lastName", to: "lastName")
+                chatsWithAssociatedContactsDataFrame.renameColumn("right.imageBlob", to: "imageBlob")
+                
+                //here we are checking if where there is a first name, last name or just a phone number for the contact
+                for (index, row) in chatsWithAssociatedContactsDataFrame.rows.enumerated(){
+                    
+                    var firstNameNil = (row[3]==nil)
+                    var lastNameNil = (row[4]==nil)
+                    
+                   //If a first name exists do nothing
+                    if (!firstNameNil){
+                        continue
+                    }
+                    //assign the last name to the display name if there is no first name but there is a last name
+                    else if(!lastNameNil){
+                        chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[4]
+                    }
+                    //if no first and last name assign the phone number as the display name
+                    else{
+                        chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[1]
+                    }
+                }
+                
+                
+                
+                var chatsWithDisplayNames = chatsWithAssociatedContactsDataFrame.selecting(columnNames: "chatID", "firstName","MessageID","contactInfo")
+                
+                //Here we are grouping the chat names by the chat ID. This way contacts beloning to a group chat that doesnt have a name can be aggregated
+                chatsWithDisplayNames = chatsWithDisplayNames.grouped(by: "chatID")
+                    .mapGroups({ slice in
+                        var df = DataFrame()
+                        
+                        df["chatID", Int.self] = Column(name: "chatID", contents: [slice["chatID"].first as! Int])
+                        df["firstName", [String].self] = Column(name: "firstName", contents: [slice["firstName"].compactMap { $0 as? String }])
+                        df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
+                        df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
+                        
+                        return df
+                    }).ungrouped()
+
+                chatsWithDisplayNames.renameColumn("firstName", to: "ChatName")
+                chatsWithDisplayNames.renameColumn("contactInfo", to: "ContactInfo")
+                chatsWithDisplayNames.renameColumn("chatID", to: "ChatId")
+                return chatsWithDisplayNames
+                
+            }catch let error{
+                fatalError("Error: \(error)")
+            }
+        }
+    
+    
+    
+    func fetchContacts() async -> DataFrame{
+        do{
+            
             let contactStore = CNContactStore()
             
             let keysToFetch: [CNKeyDescriptor] = [
@@ -157,6 +287,7 @@ extension DatabaseManager {
                         contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image?.base64EncodedString()))
                     }
                 }
+                
             }
             var contactRows: [ContactRow] = []
             
@@ -186,6 +317,17 @@ extension DatabaseManager {
                 "contactInfo": contactRows.map { $0.contactInfo }.isEmpty ? [""] : contactRows.map { $0.contactInfo },
                 "imageBlob": contactRows.map { $0.imageBlob }.isEmpty ? [""] : contactRows.map { $0.imageBlob }
             ]
+            
+            return contactsDataFrame
+        }
+        catch let error{
+            fatalError("error: \(error)")
+        }
+    }
+    func fetchIndividualChats() async -> [Chat] {
+        do {
+            
+            let contactsDataFrame = await fetchContacts()
             //2
             let guID = Expression<String?>("guid")
             let chatID = Expression<Int>("ROWID")
