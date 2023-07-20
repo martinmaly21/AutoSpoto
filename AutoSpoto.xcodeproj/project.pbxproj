@@ -52,6 +52,8 @@
 		50A6922D2A371B6500E87BA2 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922C2A371B6500E87BA2 /* CreateButton.swift */; };
 		50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922E2A371B6F00E87BA2 /* CancelButton.swift */; };
 		50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A692302A371B7900E87BA2 /* DoneButton.swift */; };
+		50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */; };
+		50A9864F2A695BAB001C6FBD /* com.autospoto.app.playlistupdater.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
@@ -148,6 +150,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		50A9864E2A695B86001C6FBD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchAgents;
+			dstSubfolderSpec = 7;
+			files = (
+				50A9864F2A695BAB001C6FBD /* com.autospoto.app.playlistupdater.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92F554AE2A55E25A006E1CAA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,6 +211,7 @@
 		50A6922C2A371B6500E87BA2 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		50A6922E2A371B6F00E87BA2 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		50A692302A371B7900E87BA2 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
+		50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.autospoto.app.playlistupdater.plist; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
@@ -604,6 +617,7 @@
 		92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
 			isa = PBXGroup;
 			children = (
+				50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */,
 				50C0F98A2A616C28008E6743 /* AutoSpoto-PlaylistUpdater.entitlements */,
 				92F554B22A55E25A006E1CAA /* main.swift */,
 			);
@@ -621,6 +635,7 @@
 				50AA276A28C3FE69002FFC3F /* Frameworks */,
 				50AA276B28C3FE69002FFC3F /* Resources */,
 				50AC599A2A4690E700E473CF /* ShellScript */,
+				50A9864E2A695B86001C6FBD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -728,6 +743,7 @@
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
+				50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
