@@ -1090,12 +1090,11 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.playlistupdater;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1107,12 +1106,11 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.playlistupdater;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
