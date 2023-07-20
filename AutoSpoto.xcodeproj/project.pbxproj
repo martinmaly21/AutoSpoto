@@ -152,7 +152,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LaunchAgents;
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 1;
 			files = (
 				50A9864F2A695BAB001C6FBD /* com.autospoto.app.playlistupdater.plist in CopyFiles */,
 			);
