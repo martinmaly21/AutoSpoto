@@ -160,7 +160,7 @@ class SpotifyManager {
         spotifyPlaylistID: String,
         tracks: [Track],
         lastUpdated: Date?
-    ) async throws -> Date {
+    ) async throws -> Date? {
         let filteredTracksChunks = try await filterChat(for: tracks, lastUpdated: lastUpdated ?? Date(timeIntervalSince1970: 0))
         
         //add tracks to playlist
@@ -172,22 +172,14 @@ class SpotifyManager {
             let _ = try await http(method: .post(data: params), path: "/playlists/\(spotifyPlaylistID)/tracks")
         }
         
-        let dateUpdated = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = Calendar.current.timeZone
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let params: [String : Any] = [
-            AutoSpotoConstants.HTTPParameter.description: String.localizedStringWithFormat(
-                AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION,
-                dateFormatter.string(from: dateUpdated)
-            )
-        ]
-        
-        let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
-        DatabaseManager.shared.updateLastUpdated(for: spotifyPlaylistID, with: dateUpdated.timeIntervalSince1970)
-        
-        return dateUpdated
+        if filteredTracksChunks.isEmpty {
+            return nil
+        } else {
+            //only update db if playlist was actually updated (i.e. there are traacks)
+            let dateUpdated = Date()
+            DatabaseManager.shared.updateLastUpdated(for: spotifyPlaylistID, with: dateUpdated.timeIntervalSince1970)
+            return dateUpdated
+        }
     }
     
     //this method is responsible for filtering out all invalid IDs from a chat before creating a playlist on Spotify

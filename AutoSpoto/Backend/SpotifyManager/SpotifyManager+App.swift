@@ -41,8 +41,12 @@ extension SpotifyManager {
             
         chat.spotifyPlaylistID = spotifyPlaylistID
         DatabaseManager.shared.insert(spotifyPlaylistID, for: chat.ids)
-        let dateUpdated = try await updatePlaylist(spotifyPlaylistID: spotifyPlaylistID, tracks: chat.tracks, lastUpdated: chat.lastUpdated)
-        chat.lastUpdated = dateUpdated
+        if let dateUpdated = try await updatePlaylist(spotifyPlaylistID: spotifyPlaylistID, tracks: chat.tracks, lastUpdated: chat.lastUpdated) {
+            chat.lastUpdated = dateUpdated
+        }
+        
+        //add description to playlist
+        try await addDescriptionToPlaylist(for: chat)
         
         //finally, update cover image for chat
         try await addCoverImageToPlaylist(for: chat)
@@ -61,6 +65,18 @@ extension SpotifyManager {
         
         let spotifyPlaylist = try JSONDecoder().decode(SpotifyPlaylist.self, from: data)
         return spotifyPlaylist.id
+    }
+    
+    public static func addDescriptionToPlaylist(for chat: Chat) async throws {
+        guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
+            fatalError("Could not get spotifyPlaylistID for chat")
+        }
+        
+        let params: [String : Any] = [
+            AutoSpotoConstants.HTTPParameter.description: AutoSpotoConstants.Strings.CHAT_CREATED_BY_AUTOSPOTO_DESCRIPTION
+        ]
+        
+        let _ = try await http(method: .put(data: params), path: "/playlists/\(spotifyPlaylistID)")
     }
     
     public static func addCoverImageToPlaylist(for chat: Chat) async throws {
