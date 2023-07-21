@@ -90,7 +90,7 @@
 		50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */; };
 		50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */; };
 		50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */; };
-		50E99D392A6973AB004267C7 /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50E99D382A6973AB004267C7 /* AutoSpoto-PlaylistUpdater */; };
+		50E99D3B2A6A8EF6004267C7 /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50E99D3A2A6A8EF6004267C7 /* AutoSpoto-PlaylistUpdater */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -246,7 +246,7 @@
 		50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansBoldItalic.ttf; sourceTree = "<group>"; };
 		50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThinItalic.ttf; sourceTree = "<group>"; };
 		50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansLight.ttf; sourceTree = "<group>"; };
-		50E99D382A6973AB004267C7 /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
+		50E99D3A2A6A8EF6004267C7 /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				50E99D382A6973AB004267C7 /* AutoSpoto-PlaylistUpdater */,
+				50E99D3A2A6A8EF6004267C7 /* AutoSpoto-PlaylistUpdater */,
 				50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
@@ -724,7 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
-				50E99D392A6973AB004267C7 /* AutoSpoto-PlaylistUpdater in Resources */,
+				50E99D3B2A6A8EF6004267C7 /* AutoSpoto-PlaylistUpdater in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
 				50DB07A82984B6A000BC5864 /* JosefinSansSemibold.ttf in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
@@ -1090,7 +1090,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1106,7 +1106,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
