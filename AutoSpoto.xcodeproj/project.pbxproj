@@ -104,6 +104,7 @@
 		50F34C66297659950059516B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F34C65297659950059516B /* Colors.xcassets */; };
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
 		50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */; };
+		50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */; };
 		50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
 		50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
@@ -733,6 +734,7 @@
 				50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */,
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
+				50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */,
 				50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */,
 				50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */,
 			);
