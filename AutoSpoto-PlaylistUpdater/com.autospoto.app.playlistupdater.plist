@@ -4,10 +4,6 @@
 <dict>
 	<key>KeepAlive</key>
 	<true/>
-	<key>StandardOutPath</key>
-	<string>Contents/Resources/AutoSpoto-PlaylistUpdater-Output.tx</string>
-	<key>StandardErrorPath</key>
-	<string>Contents/Resources/AutoSpoto-PlaylistUpdater-Error.txt</string>
 	<key>Label</key>
 	<string>com.autospoto.app.playlistupdater</string>
 	<key>BundleProgram</key>
