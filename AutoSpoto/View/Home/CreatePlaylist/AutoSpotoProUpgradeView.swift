@@ -12,6 +12,9 @@ struct AutoSpotoProUpgradeView: View {
     
     @State private var userHasPurchasedLicense: Bool = false
     @State private var isLoadingWebView: Bool = false
+    @State private var isValidatingLicense: Bool = false
+    @State private var userEnteredInvalidLicense: Bool = false
+    @State private var userEnteredValidLicense: Bool = false
     @State private var licenseKey: String = ""
     
     var body: some View {
@@ -32,6 +35,16 @@ struct AutoSpotoProUpgradeView: View {
                     
                     TextField(AutoSpotoConstants.Strings.LICENSE_KEY_PLACEHOLDER, text: $licenseKey)
                         .font(.josefinSansRegular(18))
+                    
+                    if userEnteredInvalidLicense {
+                        Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID)
+                            .font(.josefinSansRegular(18))
+                            .foregroundColor(Color.errorRed)
+                    } else if userEnteredValidLicense {
+                        Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
+                            .font(.josefinSansRegular(18))
+                            .foregroundColor(Color.spotifyGreen)
+                    }
                 }
                 .padding(.vertical, 8)
                 
@@ -44,12 +57,34 @@ struct AutoSpotoProUpgradeView: View {
                     
                     Spacer()
                     
-                    ActivateLicenseButton(action: {
-                        withAnimation {
-                            userHasPurchasedLicense = true
-                        }
-                    })
-                    .opacity(userHasPurchasedLicense ? 1 : 0.4)
+                    if userEnteredValidLicense {
+                        DoneButton(
+                            action: {
+                                
+                            }
+                        )
+                    } else {
+                        ActivateLicenseButton(action: {
+                            withAnimation {
+                                isValidatingLicense = true
+                                userEnteredInvalidLicense = false
+                                userEnteredValidLicense = false
+                                
+                                Task {
+                                    let verify = await GumroadManager.verify(licenseKey: licenseKey, shouldIncrementUses: true)
+                                    
+                                    if verify {
+                                        userEnteredValidLicense = true
+                                    } else {
+                                        userEnteredInvalidLicense = true
+                                    }
+                                    
+                                    isValidatingLicense = false
+                                }
+                                
+                            }
+                        })
+                    }
                 }
                 
             } else {
@@ -87,17 +122,17 @@ struct AutoSpotoProUpgradeView: View {
                     
                     Spacer()
                     
-                    ActivateLicenseButton(action: {
+                    AlreadyHaveALicenseButton(action: {
                         withAnimation {
                             userHasPurchasedLicense = true
                         }
                     })
-                    .opacity(userHasPurchasedLicense ? 1 : 0.4)
                 }
             }
         }
         .frame(width: 700, height: 590)
         .padding(.all, 25)
         .padding(25)
+        .disabled(isValidatingLicense)
     }
 }

@@ -572,5 +572,23 @@ extension AutoSpotoConstants.Strings {
         value: "XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX",
         comment: "Title for text field where user can enter license key"
     )
+    
+    static let ALREADY_HAVE_A_LICENSE = NSLocalizedString(
+        "ALREADY_HAVE_A_LICENSE",
+        value: "Already have a license?",
+        comment: "Title for button user can click if they already have a license"
+    )
+    
+    static let LICENSE_IS_INVALID = NSLocalizedString(
+        "LICENSE_IS_INVALID",
+        value: "It appears the license you entered is invalid. Please try again.",
+        comment: "Text if user enters invalid license"
+    )
+    
+    static let LICENSE_IS_VALID = NSLocalizedString(
+        "LICENSE_IS_VALID",
+        value: "Success! You have upgraded to AutoSpoto Pro.",
+        comment: "Text if user enters invalid license"
+    )
 }
 

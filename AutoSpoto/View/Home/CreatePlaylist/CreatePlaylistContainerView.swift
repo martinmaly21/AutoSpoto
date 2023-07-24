@@ -42,7 +42,7 @@ struct CreatePlaylistContainerView: View {
                     return
                 }
                 
-                canCreatePlaylist = await GumroadManager.verify(licenseKey: licenseKey)
+                canCreatePlaylist = await GumroadManager.verify(licenseKey: licenseKey, shouldIncrementUses: false)
                 isCheckingLicense = false
             }
         }

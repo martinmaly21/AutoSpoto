@@ -97,6 +97,7 @@
 		50E552532A6E833500EC3149 /* ActivateLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */; };
 		50E552552A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */; };
 		50E552572A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */; };
+		50E552592A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -262,6 +263,7 @@
 		50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateLicenseButton.swift; sourceTree = "<group>"; };
 		50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Gumroad.swift"; sourceTree = "<group>"; };
 		50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToAutoSpotoProWebView.swift; sourceTree = "<group>"; };
+		50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyHaveALicenseButton.swift; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */,
 				50E5524E2A6E830C00EC3149 /* NotNowButton.swift */,
 				50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */,
+				50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
 				509B08642A31FEDF00917AAC /* UserDefaultsManager.swift in Sources */,
 				50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */,
+				50E552592A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift in Sources */,
 				500215E32A57B64900978C20 /* ContactRow.swift in Sources */,
 				5069BF6F2999AC24007F4037 /* SpotifyWebView.swift in Sources */,
 				50ACE0342A61052700DE0344 /* ChatTypeFilter.swift in Sources */,

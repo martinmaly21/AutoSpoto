@@ -8,7 +8,7 @@
 import Foundation
 
 class GumroadManager {
-    public static func verify(licenseKey: String) async -> Bool {
+    public static func verify(licenseKey: String, shouldIncrementUses: Bool) async -> Bool {
         #warning("TODO")
         return true
     }
