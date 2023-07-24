@@ -8,5 +8,8 @@
 import Foundation
 
 class GumroadManager {
-    
+    public static func verify(licenseKey: String) async -> Bool {
+        #warning("TODO")
+        return true
+    }
 }

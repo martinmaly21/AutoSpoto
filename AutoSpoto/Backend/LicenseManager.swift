@@ -9,7 +9,7 @@ import Foundation
 import RNCryptor
 
 class LicenseManager {
-    public var licenseKey: String? {
+    public static var licenseKey: String? {
         guard let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
             return nil
         }
@@ -29,7 +29,7 @@ class LicenseManager {
         }
     }
     
-    public func writeLicense(licenseKey: String) {
+    public static func writeLicense(licenseKey: String) {
         let data = Data(licenseKey.utf8)
         let encryptedData = RNCryptor.encrypt(data: data, withPassword: lFile)
         

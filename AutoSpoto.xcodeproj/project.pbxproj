@@ -91,6 +91,8 @@
 		50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */; };
 		50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */; };
 		50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552452A6E69FC00EC3149 /* GumroadManager.swift */; };
+		50E5524A2A6E749500EC3149 /* AutoSpotoProUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552492A6E749500EC3149 /* AutoSpotoProUpgradeView.swift */; };
+		50E5524D2A6E75D800EC3149 /* CreatePlaylistContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5524C2A6E75D800EC3149 /* CreatePlaylistContainerView.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -250,6 +252,8 @@
 		50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThinItalic.ttf; sourceTree = "<group>"; };
 		50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansLight.ttf; sourceTree = "<group>"; };
 		50E552452A6E69FC00EC3149 /* GumroadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadManager.swift; sourceTree = "<group>"; };
+		50E552492A6E749500EC3149 /* AutoSpotoProUpgradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoProUpgradeView.swift; sourceTree = "<group>"; };
+		50E5524C2A6E75D800EC3149 /* CreatePlaylistContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistContainerView.swift; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -488,6 +492,16 @@
 			path = Subclass;
 			sourceTree = "<group>";
 		};
+		50E5524B2A6E75C300EC3149 /* CreatePlaylist */ = {
+			isa = PBXGroup;
+			children = (
+				50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */,
+				50E552492A6E749500EC3149 /* AutoSpotoProUpgradeView.swift */,
+				50E5524C2A6E75D800EC3149 /* CreatePlaylistContainerView.swift */,
+			);
+			path = CreatePlaylist;
+			sourceTree = "<group>";
+		};
 		50F178902995EAA9002AFC1C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,12 +517,12 @@
 		50F178912995EAB8002AFC1C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				50E5524B2A6E75C300EC3149 /* CreatePlaylist */,
 				50F178922995EAFF002AFC1C /* HomeContainerView.swift */,
 				50F178942995ECEB002AFC1C /* ChatsListView.swift */,
 				50F178972995ED11002AFC1C /* ChatView.swift */,
 				50F1789F2995F441002AFC1C /* ChatRow.swift */,
 				50F178A729960B40002AFC1C /* TrackRow.swift */,
-				50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */,
 				50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */,
 				50ACE0352A61055800DE0344 /* ChatTypeFilter */,
 			);
@@ -820,6 +834,7 @@
 				509B08622A31C31400917AAC /* AutoSpotoError.swift in Sources */,
 				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
+				50E5524D2A6E75D800EC3149 /* CreatePlaylistContainerView.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
@@ -827,6 +842,7 @@
 				50D0261D2A38BC9500DBD789 /* AVLooperPlayer.swift in Sources */,
 				5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */,
 				50F1789B2995EE0B002AFC1C /* Chat.swift in Sources */,
+				50E5524A2A6E749500EC3149 /* AutoSpotoProUpgradeView.swift in Sources */,
 				509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
 				509B08642A31FEDF00917AAC /* UserDefaultsManager.swift in Sources */,
 				50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */,

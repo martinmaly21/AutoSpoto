@@ -136,7 +136,7 @@ struct ChatView: View {
                 .sheet(
                     isPresented: $showCreatePlaylistSheet,
                     content: {
-                        CreatePlaylistView(
+                        CreatePlaylistContainerView(
                             showCreatePlaylistSheet: $showCreatePlaylistSheet,
                             chat: selectedChat
                         )
