@@ -49,8 +49,6 @@ struct UpgradeToAutoSpotoProWebView: NSViewRepresentable {
             guard let requestURLString = request.url?.absoluteString else {
                 return
             }
-
-            //TODO:
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

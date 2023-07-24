@@ -12,10 +12,10 @@ struct AutoSpotoProUpgradeView: View {
     
     @State private var userHasPurchasedLicense: Bool = false
     @State private var isLoadingWebView: Bool = false
+    @State private var licenseKey: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            
             if userHasPurchasedLicense {
                 Text(AutoSpotoConstants.Strings.ACTIVATE_LICENSE)
                     .font(.josefinSansBold(22))
@@ -25,6 +25,32 @@ struct AutoSpotoProUpgradeView: View {
                     .font(.josefinSansRegular(16))
                     .padding(.bottom, 15)
                 
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(AutoSpotoConstants.Strings.LICENSE_KEY)
+                        .font(.josefinSansRegular(18))
+                    
+                    TextField(AutoSpotoConstants.Strings.LICENSE_KEY_PLACEHOLDER, text: $licenseKey)
+                        .font(.josefinSansRegular(18))
+                }
+                .padding(.vertical, 8)
+                
+                Spacer()
+                
+                HStack {
+                    NotNowButton(action: {
+                        showCreatePlaylistSheet = false
+                    })
+                    
+                    Spacer()
+                    
+                    ActivateLicenseButton(action: {
+                        withAnimation {
+                            userHasPurchasedLicense = true
+                        }
+                    })
+                    .opacity(userHasPurchasedLicense ? 1 : 0.4)
+                }
                 
             } else {
                 Text(AutoSpotoConstants.Strings.UPGRADE_TO_AUTOSPOTO_PRO_TITLE)
@@ -47,7 +73,6 @@ struct AutoSpotoProUpgradeView: View {
                         ProgressView()
                     }
                 }
-                .frame(height: 500)
                 
                 Divider()
                     .frame(height: 0.5)
@@ -64,14 +89,14 @@ struct AutoSpotoProUpgradeView: View {
                     
                     ActivateLicenseButton(action: {
                         withAnimation {
-                            //todo
+                            userHasPurchasedLicense = true
                         }
                     })
                     .opacity(userHasPurchasedLicense ? 1 : 0.4)
                 }
             }
         }
-        .frame(width: 700, height: 600)
+        .frame(width: 700, height: 590)
         .padding(.all, 25)
         .padding(25)
     }

@@ -557,8 +557,20 @@ extension AutoSpotoConstants.Strings {
     
     static let ACTIVATE_LICENSE_SUBTITLE = NSLocalizedString(
         "ACTIVATE_LICENSE_SUBTITLE",
-        value: "Already purchased a license? Enter your license code and activate AutoSpoto Pro instantly.",
+        value: "Enter your license code and activate AutoSpoto Pro instantly.",
         comment: "Subtitle for activating license."
+    )
+    
+    static let LICENSE_KEY = NSLocalizedString(
+        "LICENSE_KEY",
+        value: "License key",
+        comment: "Title for text field where user can enter license key"
+    )
+    
+    static let LICENSE_KEY_PLACEHOLDER = NSLocalizedString(
+        "LICENSE_KEY_PLACEHOLDER",
+        value: "XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX",
+        comment: "Title for text field where user can enter license key"
     )
 }
 
