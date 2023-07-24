@@ -20,14 +20,13 @@ struct CreatePlaylistContainerView: View {
         ZStack {
             if isCheckingLicense {
                 ProgressView()
-                    .frame(width: 450, height: 235)
+                    .frame(width: 50, height: 50)
             } else if canCreatePlaylist {
                 CreatePlaylistView(showCreatePlaylistSheet: $showCreatePlaylistSheet, chat: chat)
             } else {
-                AutoSpotoProUpgradeView()
+                AutoSpotoProUpgradeView(showCreatePlaylistSheet: $showCreatePlaylistSheet)
             }
         }
-        .padding(.all, 25)
         .onAppear {
             guard DatabaseManager.shared.hasTrackedChats else {
                 //user has not created any chats yet

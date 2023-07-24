@@ -140,7 +140,7 @@ struct ChatsListView: View {
         .sheet(
             isPresented: $isPresentingUpgradeToPro,
             content: {
-                AutoSpotoProUpgradeView()
+                AutoSpotoProUpgradeView(showCreatePlaylistSheet: $isPresentingUpgradeToPro)
             }
         )
     }

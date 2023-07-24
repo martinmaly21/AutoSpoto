@@ -66,8 +66,6 @@ struct CreatePlaylistView: View {
                             .frame(width: 40, height: 40)
                             .cornerRadius(8)
                             .aspectRatio(contentMode: .fill)
-                        
-                        
                     }
                     
                     VStack(spacing: 25){
@@ -190,6 +188,7 @@ struct CreatePlaylistView: View {
             }
         }
         .frame(width: 450, height: errorCreatingPlaylist ? 275 : 235)
+        .padding(.all, 25)
         .disabled(isCreatingPlaylist)
         .onAppear {
             playlistName = chat.displayName

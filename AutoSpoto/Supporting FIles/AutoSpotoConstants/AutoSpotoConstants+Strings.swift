@@ -506,5 +506,53 @@ extension AutoSpotoConstants.Strings {
         value: "It appears this chat was deleted in Spotify.",
         comment: "Error message when adding to a playlist that was deleted."
     )
+    
+    static let UPGRADE_TO_AUTOSPOTO_PRO_TITLE = NSLocalizedString(
+        "UPGRADE_TO_AUTOSPOTO_PRO",
+        value: "Upgrade to AutoSpoto Pro",
+        comment: "Title for upgrade to AutoSpoto Pro prompt."
+    )
+    
+    static let UPGRADE_TO_AUTOSPOTO_PRO_SUBTITLE = NSLocalizedString(
+        "UPGRADE_TO_AUTOSPOTO_PRO_SUBTITLE",
+        value: "The free version of AutoSpoto allows you to connect to one chat. Connect unlimited chats with AutoSpoto Pro.",
+        comment: "Subtitle for upgrade to AutoSpoto Pro prompt."
+    )
+    
+    static let AUTOSPOTO_PRO_PRODUCT_TITLE = NSLocalizedString(
+        "AUTOSPOTO_PRO_PRODUCT_TITLE",
+        value: "AutoSpoto Pro",
+        comment: "Product title for AutoSpoto Pro."
+    )
+    
+    static let AUTOSPOTO_PRO_PRODUCT_SUBTITLE = NSLocalizedString(
+        "AUTOSPOTO_PRO_PRODUCT_SUBTITLE",
+        value: "Lifetime license",
+        comment: "Product subtitle for AutoSpoto Pro."
+    )
+    
+    static let AUTOSPOTO_PRO_PRODUCT_BUY_NOW = NSLocalizedString(
+        "AUTOSPOTO_PRO_PRODUCT_BUY_NOW",
+        value: "Buy now",
+        comment: "Product buy now for AutoSpoto Pro."
+    )
+    
+    static let AUTOSPOTO_PRO_PRODUCT_PRICE = NSLocalizedString(
+        "AUTOSPOTO_PRO_PRODUCT_BUY_NOW",
+        value: "$3.99 USD",
+        comment: "Product price for AutoSpoto Pro."
+    )
+    
+    static let NOT_NOW = NSLocalizedString(
+        "NOT_NOW",
+        value: "Not now",
+        comment: "Button for if user doesn't want to upgrade to AutoSpoto Pro."
+    )
+    
+    static let ACTIVATE_LICENSE = NSLocalizedString(
+        "ACTIVATE_LICENSE",
+        value: "Activate license",
+        comment: "Button for if user wants to activate a license."
+    )
 }
 
