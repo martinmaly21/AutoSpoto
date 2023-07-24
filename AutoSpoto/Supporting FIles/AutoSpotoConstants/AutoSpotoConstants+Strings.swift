@@ -395,7 +395,7 @@ extension AutoSpotoConstants.Strings {
     
     static let SPOTIFY_PERMISSION_TITLE = NSLocalizedString(
         "SPOTIFY_PERMISSION_TITLE",
-        value: "3. Connect your Spotify",
+        value: "2. Connect your Spotify",
         comment: "Title text for spotify conncting"
     )
     
