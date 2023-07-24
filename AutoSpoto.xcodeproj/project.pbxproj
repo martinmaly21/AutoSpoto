@@ -105,6 +105,7 @@
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
 		50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */; };
 		50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */; };
+		50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50F6D4802A6E6138009B8055 /* RNCryptor */; };
 		50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
 		50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
@@ -280,6 +281,7 @@
 				505DB2932A4ED6FF0092E600 /* Sparkle in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
+				50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */,
 				50AC59952A468D6100E473CF /* FirebaseCrashlytics in Frameworks */,
 				50AC59932A468D6100E473CF /* FirebaseAnalytics in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
@@ -644,6 +646,7 @@
 				50AC59942A468D6100E473CF /* FirebaseCrashlytics */,
 				505DB2922A4ED6FF0092E600 /* Sparkle */,
 				506B34072A5FAD47002938D3 /* PhoneNumberKit */,
+				50F6D4802A6E6138009B8055 /* RNCryptor */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -707,6 +710,7 @@
 				505DB2912A4ED6FF0092E600 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				506B34062A5FAD47002938D3 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */,
+				50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -1202,6 +1206,14 @@
 				kind = branch;
 			};
 		};
+		50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RNCryptor/RNCryptor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1239,6 +1251,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		50F6D4802A6E6138009B8055 /* RNCryptor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */;
+			productName = RNCryptor;
 		};
 		92F554D92A55E3DB006E1CAA /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
