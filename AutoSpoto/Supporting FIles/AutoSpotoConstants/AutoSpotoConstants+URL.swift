@@ -30,4 +30,6 @@ extension AutoSpotoConstants.URL {
         
         return url
     }
+    
+    static let autoSpotoProProduct = URL(string: "https://autospoto.gumroad.com/l/autospotopro")!
 }

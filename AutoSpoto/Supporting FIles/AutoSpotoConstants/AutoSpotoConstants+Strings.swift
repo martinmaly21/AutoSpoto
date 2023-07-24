@@ -554,5 +554,11 @@ extension AutoSpotoConstants.Strings {
         value: "Activate license",
         comment: "Button for if user wants to activate a license."
     )
+    
+    static let ACTIVATE_LICENSE_SUBTITLE = NSLocalizedString(
+        "ACTIVATE_LICENSE_SUBTITLE",
+        value: "Already purchased a license? Enter your license code and activate AutoSpoto Pro instantly.",
+        comment: "Subtitle for activating license."
+    )
 }
 

@@ -20,7 +20,7 @@ struct CreatePlaylistContainerView: View {
         ZStack {
             if isCheckingLicense {
                 ProgressView()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 50, height: 100)
             } else if canCreatePlaylist {
                 CreatePlaylistView(showCreatePlaylistSheet: $showCreatePlaylistSheet, chat: chat)
             } else {

@@ -94,8 +94,9 @@
 		50E5524A2A6E749500EC3149 /* AutoSpotoProUpgradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552492A6E749500EC3149 /* AutoSpotoProUpgradeView.swift */; };
 		50E5524D2A6E75D800EC3149 /* CreatePlaylistContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5524C2A6E75D800EC3149 /* CreatePlaylistContainerView.swift */; };
 		50E5524F2A6E830C00EC3149 /* NotNowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5524E2A6E830C00EC3149 /* NotNowButton.swift */; };
-		50E552512A6E831900EC3149 /* BuyNowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552502A6E831900EC3149 /* BuyNowButton.swift */; };
 		50E552532A6E833500EC3149 /* ActivateLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */; };
+		50E552552A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */; };
+		50E552572A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -258,8 +259,9 @@
 		50E552492A6E749500EC3149 /* AutoSpotoProUpgradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoProUpgradeView.swift; sourceTree = "<group>"; };
 		50E5524C2A6E75D800EC3149 /* CreatePlaylistContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistContainerView.swift; sourceTree = "<group>"; };
 		50E5524E2A6E830C00EC3149 /* NotNowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotNowButton.swift; sourceTree = "<group>"; };
-		50E552502A6E831900EC3149 /* BuyNowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyNowButton.swift; sourceTree = "<group>"; };
 		50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateLicenseButton.swift; sourceTree = "<group>"; };
+		50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Gumroad.swift"; sourceTree = "<group>"; };
+		50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToAutoSpotoProWebView.swift; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -325,7 +327,6 @@
 				50A692302A371B7900E87BA2 /* DoneButton.swift */,
 				506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */,
 				50E5524E2A6E830C00EC3149 /* NotNowButton.swift */,
-				50E552502A6E831900EC3149 /* BuyNowButton.swift */,
 				50E552522A6E833500EC3149 /* ActivateLicenseButton.swift */,
 			);
 			path = "Helper Views";
@@ -377,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				5069BF6E2999AC24007F4037 /* SpotifyWebView.swift */,
+				50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */,
 			);
 			path = NSViewRepresentable;
 			sourceTree = "<group>";
@@ -489,6 +491,7 @@
 				509B085F2A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift */,
 				509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */,
 				50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */,
+				50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */,
 			);
 			path = AutoSpotoConstants;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				509B08622A31C31400917AAC /* AutoSpotoError.swift in Sources */,
 				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
+				50E552572A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift in Sources */,
 				50E5524D2A6E75D800EC3149 /* CreatePlaylistContainerView.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */,
@@ -869,11 +873,11 @@
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */,
 				503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */,
+				50E552552A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift in Sources */,
 				50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */,
 				50ACE0412A61366000DE0344 /* SpotifyManager+App.swift in Sources */,
 				509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */,
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
-				50E552512A6E831900EC3149 /* BuyNowButton.swift in Sources */,
 				504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */,
 				50ACE0432A6136FA00DE0344 /* DataBaseManager+App.swift in Sources */,
 				503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */,

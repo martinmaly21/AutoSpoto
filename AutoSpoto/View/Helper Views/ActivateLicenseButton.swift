@@ -17,7 +17,7 @@ struct ActivateLicenseButton: View {
                 Text(AutoSpotoConstants.Strings.ACTIVATE_LICENSE)
                     .font(.josefinSansRegular(18))
                     .frame(width: 150, height: 30)
-                    .background(Color.gray)
+                    .background(Color.primaryBlue)
                     .foregroundColor(Color.white)
                     .clipShape(Capsule())
             }
