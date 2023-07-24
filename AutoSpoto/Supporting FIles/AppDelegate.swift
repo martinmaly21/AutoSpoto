@@ -8,6 +8,7 @@
 import AppKit
 import SwiftUI
 import FirebaseCore
+import ServiceManagement
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -19,5 +20,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
         
         FirebaseApp.configure()
+        
+        
+        //register for playlist updater
+        Task.detached(priority: .background) {
+            let service = SMAppService.agent(plistName: "com.autospoto.app.playlistupdater.plist")
+            
+            if service.status == .notFound || service.status == .notRegistered {
+                do {
+                    try service.register()
+                    print("Successfully registered \(service)")
+                } catch {
+                    print("Unable to register \(error)")
+                }
+            }
+        }
     }
 }

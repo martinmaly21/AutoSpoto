@@ -90,6 +90,7 @@
 		50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */; };
 		50DB07AC2984B6A000BC5864 /* JosefinSansThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */; };
 		50DB07AD2984B6A000BC5864 /* JosefinSansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */; };
+		50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552452A6E69FC00EC3149 /* GumroadManager.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -106,6 +107,7 @@
 		50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */; };
 		50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */; };
 		50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50F6D4802A6E6138009B8055 /* RNCryptor */; };
+		50F6D4832A6E6193009B8055 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
 		50F9339429C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
 		50FB02DD2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
@@ -247,6 +249,7 @@
 		50DB07A32984B6A000BC5864 /* JosefinSansBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansBoldItalic.ttf; sourceTree = "<group>"; };
 		50DB07A42984B6A000BC5864 /* JosefinSansThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansThinItalic.ttf; sourceTree = "<group>"; };
 		50DB07A52984B6A000BC5864 /* JosefinSansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JosefinSansLight.ttf; sourceTree = "<group>"; };
+		50E552452A6E69FC00EC3149 /* GumroadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadManager.swift; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
+		50F6D4822A6E6193009B8055 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
 		50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Regex.swift"; sourceTree = "<group>"; };
 		50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Limits.swift"; sourceTree = "<group>"; };
 		50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylist.swift; sourceTree = "<group>"; };
@@ -341,6 +345,8 @@
 				509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */,
 				5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */,
 				506B34092A5FAD8E002938D3 /* PhoneNumberManager.swift */,
+				50F6D4822A6E6193009B8055 /* LicenseManager.swift */,
+				50E552452A6E69FC00EC3149 /* GumroadManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,
 				509B085A2A31B36B00917AAC /* SpotifyToken.swift in Sources */,
 				5069BF732999C0A6007F4037 /* String.swift in Sources */,
+				50F6D4832A6E6193009B8055 /* LicenseManager.swift in Sources */,
 				509B08712A32F1FD00917AAC /* Array.swift in Sources */,
 				5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
@@ -814,6 +821,7 @@
 				50C1790C29980ED8009CD58F /* Track.swift in Sources */,
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
+				50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
 				50ACE0372A61056800DE0344 /* ChatTypeFilterToggle.swift in Sources */,
 				50D0261D2A38BC9500DBD789 /* AVLooperPlayer.swift in Sources */,

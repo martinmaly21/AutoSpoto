@@ -20,7 +20,7 @@ struct JSONToken: Codable {
     init(spotifyToken: SpotifyToken) {
         self.access_token = spotifyToken.access_token
         
-        guard let refreshToken  = spotifyToken.refresh_token ?? SpotifyTokenManager.readToken()?.refresh_token else {
+        guard let refreshToken  = spotifyToken.refresh_token ?? SpotifyTokenManager.token?.refresh_token else {
             //this should never occur, because a user will always have a refresh token if they have retrieved a new acccess token
             //but if it somehow does, we delete existing token so user can start app fresh
             SpotifyTokenManager.deleteToken()

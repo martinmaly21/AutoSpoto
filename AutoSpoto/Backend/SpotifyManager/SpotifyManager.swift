@@ -42,7 +42,7 @@ class SpotifyManager {
             return headers
         }
         
-        if var token = SpotifyTokenManager.readToken() {
+        if var token = SpotifyTokenManager.token {
             if token.accessTokenHasExpired {
                 token = try await refreshAndSaveToken(expiredToken: token)
             }

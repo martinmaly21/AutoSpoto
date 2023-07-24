@@ -18,7 +18,7 @@ class DatabaseManager {
     internal let onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)?
     //this flag prevents the 'onTrackedChatsDBUpdatedOutsideOfApp' closure from running from updates to autospoto.db via the app
     private var ignoreTrackedChatsUpdate = true
-    internal var trackedChats: DataFrame? {
+    internal var trackedChats: DataFrame! {
         willSet {
             if newValue != trackedChats {
                 guard !ignoreTrackedChatsUpdate else {
@@ -28,6 +28,10 @@ class DatabaseManager {
                 onTrackedChatsDBUpdatedOutsideOfApp?()
             }
         }
+    }
+    
+    public var hasTrackedChats: Bool {
+        return !trackedChats.isEmpty
     }
     
     init?(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
