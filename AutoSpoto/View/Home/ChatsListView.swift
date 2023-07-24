@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChatsListView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
+    
+    @State private var isPresentingUpgradeToPro = false
 
     var body: some View {
         let topInset: CGFloat = 90
@@ -94,7 +96,7 @@ struct ChatsListView: View {
                     
                     UpgradeToProButton(
                         action: {
-                            #warning("TODO: present pro payment screen")
+                            isPresentingUpgradeToPro = true
                         }
                     )
 
@@ -135,6 +137,12 @@ struct ChatsListView: View {
         }
         .frame(minWidth: 370)
         .frame(maxWidth: .infinity)
+        .sheet(
+            isPresented: $isPresentingUpgradeToPro,
+            content: {
+                AutoSpotoProUpgradeView()
+            }
+        )
     }
 }
 
