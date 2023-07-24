@@ -9,12 +9,10 @@ import SwiftUI
 
 struct AutoSpotoProUpgradeView: View {
     var body: some View {
-        Text("Upgrade to pro please")
-    }
-}
-
-struct AutoSpotoProUpgradeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoSpotoProUpgradeView()
+        VStack {
+            Text("Upgrade to pro please")
+                
+        }
+        .frame(width: 450, height: 235)
     }
 }

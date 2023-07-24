@@ -189,6 +189,7 @@ struct CreatePlaylistView: View {
                 }
             }
         }
+        .frame(width: 450, height: errorCreatingPlaylist ? 275 : 235)
         .disabled(isCreatingPlaylist)
         .onAppear {
             playlistName = chat.displayName
