@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseCore
 
 struct AutoSpotoContainerView: View {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
