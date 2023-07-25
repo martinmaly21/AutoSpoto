@@ -208,7 +208,7 @@ class HomeViewModel: ObservableObject {
         )
         
         var chatsWithTracks = filteredChats.filter { $0.hasTracks && !$0.spotifyPlaylistExists }
-        chatsWithTracks.sort(by: { $0.displayName < $1.displayName })
+        chatsWithTracks.sort(by: { $0.tracks.count > $1.tracks.count })
         let chatsWithTracksWithContactsOrChatNames = chatsWithTracks.filter { $0.hasContactOrChatName }
         let chatsWithTracksWithNoContactsOrChatNames = chatsWithTracks.filter { !$0.hasContactOrChatName }
         let chatsWithTrackSection = ChatSection(
