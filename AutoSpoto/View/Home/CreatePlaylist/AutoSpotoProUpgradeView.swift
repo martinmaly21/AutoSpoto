@@ -79,15 +79,18 @@ struct AutoSpotoProUpgradeView: View {
                 Text(AutoSpotoConstants.Strings.UPGRADE_TO_AUTOSPOTO_PRO_TITLE)
                     .font(.josefinSansBold(22))
                     .font(.headline)
+                    .opacity(userPurchasedLicense ? 0 : 1)
                     
                 Text(AutoSpotoConstants.Strings.UPGRADE_TO_AUTOSPOTO_PRO_SUBTITLE)
                     .font(.josefinSansRegular(16))
                     .padding(.bottom, 15)
                     .frame(height: 60)
+                    .opacity(userPurchasedLicense ? 0 : 1)
                 
                 Divider()
                     .frame(height: 0.5)
                     .overlay(.gray)
+                    .opacity(userPurchasedLicense ? 0 : 1)
                 
                 ZStack {
                     UpgradeToAutoSpotoProWebView(
@@ -95,7 +98,7 @@ struct AutoSpotoProUpgradeView: View {
                         retrievedLicenseKey: $retrievedLicenseKey,
                         userPurchasedLicense: $userPurchasedLicense
                     )
-                    .opacity(userPurchasedLicense ? 0.5 : 1)
+                    .opacity(userPurchasedLicense ? 0 : 1)
                     
                     if isLoadingWebView {
                         ProgressView()
@@ -131,6 +134,7 @@ struct AutoSpotoProUpgradeView: View {
                 Divider()
                     .frame(height: 0.5)
                     .overlay(.gray)
+                    .opacity(userPurchasedLicense ? 0 : 1)
                 
                 Spacer()
                 

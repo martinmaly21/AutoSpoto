@@ -16,16 +16,20 @@ struct UpgradeToAutoSpotoProWebView: NSViewRepresentable {
     @Binding var userPurchasedLicense: Bool
     
     func makeNSView(context: Context) -> WKWebView {
-        return WKWebView()
-    }
-    
-    func updateNSView(_ webView: WKWebView, context: Context) {
+        let webView = WKWebView()
+        
         //delegate
         webView.navigationDelegate = context.coordinator
-
+        
         //load webview request
         let request = URLRequest(url: AutoSpotoConstants.URL.autoSpotoProProduct)
         webView.load(request)
+        
+        return webView
+    }
+    
+    func updateNSView(_ webView: WKWebView, context: Context) {
+        //
     }
     
     class Coordinator: NSObject, WKNavigationDelegate {
