@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AutoSpotoProUpgradeView: View {
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @Binding var showCreatePlaylistSheet: Bool
     
     @State private var userAlreadyHasLicense: Bool = false
@@ -115,6 +116,7 @@ struct AutoSpotoProUpgradeView: View {
                                 
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
                                     .font(.josefinSansRegular(18))
+                                    .padding(.top, 10)
                             } else if userEnteredInvalidLicense {
                                 Image(systemName: "xmark.seal.fill")
                                     .resizable()
@@ -204,6 +206,7 @@ struct AutoSpotoProUpgradeView: View {
             let verify = await GumroadManager.verify(licenseKey: licenseKey)
             
             if verify {
+                homeViewModel.isAutoSpotoPro = true
                 userEnteredValidLicense = true
             } else {
                 userEnteredInvalidLicense = true

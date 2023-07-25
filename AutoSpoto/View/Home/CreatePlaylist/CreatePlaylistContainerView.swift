@@ -30,7 +30,7 @@ struct CreatePlaylistContainerView: View {
                 return
             }
             
-            canCreatePlaylist = LicenseManager.userHasValidLicense
+            canCreatePlaylist = homeViewModel.isAutoSpotoPro
         }
     }
 }

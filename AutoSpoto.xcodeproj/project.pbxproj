@@ -75,6 +75,8 @@
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50C6F2BC2A6FA87D00A03D2A /* EnterLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */; };
+		50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
+		50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* PermissionsRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* PermissionsRequestView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -317,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */,
 				92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,6 +715,7 @@
 			name = "AutoSpoto-PlaylistUpdater";
 			packageProductDependencies = (
 				92F554D92A55E3DB006E1CAA /* SQLite */,
+				50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */,
 			);
 			productName = testing;
 			productReference = 92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */;
@@ -941,6 +945,7 @@
 				92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */,
 				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
 				92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */,
+				50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */,
 				500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */,
 				92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */,
 				92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */,
@@ -1304,6 +1309,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50AC59912A468D6100E473CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */;
+			productName = RNCryptor;
 		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;

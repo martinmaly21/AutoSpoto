@@ -49,8 +49,13 @@ class HomeViewModel: ObservableObject {
     @Published var connectedChatsIsExpanded = true
     @Published var chatsWithTracksIsExpanded = true
     @Published var chatsWithNoTracksIsExpanded = false
+    
+    //
+    @Published var isAutoSpotoPro: Bool
 
     init() {
+        isAutoSpotoPro = LicenseManager.userHasValidLicense
+        
         DatabaseManager.shared = DatabaseManager(
             onTrackedChatsDBUpdatedOutsideOfApp: {
                 Task {

@@ -94,7 +94,7 @@ struct ChatsListView: View {
                         .font(.josefinSansBold(26))
                         .foregroundColor(.textPrimary)
                     
-                    if !LicenseManager.userHasValidLicense {
+                    if !homeViewModel.isAutoSpotoPro {
                         UpgradeToProButton(
                             action: {
                                 isPresentingUpgradeToPro = true
