@@ -25,6 +25,8 @@ struct AutoSpotoApp: App {
             CommandGroup(after: .appInfo) {
                 CheckForUpdatesView(updater: updaterController.updater)
             }
+            
+            CommandGroup(replacing: CommandGroupPlacement.newItem) { }
         }
         //disable resizing of the window
         .windowResizability(.contentSize)
