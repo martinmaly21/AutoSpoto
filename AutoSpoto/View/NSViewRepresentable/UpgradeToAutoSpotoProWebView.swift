@@ -57,7 +57,6 @@ struct UpgradeToAutoSpotoProWebView: NSViewRepresentable {
                 return
             }
             
-            print("Test: \(requestURLString)")
             if requestURLString.contains(AutoSpotoConstants.URL.autoSpotoProProductReceipt.absoluteString) {
                 //user has purchased product
                 parent.userPurchasedLicense = true
