@@ -9,8 +9,21 @@ import Foundation
 import RNCryptor
 
 class LicenseManager {
+    //retrieved from https://stackoverflow.com/a/33845083
     private static var uniqueMachineID: String {
-        return "testing"
+        // Get the platform expert
+        let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+        
+        // Get the serial number as a CFString ( actually as Unmanaged<AnyObject>! )
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString, kCFAllocatorDefault, 0);
+        
+        // Release the platform expert (we're responsible)
+        IOObjectRelease(platformExpert);
+        
+        // Take the unretained value of the unmanaged-any-object
+        // (so we're not responsible for releasing it)
+        // and pass it back as a String or, if it fails, an empty string
+        return (serialNumberAsCFString?.takeUnretainedValue() as? String) ?? "UNKNOWN_SERIAL_NUMBER"
     }
     
     public static var userHasValidLicense: Bool {
