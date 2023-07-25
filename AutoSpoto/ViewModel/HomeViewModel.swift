@@ -152,7 +152,7 @@ class HomeViewModel: ObservableObject {
                 chat.spotifyPlaylistID = nil
             }
         } catch let error {
-            //
+            assertionFailure("Error: \(error.localizedDescription)")
         }
        
         //update chat sections
@@ -168,7 +168,7 @@ class HomeViewModel: ObservableObject {
         do {
             chat.spotifyPlaylist = try await SpotifyManager.fetchPlaylist(for: spotifyPlaylistID)
         } catch let error {
-            //
+            assertionFailure("Error: \(error.localizedDescription)")
         }
         
         self.objectWillChange.send()
