@@ -189,7 +189,7 @@ struct AutoSpotoProUpgradeView: View {
                 }
             }
         }
-        .frame(width: 700, height: 590)
+        .frame(width: 700, height: 700)
         .padding(.all, 25)
         .padding(25)
         .disabled(isValidatingLicense)
