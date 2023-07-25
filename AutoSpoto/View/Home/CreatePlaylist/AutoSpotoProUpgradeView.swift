@@ -111,12 +111,12 @@ struct AutoSpotoProUpgradeView: View {
                             if userEnteredValidLicense {
                                 ZStack(alignment: .center) {
                                     Circle()
-                                        .frame(width: 70, height: 70)
+                                        .frame(width: 50, height: 50)
                                         .background(Color.white)
                                     
                                     Image(systemName: "checkmark.seal.fill")
                                         .resizable()
-                                        .frame(width: 50, height: 50)
+                                        .frame(width: 100, height: 100)
                                         .foregroundColor(Color.spotifyGreen)
                                 }
                                 
@@ -126,17 +126,17 @@ struct AutoSpotoProUpgradeView: View {
                             } else if userEnteredInvalidLicense {
                                 ZStack(alignment: .center) {
                                     Circle()
-                                        .frame(width: 70, height: 70)
+                                        .frame(width: 50, height: 50)
                                         .background(Color.white)
                                     
                                     Image(systemName: "xmark.seal.fill")
                                         .resizable()
                                         .frame(width: 100, height: 100)
+                                        .foregroundColor(Color.errorRed)
                                 }
                                 
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID_FROM_PURCHASE)
                                     .font(.josefinSansRegular(18))
-                                    .foregroundColor(Color.errorRed)
                                 
                                 EnterLicenseButton(
                                     action: {
