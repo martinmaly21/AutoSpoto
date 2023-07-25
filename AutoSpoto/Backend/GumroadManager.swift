@@ -12,13 +12,8 @@ class GumroadManager {
         var request = URLRequest(url: AutoSpotoConstants.URL.gumroadAPIEndpoint)
         request.httpMethod = "POST"
         
-        let params: [String : Any] = [
-            AutoSpotoConstants.HTTPParameter.product_id: AutoSpotoConstants.Gumroad.autoSpotoProProductID,
-            AutoSpotoConstants.HTTPParameter.license_key: licenseKey,
-            AutoSpotoConstants.HTTPParameter.increment_uses_count: shouldIncrementUses
-        ]
-        
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params)
+        let params = "\(AutoSpotoConstants.HTTPParameter.product_id)=\(AutoSpotoConstants.Gumroad.autoSpotoProProductID)&\(AutoSpotoConstants.HTTPParameter.license_key)=\(licenseKey)"
+        request.httpBody = params.data(using: .utf8)
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
