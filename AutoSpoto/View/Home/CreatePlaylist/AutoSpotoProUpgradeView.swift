@@ -38,6 +38,7 @@ struct AutoSpotoProUpgradeView: View {
                     
                     TextField(AutoSpotoConstants.Strings.LICENSE_KEY_PLACEHOLDER, text: $licenseKey)
                         .font(.josefinSansRegular(18))
+                        .disabled(userEnteredValidLicense)
                     
                     if userEnteredInvalidLicense {
                         Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID)
@@ -63,7 +64,7 @@ struct AutoSpotoProUpgradeView: View {
                     if userEnteredValidLicense {
                         DoneButton(
                             action: {
-                                
+                                showCreatePlaylistSheet = false
                             }
                         )
                     } else {
@@ -106,23 +107,45 @@ struct AutoSpotoProUpgradeView: View {
                     
                     if userPurchasedLicense {
                         VStack(spacing: 6) {
-                            ProgressView()
-                            
                             if userEnteredValidLicense {
+                                Image(systemName: "checkmark.seal")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(Color.spotifyGreen)
+                                
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
                                     .font(.josefinSansRegular(18))
                                     .foregroundColor(Color.spotifyGreen)
                             } else if userEnteredInvalidLicense {
-                                Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID)
+                                Image(systemName: "xmark.seal")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(Color.errorRed)
+                                
+                                Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID_FROM_PURCHASE)
                                     .font(.josefinSansRegular(18))
                                     .foregroundColor(Color.errorRed)
+                                
+                                AlreadyHaveALicenseButton(
+                                    action: {
+                                        withAnimation {
+                                            self.userEnteredInvalidLicense = false
+                                            self.userAlreadyHasLicense = true
+                                        }
+                                    }
+                                )
+                                .padding(.top, 10)
                             } else if let retrievedLicenseKey {
+                                ProgressView()
+                                
                                 Text(AutoSpotoConstants.Strings.VALIDATING_LICENSE)
                                     .font(.josefinSansRegular(16))
                                     .onAppear {
                                         validateLicense(licenseKey: retrievedLicenseKey)
                                     }
                             } else {
+                                ProgressView()
+                                
                                 Text(AutoSpotoConstants.Strings.FETCHING_LICENSE)
                                     .font(.josefinSansRegular(16))
                             }
@@ -148,12 +171,22 @@ struct AutoSpotoProUpgradeView: View {
                     Spacer()
                     
                     if userPurchasedLicense {
-                        DoneButton(action: {
-                            withAnimation {
-                                showCreatePlaylistSheet = false
+                        if userEnteredValidLicense {
+                            DoneButton(action: {
+                                withAnimation {
+                                    showCreatePlaylistSheet = false
+                                }
+                            })
+                            .disabled(isValidatingLicense)
+                        }
+                    } else {
+                        AlreadyHaveALicenseButton(
+                            action: {
+                                withAnimation {
+                                    self.userAlreadyHasLicense = true
+                                }
                             }
-                        })
-                        .disabled(isValidatingLicense)
+                        )
                     }
                 }
             }

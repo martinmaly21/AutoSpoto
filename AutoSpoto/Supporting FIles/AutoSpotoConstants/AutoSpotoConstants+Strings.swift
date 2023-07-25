@@ -585,6 +585,12 @@ extension AutoSpotoConstants.Strings {
         comment: "Text if user enters invalid license"
     )
     
+    static let LICENSE_IS_INVALID_FROM_PURCHASE = NSLocalizedString(
+        "LICENSE_IS_INVALID_FROM_PURCHASE",
+        value: "There was an error retrieving your license. Please manually enter the license code that was sent to your email.",
+        comment: "Text if user enters invalid license"
+    )
+    
     static let LICENSE_IS_VALID = NSLocalizedString(
         "LICENSE_IS_VALID",
         value: "Success! You have upgraded to AutoSpoto Pro. Enjoy connecting unlimited chats.",
@@ -607,6 +613,12 @@ extension AutoSpotoConstants.Strings {
         "SCANNING_CHATS",
         value: "Scanning your chats for Spotify tracks",
         comment: "Loading text for when a user is scanning chats"
+    )
+    
+    static let ENTER_LICENSE = NSLocalizedString(
+        "ENTER_LICENSE",
+        value: "Enter license",
+        comment: "Button text for button to manually enter license"
     )
 }
 
