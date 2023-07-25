@@ -14,5 +14,5 @@ extension AutoSpotoConstants {
 }
 
 extension AutoSpotoConstants.Gumroad {
-    static let autoSpotoProProductID = "YhQo_3PoWmEShE3Yx6ctog=="
+    static let autoSpotoProProductID = "AIFSMOxamWxwocude8Fu1Q=="
 }
