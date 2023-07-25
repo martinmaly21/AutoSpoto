@@ -77,6 +77,7 @@
 		50C6F2BC2A6FA87D00A03D2A /* EnterLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */; };
 		50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
 		50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */; };
+		50C6F2C12A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50C6F2C02A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* PermissionsRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* PermissionsRequestView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -117,7 +118,6 @@
 		50F34C64297657DB0059516B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C63297657DB0059516B /* Color.swift */; };
 		50F34C66297659950059516B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F34C65297659950059516B /* Colors.xcassets */; };
 		50F34C6829765DC00059516B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C6729765DC00059516B /* Font.swift */; };
-		50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */; };
 		50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */; };
 		50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50F6D4802A6E6138009B8055 /* RNCryptor */; };
 		50F6D4832A6E6193009B8055 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
@@ -247,6 +247,7 @@
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLicenseButton.swift; sourceTree = "<group>"; };
+		50C6F2C02A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
 		50CFCE2629896004009C3F4A /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		50CFCE2829896983009C3F4A /* PermissionsRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsRequestView.swift; sourceTree = "<group>"; };
 		50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletionObserverModifier.swift; sourceTree = "<group>"; };
@@ -287,7 +288,6 @@
 		50F34C6729765DC00059516B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		50F34C90297706270059516B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "AutoSpoto-PlaylistUpdater"; sourceTree = "<group>"; };
 		50F6D4822A6E6193009B8055 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
 		50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Regex.swift"; sourceTree = "<group>"; };
 		50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Limits.swift"; sourceTree = "<group>"; };
@@ -585,7 +585,7 @@
 		50F34C5B2976526C0059516B /* Supporting FIles */ = {
 			isa = PBXGroup;
 			children = (
-				50F673202A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater */,
+				50C6F2C02A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater */,
 				50F4A3C32A5010F0002C19EF /* GoogleService-Info.plist */,
 				50B20D822A38B5FD00212CE4 /* Video */,
 				50AA277428C3FE6A002FFC3F /* Assets.xcassets */,
@@ -777,6 +777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
+				50C6F2C12A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
 				50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
@@ -789,7 +790,6 @@
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
 				50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */,
 				50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */,
-				50F673212A6BE99B00C0F2AE /* AutoSpoto-PlaylistUpdater in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
