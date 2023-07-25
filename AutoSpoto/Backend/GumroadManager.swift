@@ -8,7 +8,7 @@
 import Foundation
 
 class GumroadManager {
-    public static func verify(licenseKey: String, shouldIncrementUses: Bool) async -> Bool {
+    public static func verify(licenseKey: String) async -> Bool {
         var request = URLRequest(url: AutoSpotoConstants.URL.gumroadAPIEndpoint)
         request.httpMethod = "POST"
         
@@ -26,12 +26,17 @@ class GumroadManager {
             
             let gumroadVerification = try JSONDecoder().decode(GumroadVerification.self, from: data)
             
-            return gumroadVerification.success &&
+            let isVerified = gumroadVerification.success &&
             gumroadVerification.uses <= 1 &&
             gumroadVerification.purchase.product_id == AutoSpotoConstants.Gumroad.autoSpotoProProductID &&
             !gumroadVerification.purchase.refunded &&
             !(gumroadVerification.purchase.disputed && gumroadVerification.purchase.dispute_won) &&
             !gumroadVerification.purchase.chargebacked
+            
+            //update license file on users system to indicate they are now verified
+            LicenseManager.writeLicense()
+            
+            return isVerified
         } catch let error {
             print("😭 ERROR: \(error)")
             return false

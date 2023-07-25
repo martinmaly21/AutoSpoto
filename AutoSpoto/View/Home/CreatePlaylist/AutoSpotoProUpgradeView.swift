@@ -201,7 +201,7 @@ struct AutoSpotoProUpgradeView: View {
         userEnteredValidLicense = false
         
         Task {
-            let verify = await GumroadManager.verify(licenseKey: licenseKey, shouldIncrementUses: true)
+            let verify = await GumroadManager.verify(licenseKey: licenseKey)
             
             if verify {
                 userEnteredValidLicense = true

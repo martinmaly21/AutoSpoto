@@ -94,11 +94,13 @@ struct ChatsListView: View {
                         .font(.josefinSansBold(26))
                         .foregroundColor(.textPrimary)
                     
-                    UpgradeToProButton(
-                        action: {
-                            isPresentingUpgradeToPro = true
-                        }
-                    )
+                    if !LicenseManager.userHasValidLicense {
+                        UpgradeToProButton(
+                            action: {
+                                isPresentingUpgradeToPro = true
+                            }
+                        )
+                    }
 
                     Spacer()
 
