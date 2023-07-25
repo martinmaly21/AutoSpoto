@@ -581,14 +581,26 @@ extension AutoSpotoConstants.Strings {
     
     static let LICENSE_IS_INVALID = NSLocalizedString(
         "LICENSE_IS_INVALID",
-        value: "It appears the license you entered is invalid. Please try again.",
+        value: "It appears the license is invalid. Please try again.",
         comment: "Text if user enters invalid license"
     )
     
     static let LICENSE_IS_VALID = NSLocalizedString(
         "LICENSE_IS_VALID",
-        value: "Success! You have upgraded to AutoSpoto Pro.",
+        value: "Success! You have upgraded to AutoSpoto Pro. Enjoy connecting unlimited chats.",
         comment: "Text if user enters invalid license"
+    )
+    
+    static let VALIDATING_LICENSE = NSLocalizedString(
+        "VALIDATING_LICENSE",
+        value: "Validating license",
+        comment: "Loading text for when a user is validating a license"
+    )
+    
+    static let FETCHING_LICENSE = NSLocalizedString(
+        "FETCHING_LICENSE",
+        value: "Fetching license",
+        comment: "Loading text for when a user is fetching a license"
     )
 }
 

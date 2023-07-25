@@ -10,16 +10,19 @@ import SwiftUI
 struct AutoSpotoProUpgradeView: View {
     @Binding var showCreatePlaylistSheet: Bool
     
-    @State private var userHasPurchasedLicense: Bool = false
+    @State private var userAlreadyHasLicense: Bool = false
+    @State private var userPurchasedLicense: Bool = false
     @State private var isLoadingWebView: Bool = false
     @State private var isValidatingLicense: Bool = false
     @State private var userEnteredInvalidLicense: Bool = false
     @State private var userEnteredValidLicense: Bool = false
     @State private var licenseKey: String = ""
+    @State private var retrievedLicenseKey: String?
+    @State private var isLoadingReceiptPage: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            if userHasPurchasedLicense {
+            if userAlreadyHasLicense {
                 Text(AutoSpotoConstants.Strings.ACTIVATE_LICENSE)
                     .font(.josefinSansBold(22))
                     .font(.headline)
@@ -66,22 +69,7 @@ struct AutoSpotoProUpgradeView: View {
                     } else {
                         ActivateLicenseButton(action: {
                             withAnimation {
-                                isValidatingLicense = true
-                                userEnteredInvalidLicense = false
-                                userEnteredValidLicense = false
-                                
-                                Task {
-                                    let verify = await GumroadManager.verify(licenseKey: licenseKey, shouldIncrementUses: true)
-                                    
-                                    if verify {
-                                        userEnteredValidLicense = true
-                                    } else {
-                                        userEnteredInvalidLicense = true
-                                    }
-                                    
-                                    isValidatingLicense = false
-                                }
-                                
+                                validateLicense(licenseKey: licenseKey)
                             }
                         })
                     }
@@ -103,13 +91,40 @@ struct AutoSpotoProUpgradeView: View {
                 
                 ZStack {
                     UpgradeToAutoSpotoProWebView(
-                        userHasPurchasedLicense: $userHasPurchasedLicense,
                         isLoadingWebView: $isLoadingWebView,
-                        licenseKey: $licenseKey
+                        retrievedLicenseKey: $retrievedLicenseKey,
+                        userPurchasedLicense: $userPurchasedLicense
                     )
+                    .opacity(userPurchasedLicense ? 0.5 : 1)
                     
                     if isLoadingWebView {
                         ProgressView()
+                    }
+                    
+                    if userPurchasedLicense {
+                        VStack(spacing: 6) {
+                            ProgressView()
+                            
+                            if userEnteredValidLicense {
+                                Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
+                                    .font(.josefinSansRegular(18))
+                                    .foregroundColor(Color.spotifyGreen)
+                            } else if userEnteredInvalidLicense {
+                                Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID)
+                                    .font(.josefinSansRegular(18))
+                                    .foregroundColor(Color.errorRed)
+                            } else if let retrievedLicenseKey {
+                                Text(AutoSpotoConstants.Strings.VALIDATING_LICENSE)
+                                    .font(.josefinSansRegular(16))
+                                    .onAppear {
+                                        validateLicense(licenseKey: retrievedLicenseKey)
+                                    }
+                            } else {
+                                Text(AutoSpotoConstants.Strings.FETCHING_LICENSE)
+                                    .font(.josefinSansRegular(16))
+                            }
+                        }
+                        
                     }
                 }
                 
@@ -120,17 +135,22 @@ struct AutoSpotoProUpgradeView: View {
                 Spacer()
                 
                 HStack {
-                    NotNowButton(action: {
-                        showCreatePlaylistSheet = false
-                    })
+                    if !userPurchasedLicense {
+                        NotNowButton(action: {
+                            showCreatePlaylistSheet = false
+                        })
+                    }
                     
                     Spacer()
                     
-                    AlreadyHaveALicenseButton(action: {
-                        withAnimation {
-                            userHasPurchasedLicense = true
-                        }
-                    })
+                    if userPurchasedLicense {
+                        DoneButton(action: {
+                            withAnimation {
+                                showCreatePlaylistSheet = false
+                            }
+                        })
+                        .disabled(isValidatingLicense)
+                    }
                 }
             }
         }
@@ -138,5 +158,23 @@ struct AutoSpotoProUpgradeView: View {
         .padding(.all, 25)
         .padding(25)
         .disabled(isValidatingLicense)
+    }
+    
+    private func validateLicense(licenseKey: String) {
+        isValidatingLicense = true
+        userEnteredInvalidLicense = false
+        userEnteredValidLicense = false
+        
+        Task {
+            let verify = await GumroadManager.verify(licenseKey: licenseKey, shouldIncrementUses: true)
+            
+            if verify {
+                userEnteredValidLicense = true
+            } else {
+                userEnteredInvalidLicense = true
+            }
+            
+            isValidatingLicense = false
+        }
     }
 }
