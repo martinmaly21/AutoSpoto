@@ -14,6 +14,7 @@ extension AutoSpotoConstants {
 }
 
 extension AutoSpotoConstants.HTTPParameter {
+    //spotify
     static let grant_type = "grant_type"
     static let redirect_uri = "redirect_uri"
     static let code = "code"
@@ -26,4 +27,9 @@ extension AutoSpotoConstants.HTTPParameter {
     static let id = "id"
     static let images = "images"
     static let playlistCoverImage = "playlistCoverImage"
+    
+    //gumroad
+    static let product_id = "product_id"
+    static let license_key = "license_key"
+    static let increment_uses_count = "increment_uses_count"
 }

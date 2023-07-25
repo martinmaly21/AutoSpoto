@@ -102,7 +102,11 @@ struct AutoSpotoProUpgradeView: View {
                     .overlay(.gray)
                 
                 ZStack {
-                    UpgradeToAutoSpotoProWebView(userHasPurchasedLicense: $userHasPurchasedLicense, isLoadingWebView: $isLoadingWebView)
+                    UpgradeToAutoSpotoProWebView(
+                        userHasPurchasedLicense: $userHasPurchasedLicense,
+                        isLoadingWebView: $isLoadingWebView,
+                        licenseKey: $licenseKey
+                    )
                     
                     if isLoadingWebView {
                         ProgressView()

@@ -106,7 +106,7 @@ class SpotifyManager {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpURLResponse = response as? HTTPURLResponse,
-                  validStatusCode(httpURLResponse.statusCode) else {
+                  HTTPManager.validStatusCode(httpURLResponse.statusCode) else {
                 
                 let parsedData = String(decoding: data, as: UTF8.self)
                 
@@ -122,23 +122,6 @@ class SpotifyManager {
         } catch let error {
             print("😭 ERROR: \(error)")
             throw error
-        }
-    }
-    
-    private static func validStatusCode(_ statusCode: Int) -> Bool {
-        switch statusCode {
-        case AutoSpotoConstants.HTTPStatus.ok,
-            AutoSpotoConstants.HTTPStatus.created,
-            AutoSpotoConstants.HTTPStatus.accepted,
-            AutoSpotoConstants.HTTPStatus.noContent,
-            AutoSpotoConstants.HTTPStatus.movedPermanently,
-            AutoSpotoConstants.HTTPStatus.found,
-            AutoSpotoConstants.HTTPStatus.movedTemporarily,
-            AutoSpotoConstants.HTTPStatus.temporaryRedirect,
-            AutoSpotoConstants.HTTPStatus.permanentRedirect:
-            return true
-        default:
-            return false
         }
     }
     

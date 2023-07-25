@@ -98,6 +98,9 @@
 		50E552552A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */; };
 		50E552572A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */; };
 		50E552592A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */; };
+		50E5525E2A6EAA7200EC3149 /* GumroadVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525D2A6EAA7200EC3149 /* GumroadVerification.swift */; };
+		50E552602A6EAC8D00EC3149 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */; };
+		50E552612A6EAC9400EC3149 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -264,6 +267,8 @@
 		50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Gumroad.swift"; sourceTree = "<group>"; };
 		50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToAutoSpotoProWebView.swift; sourceTree = "<group>"; };
 		50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyHaveALicenseButton.swift; sourceTree = "<group>"; };
+		50E5525D2A6EAA7200EC3149 /* GumroadVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumroadVerification.swift; sourceTree = "<group>"; };
+		50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		50F178922995EAFF002AFC1C /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		50F178942995ECEB002AFC1C /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		50F178972995ED11002AFC1C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -445,6 +450,7 @@
 			children = (
 				509B08512A31A82100917AAC /* SpotifyManager.swift */,
 				50ACE0402A61366000DE0344 /* SpotifyManager+App.swift */,
+				50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */,
 			);
 			path = SpotifyManager;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */,
 				509B086A2A32108A00917AAC /* SpotifyUser.swift */,
 				50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */,
+				50E5525D2A6EAA7200EC3149 /* GumroadVerification.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -825,6 +832,7 @@
 				509B08712A32F1FD00917AAC /* Array.swift in Sources */,
 				5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */,
 				50CFCE322989DABA009C3F4A /* ChooseMusicStreamingServiceView.swift in Sources */,
+				50E5525E2A6EAA7200EC3149 /* GumroadVerification.swift in Sources */,
 				505DB2952A4ED74C0092E600 /* CheckForUpdatesViewModel.swift in Sources */,
 				50E5524F2A6E830C00EC3149 /* NotNowButton.swift in Sources */,
 				509B085C2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
@@ -874,6 +882,7 @@
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50283F602A5033B900E9121B /* NSImage.swift in Sources */,
+				50E552602A6EAC8D00EC3149 /* HTTPManager.swift in Sources */,
 				50CFCE2E29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift in Sources */,
 				50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */,
 				503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */,
@@ -903,6 +912,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E552612A6EAC9400EC3149 /* HTTPManager.swift in Sources */,
 				50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */,
 				920B21FD2A564AD000904CDD /* NSImage.swift in Sources */,
 				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,

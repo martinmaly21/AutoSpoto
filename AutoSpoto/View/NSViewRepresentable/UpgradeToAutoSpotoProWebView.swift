@@ -7,10 +7,14 @@
 
 import SwiftUI
 import WebKit
+import AppKit
 
 struct UpgradeToAutoSpotoProWebView: NSViewRepresentable {
     @Binding var userHasPurchasedLicense: Bool
     @Binding var isLoadingWebView: Bool
+    @Binding var licenseKey: String
+    
+    @State var isNavigatingToReceiptPage = false
     
     func makeNSView(context: Context) -> WKWebView {
         return WKWebView()
@@ -49,10 +53,27 @@ struct UpgradeToAutoSpotoProWebView: NSViewRepresentable {
             guard let requestURLString = request.url?.absoluteString else {
                 return
             }
+            
+            if requestURLString.contains(AutoSpotoConstants.URL.autoSpotoProProductReceipt) {
+                //user has purchased product
+                parent.isNavigatingToReceiptPage = true
+            }
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             parent.isLoadingWebView = false
+            
+            if parent.isNavigatingToReceiptPage {
+                webView.evaluateJavaScript("document.getElementsByTagName('strong')[0].innerText") { result, error in
+                    self.parent.userHasPurchasedLicense = true
+                    
+                    guard error == nil, let licenseKey = result as? String else {
+                        return
+                    }
+                    
+                    self.parent.licenseKey = licenseKey
+                }
+            }
         }
     }
     
