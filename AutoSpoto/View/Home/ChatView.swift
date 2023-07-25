@@ -57,6 +57,7 @@ struct ChatView: View {
                                                         }
                                                     }
                                             }
+                                            .blur(radius: (selectedChat.spotifyPlaylistExists || homeViewModel.isAutoSpotoPro) ? 0 : 5)
                                         }
                                         .frame(minHeight: proxy.size.height - heightOfToolbar - (selectedChat.spotifyPlaylistExists ? playlistSummaryHeight : createButtonHeight) - 8, alignment: .bottom)
                                     } else {
