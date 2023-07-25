@@ -593,7 +593,7 @@ extension AutoSpotoConstants.Strings {
     
     static let LICENSE_IS_VALID = NSLocalizedString(
         "LICENSE_IS_VALID",
-        value: "You have upgraded to AutoSpoto Pro!",
+        value: "You have upgraded to AutoSpoto Pro",
         comment: "Text if user enters invalid license"
     )
     
