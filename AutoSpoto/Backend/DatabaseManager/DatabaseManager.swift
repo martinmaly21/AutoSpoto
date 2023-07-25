@@ -178,7 +178,7 @@ class DatabaseManager {
                 ignoreTrackedChatsUpdate = true
             }
         } catch {
-            #warning("Handle error")
+            //
         }
     }
     
@@ -191,7 +191,7 @@ class DatabaseManager {
             try database.run(playlistQuery.delete())
             ignoreTrackedChatsUpdate = true
         } catch {
-            #warning("Handle error")
+            //
         }
     }
     
@@ -205,7 +205,7 @@ class DatabaseManager {
             try database.run(playlistQuery.update(lastUpdatedExpression <- lastUpdatedDouble))
             ignoreTrackedChatsUpdate = true
         } catch {
-            #warning("Handle error")
+            //
         }
     }
     

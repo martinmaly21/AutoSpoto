@@ -152,7 +152,7 @@ class HomeViewModel: ObservableObject {
                 chat.spotifyPlaylistID = nil
             }
         } catch let error {
-            #warning("TODO: handle erorr")
+            //
         }
        
         //update chat sections
@@ -168,7 +168,7 @@ class HomeViewModel: ObservableObject {
         do {
             chat.spotifyPlaylist = try await SpotifyManager.fetchPlaylist(for: spotifyPlaylistID)
         } catch let error {
-            //TODO: handle if fetch for playlist fails
+            //
         }
         
         self.objectWillChange.send()
@@ -177,7 +177,6 @@ class HomeViewModel: ObservableObject {
     func disconnectPlaylist(
         for chat: Chat
     ) async {
-        #warning("Need to update autospoto.db")
         guard let spotifyPlaylistID = chat.spotifyPlaylistID else {
             fatalError("Could not get spotifyPlaylistID for chat to remove")
         }

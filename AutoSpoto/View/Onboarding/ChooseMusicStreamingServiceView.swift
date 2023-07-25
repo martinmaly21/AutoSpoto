@@ -55,7 +55,6 @@ struct ChooseMusicStreamingServiceView: View {
                     .foregroundColor(.textPrimaryWhite)
                     .padding(.bottom, 60)
 
-                //TODO: Change in future when we allow user to connect with apple music
                 Text(AutoSpotoConstants.Strings.CONNECTED_TO_SPOTIFY)
                     .font(.josefinSansSemibold(26))
                     .foregroundColor(.textPrimaryWhite)
