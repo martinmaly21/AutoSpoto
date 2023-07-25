@@ -115,18 +115,16 @@ struct AutoSpotoProUpgradeView: View {
                                 
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
                                     .font(.josefinSansRegular(18))
-                                    .foregroundColor(Color.spotifyGreen)
                             } else if userEnteredInvalidLicense {
                                 Image(systemName: "xmark.seal")
                                     .resizable()
                                     .frame(width: 100, height: 100)
-                                    .foregroundColor(Color.errorRed)
                                 
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_INVALID_FROM_PURCHASE)
                                     .font(.josefinSansRegular(18))
                                     .foregroundColor(Color.errorRed)
                                 
-                                AlreadyHaveALicenseButton(
+                                EnterLicenseButton(
                                     action: {
                                         withAnimation {
                                             self.userEnteredInvalidLicense = false

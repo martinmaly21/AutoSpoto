@@ -5,9 +5,9 @@
 //  Created by Martin Maly on 2023-07-25.
 //
 
-import Foundation
+import SwiftUI
 
-struct AlreadyHaveALicenseButton: View {
+struct EnterLicenseButton: View {
     let action: () -> Void
     
     var body: some View {
