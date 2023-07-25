@@ -217,14 +217,18 @@ struct AutoSpotoProUpgradeView: View {
         Task {
             let verify = await GumroadManager.verify(licenseKey: licenseKey)
             
-            if verify {
-                homeViewModel.isAutoSpotoPro = true
-                userEnteredValidLicense = true
-            } else {
-                userEnteredInvalidLicense = true
+            withAnimation {
+                if verify {
+                    homeViewModel.isAutoSpotoPro = true
+                    userEnteredValidLicense = true
+                    userAlreadyHasLicense = false
+                    userPurchasedLicense = true
+                } else {
+                    userEnteredInvalidLicense = true
+                }
+                
+                isValidatingLicense = false
             }
-            
-            isValidatingLicense = false
         }
     }
 }
