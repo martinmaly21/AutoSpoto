@@ -602,5 +602,11 @@ extension AutoSpotoConstants.Strings {
         value: "Fetching license",
         comment: "Loading text for when a user is fetching a license"
     )
+    
+    static let SCANNING_CHATS = NSLocalizedString(
+        "SCANNING_CHATS",
+        value: "Scanning your chats for Spotify tracks",
+        comment: "Loading text for when a user is scanning chats"
+    )
 }
 

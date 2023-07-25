@@ -18,7 +18,12 @@ struct ChatView: View {
         let heightOfToolbar: CGFloat = 80
         
         if homeViewModel.isFetchingChats && homeViewModel.filteredChatSections.isEmpty {
-            ProgressView()
+            VStack(spacing: 8) {
+                ProgressView()
+                
+                Text(AutoSpotoConstants.Strings.SCANNING_CHATS)
+                    .font(.josefinSansRegular(18))
+            }
         } else {
             if let selectedChat = homeViewModel.selectedChat {
                 //there exists at least one chat
