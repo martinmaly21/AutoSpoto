@@ -32,7 +32,7 @@ struct AutoSpotoProUpgradeView: View {
                     .padding(.bottom, 15)
                 
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: 12) {
                     Text(AutoSpotoConstants.Strings.LICENSE_KEY)
                         .font(.josefinSansRegular(18))
                     
@@ -108,7 +108,7 @@ struct AutoSpotoProUpgradeView: View {
                     if userPurchasedLicense {
                         VStack(spacing: 6) {
                             if userEnteredValidLicense {
-                                Image(systemName: "checkmark.seal")
+                                Image(systemName: "checkmark.seal.fill")
                                     .resizable()
                                     .frame(width: 100, height: 100)
                                     .foregroundColor(Color.spotifyGreen)
@@ -116,7 +116,7 @@ struct AutoSpotoProUpgradeView: View {
                                 Text(AutoSpotoConstants.Strings.LICENSE_IS_VALID)
                                     .font(.josefinSansRegular(18))
                             } else if userEnteredInvalidLicense {
-                                Image(systemName: "xmark.seal")
+                                Image(systemName: "xmark.seal.fill")
                                     .resizable()
                                     .frame(width: 100, height: 100)
                                 
