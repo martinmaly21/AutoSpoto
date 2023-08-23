@@ -399,6 +399,7 @@
 			children = (
 				5069BF6E2999AC24007F4037 /* SpotifyLoginWebView.swift */,
 				50E552562A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift */,
+				50C02FF02A963C72004CD56A /* SpotifyDisconnectWebView.swift */,
 			);
 			path = NSViewRepresentable;
 			sourceTree = "<group>";
@@ -504,7 +505,6 @@
 			children = (
 				50C02FEC2A963C1B004CD56A /* AutoSpotoDisconnectView.swift */,
 				50C02FEE2A963C34004CD56A /* SpotifyDisconnectContainerView.swift */,
-				50C02FF02A963C72004CD56A /* SpotifyDisconnectWebView.swift */,
 			);
 			path = Disconnect;
 			sourceTree = "<group>";
