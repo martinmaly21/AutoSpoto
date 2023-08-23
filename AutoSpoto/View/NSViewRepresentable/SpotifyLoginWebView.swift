@@ -1,5 +1,5 @@
 //
-//  SpotifyWebView.swift
+//  SpotifyLoginWebView.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-02-12.
@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct SpotifyWebView: NSViewRepresentable {
+struct SpotifyLoginWebView: NSViewRepresentable {
     @Binding var isVisible: Bool
     @Binding var userAuthorizedSpotify: Bool
     @Binding var isLoadingWebView: Bool
@@ -27,9 +27,9 @@ struct SpotifyWebView: NSViewRepresentable {
     }
 
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: SpotifyWebView
+        var parent: SpotifyLoginWebView
         
-        init(_ parent: SpotifyWebView) {
+        init(_ parent: SpotifyLoginWebView) {
             self.parent = parent
         }
         

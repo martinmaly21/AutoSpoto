@@ -1,5 +1,5 @@
 //
-//  SpotifyLoginView.swift
+//  SpotifyLoginContainerView.swift
 //  AutoSpoto
 //
 //  Created by Martin Maly on 2023-02-12.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpotifyLoginView: View {
+struct SpotifyLoginContainerView: View {
     @State var isLoadingWebView = true
     @Binding var isVisible: Bool
     @Binding var userAuthorizedSpotify: Bool
@@ -34,7 +34,7 @@ struct SpotifyLoginView: View {
             }
 
             ZStack {
-                SpotifyWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify, isLoadingWebView: $isLoadingWebView)
+                SpotifyLoginWebView(isVisible: $isVisible, userAuthorizedSpotify: $userAuthorizedSpotify, isLoadingWebView: $isLoadingWebView)
                 
                 if isLoadingWebView {
                     ProgressView()

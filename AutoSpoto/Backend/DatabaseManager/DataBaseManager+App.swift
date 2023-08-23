@@ -47,11 +47,11 @@ extension DatabaseManager {
                     
                     return df
                 }).ungrouped()
-            var chatsWithNoDisplayName  = await fetchGroupChatsNoNames()
+            let chatsWithNoDisplayName  = await fetchGroupChatsNoNames()
             
             
             groupChats.append(chatsWithNoDisplayName)
-          
+            
             guard !groupChats.isEmpty else {
                 //if there's no group chats, return an empty array early
                 //this fixes crash when attempting to join on a data frame with no rows
@@ -134,195 +134,188 @@ extension DatabaseManager {
     }
     
     func fetchGroupChatsNoNames() async -> DataFrame{
+        
+        do{
             
-            do{
-                
-                var contactsRowsTuple = [(chat_identifier: String, contact_info: String?, chat_id: Int)]()
-                
-                let chatIdentifier = Expression<String>("chat_identifier")
-                let ID = Expression<String?>("id")
-                let chatID = Expression<Int>("chat_id")
-                let displayName = Expression<String?>("display_name")
-                let rowID = Expression<Int>("rowid")
-                let handleID = Expression<Int?>("handle_id")
-                
-                let chatMessageJoin = Table("chat_message_join")
-                let message = Table("message")
-                let chatHandleJoin = Table("chat_handle_join")
-                let handle = Table("handle")
-                let chat = Table("chat")
-                
-                //Query that joins handle, chat, chat_handle_join and message
-                let query = chat.select(chat[chatIdentifier], handle[ID], chatMessageJoin[chatID]).where(chatIdentifier.like("%chat%") && displayName == "").join(chatMessageJoin, on: chatMessageJoin[chatID]==chat[rowID]).join(chatHandleJoin, on: chatHandleJoin[chatID]==chat[rowID]).join(handle, on:handle[rowID]==chatHandleJoin[handleID]).group(chat[chatIdentifier], handle[ID])
-                
-                for groupChat in try database.prepare(query){
-                    //Here we are removing the + in front of the phone number so that the value can be joined with the phone number from the fetchContacts()
-                    var contact_info = groupChat[handle[ID]]
-                    if ((contact_info?.hasPrefix("+")) != false){
-                        contact_info?.removeFirst()
-                    }
-                    
-                    contactsRowsTuple.append((chat_identifier:groupChat[chat[chatIdentifier]], contact_info: contact_info, chat_id: groupChat[chatMessageJoin[chatID]]))
+            var contactsRowsTuple = [(chat_identifier: String, contact_info: String?, chat_id: Int)]()
+            
+            let chatIdentifier = Expression<String>("chat_identifier")
+            let ID = Expression<String?>("id")
+            let chatID = Expression<Int>("chat_id")
+            let displayName = Expression<String?>("display_name")
+            let rowID = Expression<Int>("rowid")
+            let handleID = Expression<Int?>("handle_id")
+            
+            let chatMessageJoin = Table("chat_message_join")
+            let chatHandleJoin = Table("chat_handle_join")
+            let handle = Table("handle")
+            let chat = Table("chat")
+            
+            //Query that joins handle, chat, chat_handle_join and message
+            let query = chat.select(chat[chatIdentifier], handle[ID], chatMessageJoin[chatID]).where(chatIdentifier.like("%chat%") && displayName == "").join(chatMessageJoin, on: chatMessageJoin[chatID]==chat[rowID]).join(chatHandleJoin, on: chatHandleJoin[chatID]==chat[rowID]).join(handle, on:handle[rowID]==chatHandleJoin[handleID]).group(chat[chatIdentifier], handle[ID])
+            
+            for groupChat in try database.prepare(query){
+                //Here we are removing the + in front of the phone number so that the value can be joined with the phone number from the fetchContacts()
+                var contact_info = groupChat[handle[ID]]
+                if ((contact_info?.hasPrefix("+")) != false){
+                    contact_info?.removeFirst()
                 }
                 
-                let chatsDataFrame: DataFrame = [
-                    "MessageID": contactsRowsTuple.map { $0.chat_identifier },
-                    "contactInfo": contactsRowsTuple.map { $0.contact_info },
-                    "chatID": contactsRowsTuple.map { $0.chat_id },
-                    "imageBlob": contactsRowsTuple.map {_ in nil}
-                ]
-                
-                var contactDF = await fetchContacts()
-                
-                var chatsWithAssociatedContactsDataFrame = chatsDataFrame
-                    .joined(contactDF, on: "contactInfo", kind: .left)
-                
-                chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
-                chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
-                chatsWithAssociatedContactsDataFrame.renameColumn("right.lastName", to: "lastName")
-                chatsWithAssociatedContactsDataFrame.renameColumn("right.imageBlob", to: "imageBlob")
-                
-                //here we are checking if where there is a first name, last name or just a phone number for the contact
-                for (index, row) in chatsWithAssociatedContactsDataFrame.rows.enumerated(){
-                    
-                    var firstNameNil = (row[3]==nil)
-                    var lastNameNil = (row[4]==nil)
-                    
-                   //If a first name exists do nothing
-                    if (!firstNameNil){
-                        continue
-                    }
-                    //assign the last name to the display name if there is no first name but there is a last name
-                    else if(!lastNameNil){
-                        chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[4]
-                    }
-                    //if no first and last name assign the phone number as the display name
-                    else{
-                        chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[1]
-                    }
-                }
-                
-                
-                
-                var chatsWithDisplayNames = chatsWithAssociatedContactsDataFrame.selecting(columnNames: "chatID", "firstName","MessageID","contactInfo")
-                
-                //Here we are grouping the chat names by the chat ID. This way contacts beloning to a group chat that doesnt have a name can be aggregated
-                chatsWithDisplayNames = chatsWithDisplayNames.grouped(by: "chatID")
-                    .mapGroups({ slice in
-                        var df = DataFrame()
-                        
-                        df["chatID", Int.self] = Column(name: "chatID", contents: [slice["chatID"].first as! Int])
-                        df["firstName", [String].self] = Column(name: "firstName", contents: [slice["firstName"].compactMap { $0 as? String }])
-                        df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
-                        df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
-                        
-                        return df
-                    }).ungrouped()
-
-                chatsWithDisplayNames.renameColumn("firstName", to: "ChatName")
-                chatsWithDisplayNames.renameColumn("contactInfo", to: "ContactInfo")
-                chatsWithDisplayNames.renameColumn("chatID", to: "ChatId")
-                return chatsWithDisplayNames
-                
-            }catch let error{
-                fatalError("Error: \(error)")
+                contactsRowsTuple.append((chat_identifier:groupChat[chat[chatIdentifier]], contact_info: contact_info, chat_id: groupChat[chatMessageJoin[chatID]]))
             }
+            
+            let chatsDataFrame: DataFrame = [
+                "MessageID": contactsRowsTuple.map { $0.chat_identifier },
+                "contactInfo": contactsRowsTuple.map { $0.contact_info },
+                "chatID": contactsRowsTuple.map { $0.chat_id },
+                "imageBlob": contactsRowsTuple.map {_ in nil}
+            ]
+            
+            let contactDF = await fetchContacts()
+            
+            var chatsWithAssociatedContactsDataFrame = chatsDataFrame
+                .joined(contactDF, on: "contactInfo", kind: .left)
+            
+            chatsWithAssociatedContactsDataFrame.renameColumn("left.chatID", to: "chatID")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.firstName", to: "firstName")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.lastName", to: "lastName")
+            chatsWithAssociatedContactsDataFrame.renameColumn("right.imageBlob", to: "imageBlob")
+            
+            //here we are checking if where there is a first name, last name or just a phone number for the contact
+            for (index, row) in chatsWithAssociatedContactsDataFrame.rows.enumerated(){
+                
+                let firstNameNil = (row[3]==nil)
+                let lastNameNil = (row[4]==nil)
+                
+                //If a first name exists do nothing
+                if (!firstNameNil){
+                    continue
+                }
+                //assign the last name to the display name if there is no first name but there is a last name
+                else if(!lastNameNil){
+                    chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[4]
+                }
+                //if no first and last name assign the phone number as the display name
+                else{
+                    chatsWithAssociatedContactsDataFrame.rows[index]["firstName"] = row[1]
+                }
+            }
+            
+            
+            
+            var chatsWithDisplayNames = chatsWithAssociatedContactsDataFrame.selecting(columnNames: "chatID", "firstName","MessageID","contactInfo")
+            
+            //Here we are grouping the chat names by the chat ID. This way contacts beloning to a group chat that doesnt have a name can be aggregated
+            chatsWithDisplayNames = chatsWithDisplayNames.grouped(by: "chatID")
+                .mapGroups({ slice in
+                    var df = DataFrame()
+                    
+                    df["chatID", Int.self] = Column(name: "chatID", contents: [slice["chatID"].first as! Int])
+                    df["firstName", [String].self] = Column(name: "firstName", contents: [slice["firstName"].compactMap { $0 as? String }])
+                    df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
+                    df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
+                    
+                    return df
+                }).ungrouped()
+            
+            chatsWithDisplayNames.renameColumn("firstName", to: "ChatName")
+            chatsWithDisplayNames.renameColumn("contactInfo", to: "ContactInfo")
+            chatsWithDisplayNames.renameColumn("chatID", to: "ChatId")
+            return chatsWithDisplayNames
+            
+        }catch let error{
+            fatalError("Error: \(error)")
         }
+    }
     
     
     
     func fetchContacts() async -> DataFrame{
-        do{
+        let contactStore = CNContactStore()
+        
+        let keysToFetch: [CNKeyDescriptor] = [
+            CNContactGivenNameKey as CNKeyDescriptor,
+            CNContactMiddleNameKey as CNKeyDescriptor,
+            CNContactFamilyNameKey as CNKeyDescriptor,
+            CNContactEmailAddressesKey as CNKeyDescriptor,
+            CNContactPhoneNumbersKey as CNKeyDescriptor,
+            CNContactThumbnailImageDataKey as CNKeyDescriptor
+        ]
+        
+        let result = try? await CNContactStore().requestAccess(for: .contacts)
+        
+        var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: String?)]()
+        
+        if result ?? false {
+            //user has given AutoSpoto contact permissions
+            var allContainers: [CNContainer] = []
+            do {
+                allContainers = try contactStore.containers(matching: nil)
+            } catch let error {
+                print("Error fetching containers: \(error)")
+            }
             
-            let contactStore = CNContactStore()
+            var results: [CNContact] = []
             
-            let keysToFetch: [CNKeyDescriptor] = [
-                CNContactGivenNameKey as CNKeyDescriptor,
-                CNContactMiddleNameKey as CNKeyDescriptor,
-                CNContactFamilyNameKey as CNKeyDescriptor,
-                CNContactEmailAddressesKey as CNKeyDescriptor,
-                CNContactPhoneNumbersKey as CNKeyDescriptor,
-                CNContactThumbnailImageDataKey as CNKeyDescriptor
-            ]
-            
-            let result = try? await CNContactStore().requestAccess(for: .contacts)
-            
-            var contactsRowsTuple = [(firstName: String?, lastName: String?, contactInfo: String, imageBlob: String?)]()
-            
-            if result ?? false {
-                //user has given AutoSpoto contact permissions
-                var allContainers: [CNContainer] = []
+            // Iterate all containers and append their contacts to our results array
+            for container in allContainers {
+                let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
                 do {
-                    allContainers = try contactStore.containers(matching: nil)
-                } catch let error {
-                    print("Error fetching containers: \(error)")
-                }
-                
-                var results: [CNContact] = []
-                
-                // Iterate all containers and append their contacts to our results array
-                for container in allContainers {
-                    let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
-                    do {
-                        let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch)
-                        results.append(contentsOf: containerResults)
-                    } catch {
-                        print("Error fetching results for container")
-                    }
-                }
-                
-                //contacts data frame holds both the email and phone number contacts
-                for result in results {
-                    let firstName = result.givenName + result.middleName
-                    let lastName = result.familyName
-                    let image = result.thumbnailImageData
-                    
-                    //we want to appenda  separate row in the DataFrame for each variation of the contact
-                    //i.e. there should be a separate row for each contact #, each email, even if within the same contact
-                    for result in result.phoneNumbers {
-                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: result.value.stringValue.digits, imageBlob: image?.base64EncodedString()))
-                    }
-                    
-                    for result in result.emailAddresses {
-                        contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image?.base64EncodedString()))
-                    }
-                }
-                
-            }
-            var contactRows: [ContactRow] = []
-            
-            // Iterate through the original array
-            for row in contactsRowsTuple {
-                // Check if contactInfo already exists in contactStruct
-                let contactInfo = row.contactInfo
-                let contactInfoExists = contactRows.contains { $0.contactInfo == contactInfo }
-                
-                // Add the row only if contactInfo doesn't exist in contactStruct
-                if !contactInfoExists {
-                    let customRow = ContactRow(
-                        firstName: row.firstName,
-                        lastName: row.lastName,
-                        contactInfo: row.contactInfo,
-                        imageBlob: row.imageBlob
-                    )
-                    contactRows.append(customRow)
+                    let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch)
+                    results.append(contentsOf: containerResults)
+                } catch {
+                    print("Error fetching results for container")
                 }
             }
             
-            contactRows = contactRows.unique
+            //contacts data frame holds both the email and phone number contacts
+            for result in results {
+                let firstName = result.givenName + result.middleName
+                let lastName = result.familyName
+                let image = result.thumbnailImageData
+                
+                //we want to appenda  separate row in the DataFrame for each variation of the contact
+                //i.e. there should be a separate row for each contact #, each email, even if within the same contact
+                for result in result.phoneNumbers {
+                    contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: result.value.stringValue.digits, imageBlob: image?.base64EncodedString()))
+                }
+                
+                for result in result.emailAddresses {
+                    contactsRowsTuple.append((firstName: firstName, lastName: lastName, contactInfo: String(result.value), imageBlob: image?.base64EncodedString()))
+                }
+            }
             
-            let contactsDataFrame: DataFrame = [
-                "firstName": contactRows.map { $0.firstName }.isEmpty ? [""] : contactRows.map { $0.firstName },
-                "lastName": contactRows.map { $0.lastName }.isEmpty ? [""] : contactRows.map { $0.lastName },
-                "contactInfo": contactRows.map { $0.contactInfo }.isEmpty ? [""] : contactRows.map { $0.contactInfo },
-                "imageBlob": contactRows.map { $0.imageBlob }.isEmpty ? [""] : contactRows.map { $0.imageBlob }
-            ]
+        }
+        var contactRows: [ContactRow] = []
+        
+        // Iterate through the original array
+        for row in contactsRowsTuple {
+            // Check if contactInfo already exists in contactStruct
+            let contactInfo = row.contactInfo
+            let contactInfoExists = contactRows.contains { $0.contactInfo == contactInfo }
             
-            return contactsDataFrame
+            // Add the row only if contactInfo doesn't exist in contactStruct
+            if !contactInfoExists {
+                let customRow = ContactRow(
+                    firstName: row.firstName,
+                    lastName: row.lastName,
+                    contactInfo: row.contactInfo,
+                    imageBlob: row.imageBlob
+                )
+                contactRows.append(customRow)
+            }
         }
-        catch let error{
-            fatalError("error: \(error)")
-        }
+        
+        contactRows = contactRows.unique
+        
+        let contactsDataFrame: DataFrame = [
+            "firstName": contactRows.map { $0.firstName }.isEmpty ? [""] : contactRows.map { $0.firstName },
+            "lastName": contactRows.map { $0.lastName }.isEmpty ? [""] : contactRows.map { $0.lastName },
+            "contactInfo": contactRows.map { $0.contactInfo }.isEmpty ? [""] : contactRows.map { $0.contactInfo },
+            "imageBlob": contactRows.map { $0.imageBlob }.isEmpty ? [""] : contactRows.map { $0.imageBlob }
+        ]
+        
+        return contactsDataFrame
     }
     func fetchIndividualChats() async -> [Chat] {
         do {

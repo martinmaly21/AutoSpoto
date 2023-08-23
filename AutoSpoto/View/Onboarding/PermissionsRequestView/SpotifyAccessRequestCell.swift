@@ -84,7 +84,7 @@ struct SpotifyAccessRequestCell: View {
         .sheet(
             isPresented: $showSpotifyLoginSheet,
             content: {
-                SpotifyLoginView(isVisible: $showSpotifyLoginSheet, userAuthorizedSpotify: $userAuthorizedSpotify)
+                SpotifyLoginContainerView(isVisible: $showSpotifyLoginSheet, userAuthorizedSpotify: $userAuthorizedSpotify)
             }
         )
     }
