@@ -47,14 +47,12 @@ struct TrackRow: View {
                         .placeholder {
                             Color.gray
                                 .frame(width: 40, height: 40)
-                                .cornerRadius(8)
                         }
                         .cacheOriginalImage(true)
                         .fade(duration: 0.25)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 40, height: 40)
-                        .cornerRadius(8)
                         .aspectRatio(contentMode: .fill)
                 }
                 

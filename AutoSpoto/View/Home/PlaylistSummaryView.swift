@@ -48,7 +48,6 @@ struct PlaylistSummaryView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 90, height: 90)
-                                    .cornerRadius(8)
                                     .aspectRatio(contentMode: .fill)
                                 
                                 VStack(alignment: .leading, spacing: 6) {
