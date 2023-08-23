@@ -10,6 +10,8 @@ import Sparkle
 
 @main
 struct AutoSpotoApp: App {
+    @State private var showAutoSpotoDisconnectSheet: Bool = false
+    
     private let updaterController: SPUStandardUpdaterController
     
     init() {
@@ -20,12 +22,24 @@ struct AutoSpotoApp: App {
         WindowGroup {
             AutoSpotoContainerView()
                 .preferredColorScheme(.dark)
+                .sheet(
+                    isPresented: $showAutoSpotoDisconnectSheet,
+                    content: {
+                        Text("SLDFS")
+                    }
+                )
         }
         .commands {
             CommandGroup(after: .appInfo) {
                 CheckForUpdatesView(updater: updaterController.updater)
             }
             
+            
+            CommandGroup(before: CommandGroupPlacement.appTermination, addition: {
+                Button(AutoSpotoConstants.Strings.DISCONNECT_AUTOSPOTO) {
+                    showAutoSpotoDisconnectSheet = true
+                }
+            })
             CommandGroup(replacing: CommandGroupPlacement.newItem) { }
         }
         //disable resizing of the window

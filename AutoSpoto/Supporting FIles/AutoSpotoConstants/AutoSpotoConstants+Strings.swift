@@ -620,5 +620,11 @@ extension AutoSpotoConstants.Strings {
         value: "Enter license",
         comment: "Button text for button to manually enter license"
     )
+    
+    static let DISCONNECT_AUTOSPOTO = NSLocalizedString(
+        "DISCONNECT_AUTOSPOTO",
+        value: "Disconnect AutoSpoto",
+        comment: "Button to disconnect AutoSpoto from Spotify"
+    )
 }
 
