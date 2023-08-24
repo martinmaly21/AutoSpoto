@@ -88,7 +88,7 @@ struct AutoSpotoDisconnectView: View {
                         PlaylistUpdaterManager.deletePlaylistUpdaterValidation()
                         
                         //delete autospoto.db
-                        DatabaseManager.deleteAutoSpotoDatabase()
+                        DatabaseManager.shared.deleteAutoSpotoDatabase()
                         
                         //de register auto playlist updater
                         PlaylistUpdaterManager.deregisterIfNeeded()

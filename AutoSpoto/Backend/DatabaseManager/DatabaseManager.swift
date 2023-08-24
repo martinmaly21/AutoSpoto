@@ -29,6 +29,7 @@ class DatabaseManager {
             }
         }
     }
+    private var timer: Timer?
     
     public var hasTrackedChats: Bool {
         return !trackedChats.isEmpty
@@ -70,11 +71,13 @@ class DatabaseManager {
         }
         
         if onTrackedChatsDBUpdatedOutsideOfApp != nil {
-            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTrackedChats), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTrackedChats), userInfo: nil, repeats: true)
         }
     }
     
-    public static func deleteAutoSpotoDatabase() {
+    public func deleteAutoSpotoDatabase() {
+        timer?.invalidate()
+        
         if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/autospoto.db")
             do {
