@@ -55,7 +55,7 @@ class SpotifyTokenManager {
             do {
                 try FileManager.default.removeItem(at: directoryURL)
             } catch let error {
-                fatalError("Error deleting JSON token: \(error.localizedDescription)")
+                print("Error deleting JSON token: \(error.localizedDescription)")
             }
         }
     }

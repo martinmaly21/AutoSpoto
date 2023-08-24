@@ -66,7 +66,7 @@ class LicenseManager {
             do {
                 try FileManager.default.removeItem(at: directoryURL)
             } catch let error {
-                fatalError("Error deleting license: \(error.localizedDescription)")
+                print("Error deleting license: \(error.localizedDescription)")
             }
         }
     }

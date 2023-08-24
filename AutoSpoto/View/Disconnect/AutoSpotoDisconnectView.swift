@@ -77,7 +77,7 @@ struct AutoSpotoDisconnectView: View {
                     }
                     .padding(.bottom, 20)
                     
-                    ClearAssociatedDataButton {
+                    ClearAssociatedDataButton(isEnabled: autoSpotoCurrentView != .onboarding) {
                         //delete spotify token
                         SpotifyTokenManager.deleteToken()
                         

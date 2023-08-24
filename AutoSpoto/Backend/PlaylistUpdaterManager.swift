@@ -45,7 +45,7 @@ class PlaylistUpdaterManager {
             do {
                 try FileManager.default.removeItem(at: directoryURL)
             } catch let error {
-                fatalError("Error deleting PlaylistUpdaterValidation: \(error.localizedDescription)")
+                print("Error deleting PlaylistUpdaterValidation: \(error.localizedDescription)")
             }
         }
     }

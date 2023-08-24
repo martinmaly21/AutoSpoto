@@ -80,7 +80,7 @@ class DatabaseManager {
             do {
                 try FileManager.default.removeItem(at: directoryURL)
             } catch let error {
-                fatalError("Error deleting autospoto db: \(error.localizedDescription)")
+                print("Error deleting autospoto db: \(error.localizedDescription)")
             }
         }
     }

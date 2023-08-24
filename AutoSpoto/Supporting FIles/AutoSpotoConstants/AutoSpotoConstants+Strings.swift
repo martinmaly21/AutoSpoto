@@ -656,5 +656,11 @@ extension AutoSpotoConstants.Strings {
         value: "Clear associated data",
         comment: "Button to clear data on device associated with AutoSpoto"
     )
+    
+    static let NO_ASSOCIATED_DATA = NSLocalizedString(
+        "NO_ASSOCIATED_DATA",
+        value: "No associated data found on this device",
+        comment: "Button to clear data on device associated with AutoSpoto"
+    )
 }
 

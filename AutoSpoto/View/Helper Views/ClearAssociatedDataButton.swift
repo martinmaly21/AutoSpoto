@@ -8,21 +8,30 @@
 import SwiftUI
 
 struct ClearAssociatedDataButton: View {
+    let isEnabled: Bool
     let action: () -> Void
     
     var body: some View {
-        Button(
-            action: action,
-            label: {
-                Text(AutoSpotoConstants.Strings.CLEAR_ASSOCIATED_DATA)
-                    .font(.josefinSansBold(14))
-                    .padding(6)
-                    .padding(.horizontal, 8)
-                    .background(Color.spotifyGreen)
-                    .foregroundColor(Color.white)
-                    .clipShape(Capsule())
+        VStack(spacing: 4) {
+            Button(
+                action: action,
+                label: {
+                    Text(AutoSpotoConstants.Strings.CLEAR_ASSOCIATED_DATA)
+                        .font(.josefinSansBold(14))
+                        .padding(6)
+                        .padding(.horizontal, 8)
+                        .background(isEnabled ? Color.spotifyGreen : Color.gray)
+                        .foregroundColor(Color.white)
+                        .clipShape(Capsule())
+                }
+            )
+            .buttonStyle(.plain)
+            .disabled(!isEnabled)
+            
+            if !isEnabled {
+                Text(AutoSpotoConstants.Strings.NO_ASSOCIATED_DATA)
+                    .font(.josefinSansLight(14))
             }
-        )
-        .buttonStyle(.plain)
+        }
     }
 }
