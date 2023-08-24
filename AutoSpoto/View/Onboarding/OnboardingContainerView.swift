@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingContainerView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @Binding var autoSpotoCurrentView: AutoSpotoContainerView.CurrentView
+    @Binding var autoSpotoCurrentView: AutoSpotoApp.CurrentView
     
     enum CurrentView {
         case getStarted

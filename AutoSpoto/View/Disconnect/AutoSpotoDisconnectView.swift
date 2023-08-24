@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AutoSpotoDisconnectView: View {
     @Binding var isVisible: Bool
+    @Binding var autoSpotoCurrentView: AutoSpotoApp.CurrentView
     
     var body: some View {
         ZStack {
@@ -91,6 +92,8 @@ struct AutoSpotoDisconnectView: View {
                         
                         //de register auto playlist updater
                         PlaylistUpdaterManager.deregisterIfNeeded()
+                        
+                        autoSpotoCurrentView = .onboarding
                     }
                     .padding(.bottom, 20)
                 }

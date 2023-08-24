@@ -10,6 +10,12 @@ import Sparkle
 
 @main
 struct AutoSpotoApp: App {
+    enum CurrentView {
+        case onboarding
+        case home
+    }
+    
+    @State private var autoSpotoCurrentView: CurrentView = .onboarding
     @State private var showAutoSpotoDisconnectSheet: Bool = false
     
     private let updaterController: SPUStandardUpdaterController
@@ -20,12 +26,12 @@ struct AutoSpotoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AutoSpotoContainerView()
+            AutoSpotoContainerView(autoSpotoCurrentView: $autoSpotoCurrentView)
                 .preferredColorScheme(.dark)
                 .sheet(
                     isPresented: $showAutoSpotoDisconnectSheet,
                     content: {
-                        AutoSpotoDisconnectView(isVisible: $showAutoSpotoDisconnectSheet)
+                        AutoSpotoDisconnectView(isVisible: $showAutoSpotoDisconnectSheet, autoSpotoCurrentView: $autoSpotoCurrentView)
                     }
                 )
         }

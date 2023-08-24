@@ -10,11 +10,7 @@ import SwiftUI
 struct AutoSpotoContainerView: View {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    enum CurrentView {
-        case onboarding
-        case home
-    }
-    @State private var autoSpotoCurrentView: CurrentView = .onboarding
+    @Binding var autoSpotoCurrentView: AutoSpotoApp.CurrentView
     
     var body: some View {
         ZStack {
@@ -39,11 +35,5 @@ struct AutoSpotoContainerView: View {
                 autoSpotoCurrentView = .onboarding
             }
         }
-    }
-}
-
-struct AutoSpotoContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AutoSpotoContainerView()
     }
 }
