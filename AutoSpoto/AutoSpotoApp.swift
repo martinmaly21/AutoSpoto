@@ -25,7 +25,7 @@ struct AutoSpotoApp: App {
                 .sheet(
                     isPresented: $showAutoSpotoDisconnectSheet,
                     content: {
-                        Text("SLDFS")
+                        AutoSpotoDisconnectView(isVisible: $showAutoSpotoDisconnectSheet)
                     }
                 )
         }

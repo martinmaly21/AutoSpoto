@@ -35,4 +35,5 @@ extension AutoSpotoConstants.URL {
     
     static let autoSpotoProProduct = URL(string: "https://autospoto.gumroad.com/l/pro")!
     static let autoSpotoProProductReceipt = URL(string: "https://app.gumroad.com/d/")!
+    static let autoSpotoDisconnectSpotify = URL(string: "https://www.spotify.com/account/apps/")!
 }

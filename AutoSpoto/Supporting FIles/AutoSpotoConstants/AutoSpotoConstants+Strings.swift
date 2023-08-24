@@ -626,5 +626,35 @@ extension AutoSpotoConstants.Strings {
         value: "Disconnect AutoSpoto",
         comment: "Button to disconnect AutoSpoto from Spotify"
     )
+    
+    static let DISCONNECT_AUTOSPOTO_FROM_SPOTIFY = NSLocalizedString(
+        "DISCONNECT_AUTOSPOTO_FROM_SPOTIFY",
+        value: "1. Disconnect AutoSpoto from Spotify",
+        comment: "Button to disconnect AutoSpoto from Spotify"
+    )
+    
+    static let DISCONNECT_AUTOSPOTO_FROM_DEVICE = NSLocalizedString(
+        "DISCONNECT_AUTOSPOTO_FROM_DEVICE",
+        value: "2. Clear AutoSpoto data from this device",
+        comment: "Button to disconnect AutoSpoto from this device"
+    )
+    
+    static let DISCONNECT_AUTOSPOTO_FROM_SPOTIFY_INSTRUCTIONS = NSLocalizedString(
+        "DISCONNECT_AUTOSPOTO_FROM_SPOTIFY_INSTRUCTIONS",
+        value: "a. Go to \(AutoSpotoConstants.URL.autoSpotoDisconnectSpotify).\nb. Sign in to Spotify.\nc. Click on the 'Remove Access' button for AutoSpoto.",
+        comment: "Instructions to disconnect AutoSpoto from Spotify"
+    )
+    
+    static let DISCONNECT_AUTOSPOTO_FROM_DEVICE_INSTRUCTIONS = NSLocalizedString(
+        "DISCONNECT_AUTOSPOTO_FROM_DEVICE_INSTRUCTIONS",
+        value: "In order to clear all associated data with AutoSpoto from this device, click the button below. This will disconnect all of your connected chats, and will log you out of AutoSpoto.",
+        comment: "Instructions to disconnect AutoSpoto from this device"
+    )
+    
+    static let CLEAR_ASSOCIATED_DATA = NSLocalizedString(
+        "CLEAR_ASSOCIATED_DATA",
+        value: "Clear associated data",
+        comment: "Button to clear data on device associated with AutoSpoto"
+    )
 }
 
