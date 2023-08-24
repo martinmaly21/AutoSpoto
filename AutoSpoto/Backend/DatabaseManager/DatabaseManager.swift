@@ -74,6 +74,17 @@ class DatabaseManager {
         }
     }
     
+    public static func deleteAutoSpotoDatabase() {
+        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/autospoto.db")
+            do {
+                try FileManager.default.removeItem(at: directoryURL)
+            } catch let error {
+                fatalError("Error deleting autospoto db: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     @objc func updateTrackedChats() {
         trackedChats = retrieveTrackedChats()
     }

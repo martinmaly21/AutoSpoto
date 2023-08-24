@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
+		500AE0BD2A96E1B600BE6995 /* PlaylistUpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
@@ -189,6 +190,7 @@
 
 /* Begin PBXFileReference section */
 		500215E22A57B64900978C20 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
+		500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistUpdaterManager.swift; sourceTree = "<group>"; };
 		50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Disk_Access_Coaching.mov; sourceTree = "<group>"; };
 		50283F5F2A5033B900E9121B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				506B34092A5FAD8E002938D3 /* PhoneNumberManager.swift */,
 				50F6D4822A6E6193009B8055 /* LicenseManager.swift */,
 				50E552452A6E69FC00EC3149 /* GumroadManager.swift */,
+				500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				505DB29A2A4ED84A0092E600 /* UpdaterSettingsView.swift in Sources */,
 				50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */,
 				50C6F2BC2A6FA87D00A03D2A /* EnterLicenseButton.swift in Sources */,
+				500AE0BD2A96E1B600BE6995 /* PlaylistUpdaterManager.swift in Sources */,
 				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
 				50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */,

@@ -77,7 +77,20 @@ struct AutoSpotoDisconnectView: View {
                     .padding(.bottom, 20)
                     
                     ClearAssociatedDataButton {
-                        print("Test")
+                        //delete spotify token
+                        SpotifyTokenManager.deleteToken()
+                        
+                        //delete license
+                        LicenseManager.deleteLicense()
+                        
+                        //delete validation json
+                        PlaylistUpdaterManager.deletePlaylistUpdaterValidation()
+                        
+                        //delete autospoto.db
+                        DatabaseManager.deleteAutoSpotoDatabase()
+                        
+                        //de register auto playlist updater
+                        PlaylistUpdaterManager.deregisterIfNeeded()
                     }
                     .padding(.bottom, 20)
                 }

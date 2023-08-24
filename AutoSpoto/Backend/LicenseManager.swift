@@ -59,4 +59,15 @@ class LicenseManager {
             }
         }
     }
+    
+    public static func deleteLicense() {
+        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/license.json")
+            do {
+                try FileManager.default.removeItem(at: directoryURL)
+            } catch let error {
+                fatalError("Error deleting license: \(error.localizedDescription)")
+            }
+        }
+    }
 }
