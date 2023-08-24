@@ -32,7 +32,6 @@
 		5069BF6C2999AB2D007F4037 /* SpotifyLoginContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6B2999AB2D007F4037 /* SpotifyLoginContainerView.swift */; };
 		5069BF6F2999AC24007F4037 /* SpotifyLoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6E2999AC24007F4037 /* SpotifyLoginWebView.swift */; };
 		5069BF732999C0A6007F4037 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
-		5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */; };
 		506B34032A5EA764002938D3 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
 		506B34052A5EB4AC002938D3 /* UpgradeToProButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */; };
 		506B34082A5FAD47002938D3 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 506B34072A5FAD47002938D3 /* PhoneNumberKit */; };
@@ -209,7 +208,6 @@
 		5069BF6B2999AB2D007F4037 /* SpotifyLoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginContainerView.swift; sourceTree = "<group>"; };
 		5069BF6E2999AC24007F4037 /* SpotifyLoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginWebView.swift; sourceTree = "<group>"; };
 		5069BF722999C0A6007F4037 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoContainerView.swift; sourceTree = "<group>"; };
 		506B34022A5EA764002938D3 /* JSONToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONToken.swift; sourceTree = "<group>"; };
 		506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeToProButton.swift; sourceTree = "<group>"; };
 		506B34092A5FAD8E002938D3 /* PhoneNumberManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberManager.swift; sourceTree = "<group>"; };
@@ -646,7 +644,6 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5069BF74299AA5D3007F4037 /* AutoSpotoContainerView.swift */,
 				505DB2982A4ED8380092E600 /* Updates */,
 				5048A23B2A38C16E00790C36 /* GeometryEffect */,
 				50D0261B2A38BC8B00DBD789 /* Subclass */,
@@ -846,7 +843,6 @@
 				504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */,
 				506B34032A5EA764002938D3 /* JSONToken.swift in Sources */,
 				50D43F602985EAD5000DC525 /* View.swift in Sources */,
-				5069BF75299AA5D3007F4037 /* AutoSpotoContainerView.swift in Sources */,
 				50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */,
 				509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */,
 				50F34C5D2976527D0059516B /* AutoSpotoConstants.swift in Sources */,

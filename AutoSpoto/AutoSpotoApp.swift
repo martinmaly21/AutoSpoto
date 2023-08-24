@@ -10,6 +10,8 @@ import Sparkle
 
 @main
 struct AutoSpotoApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     enum CurrentView {
         case onboarding
         case home
@@ -26,14 +28,32 @@ struct AutoSpotoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AutoSpotoContainerView(autoSpotoCurrentView: $autoSpotoCurrentView)
-                .preferredColorScheme(.dark)
-                .sheet(
-                    isPresented: $showAutoSpotoDisconnectSheet,
-                    content: {
-                        AutoSpotoDisconnectView(isVisible: $showAutoSpotoDisconnectSheet, autoSpotoCurrentView: $autoSpotoCurrentView)
-                    }
-                )
+            VStack {
+                switch autoSpotoCurrentView {
+                case .onboarding:
+                    OnboardingContainerView(autoSpotoCurrentView: $autoSpotoCurrentView)
+                case .home:
+                    HomeContainerView()
+                }
+            }
+            .preferredColorScheme(.dark)
+            .sheet(
+                isPresented: $showAutoSpotoDisconnectSheet,
+                content: {
+                    AutoSpotoDisconnectView(isVisible: $showAutoSpotoDisconnectSheet, autoSpotoCurrentView: $autoSpotoCurrentView)
+                }
+            )
+            .onAppear {
+                //Make sure user has logged into Spotify and has given Disk Access before showing them home view
+                if SpotifyTokenManager.authenticationTokenExists && DiskAccessManager.userAuthorizedDiskAccess {
+                    //user has previously logged in
+                    //we will assume Spotify profile exists too, since it's set at same time
+                    autoSpotoCurrentView = .home
+                } else {
+                    //otherwise, show user onboarding
+                    autoSpotoCurrentView = .onboarding
+                }
+            }
         }
         .commands {
             CommandGroup(after: .appInfo) {
