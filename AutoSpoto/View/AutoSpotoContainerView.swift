@@ -19,9 +19,6 @@ struct AutoSpotoContainerView: View {
                 OnboardingContainerView(autoSpotoCurrentView: $autoSpotoCurrentView)
             case .home:
                 HomeContainerView()
-                    .onAppear {
-                        PlaylistUpdaterManager.registerIfNeeded()
-                    }
             }
         }
         .onAppear {
