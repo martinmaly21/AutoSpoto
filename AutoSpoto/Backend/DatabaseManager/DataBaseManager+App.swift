@@ -40,10 +40,10 @@ extension DatabaseManager {
                 .mapGroups({ slice in
                     var df = DataFrame()
                     
-                    df["ChatId", Int.self] = Column(name: "ChatId", contents: [slice["ChatId"].first as! Int])
-                    df["ChatName", [String].self] = Column(name: "ChatName", contents: [slice["ChatName"].compactMap { $0 as? String }])
-                    df["ContactInfo", String.self] = Column(name: "ContactInfo", contents: [slice["ContactInfo"].first as! String])
-                    df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
+                    df.append(column: Column(name: "ChatId", contents: [slice["ChatId"].first as! Int]))
+                    df.append(column: Column(name: "ChatName", contents: [slice["ChatName"].compactMap { $0 as? String }]))
+                    df.append(column: Column(name: "ContactInfo", contents: [slice["ContactInfo"].first as! String]))
+                    df.append(column: Column(name: "MessageID", contents: [slice["MessageID"].first as! String]))
                     
                     return df
                 }).ungrouped()
@@ -93,12 +93,14 @@ extension DatabaseManager {
             
             renamedFinalGroupChatTable = renamedFinalGroupChatTable.grouped(by: "MessageID").mapGroups({slice in
                 var df = DataFrame()
-                df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
-                df["chatName", String.self] = Column(name: "chatName", contents: [slice["chatName"].first as! String])
-                df["nameID", String.self] = Column(name: "nameID", contents: [slice["MessageID"].first as! String])
-                df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["image"].first as? String])
-                df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String])
-                df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
+                
+                df.append(column: Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }]))
+                df.append(column: Column(name: "chatName", contents: [slice["chatName"].first as! String]))
+                df.append(column: Column(name: "nameID", contents: [slice["MessageID"].first as! String]))
+                df.append(column: Column(name: "imageBlob", contents: [slice["image"].first as? String]))
+                df.append(column: Column(name: "spotifyPlaylistID", contents: [slice["playlistID"].first as? String]))
+                df.append(column: Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double]))
+                
                 return df
             }).ungrouped()
             
@@ -210,10 +212,10 @@ extension DatabaseManager {
                 .mapGroups({ slice in
                     var df = DataFrame()
                     
-                    df["chatID", Int.self] = Column(name: "chatID", contents: [slice["chatID"].first as! Int])
-                    df["firstName", [String].self] = Column(name: "firstName", contents: [slice["firstName"].compactMap { $0 as? String }])
-                    df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
-                    df["MessageID", String.self] = Column(name: "MessageID", contents: [slice["MessageID"].first as! String])
+                    df.append(column: Column(name: "chatID", contents: [slice["chatID"].first as! Int]))
+                    df.append(column: Column(name: "firstName", contents: [slice["firstName"].compactMap { $0 as? String }]))
+                    df.append(column: Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String]))
+                    df.append(column: Column(name: "MessageID", contents: [slice["MessageID"].first as! String]))
                     
                     return df
                 }).ungrouped()
@@ -388,13 +390,13 @@ extension DatabaseManager {
                 .mapGroups({ slice in
                     var df = DataFrame()
                     
-                    df["ids", [Int].self] = Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }])
-                    df["contactInfo", String.self] = Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String])
-                    df["firstName", String?.self] = Column(name: "firstName", contents: [slice["firstName"].first as? String])
-                    df["lastName", String?.self] = Column(name: "lastName", contents: [slice["lastName"].first as? String])
-                    df["imageBlob", String?.self] = Column(name: "imageBlob", contents: [slice["imageBlob"].first as? String])
-                    df["spotifyPlaylistID", String?.self] = Column(name: "spotifyPlaylistID", contents: [slice["spotifyPlaylistID"].first as? String])
-                    df["lastUpdated", Double?.self] = Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double])
+                    df.append(column: Column(name: "ids", contents: [slice["chatID"].compactMap { $0 as? Int }]))
+                    df.append(column: Column(name: "contactInfo", contents: [slice["contactInfo"].first as! String]))
+                    df.append(column: Column(name: "firstName", contents: [slice["firstName"].first as? String]))
+                    df.append(column: Column(name: "lastName", contents: [slice["lastName"].first as? String]))
+                    df.append(column: Column(name: "imageBlob", contents: [slice["imageBlob"].first as? String]))
+                    df.append(column: Column(name: "spotifyPlaylistID", contents: [slice["spotifyPlaylistID"].first as? String]))
+                    df.append(column: Column(name: "lastUpdated", contents: [slice["lastUpdated"].first as? Double]))
                     
                     return df
                 })
