@@ -17,11 +17,14 @@ class SpotifyTokenManager {
     public static var token: JSONToken? {
         let decoder = JSONDecoder()
         
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
-            
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             do {
-                let data = try Data(contentsOf: directoryURL)
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let spotifyTokenURL = directoryURL.appendingPathComponent("spotifyToken.json")
+                
+                let data = try Data(contentsOf: spotifyTokenURL)
                 let decryptedData = try RNCryptor.decrypt(data: data, withPassword: lFile)
                 let JSONToken = try decoder.decode(JSONToken.self, from: decryptedData)
                 return JSONToken
@@ -36,13 +39,16 @@ class SpotifyTokenManager {
         let jsonToken = JSONToken(spotifyToken: spotifyToken)
         let jsonEncoder = JSONEncoder()
         
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
-            
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             do {
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let spotifyTokenURL = directoryURL.appendingPathComponent("spotifyToken.json")
+                
                 let jsonData = try jsonEncoder.encode(jsonToken)
                 let encryptedData = RNCryptor.encrypt(data: jsonData, withPassword: lFile)
-                try encryptedData.write(to: directoryURL)
+                try encryptedData.write(to: spotifyTokenURL)
             } catch {
                 fatalError("Error writing JSON token: \(error.localizedDescription)")
             }
@@ -50,10 +56,14 @@ class SpotifyTokenManager {
     }
     
     public static func deleteToken() {
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
             do {
-                try FileManager.default.removeItem(at: directoryURL)
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let spotifyTokenURL = directoryURL.appendingPathComponent("spotifyToken.json")
+                
+                try fileManager.removeItem(at: spotifyTokenURL)
             } catch let error {
                 print("Error deleting JSON token: \(error.localizedDescription)")
             }

@@ -16,12 +16,15 @@ guard let db = DatabaseManager() else {
 do {
     let fileManager = FileManager.default
     let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-    guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto/PlaylistUpdaterValidation.json") else {
+    guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto") else {
         exit(2)
     }
+    try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+    let playlistUpdaterValidationURL = directoryURL.appendingPathComponent("PlaylistUpdaterValidation.json")
+    
     let jsonEncoder = JSONEncoder()
     let jsonData = try jsonEncoder.encode(Date().timeIntervalSince1970)
-    try jsonData.write(to: directoryURL)
+    try jsonData.write(to: playlistUpdaterValidationURL)
 } catch {
     exit(3)
 }

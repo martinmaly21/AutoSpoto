@@ -27,14 +27,17 @@ class LicenseManager {
     }
     
     public static var userHasValidLicense: Bool {
-        guard let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+        let fileManager = FileManager.default
+        guard let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
             return false
         }
         
-        let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/license.json")
-        
         do {
-            let data = try Data(contentsOf: directoryURL)
+            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+            try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            let licenseURL = directoryURL.appendingPathComponent("license.json")
+            
+            let data = try Data(contentsOf: licenseURL)
             let encryptedData = try RNCryptor.decrypt(data: data, withPassword: lFile)
             guard let uniqueMachineID = String(data: encryptedData, encoding: .utf8) else {
                 return false
@@ -50,10 +53,14 @@ class LicenseManager {
         let data = Data(uniqueMachineID.utf8)
         let encryptedData = RNCryptor.encrypt(data: data, withPassword: lFile)
         
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/license.json")
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             do {
-                try encryptedData.write(to: directoryURL)
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let licenseURL = directoryURL.appendingPathComponent("license.json")
+                
+                try encryptedData.write(to: licenseURL)
             } catch {
                 fatalError("Error encrypting: \(error.localizedDescription)")
             }
@@ -61,10 +68,14 @@ class LicenseManager {
     }
     
     public static func deleteLicense() {
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/license.json")
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             do {
-                try FileManager.default.removeItem(at: directoryURL)
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let licenseURL = directoryURL.appendingPathComponent("license.json")
+                
+                try fileManager.removeItem(at: licenseURL)
             } catch let error {
                 print("Error deleting license: \(error.localizedDescription)")
             }

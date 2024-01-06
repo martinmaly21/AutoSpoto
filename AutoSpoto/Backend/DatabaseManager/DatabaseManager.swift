@@ -38,7 +38,7 @@ class DatabaseManager {
     init?(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
         self.onTrackedChatsDBUpdatedOutsideOfApp = onTrackedChatsDBUpdatedOutsideOfApp
         do  {
-            //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto
+            //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto (if it doesn't exist)
             let fileManager = FileManager.default
             let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto") else {
@@ -78,10 +78,13 @@ class DatabaseManager {
     public func deleteAutoSpotoDatabase() {
         timer?.invalidate()
         
-        if let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto/autospoto.db")
+        let fileManager = FileManager.default
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             do {
-                try FileManager.default.removeItem(at: directoryURL)
+                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
+                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                let autospotoDBURL = directoryURL.appendingPathComponent("autospoto.db")
+                try fileManager.removeItem(at: autospotoDBURL)
             } catch let error {
                 print("Error deleting autospoto db: \(error.localizedDescription)")
             }
