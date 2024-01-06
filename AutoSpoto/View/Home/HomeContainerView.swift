@@ -18,8 +18,6 @@ struct HomeContainerView: View {
         }
         .environmentObject(homeViewModel)
         .onAppear {
-            PlaylistUpdaterManager.registerIfNeeded()
-            
             Task {
                 await homeViewModel.fetchChats()
             }

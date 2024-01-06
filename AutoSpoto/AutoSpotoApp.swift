@@ -44,6 +44,8 @@ struct AutoSpotoApp: App {
                 }
             )
             .onAppear {
+                PlaylistUpdaterManager.registerIfNeeded()
+                
                 //Make sure user has logged into Spotify and has given Disk Access before showing them home view
                 if SpotifyTokenManager.authenticationTokenExists && DiskAccessManager.userAuthorizedDiskAccess {
                     //user has previously logged in
