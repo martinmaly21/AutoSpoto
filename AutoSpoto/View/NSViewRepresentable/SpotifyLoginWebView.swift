@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WebKit
+import FirebaseFirestore
 
 struct SpotifyLoginWebView: NSViewRepresentable {
     @Binding var isVisible: Bool
@@ -69,6 +70,14 @@ struct SpotifyLoginWebView: NSViewRepresentable {
                 
                 //fail silently if fetch to get user's spotify ID fail, we will try again later
                 try await SpotifyManager.fetchAndSaveUserSpotifyID()
+                
+                //send user id to DB
+                let spotifyUserID = UserDefaultsManager.spotifyUser.id
+                let db = Firestore.firestore()
+                let usersCollection = db.collection("users")
+                usersCollection.addDocument(data: [
+                    "spotifyID": spotifyUserID,
+                ]) { error in }
                 
                 DispatchQueue.main.async {
                     self.parent.isVisible = false
