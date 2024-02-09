@@ -24,7 +24,7 @@ struct CreatePlaylistContainerView: View {
             }
         }
         .onAppear {
-            guard DatabaseManager.shared.hasTrackedChats else {
+            guard UserDefaultsManager.userHasTrackedChat else {
                 //user has not created any chats yet
                 canCreatePlaylist = true
                 return

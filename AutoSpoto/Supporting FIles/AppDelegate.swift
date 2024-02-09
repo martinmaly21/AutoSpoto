@@ -15,7 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // But this also prevents Crashlytics from catching them. To disable this behavior we have to set a special user
         // default before initializing Crashlytic
         UserDefaults.standard.register(
-            defaults: ["NSApplicationCrashOnExceptions" : true]
+            defaults: [
+                "NSApplicationCrashOnExceptions" : true,
+                AutoSpotoConstants.UserDefaults.userHasTrackedChats : false
+            ]
         )
         
         FirebaseApp.configure()

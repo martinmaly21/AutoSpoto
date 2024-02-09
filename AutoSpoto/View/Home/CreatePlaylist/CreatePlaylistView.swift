@@ -170,6 +170,9 @@ struct CreatePlaylistView: View {
                                     )
                                     self.isCreatingPlaylist = false
                                     
+                                    //set flag that user has tracked a chat, so even if they disconnect they can't create another
+                                    UserDefaultsManager.userHasTrackedChat = true
+                                    
                                     withAnimation {
                                         self.successfullyCreatedPlaylist = true
                                     }

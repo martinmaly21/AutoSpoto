@@ -32,4 +32,21 @@ class UserDefaultsManager {
             )
         }
     }
+    
+    static var userHasTrackedChat: Bool {
+        get {
+            let userHasTrackedChat = UserDefaults.standard.bool(
+                forKey: AutoSpotoConstants.UserDefaults.userHasTrackedChats
+            )
+            
+            return userHasTrackedChat
+        }
+        
+        set {
+            UserDefaults.standard.set(
+                newValue,
+                forKey: AutoSpotoConstants.UserDefaults.userHasTrackedChats
+            )
+        }
+    }
 }

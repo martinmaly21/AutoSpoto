@@ -31,10 +31,6 @@ class DatabaseManager {
     }
     private var timer: Timer?
     
-    public var hasTrackedChats: Bool {
-        return !trackedChats.isEmpty
-    }
-    
     init?(onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)? = nil) {
         self.onTrackedChatsDBUpdatedOutsideOfApp = onTrackedChatsDBUpdatedOutsideOfApp
         do  {
