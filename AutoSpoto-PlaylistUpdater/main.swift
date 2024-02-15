@@ -14,13 +14,15 @@ guard let db = DatabaseManager() else {
 //log time that script has succesfully accessed chat.db
 //this is used for onboarding to determine when playlist updater has been given full disk access
 do {
-    let fileManager = FileManager.default
-    let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-    guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto") else {
+    guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
         exit(2)
     }
-    try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-    let playlistUpdaterValidationURL = directoryURL.appendingPathComponent("PlaylistUpdaterValidation.json")
+    
+    try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
+    
+    guard let playlistUpdaterValidationURL = DiskAccessManager.playlistUpdaterValidationURL else {
+        exit(2)
+    }
     
     let jsonEncoder = JSONEncoder()
     let jsonData = try jsonEncoder.encode(Date().timeIntervalSince1970)

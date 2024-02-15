@@ -40,17 +40,12 @@ class PlaylistUpdaterManager {
     }
     
     public static func deletePlaylistUpdaterValidation() {
-        let fileManager = FileManager.default
-        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            do {
-                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
-                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-                let playlistUpdaterValidationURL = directoryURL.appendingPathComponent("PlaylistUpdaterValidation.json")
-                
-                try fileManager.removeItem(at: playlistUpdaterValidationURL)
-            } catch let error {
-                print("Error deleting PlaylistUpdaterValidation: \(error.localizedDescription)")
+        do {
+            if let playlistUpdaterValidationURL = DiskAccessManager.playlistUpdaterValidationURL {
+                try FileManager.default.removeItem(at: playlistUpdaterValidationURL)
             }
+        } catch let error {
+            print("Error deleting PlaylistUpdaterValidation: \(error.localizedDescription)")
         }
     }
 }

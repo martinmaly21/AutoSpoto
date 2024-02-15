@@ -60,19 +60,24 @@ struct AutoSpotoDiskAccessRequestCell: View {
                                             openPanel.canChooseFiles = false
                                             openPanel.canChooseDirectories = true
                                             openPanel.allowsMultipleSelection = false
-                                            openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Messages")
+                                            openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library")
                                             
                                             openPanel.begin { (result) in
                                                 if result == .OK, let url = openPanel.urls.first {
-                                                    guard url.absoluteString.contains("/Library/Messages/") else {
+                                                    guard url.absoluteString.contains("/Library") else {
                                                         //TODO: handle error of user hitting wrong folder better
                                                         return
                                                     }
                                                     
                                                     do {
-                                                        UserDefaultsManager.messagesBookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+                                                        UserDefaultsManager.libraryBookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+                                                        
+                                                        guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
+                                                            fatalError("Could not get autoSpotoURL")
+                                                        }
+                                                        try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
                                                     } catch let error {
-                                                        fatalError("Could not save messagesBookmarkData to userdefaults. Error: \(error)")
+                                                        fatalError("Could not save libraryBookmarkData to userdefaults. Error: \(error)")
                                                     }
                                                 }
                                             }

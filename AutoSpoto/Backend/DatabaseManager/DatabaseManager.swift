@@ -35,33 +35,20 @@ class DatabaseManager {
         self.onTrackedChatsDBUpdatedOutsideOfApp = onTrackedChatsDBUpdatedOutsideOfApp
         do  {
             //MARK: - Create 'autospoto.db' in {home}/Library/Application Support/AutoSpoto (if it doesn't exist)
-            let fileManager = FileManager.default
-            let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-            guard let directoryURL = appSupportURL?.appendingPathComponent("AutoSpoto") else {
-                throw AutoSpotoError.errorGettingAutoSpotoDB
+            guard let autoSpotoURL = DiskAccessManager.autoSpotoURL,
+            let autoSpotoDBURL = DiskAccessManager.autoSpotoDBURL,
+            let chatDBURL = DiskAccessManager.chatDBURL else {
+                fatalError("Could not get autoSpotoURL")
             }
-            try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-            
-            guard let messagesBookmarkData = UserDefaultsManager.messagesBookmarkData else {
-                fatalError("Could not get messagesBookmarkData")
-            }
-            
-            var isStale = false
-            let messagesBookmarkDataURL = try URL(resolvingBookmarkData: messagesBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            guard messagesBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access messagesBookmarkDataURL")
-            }
-                
-            let chatDatabaseString = "\(messagesBookmarkDataURL.absoluteString)chat.db"
+            try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
 
             // MARK: Open a SQLite database connection
             self.database = try Connection(
-                directoryURL.path(percentEncoded: false).appending("autospoto.db"),
+                autoSpotoDBURL.path(percentEncoded: false),
                 readonly: false
             )
             
-            try database.execute("attach '\(chatDatabaseString)' as cdb")
+            try database.execute("attach '\(chatDBURL.absoluteString)' as cdb")
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
             try database.execute("""
@@ -71,8 +58,6 @@ class DatabaseManager {
                     lastUpdated DOUBLE
                 )
             """)
-            
-            messagesBookmarkDataURL.stopAccessingSecurityScopedResource()
         } catch let error {
             print("Could not initialize autospoto.db: \(error.localizedDescription)")
             return nil
@@ -86,16 +71,12 @@ class DatabaseManager {
     public func deleteAutoSpotoDatabase() {
         timer?.invalidate()
         
-        let fileManager = FileManager.default
-        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
-            do {
-                let directoryURL = appSupportURL.appendingPathComponent("AutoSpoto")
-                try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-                let autospotoDBURL = directoryURL.appendingPathComponent("autospoto.db")
-                try fileManager.removeItem(at: autospotoDBURL)
-            } catch let error {
-                print("Error deleting autospoto db: \(error.localizedDescription)")
+        do {
+            if let autoSpotoDBURL = DiskAccessManager.autoSpotoDBURL {
+                try FileManager.default.removeItem(at: autoSpotoDBURL)
             }
+        } catch let error {
+            print("Error deleting autospoto db: \(error.localizedDescription)")
         }
     }
     
@@ -141,16 +122,16 @@ class DatabaseManager {
     }
     
     internal func getGroupImageFilePaths() -> DataFrame {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        let directoryURL = homeDirectory.appendingPathComponent("Library/Intents/Images")
         var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
         
         do {
-            let contents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-            for fileURL in contents {
-                let directory = fileURL.path
-                if directory.hasSuffix("GroupPhotoImage.png"){
-                    directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
+            if let imageFilePathsURL = DiskAccessManager.imageFilePathsURL {
+                let contents = try FileManager.default.contentsOfDirectory(at: imageFilePathsURL, includingPropertiesForKeys: nil)
+                for fileURL in contents {
+                    let directory = fileURL.path
+                    if directory.hasSuffix("GroupPhotoImage.png"){
+                        directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
+                    }
                 }
             }
         } catch {

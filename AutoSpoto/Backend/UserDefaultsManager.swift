@@ -50,22 +50,22 @@ class UserDefaultsManager {
         }
     }
     
-    static var messagesBookmarkData: Data? {
+    static var libraryBookmarkData: Data? {
         get {
-            guard let messagesBookmarkData = UserDefaults.standard.data(
-                forKey: AutoSpotoConstants.UserDefaults.messagesBookmarkData
+            guard let libraryBookmarkData = UserDefaults.standard.data(
+                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
             ) else {
                 return nil
             }
             
             do {
                 var isStale = false
-                let _ = try URL(resolvingBookmarkData: messagesBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                let _ = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
                 
                 if isStale {
                     return nil
                 } else {
-                    return messagesBookmarkData
+                    return libraryBookmarkData
                 }
             } catch let error {
                 return nil
@@ -75,7 +75,7 @@ class UserDefaultsManager {
         set {
             UserDefaults.standard.set(
                 newValue,
-                forKey: AutoSpotoConstants.UserDefaults.messagesBookmarkData
+                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
             )
         }
     }
