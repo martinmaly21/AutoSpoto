@@ -59,6 +59,7 @@ class UserDefaultsManager {
             }
             
             do {
+                var isStale = false
                 let _ = try URL(resolvingBookmarkData: messagesBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
                 
                 if isStale {
