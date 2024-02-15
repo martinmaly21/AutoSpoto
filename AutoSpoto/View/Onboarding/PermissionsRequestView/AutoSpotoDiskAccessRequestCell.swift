@@ -56,7 +56,26 @@ struct AutoSpotoDiskAccessRequestCell: View {
                                     OnboardingButton(
                                         title: AutoSpotoConstants.Strings.OPEN_SETTINGS,
                                         action: {
-                                            NSWorkspace.shared.open(AutoSpotoConstants.URL.fullDiskAccess)
+                                            let openPanel = NSOpenPanel()
+                                            openPanel.canChooseFiles = false
+                                            openPanel.canChooseDirectories = true
+                                            openPanel.allowsMultipleSelection = false
+                                            openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Messages")
+                                            
+                                            openPanel.begin { (result) in
+                                                if result == .OK, let url = openPanel.urls.first {
+                                                    guard url.absoluteString.contains("/Library/Messages/") else {
+                                                        //TODO: handle error of user hitting wrong folder better
+                                                        return
+                                                    }
+                                                    
+                                                    do {
+                                                        UserDefaultsManager.messagesBookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+                                                    } catch let error {
+                                                        fatalError("Could not save messagesBookmarkData to userdefaults. Error: \(error)")
+                                                    }
+                                                }
+                                            }
                                         },
                                         width: 220,
                                         height: 30

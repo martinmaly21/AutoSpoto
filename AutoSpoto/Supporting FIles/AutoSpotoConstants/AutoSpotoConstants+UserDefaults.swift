@@ -17,4 +17,5 @@ extension AutoSpotoConstants.UserDefaults {
     static let spotifyUser = "spotifyUser"
     static let userHasTrackedChats = "userHasTrackedChats"
     static let addressBookID = "addressBookID"
+    static let messagesBookmarkData = "messagesBookmarkData"
 }

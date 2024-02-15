@@ -42,9 +42,19 @@ class DatabaseManager {
             }
             try fileManager.createDirectory (at: directoryURL, withIntermediateDirectories: true, attributes: nil)
             
-            let homeDirectory = "\(NSHomeDirectory())"
-            let chatDatabaseString = "\(homeDirectory)/Library/Messages/chat.db"
+            guard let messagesBookmarkData = UserDefaultsManager.messagesBookmarkData else {
+                fatalError("Could not get messagesBookmarkData")
+            }
             
+            var isStale = false
+            let messagesBookmarkDataURL = try URL(resolvingBookmarkData: messagesBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            
+            guard messagesBookmarkDataURL.startAccessingSecurityScopedResource() else {
+                fatalError("Could not access messagesBookmarkDataURL")
+            }
+                
+            let chatDatabaseString = "\(messagesBookmarkDataURL.absoluteString)chat.db"
+
             // MARK: Open a SQLite database connection
             self.database = try Connection(
                 directoryURL.path(percentEncoded: false).appending("autospoto.db"),
@@ -61,6 +71,8 @@ class DatabaseManager {
                     lastUpdated DOUBLE
                 )
             """)
+            
+            messagesBookmarkDataURL.stopAccessingSecurityScopedResource()
         } catch let error {
             print("Could not initialize autospoto.db: \(error.localizedDescription)")
             return nil

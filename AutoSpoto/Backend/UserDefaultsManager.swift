@@ -49,4 +49,33 @@ class UserDefaultsManager {
             )
         }
     }
+    
+    static var messagesBookmarkData: Data? {
+        get {
+            guard let messagesBookmarkData = UserDefaults.standard.data(
+                forKey: AutoSpotoConstants.UserDefaults.messagesBookmarkData
+            ) else {
+                return nil
+            }
+            
+            do {
+                let _ = try URL(resolvingBookmarkData: messagesBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                
+                if isStale {
+                    return nil
+                } else {
+                    return messagesBookmarkData
+                }
+            } catch let error {
+                return nil
+            }
+        }
+        
+        set {
+            UserDefaults.standard.set(
+                newValue,
+                forKey: AutoSpotoConstants.UserDefaults.messagesBookmarkData
+            )
+        }
+    }
 }
