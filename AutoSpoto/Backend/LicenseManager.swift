@@ -49,7 +49,9 @@ class LicenseManager {
         
         do {
             if let licenseURL = DiskAccessManager.licenseURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try encryptedData.write(to: licenseURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch {
             fatalError("Error encrypting: \(error.localizedDescription)")
@@ -59,7 +61,9 @@ class LicenseManager {
     public static func deleteLicense() {
         do {
             if let licenseURL = DiskAccessManager.licenseURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try FileManager.default.removeItem(at: licenseURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch let error {
             print("Error deleting license: \(error.localizedDescription)")

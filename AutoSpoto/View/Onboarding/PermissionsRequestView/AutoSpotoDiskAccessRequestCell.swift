@@ -75,7 +75,9 @@ struct AutoSpotoDiskAccessRequestCell: View {
                                                         guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
                                                             fatalError("Could not get autoSpotoURL")
                                                         }
+                                                        DiskAccessManager.startAccessingSecurityScopedResource()
                                                         try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
+                                                        DiskAccessManager.stopAccessingSecurityScopedResource()
                                                     } catch let error {
                                                         fatalError("Could not save libraryBookmarkData to userdefaults. Error: \(error)")
                                                     }

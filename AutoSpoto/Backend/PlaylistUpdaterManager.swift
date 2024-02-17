@@ -42,7 +42,9 @@ class PlaylistUpdaterManager {
     public static func deletePlaylistUpdaterValidation() {
         do {
             if let playlistUpdaterValidationURL = DiskAccessManager.playlistUpdaterValidationURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try FileManager.default.removeItem(at: playlistUpdaterValidationURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch let error {
             print("Error deleting PlaylistUpdaterValidation: \(error.localizedDescription)")

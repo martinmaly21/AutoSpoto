@@ -40,7 +40,9 @@ class DatabaseManager {
             let chatDBURL = DiskAccessManager.chatDBURL else {
                 fatalError("Could not get autoSpotoURL")
             }
+            DiskAccessManager.startAccessingSecurityScopedResource()
             try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
+            DiskAccessManager.stopAccessingSecurityScopedResource()
 
             // MARK: Open a SQLite database connection
             self.database = try Connection(
@@ -73,7 +75,9 @@ class DatabaseManager {
         
         do {
             if let autoSpotoDBURL = DiskAccessManager.autoSpotoDBURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try FileManager.default.removeItem(at: autoSpotoDBURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch let error {
             print("Error deleting autospoto db: \(error.localizedDescription)")
@@ -126,7 +130,9 @@ class DatabaseManager {
         
         do {
             if let imageFilePathsURL = DiskAccessManager.imageFilePathsURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 let contents = try FileManager.default.contentsOfDirectory(at: imageFilePathsURL, includingPropertiesForKeys: nil)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
                 for fileURL in contents {
                     let directory = fileURL.path
                     if directory.hasSuffix("GroupPhotoImage.png"){

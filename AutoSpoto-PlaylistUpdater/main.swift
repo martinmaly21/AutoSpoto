@@ -18,7 +18,9 @@ do {
         exit(2)
     }
     
+    DiskAccessManager.startAccessingSecurityScopedResource()
     try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
+    DiskAccessManager.stopAccessingSecurityScopedResource()
     
     guard let playlistUpdaterValidationURL = DiskAccessManager.playlistUpdaterValidationURL else {
         exit(2)
@@ -26,7 +28,9 @@ do {
     
     let jsonEncoder = JSONEncoder()
     let jsonData = try jsonEncoder.encode(Date().timeIntervalSince1970)
+    DiskAccessManager.startAccessingSecurityScopedResource()
     try jsonData.write(to: playlistUpdaterValidationURL)
+    DiskAccessManager.stopAccessingSecurityScopedResource()
 } catch {
     exit(3)
 }

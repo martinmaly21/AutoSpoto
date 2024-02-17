@@ -22,12 +22,6 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access messagesBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
-            
             return libraryBookmarkDataURL.appending(path: "Messages/chat.db")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
@@ -42,12 +36,6 @@ class DiskAccessManager {
         do {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access messagesBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
             
             return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto")
         } catch let error {
@@ -64,12 +52,6 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access libraryBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
-            
             return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/autospoto.db")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
@@ -84,12 +66,6 @@ class DiskAccessManager {
         do {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access libraryBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
             
             return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/spotifyToken.json")
         } catch let error {
@@ -106,12 +82,6 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access libraryBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
-            
             return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/license.json")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
@@ -126,12 +96,6 @@ class DiskAccessManager {
         do {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access libraryBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
             
             return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/PlaylistUpdaterValidation.json")
         } catch let error {
@@ -148,15 +112,39 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            guard libraryBookmarkDataURL.startAccessingSecurityScopedResource() else {
-                fatalError("Could not access messagesBookmarkDataURL")
-            }
-            
-            libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
-            
             return libraryBookmarkDataURL.appending(path: "Intents/Images")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
+        }
+    }
+    
+    public static func startAccessingSecurityScopedResource() {
+        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
+            return
+        }
+        
+        do {
+            var isStale = false
+            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            
+            let _ = libraryBookmarkDataURL.startAccessingSecurityScopedResource()
+        } catch let error {
+            return
+        }
+    }
+    
+    public static func stopAccessingSecurityScopedResource() {
+        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
+            return
+        }
+        
+        do {
+            var isStale = false
+            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            
+            let _ = libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
+        } catch let error {
+            return
         }
     }
 }

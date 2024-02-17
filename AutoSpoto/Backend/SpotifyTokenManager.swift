@@ -20,11 +20,13 @@ class SpotifyTokenManager {
             guard let spotifyTokenURL = DiskAccessManager.spotifyTokenURL else {
                 return nil
             }
+            DiskAccessManager.startAccessingSecurityScopedResource()
             let data = try Data(contentsOf: spotifyTokenURL)
+            DiskAccessManager.stopAccessingSecurityScopedResource()
             let decryptedData = try RNCryptor.decrypt(data: data, withPassword: lFile)
             let JSONToken = try decoder.decode(JSONToken.self, from: decryptedData)
             return JSONToken
-        } catch {
+        } catch let error {
             return nil
         }
     }
@@ -37,7 +39,9 @@ class SpotifyTokenManager {
             let jsonData = try jsonEncoder.encode(jsonToken)
             let encryptedData = RNCryptor.encrypt(data: jsonData, withPassword: lFile)
             if let spotifyTokenURL = DiskAccessManager.spotifyTokenURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try encryptedData.write(to: spotifyTokenURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch {
             fatalError("Error writing JSON token: \(error.localizedDescription)")
@@ -47,7 +51,9 @@ class SpotifyTokenManager {
     public static func deleteToken() {
         do {
             if let spotifyTokenURL = DiskAccessManager.spotifyTokenURL {
+                DiskAccessManager.startAccessingSecurityScopedResource()
                 try FileManager.default.removeItem(at: spotifyTokenURL)
+                DiskAccessManager.stopAccessingSecurityScopedResource()
             }
         } catch let error {
             print("Error deleting JSON token: \(error.localizedDescription)")
