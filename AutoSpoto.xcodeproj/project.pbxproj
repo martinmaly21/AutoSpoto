@@ -77,7 +77,6 @@
 		50C6F2BC2A6FA87D00A03D2A /* EnterLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */; };
 		50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
 		50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */; };
-		50C6F2C12A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater in Resources */ = {isa = PBXBuildFile; fileRef = 50C6F2C02A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* PermissionsRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* PermissionsRequestView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -162,6 +161,16 @@
 		92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 92F554D92A55E3DB006E1CAA /* SQLite */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		505D3E772B80A80300529C2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50AA276528C3FE69002FFC3F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92F554AF2A55E25A006E1CAA;
+			remoteInfo = "AutoSpoto-PlaylistUpdater";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		505D3E752B80A25100529C2D /* Embed Helper */ = {
@@ -694,6 +703,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				505D3E782B80A80300529C2D /* PBXTargetDependency */,
 			);
 			name = AutoSpoto;
 			packageProductDependencies = (
@@ -786,7 +796,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F34C66297659950059516B /* Colors.xcassets in Resources */,
-				50C6F2C12A701B7C00A03D2A /* AutoSpoto-PlaylistUpdater in Resources */,
 				50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */,
 				50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */,
 				50DB07AA2984B6A000BC5864 /* JosefinSansLightItalic.ttf in Resources */,
@@ -970,6 +979,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		505D3E782B80A80300529C2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */;
+			targetProxy = 505D3E772B80A80300529C2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		50AA277A28C3FE6A002FFC3F /* Debug */ = {
