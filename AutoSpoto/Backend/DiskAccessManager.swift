@@ -29,93 +29,28 @@ class DiskAccessManager {
     }
     
     public static var autoSpotoURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        return URL(string: "\(NSHomeDirectory())/AutoSpoto")
     }
     
     public static var autoSpotoDBURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/autospoto.db")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        return URL(string: "\(NSHomeDirectory())/AutoSpoto/autospoto.db")
     }
     
     public static var spotifyTokenURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/spotifyToken.json")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        return URL(string: "\(NSHomeDirectory())/AutoSpoto/spotifyToken.json")
     }
     
     public static var licenseURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/license.json")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        return URL(string: "\(NSHomeDirectory())/AutoSpoto/license.json")
     }
     
     public static var playlistUpdaterValidationURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/PlaylistUpdaterValidation.json")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        return URL(string: "\(NSHomeDirectory())/AutoSpoto/PlaylistUpdaterValidation.json")
     }
     
     public static var imageFilePathsURL: URL? {
-        guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
-            return nil
-        }
-        
-        do {
-            var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-            
-            return libraryBookmarkDataURL.appending(path: "Intents/Images")
-        } catch let error {
-            fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
-        }
+        //TODO: figure out how to handle group chat photos not existing
+        return nil
     }
     
     public static func startAccessingSecurityScopedResource() {
