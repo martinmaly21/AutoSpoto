@@ -110,55 +110,55 @@ struct AutoSpotoDiskAccessRequestCell: View {
                             )
                             .cornerRadius(8)
                             
-                            ZStack(alignment: .topLeading) {
-                                HStack(spacing: 30) {
-                                    VStack(alignment: .center, spacing: 8) {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 40)
-                                                .fill(.clear)
-                                                .frame(width: 180, height: 180)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 40)
-                                                        .stroke(.white.opacity(0.4), lineWidth: 0.5)
-                                                )
-                                            
-                                            Image("OnboardingAppIcon")
-                                                .resizable()
-                                                .frame(width: 180, height: 180)
-                                                .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
-                                                .draggable(Bundle.main.bundleURL)
-                                        }
-                                        
-                                        Text(AutoSpotoConstants.Strings.DRAG_AND_DROP_INSTRUCTION)
-                                            .font(.josefinSansLight(14))
-                                            .foregroundColor(.textPrimaryWhite)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                    }
-                                    
-                                    VideoPlayer(player: player)
-                                        .disabled(true)
-                                        .frame(width: 210 * 1.12, height: 189 * 1.2)
-                                        .cornerRadius(10)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(.ultraThickMaterial, lineWidth: 2)
-                                        )
-                                        .onAppear{
-                                            self.player.play()
-                                        }
-                                }
-                                
-                                Text(AutoSpotoConstants.Strings.B_ONBOARDING_TEXT)
-                                    .font(.josefinSansBold(24))
-                                    .foregroundColor(.textPrimaryWhite)
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(.regularMaterial)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(.thickMaterial, lineWidth: 2)
-                            )
-                            .cornerRadius(8)
+//                            ZStack(alignment: .topLeading) {
+//                                HStack(spacing: 30) {
+//                                    VStack(alignment: .center, spacing: 8) {
+//                                        ZStack {
+//                                            RoundedRectangle(cornerRadius: 40)
+//                                                .fill(.clear)
+//                                                .frame(width: 180, height: 180)
+//                                                .overlay(
+//                                                    RoundedRectangle(cornerRadius: 40)
+//                                                        .stroke(.white.opacity(0.4), lineWidth: 0.5)
+//                                                )
+//                                            
+//                                            Image("OnboardingAppIcon")
+//                                                .resizable()
+//                                                .frame(width: 180, height: 180)
+//                                                .modifier(Shake(animatableData: CGFloat(shakeAppIcon)))
+//                                                .draggable(Bundle.main.bundleURL)
+//                                        }
+//                                        
+//                                        Text(AutoSpotoConstants.Strings.DRAG_AND_DROP_INSTRUCTION)
+//                                            .font(.josefinSansLight(14))
+//                                            .foregroundColor(.textPrimaryWhite)
+//                                            .fixedSize(horizontal: false, vertical: true)
+//                                    }
+//                                    
+//                                    VideoPlayer(player: player)
+//                                        .disabled(true)
+//                                        .frame(width: 210 * 1.12, height: 189 * 1.2)
+//                                        .cornerRadius(10)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 10)
+//                                                .stroke(.ultraThickMaterial, lineWidth: 2)
+//                                        )
+//                                        .onAppear{
+//                                            self.player.play()
+//                                        }
+//                                }
+//                                
+//                                Text(AutoSpotoConstants.Strings.B_ONBOARDING_TEXT)
+//                                    .font(.josefinSansBold(24))
+//                                    .foregroundColor(.textPrimaryWhite)
+//                            }
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                            .background(.regularMaterial)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 8)
+//                                    .stroke(.thickMaterial, lineWidth: 2)
+//                            )
+//                            .cornerRadius(8)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 250)

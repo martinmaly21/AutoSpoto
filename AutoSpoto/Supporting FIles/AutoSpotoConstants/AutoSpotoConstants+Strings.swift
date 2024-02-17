@@ -52,7 +52,7 @@ extension AutoSpotoConstants.Strings {
 
     static let FULL_DISK_ACCESS_PERMISSION_TITLE = NSLocalizedString(
         "FULL_DISK_ACCESS_PERMISSION_TITLE",
-        value: "1. Grant AutoSpoto Full Disk Access",
+        value: "1. Grant AutoSpoto Access to Messages",
         comment: "Generic 'Continue' string"
     )
     
@@ -76,7 +76,7 @@ extension AutoSpotoConstants.Strings {
 
     static let OPEN_SETTINGS = NSLocalizedString(
         "OPEN_SETTINGS",
-        value: "Open System Settings",
+        value: "Open permissions",
         comment: "Button title that allows user to open settings"
     )
 
@@ -365,7 +365,7 @@ extension AutoSpotoConstants.Strings {
     
     static let FULL_DISK_ACCESS_BUTTON_INFO = NSLocalizedString(
         "FULL_DISK_ACCESS_BUTTON_INFO",
-        value: "Click the button or go to System Settings > Privacy & Security > Full Disk Access.",
+        value: "Click 'Open' when the dialogue appears.",
         comment: "Extra information about how they can access a certain page if clicking the button fails"
     )
     
@@ -377,7 +377,7 @@ extension AutoSpotoConstants.Strings {
     
     static let A_ONBOARDING_TEXT = NSLocalizedString(
         "A_ONBOARDING_TEXT",
-        value: "a.",
+        value: " ",
         comment: "Onboarding text denoting a. step"
     )
     
