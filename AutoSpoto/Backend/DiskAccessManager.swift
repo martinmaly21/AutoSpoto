@@ -22,7 +22,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Messages/chat.db")
+            return libraryBookmarkDataURL.appending(path: "chat.db")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }

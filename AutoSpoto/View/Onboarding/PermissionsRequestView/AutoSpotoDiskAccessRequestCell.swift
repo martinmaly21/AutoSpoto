@@ -60,11 +60,11 @@ struct AutoSpotoDiskAccessRequestCell: View {
                                             openPanel.canChooseFiles = false
                                             openPanel.canChooseDirectories = true
                                             openPanel.allowsMultipleSelection = false
-                                            openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library")
+                                            openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Messages")
                                             
                                             openPanel.begin { (result) in
                                                 if result == .OK, let url = openPanel.urls.first {
-                                                    guard url.absoluteString.contains("/Library") else {
+                                                    guard url.absoluteString.contains("/Library/Messages") else {
                                                         //TODO: handle error of user hitting wrong folder better
                                                         return
                                                     }

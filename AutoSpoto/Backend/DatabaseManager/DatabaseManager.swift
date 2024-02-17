@@ -53,7 +53,7 @@ class DatabaseManager {
             DiskAccessManager.stopAccessingSecurityScopedResource()
             
             DiskAccessManager.startAccessingSecurityScopedResource()
-            try database.execute("attach '\(chatDBURL.absoluteString)' as cdb")
+            try database.execute("attach '\(chatDBURL.path())' as cdb")
             DiskAccessManager.stopAccessingSecurityScopedResource()
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
@@ -133,19 +133,20 @@ class DatabaseManager {
     
     internal func getGroupImageFilePaths() -> DataFrame {
         var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
-        
         do {
-            if let imageFilePathsURL = DiskAccessManager.imageFilePathsURL {
-                DiskAccessManager.startAccessingSecurityScopedResource()
-                let contents = try FileManager.default.contentsOfDirectory(at: imageFilePathsURL, includingPropertiesForKeys: nil)
-                DiskAccessManager.stopAccessingSecurityScopedResource()
-                for fileURL in contents {
-                    let directory = fileURL.path
-                    if directory.hasSuffix("GroupPhotoImage.png"){
-                        directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
-                    }
-                }
-            }
+            //temporarily disable group chat photos so sandbox is functional
+            directories = [("", "", "")]
+//            if let imageFilePathsURL = DiskAccessManager.imageFilePathsURL {
+//                DiskAccessManager.startAccessingSecurityScopedResource()
+//                let contents = try FileManager.default.contentsOfDirectory(at: imageFilePathsURL, includingPropertiesForKeys: nil)
+//                DiskAccessManager.stopAccessingSecurityScopedResource()
+//                for fileURL in contents {
+//                    let directory = fileURL.path
+//                    if directory.hasSuffix("GroupPhotoImage.png"){
+//                        directories.append((DirPath:directory, ChatId:extractChatFromPath(input: directory), image:imageToBase64(filePath: directory) ))
+//                    }
+//                }
+//            }
         } catch {
             print("Error reading directory: \(error)")
         }
