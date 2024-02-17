@@ -37,7 +37,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto")
+            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }
@@ -52,7 +52,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/autospoto.db")
+            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/autospoto.db")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }
@@ -67,7 +67,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/spotifyToken.json")
+            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/spotifyToken.json")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }
@@ -82,7 +82,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/license.json")
+            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/license.json")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }
@@ -97,7 +97,7 @@ class DiskAccessManager {
             var isStale = false
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
-            return libraryBookmarkDataURL.appending(path: "Application Support/AutoSpoto/PlaylistUpdaterValidation.json")
+            return libraryBookmarkDataURL.appending(path: "\(NSHomeDirectory())/AutoSpoto/PlaylistUpdaterValidation.json")
         } catch let error {
             fatalError("Could not access in chatDBURL getter: \(error.localizedDescription)")
         }
