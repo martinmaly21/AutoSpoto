@@ -44,15 +44,20 @@ class DatabaseManager {
             try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
             DiskAccessManager.stopAccessingSecurityScopedResource()
 
+            DiskAccessManager.startAccessingSecurityScopedResource()
             // MARK: Open a SQLite database connection
             self.database = try Connection(
                 autoSpotoDBURL.path(percentEncoded: false),
                 readonly: false
             )
+            DiskAccessManager.stopAccessingSecurityScopedResource()
             
+            DiskAccessManager.startAccessingSecurityScopedResource()
             try database.execute("attach '\(chatDBURL.absoluteString)' as cdb")
+            DiskAccessManager.stopAccessingSecurityScopedResource()
             
             // Execute the "CREATE TABLE IF NOT EXISTS" statement
+            DiskAccessManager.startAccessingSecurityScopedResource()
             try database.execute("""
                 CREATE TABLE IF NOT EXISTS CREATED_PLAYLISTS (
                     chatID INTEGER,
@@ -60,6 +65,7 @@ class DatabaseManager {
                     lastUpdated DOUBLE
                 )
             """)
+            DiskAccessManager.stopAccessingSecurityScopedResource()
         } catch let error {
             print("Could not initialize autospoto.db: \(error.localizedDescription)")
             return nil
