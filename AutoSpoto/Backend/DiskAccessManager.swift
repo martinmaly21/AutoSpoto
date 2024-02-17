@@ -29,23 +29,28 @@ class DiskAccessManager {
     }
     
     public static var autoSpotoURL: URL? {
-        return URL(string: "\(NSHomeDirectory())/AutoSpoto")
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        return homeDirectory.appending(path: "AutoSpoto")
     }
     
     public static var autoSpotoDBURL: URL? {
-        return URL(string: "\(NSHomeDirectory())/AutoSpoto/autospoto.db")
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        return homeDirectory.appending(path: "AutoSpoto/autospoto.db")
     }
     
     public static var spotifyTokenURL: URL? {
-        return URL(string: "\(NSHomeDirectory())/AutoSpoto/spotifyToken.json")
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        return homeDirectory.appending(path: "AutoSpoto/spotifyToken.json")
     }
     
     public static var licenseURL: URL? {
-        return URL(string: "\(NSHomeDirectory())/AutoSpoto/license.json")
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        return homeDirectory.appending(path: "AutoSpoto/license.json")
     }
     
     public static var playlistUpdaterValidationURL: URL? {
-        return URL(string: "\(NSHomeDirectory())/AutoSpoto/PlaylistUpdaterValidation.json")
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+        return homeDirectory.appending(path: "AutoSpoto/PlaylistUpdaterValidation.json")
     }
     
     public static var imageFilePathsURL: URL? {
