@@ -22,6 +22,7 @@
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
 		50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
+		505D3E762B80A25B00529C2D /* AutoSpoto-PlaylistUpdater in Embed Helper */ = {isa = PBXBuildFile; fileRef = 92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -163,6 +164,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		505D3E752B80A25100529C2D /* Embed Helper */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				505D3E762B80A25B00529C2D /* AutoSpoto-PlaylistUpdater in Embed Helper */,
+			);
+			name = "Embed Helper";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		50A9864E2A695B86001C6FBD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,6 +689,7 @@
 				50AA276B28C3FE69002FFC3F /* Resources */,
 				50AC599A2A4690E700E473CF /* ShellScript */,
 				50A9864E2A695B86001C6FBD /* CopyFiles */,
+				505D3E752B80A25100529C2D /* Embed Helper */,
 			);
 			buildRules = (
 			);
@@ -1153,6 +1166,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto.app.playlist-updater";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1171,6 +1185,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto.app.playlist-updater";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
