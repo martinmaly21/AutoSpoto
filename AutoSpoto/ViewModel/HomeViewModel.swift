@@ -54,7 +54,7 @@ class HomeViewModel: ObservableObject {
     @Published var isAutoSpotoPro: Bool
 
     init() {
-        isAutoSpotoPro = LicenseManager.userHasValidLicense
+        isAutoSpotoPro = true
         
         DatabaseManager.shared = DatabaseManager(
             onTrackedChatsDBUpdatedOutsideOfApp: {
