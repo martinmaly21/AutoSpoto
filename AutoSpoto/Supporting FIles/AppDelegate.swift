@@ -23,4 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         FirebaseApp.configure()
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 }
