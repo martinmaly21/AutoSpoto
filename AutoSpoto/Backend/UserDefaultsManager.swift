@@ -50,33 +50,35 @@ class UserDefaultsManager {
         }
     }
     
-    static var libraryBookmarkData: Data? {
-        get {
-            guard let libraryBookmarkData = UserDefaults.standard.data(
-                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
-            ) else {
-                return nil
+        static var libraryBookmarkData: Data? {
+            get {
+                let group_name = "TODO_UPDATE_TEAM_ID.app.dependencies.dependencies.preferences"
+                guard let libraryBookmarkData = UserDefaults(suiteName: group_name)?.data(
+                        forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+                ) else {
+                    return nil
+                }
+                
+                do {
+                    var isStale = false
+                    let url = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                    if isStale {
+                        return nil
+                    } else {
+                        return libraryBookmarkData
+                    }
+                } catch let error {
+                    return nil
+                }
             }
             
-            do {
-                var isStale = false
-                let _ = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
-                
-                if isStale {
-                    return nil
-                } else {
-                    return libraryBookmarkData
-                }
-            } catch let error {
-                return nil
+            set {
+                let group_name = "TODO_UPDATE_TEAM_ID.app.dependencies.dependencies.preferences"
+                UserDefaults(suiteName: group_name)?.set(
+                    newValue,
+                    forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+                )
             }
         }
-        
-        set {
-            UserDefaults.standard.set(
-                newValue,
-                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
-            )
-        }
-    }
+
 }

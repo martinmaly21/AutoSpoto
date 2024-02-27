@@ -5,7 +5,7 @@
 	<key>Label</key>
 	<string>com.autospoto.app.playlistupdater</string>
 	<key>BundleProgram</key>
-	<string>Contents/Resources/AutoSpoto-PlaylistUpdater</string>
+	<string>Contents/MacOS/AutoSpoto-PlaylistUpdater</string>
 	<key>StartInterval</key>
 	<integer>60</integer>
 	<key>RunAtLoad</key>
