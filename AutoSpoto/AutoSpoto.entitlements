@@ -10,6 +10,8 @@
 	<true/>
 	<key>com.apple.security.personal-information.addressbook</key>
 	<true/>
+    <key>com.apple.security.files.bookmarks.app-scope</key>
+    <true/>
     <key>com.apple.security.application-groups</key>
         <array>
             <string>$(TeamIdentifierPrefix)app.dependencies.dependencies.preferences</string>

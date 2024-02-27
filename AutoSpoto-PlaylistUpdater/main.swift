@@ -12,12 +12,16 @@ let sharedUserDefaults = UserDefaults(suiteName: groupIdentifier)
 guard let db = DatabaseManager() else {
     exit(1)
 }
-let libraryBookmarkData = sharedUserDefaults!.data(
-        forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+print("db manager working")
+
+guard let sharedUserDefaults = sharedUserDefaults else {
+    print("Error: Shared UserDefaults is nil.")
+    exit(2)
+}
+
+let libraryBookmarkData = sharedUserDefaults.data(
+    forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
 )
-
-
-//print(libraryBookmarkData?.description)
 
 
 //log time that script has succesfully accessed chat.db
@@ -25,7 +29,7 @@ let libraryBookmarkData = sharedUserDefaults!.data(
 do {
     // Resolve library bookmark data to URL
     var isStale = false
-    let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData!, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+    let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData!, relativeTo: nil, bookmarkDataIsStale: &isStale)
 
     guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
         print("Could not get autoSpotoURL.")
@@ -36,7 +40,6 @@ do {
 
     // Create directory at autoSpotoURL
     try FileManager.default.createDirectory(at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
-
     DiskAccessManager.stopAccessingSecurityScopedResource()
 
     guard let playlistUpdaterValidationURL = DiskAccessManager.playlistUpdaterValidationURL else {
@@ -58,11 +61,8 @@ do {
     exit(5)
 }
 
-if let sharedUserDefaults = sharedUserDefaults {
-    // Set values in shared UserDefaults
-    sharedUserDefaults.set(true, forKey: "SharedKey")
-    sharedUserDefaults.synchronize()
-}
+sharedUserDefaults.set(true, forKey: "SharedKey")
+sharedUserDefaults.synchronize()
 
 DatabaseManager.shared = db
 let trackedChats = DatabaseManager.shared.retrieveTrackedChats()
