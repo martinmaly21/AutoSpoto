@@ -14,6 +14,12 @@ extension AutoSpotoConstants {
 }
 
 extension AutoSpotoConstants.Strings {
+    static let CONTACT_AUTOSPOTO = NSLocalizedString(
+        "CONTACT_AUTOSPOTO",
+        value: "Contact us",
+        comment: "Contact"
+    )
+    
     static let AUTO_SPOTO_APP_NAME = NSLocalizedString(
         "AUTO_SPOTO_APP_NAME",
         value: "AutoSpoto",
@@ -661,6 +667,18 @@ extension AutoSpotoConstants.Strings {
         "NO_ASSOCIATED_DATA",
         value: "No associated data found on this device",
         comment: "Button to clear data on device associated with AutoSpoto"
+    )
+    
+    static let CONTACT_US_SUBTITLE = NSLocalizedString(
+        "CONTACT_US_SUBTITLE",
+        value: "Contact us",
+        comment: "Contact us subtitle text."
+    )
+    
+    static let CONTACT_US_BODY = NSLocalizedString(
+        "CONTACT_US_BODY",
+        value: "Please reach out to us if you have any questions, comments, or concerns. We love to hear your feedback.",
+        comment: "Contact us body text."
     )
 }
 

@@ -29,5 +29,21 @@ extension View {
             customize: customize
         ))
     }
-
+    
+    private func newWindowInternal(with title: String) -> NSWindow {
+        let window = NSWindow(
+            contentRect: NSRect(x: 20, y: 20, width: 320, height: 420),
+            styleMask: [.titled, .miniaturizable, .resizable, .closable, .fullSizeContentView],
+            backing: .buffered,
+            defer: false)
+        window.center()
+        window.isReleasedWhenClosed = false
+        window.title = title
+        window.makeKeyAndOrderFront(nil)
+        return window
+    }
+    
+    func openNewWindow(with title: String = "new Window") {
+        self.newWindowInternal(with: title).contentView = NSHostingView(rootView: self)
+    }
 }

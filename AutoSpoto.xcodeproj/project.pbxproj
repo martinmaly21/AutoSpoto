@@ -15,6 +15,8 @@
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
 		503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30029B3A83800743ED5 /* OnboardingButton.swift */; };
 		503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */; };
+		503D30D72B8F847400B9DF8A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D30D62B8F847400B9DF8A /* HelpView.swift */; };
+		503D30D92B8F868200B9DF8A /* ContactUsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D30D82B8F868200B9DF8A /* ContactUsButton.swift */; };
 		504069802A55A9D400414D3D /* ChatSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040697F2A55A9D400414D3D /* ChatSection.swift */; };
 		5048A23D2A38C17B00790C36 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23C2A38C17B00790C36 /* Shake.swift */; };
 		5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
@@ -224,6 +226,8 @@
 		503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPictureView.swift; sourceTree = "<group>"; };
 		503BC30029B3A83800743ED5 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		503BC30229B3ABAD00743ED5 /* CreatePlaylistButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistButton.swift; sourceTree = "<group>"; };
+		503D30D62B8F847400B9DF8A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		503D30D82B8F868200B9DF8A /* ContactUsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsButton.swift; sourceTree = "<group>"; };
 		5040697F2A55A9D400414D3D /* ChatSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSection.swift; sourceTree = "<group>"; };
 		5048A23C2A38C17B00790C36 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
@@ -371,8 +375,17 @@
 				50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */,
 				50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */,
 				50C02FF22A96D9F9004CD56A /* ClearAssociatedDataButton.swift */,
+				503D30D82B8F868200B9DF8A /* ContactUsButton.swift */,
 			);
 			path = "Helper Views";
+			sourceTree = "<group>";
+		};
+		503D30D52B8F846700B9DF8A /* CommandGroup */ = {
+			isa = PBXGroup;
+			children = (
+				503D30D62B8F847400B9DF8A /* HelpView.swift */,
+			);
+			path = CommandGroup;
 			sourceTree = "<group>";
 		};
 		5040697D2A5594D900414D3D /* DatabaseManager */ = {
@@ -658,6 +671,7 @@
 		50F34C8E297662A80059516B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				503D30D52B8F846700B9DF8A /* CommandGroup */,
 				5048A23B2A38C16E00790C36 /* GeometryEffect */,
 				50D0261B2A38BC8B00DBD789 /* Subclass */,
 				503BC2FC29B38DC700743ED5 /* Helper Views */,
@@ -871,6 +885,7 @@
 				503BC30329B3ABAD00743ED5 /* CreatePlaylistButton.swift in Sources */,
 				50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */,
 				50A6922D2A371B6500E87BA2 /* CreateButton.swift in Sources */,
+				503D30D92B8F868200B9DF8A /* ContactUsButton.swift in Sources */,
 				5048A23D2A38C17B00790C36 /* Shake.swift in Sources */,
 				50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */,
 				50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */,
@@ -913,6 +928,7 @@
 				50B19568299B4A6D002E7F65 /* SpotifyTracksResponse.swift in Sources */,
 				50B19566299B471A002E7F65 /* GroupChatCodable.swift in Sources */,
 				50F178A829960B40002AFC1C /* TrackRow.swift in Sources */,
+				503D30D72B8F847400B9DF8A /* HelpView.swift in Sources */,
 				50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */,
 				50283F602A5033B900E9121B /* NSImage.swift in Sources */,
 				50E552602A6EAC8D00EC3149 /* HTTPManager.swift in Sources */,

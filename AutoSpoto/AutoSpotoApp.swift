@@ -18,6 +18,7 @@ struct AutoSpotoApp: App {
     
     @State private var autoSpotoCurrentView: CurrentView = .onboarding
     @State private var showAutoSpotoDisconnectSheet: Bool = false
+    @State private var helpOpened = false
 
     var body: some Scene {
         WindowGroup {
@@ -57,6 +58,18 @@ struct AutoSpotoApp: App {
                 }
             })
             CommandGroup(replacing: CommandGroupPlacement.newItem) { }
+            
+            CommandGroup(replacing: .help) {
+                Button(action: {
+                    if !helpOpened {
+                        helpOpened.toggle()
+                        HelpView(isOpen: $helpOpened).openNewWindow(with: "Help")
+                    }
+                }, label: {
+                    Text(AutoSpotoConstants.Strings.CONTACT_AUTOSPOTO)
+                })
+                .keyboardShortcut("/")
+            }
         }
         //disable resizing of the window
         .windowResizability(.contentSize)
