@@ -25,6 +25,12 @@ extension AutoSpotoConstants.Strings {
         value: "AutoSpoto",
         comment: "App name."
     )
+    
+    static let SHARE = NSLocalizedString(
+        "SHARE",
+        value: "Share",
+        comment: "Generic 'share' text."
+    )
 
     static let AUTO_SPOTO_SPLASH_MOTTO = NSLocalizedString(
         "AUTO_SPOTO_SPLASH_MOTTO",

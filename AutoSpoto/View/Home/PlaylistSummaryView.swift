@@ -111,6 +111,28 @@ struct PlaylistSummaryView: View {
                             )
                             .buttonStyle(.plain)
                         }
+                        
+                        VStack(alignment: .center, spacing: 12) {
+                            ShareLink(
+                                item:  spotifyPlaylist?.url ?? URL(string: "https://google.com")!,
+                                label: {
+                                    VStack(alignment: .center) {
+                                        Image(systemName: "square.and.arrow.up")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 30)
+                                           
+                                        
+                                        Text(AutoSpotoConstants.Strings.SHARE)
+                                            .font(.josefinSansRegular(15))
+                                            .foregroundColor(.textPrimary)
+                                            .multilineTextAlignment(.center)
+                                    }
+                                }
+                            )
+                            .padding(.leading, 12)
+                            .buttonStyle(.plain)
+                        }
                     }
                 }
                 .padding(.top, 8)
