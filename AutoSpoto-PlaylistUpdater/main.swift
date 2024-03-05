@@ -7,7 +7,7 @@
 
 import Foundation
 
-let groupIdentifier = "TODO_UPDATE_TEAM_ID.app.dependencies.dependencies.preferences"
+let groupIdentifier = AutoSpotoConstants.UserDefaults.group_name
 let sharedUserDefaults = UserDefaults(suiteName: groupIdentifier)
 guard let db = DatabaseManager() else {
     exit(1)
@@ -24,8 +24,8 @@ let libraryBookmarkData = sharedUserDefaults.data(
 )
 
 
-//log time that script has succesfully accessed chat.db
-//this is used for onboarding to determine when playlist updater has been given full disk access
+////log time that script has succesfully accessed chat.db
+////this is used for onboarding to determine when playlist updater has been given full disk access
 do {
     // Resolve library bookmark data to URL
     var isStale = false
@@ -61,12 +61,12 @@ do {
     exit(5)
 }
 
-sharedUserDefaults.set(true, forKey: "SharedKey")
+sharedUserDefaults.set(true, forKey: AutoSpotoConstants.UserDefaults.spotifyUser)
 sharedUserDefaults.synchronize()
 
 DatabaseManager.shared = db
 let trackedChats = DatabaseManager.shared.retrieveTrackedChats()
-
+print(trackedChats)
 for trackedChat in trackedChats.rows {
     guard let trackedChatID = trackedChat["chatID"] as? Int,
           let trackedChatSpotifyPlaylistID = trackedChat["spotifyPlaylistID"] as? String,

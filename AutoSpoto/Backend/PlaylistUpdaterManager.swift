@@ -20,6 +20,8 @@ class PlaylistUpdaterManager {
                 } catch {
                     print("Unable to register \(error)")
                 }
+            }else{
+                print("service already registered")
             }
         }
     }

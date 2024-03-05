@@ -29,29 +29,40 @@ class DiskAccessManager {
     }
     
     public static var autoSpotoURL: URL? {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        return homeDirectory.appending(path: "AutoSpoto")
+        guard let groupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name) else {
+            return nil
+        }
+        return groupContainerURL.appendingPathComponent("AutoSpoto")
     }
-    
+
     public static var autoSpotoDBURL: URL? {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        return homeDirectory.appending(path: "AutoSpoto/autospoto.db")
+        guard let groupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name) else {
+            return nil
+        }
+        return groupContainerURL.appendingPathComponent("AutoSpoto/autospoto.db")
     }
-    
+
     public static var spotifyTokenURL: URL? {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        return homeDirectory.appending(path: "AutoSpoto/spotifyToken.json")
+        guard let groupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name) else {
+            return nil
+        }
+        return groupContainerURL.appendingPathComponent("AutoSpoto/spotifyToken.json")
     }
-    
+
     public static var licenseURL: URL? {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        return homeDirectory.appending(path: "AutoSpoto/license.json")
+        guard let groupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name) else {
+            return nil
+        }
+        return groupContainerURL.appendingPathComponent("AutoSpoto/license.json")
     }
-    
+
     public static var playlistUpdaterValidationURL: URL? {
-        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
-        return homeDirectory.appending(path: "AutoSpoto/PlaylistUpdaterValidation.json")
+        guard let groupContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name) else {
+            return nil
+        }
+        return groupContainerURL.appendingPathComponent("AutoSpoto/PlaylistUpdaterValidation.json")
     }
+
     
     public static var imageFilePathsURL: URL? {
         //TODO: figure out how to handle group chat photos not existing

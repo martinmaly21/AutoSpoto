@@ -20,6 +20,7 @@ class SpotifyTokenManager {
             guard let spotifyTokenURL = DiskAccessManager.spotifyTokenURL else {
                 return nil
             }
+            print(spotifyTokenURL)
             DiskAccessManager.startAccessingSecurityScopedResource()
             let data = try Data(contentsOf: spotifyTokenURL)
             DiskAccessManager.stopAccessingSecurityScopedResource()

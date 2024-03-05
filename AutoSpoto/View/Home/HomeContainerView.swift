@@ -20,6 +20,7 @@ struct HomeContainerView: View {
         .onAppear {
             Task {
                 await homeViewModel.fetchChats()
+                PlaylistUpdaterManager.registerIfNeeded()
             }
         }
     }

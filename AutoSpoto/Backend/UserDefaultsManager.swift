@@ -18,7 +18,7 @@ class UserDefaultsManager {
                   ) else {
                 fatalError("Could not get spotifyUserData")
             }
-            
+            print(spotifyUser)
             return spotifyUser
         }
         
@@ -52,7 +52,7 @@ class UserDefaultsManager {
     
         static var libraryBookmarkData: Data? {
             get {
-                let group_name = "TODO_UPDATE_TEAM_ID.app.dependencies.dependencies.preferences"
+                let group_name = AutoSpotoConstants.UserDefaults.group_name
                 guard let libraryBookmarkData = UserDefaults(suiteName: group_name)?.data(
                         forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
                 ) else {
@@ -73,7 +73,7 @@ class UserDefaultsManager {
             }
             
             set {
-                let group_name = "TODO_UPDATE_TEAM_ID.app.dependencies.dependencies.preferences"
+                let group_name = AutoSpotoConstants.UserDefaults.group_name
                 UserDefaults(suiteName: group_name)?.set(
                     newValue,
                     forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
