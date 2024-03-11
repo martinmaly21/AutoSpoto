@@ -18,7 +18,6 @@ class UserDefaultsManager {
                   ) else {
                 fatalError("Could not get spotifyUserData")
             }
-            print(spotifyUser)
             return spotifyUser
         }
         
@@ -61,7 +60,7 @@ class UserDefaultsManager {
                 
                 do {
                     var isStale = false
-                    let url = try URL(resolvingBookmarkData: libraryBookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                    let url = try URL(resolvingBookmarkData: libraryBookmarkData,relativeTo: nil, bookmarkDataIsStale: &isStale)
                     if isStale {
                         return nil
                     } else {

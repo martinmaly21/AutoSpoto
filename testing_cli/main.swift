@@ -1,8 +1,8 @@
 //
 //  main.swift
-//  AutoSpoto-PlaylistUpdater
+//  testing_cli
 //
-//  Created by Andrew Caravaggio on 2023-07-05.
+//  Created by Andrew Caravaggio on 2024-03-11.
 //
 
 import Foundation
@@ -12,7 +12,6 @@ let sharedUserDefaults = UserDefaults(suiteName: groupIdentifier)
 guard let db = DatabaseManager() else {
     exit(1)
 }
-print("db manager working")
 
 guard let sharedUserDefaults = sharedUserDefaults else {
     print("Error: Shared UserDefaults is nil.")
@@ -23,9 +22,6 @@ let libraryBookmarkData = sharedUserDefaults.data(
     forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
 )
 
-
-////log time that script has succesfully accessed chat.db
-////this is used for onboarding to determine when playlist updater has been given full disk access
 do {
     // Resolve library bookmark data to URL
     var isStale = false
@@ -61,6 +57,7 @@ do {
     exit(5)
 }
 
+
 sharedUserDefaults.set(true, forKey: AutoSpotoConstants.UserDefaults.spotifyUser)
 sharedUserDefaults.synchronize()
 
@@ -90,3 +87,4 @@ for trackedChat in trackedChats.rows {
         continue // fail silently
     }
 }
+
