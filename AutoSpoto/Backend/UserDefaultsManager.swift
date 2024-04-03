@@ -49,18 +49,18 @@ class UserDefaultsManager {
         }
     }
     
-        static var libraryBookmarkData: Data? {
+        static var sharedLibraryBookmarkData: Data? {
             get {
                 let group_name = AutoSpotoConstants.UserDefaults.group_name
                 guard let libraryBookmarkData = UserDefaults(suiteName: group_name)?.data(
                         forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+                        
                 ) else {
                     return nil
                 }
-                
                 do {
                     var isStale = false
-                    let url = try URL(resolvingBookmarkData: libraryBookmarkData,relativeTo: nil, bookmarkDataIsStale: &isStale)
+                    let url = try URL(resolvingBookmarkData: libraryBookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
                     if isStale {
                         return nil
                     } else {
@@ -79,5 +79,35 @@ class UserDefaultsManager {
                 )
             }
         }
+    
+    static var libraryBookmarkData: Data? {
+        get {
+            guard let libraryBookmarkData = UserDefaults.standard.data(
+                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+            ) else {
+                return nil
+            }
+            
+            do {
+                var isStale = false
+                let _ = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                
+                if isStale {
+                    return nil
+                } else {
+                    return libraryBookmarkData
+                }
+            } catch let error {
+                return nil
+            }
+        }
+        
+        set {
+            UserDefaults.standard.set(
+                newValue,
+                forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
+            )
+        }
+    }
 
 }

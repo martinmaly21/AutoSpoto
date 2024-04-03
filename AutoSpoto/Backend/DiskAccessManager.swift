@@ -10,6 +10,7 @@ import Foundation
 class DiskAccessManager {
     public static var userAuthorizedDiskAccess: Bool {
         //determine disk access by checking whether we can access chat.db
+        //
         return UserDefaultsManager.libraryBookmarkData != nil
     }
     
@@ -20,7 +21,7 @@ class DiskAccessManager {
         
         do {
             var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData,relativeTo: nil, bookmarkDataIsStale: &isStale)
+            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             return libraryBookmarkDataURL.appending(path: "chat.db")
         } catch let error {
@@ -76,7 +77,7 @@ class DiskAccessManager {
         
         do {
             var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData,relativeTo: nil, bookmarkDataIsStale: &isStale)
+            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             let _ = libraryBookmarkDataURL.startAccessingSecurityScopedResource()
         } catch let error {
@@ -91,7 +92,7 @@ class DiskAccessManager {
         
         do {
             var isStale = false
-            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData,relativeTo: nil, bookmarkDataIsStale: &isStale)
+            let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             let _ = libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
         } catch let error {

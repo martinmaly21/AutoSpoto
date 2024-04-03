@@ -70,7 +70,9 @@ struct AutoSpotoDiskAccessRequestCell: View {
                                                     }
                                                     
                                                     do {
-                                                        UserDefaultsManager.libraryBookmarkData = try url.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
+                                                        UserDefaultsManager.libraryBookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+                                                        
+                                                        UserDefaultsManager.sharedLibraryBookmarkData = try url.bookmarkData( includingResourceValuesForKeys: nil, relativeTo: nil)
                                                         
                                                         guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
                                                             fatalError("Could not get autoSpotoURL")

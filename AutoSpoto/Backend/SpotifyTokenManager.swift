@@ -34,11 +34,19 @@ class SpotifyTokenManager {
     public static func writeToken(spotifyToken: SpotifyToken) {
         let jsonToken = JSONToken(spotifyToken: spotifyToken)
         let jsonEncoder = JSONEncoder()
+
         
         do {
             let jsonData = try jsonEncoder.encode(jsonToken)
             let encryptedData = RNCryptor.encrypt(data: jsonData, withPassword: lFile)
+            
+            if let groupContainerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name){
+                let AutoSpotoDir = groupContainerUrl.appendingPathComponent("AutoSpoto")
+                try? FileManager.default.createDirectory(at: AutoSpotoDir, withIntermediateDirectories: false, attributes: nil)
+            }
+            
             if let spotifyTokenURL = DiskAccessManager.spotifyTokenURL {
+                print(spotifyTokenURL)
                 DiskAccessManager.startAccessingSecurityScopedResource()
                 try encryptedData.write(to: spotifyTokenURL)
                 DiskAccessManager.stopAccessingSecurityScopedResource()

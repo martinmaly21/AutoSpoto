@@ -9,23 +9,32 @@ import Foundation
 
 let groupIdentifier = AutoSpotoConstants.UserDefaults.group_name
 let sharedUserDefaults = UserDefaults(suiteName: groupIdentifier)
+
+
+if UserDefaultsManager.libraryBookmarkData==nil{
+    
+    guard let sharedLibraryBookmarkData = UserDefaultsManager.sharedLibraryBookmarkData else {
+        fatalError()
+    }
+    
+    do{
+        var isStale = false
+        let resolvedURL = try URL(resolvingBookmarkData: sharedLibraryBookmarkData, options: [], relativeTo: nil, bookmarkDataIsStale: &isStale)
+        UserDefaultsManager.libraryBookmarkData = try resolvedURL.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+    }catch{
+        print("Error creating security-scoped bookmark: \(error.localizedDescription)")
+    }
+}
+
 guard let db = DatabaseManager() else {
     exit(1)
 }
 
-guard let sharedUserDefaults = sharedUserDefaults else {
-    print("Error: Shared UserDefaults is nil.")
-    exit(2)
-}
 
-let libraryBookmarkData = sharedUserDefaults.data(
-    forKey: AutoSpotoConstants.UserDefaults.libraryBookmarkData
-)
+
 
 do {
     // Resolve library bookmark data to URL
-    var isStale = false
-    let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData!, relativeTo: nil, bookmarkDataIsStale: &isStale )
 
     guard let autoSpotoURL = DiskAccessManager.autoSpotoURL else {
         print("Could not get autoSpotoURL.")
@@ -57,9 +66,6 @@ do {
     exit(5)
 }
 
-
-sharedUserDefaults.set(true, forKey: AutoSpotoConstants.UserDefaults.spotifyUser)
-sharedUserDefaults.synchronize()
 
 DatabaseManager.shared = db
 let trackedChats = DatabaseManager.shared.retrieveTrackedChats()

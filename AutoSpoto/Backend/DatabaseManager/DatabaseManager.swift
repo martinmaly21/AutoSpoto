@@ -40,6 +40,8 @@ class DatabaseManager {
             let chatDBURL = DiskAccessManager.chatDBURL else {
                 fatalError("Could not get autoSpotoURL")
             }
+            
+            //print(UserDefaultsManager.libraryBookmarkData)
             DiskAccessManager.startAccessingSecurityScopedResource()
             try FileManager.default.createDirectory (at: autoSpotoURL, withIntermediateDirectories: true, attributes: nil)
             DiskAccessManager.stopAccessingSecurityScopedResource()
