@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		500AE0BD2A96E1B600BE6995 /* PlaylistUpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */; };
-		5019392E2BC09CB6008EE1BB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */; };
-		501939302BC09CB6008EE1BB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5019392F2BC09CB6008EE1BB /* FirebaseFirestore */; };
-		501939322BC09CB6008EE1BB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */; };
+		501939352BC0A45A008EE1BB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 501939342BC0A45A008EE1BB /* FirebaseCrashlytics */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
@@ -339,11 +337,9 @@
 				506B34082A5FAD47002938D3 /* PhoneNumberKit in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
-				5019392E2BC09CB6008EE1BB /* FirebaseCrashlytics in Frameworks */,
+				501939352BC0A45A008EE1BB /* FirebaseCrashlytics in Frameworks */,
 				50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
-				501939302BC09CB6008EE1BB /* FirebaseFirestore in Frameworks */,
-				501939322BC09CB6008EE1BB /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,9 +722,7 @@
 				504C2EBC2A25BC9500097F5F /* SQLite */,
 				506B34072A5FAD47002938D3 /* PhoneNumberKit */,
 				50F6D4802A6E6138009B8055 /* RNCryptor */,
-				5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */,
-				5019392F2BC09CB6008EE1BB /* FirebaseFirestore */,
-				501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */,
+				501939342BC0A45A008EE1BB /* FirebaseCrashlytics */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -792,7 +786,7 @@
 				506B34062A5FAD47002938D3 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */,
 				50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */,
-				5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				501939332BC0A45A008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -1130,7 +1124,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -1147,7 +1141,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1165,7 +1159,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
@@ -1181,7 +1175,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1197,11 +1191,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1216,11 +1210,11 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1261,7 +1255,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		501939332BC0A45A008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1320,20 +1314,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */ = {
+		501939342BC0A45A008EE1BB /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 501939332BC0A45A008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
-		};
-		5019392F2BC09CB6008EE1BB /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
 		};
 		504C2EBC2A25BC9500097F5F /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
