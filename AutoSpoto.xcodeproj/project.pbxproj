@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
-		500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		500AE0BD2A96E1B600BE6995 /* PlaylistUpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
@@ -21,8 +20,6 @@
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
 		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
-		50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
-		505D3E762B80A25B00529C2D /* AutoSpoto-PlaylistUpdater in Embed Helper */ = {isa = PBXBuildFile; fileRef = 92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
 		5069BF6A29999504007F4037 /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
@@ -52,8 +49,6 @@
 		50A6922D2A371B6500E87BA2 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922C2A371B6500E87BA2 /* CreateButton.swift */; };
 		50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922E2A371B6F00E87BA2 /* CancelButton.swift */; };
 		50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A692302A371B7900E87BA2 /* DoneButton.swift */; };
-		50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */; };
-		50A9864F2A695BAB001C6FBD /* com.autospoto.app.playlistupdater.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */; };
 		50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */; };
 		50AA277328C3FE69002FFC3F /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */; };
 		50AA277528C3FE6A002FFC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AA277428C3FE6A002FFC3F /* Assets.xcassets */; };
@@ -61,7 +56,6 @@
 		50ACE0342A61052700DE0344 /* ChatTypeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0332A61052700DE0344 /* ChatTypeFilter.swift */; };
 		50ACE0372A61056800DE0344 /* ChatTypeFilterToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0362A61056800DE0344 /* ChatTypeFilterToggle.swift */; };
 		50ACE0392A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0382A610A8F00DE0344 /* ChatTypeFilterToggleStyle.swift */; };
-		50ACE03B2A6133C700DE0344 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
 		50ACE0412A61366000DE0344 /* SpotifyManager+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0402A61366000DE0344 /* SpotifyManager+App.swift */; };
 		50ACE0432A6136FA00DE0344 /* DataBaseManager+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACE0422A6136FA00DE0344 /* DataBaseManager+App.swift */; };
 		50B19564299B4711002E7F65 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
@@ -75,8 +69,6 @@
 		50C1790C29980ED8009CD58F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
 		50C1790E2998AD4C009CD58F /* CreatePlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */; };
 		50C6F2BC2A6FA87D00A03D2A /* EnterLicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */; };
-		50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6D4822A6E6193009B8055 /* LicenseManager.swift */; };
-		50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */; };
 		50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2629896004009C3F4A /* GetStartedView.swift */; };
 		50CFCE2929896983009C3F4A /* PermissionsRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2829896983009C3F4A /* PermissionsRequestView.swift */; };
 		50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2A29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift */; };
@@ -103,7 +95,6 @@
 		50E552592A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552582A6E9F1900EC3149 /* AlreadyHaveALicenseButton.swift */; };
 		50E5525E2A6EAA7200EC3149 /* GumroadVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525D2A6EAA7200EC3149 /* GumroadVerification.swift */; };
 		50E552602A6EAC8D00EC3149 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */; };
-		50E552612A6EAC9400EC3149 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5525F2A6EAC8D00EC3149 /* HTTPManager.swift */; };
 		50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178922995EAFF002AFC1C /* HomeContainerView.swift */; };
 		50F178952995ECEB002AFC1C /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178942995ECEB002AFC1C /* ChatsListView.swift */; };
 		50F178982995ED11002AFC1C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F178972995ED11002AFC1C /* ChatView.swift */; };
@@ -125,7 +116,6 @@
 		50FB02DF2A34870600D2CEB7 /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
 		50FB02E12A34BBDC00D2CEB7 /* PlaylistSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */; };
 		50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02E42A35A49600D2CEB7 /* SyncButton.swift */; };
-		920B21FD2A564AD000904CDD /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		92357DE32A582F6900B4CFB4 /* SpotifyTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */; };
 		924189BC2B9FABF500EEE946 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924189BB2B9FABF500EEE946 /* main.swift */; };
 		924189C12B9FAC1B00EEE946 /* RNCryptor in Frameworks */ = {isa = PBXBuildFile; productRef = 924189C02B9FAC1B00EEE946 /* RNCryptor */; };
@@ -173,49 +163,9 @@
 		924189F62B9FAE9400EEE946 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		924189F92B9FB10400EEE946 /* testing_cli in Testing */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* testing_cli */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */; };
-		92F554B32A55E25A006E1CAA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F554B22A55E25A006E1CAA /* main.swift */; };
-		92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
-		92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
-		92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08632A31FEDF00917AAC /* UserDefaultsManager.swift */; };
-		92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */; };
-		92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
-		92F554BD2A55E39F006E1CAA /* (null) in Sources */ = {isa = PBXBuildFile; };
-		92F554BE2A55E39F006E1CAA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF722999C0A6007F4037 /* String.swift */; };
-		92F554BF2A55E39F006E1CAA /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08702A32F1FD00917AAC /* Array.swift */; };
-		92F554C02A55E39F006E1CAA /* AutoSpotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */; };
-		92F554C12A55E39F006E1CAA /* AutoSpotoConstants+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */; };
-		92F554C22A55E39F006E1CAA /* AutoSpotoConstants+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */; };
-		92F554C32A55E39F006E1CAA /* AutoSpotoConstants+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */; };
-		92F554C42A55E39F006E1CAA /* AutoSpotoConstants+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F9339329C4DFC1004D0B0F /* AutoSpotoConstants+Regex.swift */; };
-		92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */; };
-		92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085B2A31B6CB00917AAC /* AutoSpotoConstants+HTTPHeaders.swift */; };
-		92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085D2A31BB5800917AAC /* AutoSpotoConstants+HTTPParameter.swift */; };
-		92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B085F2A31BC3E00917AAC /* AutoSpotoConstants+HTTPStatus.swift */; };
-		92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */; };
-		92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
-		92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08592A31B36B00917AAC /* SpotifyToken.swift */; };
-		92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
-		92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19565299B471A002E7F65 /* GroupChatCodable.swift */; };
-		92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19567299B4A6D002E7F65 /* SpotifyTracksResponse.swift */; };
-		92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086A2A32108A00917AAC /* SpotifyUser.swift */; };
-		92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DE2A34870600D2CEB7 /* SpotifyPlaylist.swift */; };
-		92F554D32A55E39F006E1CAA /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1790B29980ED8009CD58F /* Track.swift */; };
-		92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
-		92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF6929999504007F4037 /* FilterChatType.swift */; };
-		92F554D62A55E39F006E1CAA /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
-		92F554D72A55E39F006E1CAA /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
-		92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
-		92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 92F554D92A55E3DB006E1CAA /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		505D3E772B80A80300529C2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 50AA276528C3FE69002FFC3F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 92F554AF2A55E25A006E1CAA;
-			remoteInfo = "AutoSpoto-PlaylistUpdater";
-		};
 		924189FA2B9FB16900EEE946 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 50AA276528C3FE69002FFC3F /* Project object */;
@@ -232,7 +182,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				505D3E762B80A25B00529C2D /* AutoSpoto-PlaylistUpdater in Embed Helper */,
 			);
 			name = "Embed Helper";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +193,6 @@
 			dstSubfolderSpec = 1;
 			files = (
 				924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in CopyFiles */,
-				50A9864F2A695BAB001C6FBD /* com.autospoto.app.playlistupdater.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,15 +215,6 @@
 			);
 			name = Testing;
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		92F554AE2A55E25A006E1CAA /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -316,7 +255,6 @@
 		50A6922C2A371B6500E87BA2 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		50A6922E2A371B6F00E87BA2 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		50A692302A371B7900E87BA2 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
-		50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.autospoto.app.playlistupdater.plist; sourceTree = "<group>"; };
 		50AA276D28C3FE69002FFC3F /* AutoSpoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoSpoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AA277028C3FE69002FFC3F /* AutoSpotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoApp.swift; sourceTree = "<group>"; };
 		50AA277228C3FE69002FFC3F /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
@@ -336,7 +274,6 @@
 		50B20D852A38BA4800212CE4 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		50C02FEC2A963C1B004CD56A /* AutoSpotoDisconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSpotoDisconnectView.swift; sourceTree = "<group>"; };
 		50C02FF22A96D9F9004CD56A /* ClearAssociatedDataButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearAssociatedDataButton.swift; sourceTree = "<group>"; };
-		50C0F98A2A616C28008E6743 /* AutoSpoto-PlaylistUpdater.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AutoSpoto-PlaylistUpdater.entitlements"; sourceTree = "<group>"; };
 		50C1790B29980ED8009CD58F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		50C1790D2998AD4C009CD58F /* CreatePlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistView.swift; sourceTree = "<group>"; };
 		50C6F2BB2A6FA87D00A03D2A /* EnterLicenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLicenseButton.swift; sourceTree = "<group>"; };
@@ -392,8 +329,6 @@
 		924189BB2B9FABF500EEE946 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		924189FC2B9FB25E00EEE946 /* testing_cli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testing_cli.entitlements; sourceTree = "<group>"; };
 		924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.autospoto.app.testing.plist; sourceTree = "<group>"; };
-		92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoSpoto-PlaylistUpdater"; sourceTree = BUILT_PRODUCTS_DIR; };
-		92F554B22A55E25A006E1CAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,15 +353,6 @@
 			files = (
 				924189C32B9FAC2100EEE946 /* SQLite in Frameworks */,
 				924189C12B9FAC1B00EEE946 /* RNCryptor in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		92F554AD2A55E25A006E1CAA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50C6F2BF2A6FBA1E00A03D2A /* RNCryptor in Frameworks */,
-				92F554DA2A55E3DB006E1CAA /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +435,6 @@
 			isa = PBXGroup;
 			children = (
 				50AA276F28C3FE69002FFC3F /* AutoSpoto */,
-				92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 				924189BA2B9FABF500EEE946 /* testing_cli */,
 				50AA276E28C3FE69002FFC3F /* Products */,
 				92F554A72A550895006E1CAA /* Frameworks */,
@@ -520,7 +445,6 @@
 			isa = PBXGroup;
 			children = (
 				50AA276D28C3FE69002FFC3F /* AutoSpoto.app */,
-				92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 				924189B92B9FABF500EEE946 /* testing_cli */,
 			);
 			name = Products;
@@ -775,16 +699,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92F554B12A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
-			isa = PBXGroup;
-			children = (
-				50A9864C2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist */,
-				50C0F98A2A616C28008E6743 /* AutoSpoto-PlaylistUpdater.entitlements */,
-				92F554B22A55E25A006E1CAA /* main.swift */,
-			);
-			path = "AutoSpoto-PlaylistUpdater";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -804,7 +718,6 @@
 			);
 			dependencies = (
 				924189FB2B9FB16900EEE946 /* PBXTargetDependency */,
-				505D3E782B80A80300529C2D /* PBXTargetDependency */,
 			);
 			name = AutoSpoto;
 			packageProductDependencies = (
@@ -842,27 +755,6 @@
 			productReference = 924189B92B9FABF500EEE946 /* testing_cli */;
 			productType = "com.apple.product-type.tool";
 		};
-		92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdater" */;
-			buildPhases = (
-				92F554AC2A55E25A006E1CAA /* Sources */,
-				92F554AD2A55E25A006E1CAA /* Frameworks */,
-				92F554AE2A55E25A006E1CAA /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "AutoSpoto-PlaylistUpdater";
-			packageProductDependencies = (
-				92F554D92A55E3DB006E1CAA /* SQLite */,
-				50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */,
-			);
-			productName = testing;
-			productReference = 92F554B02A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -880,9 +772,6 @@
 						CreatedOnToolsVersion = 14.0;
 					};
 					924189B82B9FABF500EEE946 = {
-						CreatedOnToolsVersion = 14.2;
-					};
-					92F554AF2A55E25A006E1CAA = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -910,7 +799,6 @@
 			projectRoot = "";
 			targets = (
 				50AA276C28C3FE69002FFC3F /* AutoSpoto */,
-				92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */,
 				924189B82B9FABF500EEE946 /* testing_cli */,
 			);
 		};
@@ -933,7 +821,6 @@
 				50DB07A72984B6A000BC5864 /* JosefinSansRegular.ttf in Resources */,
 				50DB07AB2984B6A000BC5864 /* JosefinSansBoldItalic.ttf in Resources */,
 				50F673222A6BEA3E00C0F2AE /* GoogleService-Info.plist in Resources */,
-				50A9864D2A695B67001C6FBD /* com.autospoto.app.playlistupdater.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,59 +995,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92F554AC2A55E25A006E1CAA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50526EEE2A5E26A400844274 /* SpotifyTokenManager.swift in Sources */,
-				50E552612A6EAC9400EC3149 /* HTTPManager.swift in Sources */,
-				920B21FD2A564AD000904CDD /* NSImage.swift in Sources */,
-				92F554D82A55E3CF006E1CAA /* Configuration.swift in Sources */,
-				92F554B72A55E39F006E1CAA /* DatabaseManager.swift in Sources */,
-				92F554B82A55E39F006E1CAA /* SpotifyManager.swift in Sources */,
-				50ACE03B2A6133C700DE0344 /* JSONToken.swift in Sources */,
-				92F554BA2A55E39F006E1CAA /* UserDefaultsManager.swift in Sources */,
-				92F554BB2A55E39F006E1CAA /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */,
-				92F554BC2A55E39F006E1CAA /* DiskAccessManager.swift in Sources */,
-				92F554BD2A55E39F006E1CAA /* (null) in Sources */,
-				92F554BE2A55E39F006E1CAA /* String.swift in Sources */,
-				92F554BF2A55E39F006E1CAA /* Array.swift in Sources */,
-				92F554C02A55E39F006E1CAA /* AutoSpotoConstants.swift in Sources */,
-				92F554C12A55E39F006E1CAA /* AutoSpotoConstants+Strings.swift in Sources */,
-				92F554C22A55E39F006E1CAA /* AutoSpotoConstants+Dimensions.swift in Sources */,
-				92F554C32A55E39F006E1CAA /* AutoSpotoConstants+URL.swift in Sources */,
-				92F554C42A55E39F006E1CAA /* AutoSpotoConstants+Regex.swift in Sources */,
-				92F554C52A55E39F006E1CAA /* AutoSpotoConstants+KeyChain.swift in Sources */,
-				92F554C62A55E39F006E1CAA /* AutoSpotoConstants+HTTPHeaders.swift in Sources */,
-				92F554C72A55E39F006E1CAA /* AutoSpotoConstants+HTTPParameter.swift in Sources */,
-				92F554C82A55E39F006E1CAA /* AutoSpotoConstants+HTTPStatus.swift in Sources */,
-				92F554C92A55E39F006E1CAA /* AutoSpotoConstants+UserDefaults.swift in Sources */,
-				92F554CA2A55E39F006E1CAA /* AutoSpotoConstants+Limits.swift in Sources */,
-				92F554CB2A55E39F006E1CAA /* SpotifyToken.swift in Sources */,
-				50C6F2BD2A6FB8C300A03D2A /* LicenseManager.swift in Sources */,
-				500215E42A57E7BB00978C20 /* ContactRow.swift in Sources */,
-				92F554CD2A55E39F006E1CAA /* IndividualChatCodable.swift in Sources */,
-				92F554CE2A55E39F006E1CAA /* GroupChatCodable.swift in Sources */,
-				92F554CF2A55E39F006E1CAA /* SpotifyTracksResponse.swift in Sources */,
-				92F554D02A55E39F006E1CAA /* SpotifyUser.swift in Sources */,
-				92F554D12A55E39F006E1CAA /* SpotifyPlaylist.swift in Sources */,
-				92F554D32A55E39F006E1CAA /* Track.swift in Sources */,
-				92F554D42A55E39F006E1CAA /* ChatType.swift in Sources */,
-				92F554D52A55E39F006E1CAA /* FilterChatType.swift in Sources */,
-				92F554D62A55E39F006E1CAA /* HTTPMethodType.swift in Sources */,
-				92F554D72A55E39F006E1CAA /* AutoSpotoError.swift in Sources */,
-				92F554B32A55E25A006E1CAA /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		505D3E782B80A80300529C2D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 92F554AF2A55E25A006E1CAA /* AutoSpoto-PlaylistUpdater */;
-			targetProxy = 505D3E772B80A80300529C2D /* PBXContainerItemProxy */;
-		};
 		924189FB2B9FB16900EEE946 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 924189B82B9FABF500EEE946 /* testing_cli */;
@@ -1362,7 +1199,7 @@
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = /Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/testing_cli/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1378,53 +1215,9 @@
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = /Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/testing_cli/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		92F554B52A55E25A006E1CAA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
-				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto-PlaylistUpdater/Info.plist";
-				OTHER_CODE_SIGN_FLAGS = "\"-i $(PRODUCT_BUNDLE_IDENTIFIER)\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto.app.playlist-updater";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		92F554B62A55E25A006E1CAA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdater/AutoSpoto-PlaylistUpdater.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
-				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				DEVELOPMENT_TEAM = TODO_UPDATE_TEAM_ID;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/andrewcaravaggio/SideProjects/autospoto/AutoSpoto/AutoSpoto-PlaylistUpdater/Info.plist";
-				OTHER_CODE_SIGN_FLAGS = "\"-i $(PRODUCT_BUNDLE_IDENTIFIER)\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.autospoto.app.playlist-updater";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1455,15 +1248,6 @@
 			buildConfigurations = (
 				924189BE2B9FABF500EEE946 /* Debug */,
 				924189BF2B9FABF500EEE946 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		92F554B42A55E25A006E1CAA /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdater" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				92F554B52A55E25A006E1CAA /* Debug */,
-				92F554B62A55E25A006E1CAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1560,11 +1344,6 @@
 			package = 509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		50C6F2BE2A6FBA1E00A03D2A /* RNCryptor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */;
-			productName = RNCryptor;
-		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
@@ -1581,11 +1360,6 @@
 			productName = RNCryptor;
 		};
 		924189C22B9FAC2100EEE946 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
-			productName = SQLite;
-		};
-		92F554D92A55E3DB006E1CAA /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
