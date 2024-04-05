@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		500215E32A57B64900978C20 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		500AE0BD2A96E1B600BE6995 /* PlaylistUpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */; };
+		5019392E2BC09CB6008EE1BB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */; };
+		501939302BC09CB6008EE1BB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5019392F2BC09CB6008EE1BB /* FirebaseFirestore */; };
+		501939322BC09CB6008EE1BB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */; };
 		50283F5E2A501FF800E9121B /* Disk_Access_Coaching.mov in Resources */ = {isa = PBXBuildFile; fileRef = 50283F5D2A501FF700E9121B /* Disk_Access_Coaching.mov */; };
 		50283F602A5033B900E9121B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F5F2A5033B900E9121B /* NSImage.swift */; };
 		503BC2FE29B38DD400743ED5 /* PersonPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC2FD29B38DD400743ED5 /* PersonPictureView.swift */; };
@@ -30,9 +33,6 @@
 		506B34052A5EB4AC002938D3 /* UpgradeToProButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34042A5EB4AC002938D3 /* UpgradeToProButton.swift */; };
 		506B34082A5FAD47002938D3 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 506B34072A5FAD47002938D3 /* PhoneNumberKit */; };
 		506B340A2A5FAD8E002938D3 /* PhoneNumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34092A5FAD8E002938D3 /* PhoneNumberManager.swift */; };
-		509A5AE52B75CF21003041D0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 509A5AE42B75CF21003041D0 /* FirebaseCrashlytics */; };
-		509A5AE72B75CF21003041D0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 509A5AE62B75CF21003041D0 /* FirebaseFirestore */; };
-		509A5AE92B75CF21003041D0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 509A5AE82B75CF21003041D0 /* FirebaseFirestoreSwift */; };
 		509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08512A31A82100917AAC /* SpotifyManager.swift */; };
 		509B08542A31AD1400917AAC /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
 		509B08582A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08572A31B27500917AAC /* AutoSpotoConstants+KeyChain.swift */; };
@@ -338,12 +338,12 @@
 			files = (
 				506B34082A5FAD47002938D3 /* PhoneNumberKit in Frameworks */,
 				504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */,
-				509A5AE52B75CF21003041D0 /* FirebaseCrashlytics in Frameworks */,
 				5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */,
-				509A5AE72B75CF21003041D0 /* FirebaseFirestore in Frameworks */,
+				5019392E2BC09CB6008EE1BB /* FirebaseCrashlytics in Frameworks */,
 				50F6D4812A6E6138009B8055 /* RNCryptor in Frameworks */,
 				50F178A62995FA0F002AFC1C /* Introspect in Frameworks */,
-				509A5AE92B75CF21003041D0 /* FirebaseFirestoreSwift in Frameworks */,
+				501939302BC09CB6008EE1BB /* FirebaseFirestore in Frameworks */,
+				501939322BC09CB6008EE1BB /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,9 +726,9 @@
 				504C2EBC2A25BC9500097F5F /* SQLite */,
 				506B34072A5FAD47002938D3 /* PhoneNumberKit */,
 				50F6D4802A6E6138009B8055 /* RNCryptor */,
-				509A5AE42B75CF21003041D0 /* FirebaseCrashlytics */,
-				509A5AE62B75CF21003041D0 /* FirebaseFirestore */,
-				509A5AE82B75CF21003041D0 /* FirebaseFirestoreSwift */,
+				5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */,
+				5019392F2BC09CB6008EE1BB /* FirebaseFirestore */,
+				501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */,
 			);
 			productName = AutoSpoto;
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
@@ -792,7 +792,7 @@
 				506B34062A5FAD47002938D3 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */,
 				50F6D47F2A6E6138009B8055 /* XCRemoteSwiftPackageReference "RNCryptor" */,
-				509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 50AA276E28C3FE69002FFC3F /* Products */;
 			projectDirPath = "";
@@ -1261,6 +1261,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.1;
+			};
+		};
 		5038FFD92A67B61E000AF367 /* XCRemoteSwiftPackageReference "LaunchAgent" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/emorydunn/LaunchAgent";
@@ -1293,14 +1301,6 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.21.0;
-			};
-		};
 		50F178A42995FA0F002AFC1C /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -1320,6 +1320,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5019392D2BC09CB6008EE1BB /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		5019392F2BC09CB6008EE1BB /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		501939312BC09CB6008EE1BB /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5019392C2BC09CB6008EE1BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		504C2EBC2A25BC9500097F5F /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 504C2EBB2A25BC9500097F5F /* XCRemoteSwiftPackageReference "SQLite" */;
@@ -1334,21 +1349,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 506B34062A5FAD47002938D3 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
-		};
-		509A5AE42B75CF21003041D0 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		509A5AE62B75CF21003041D0 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		509A5AE82B75CF21003041D0 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 509A5AE32B75CF21003041D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
 		};
 		50F178A52995FA0F002AFC1C /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
