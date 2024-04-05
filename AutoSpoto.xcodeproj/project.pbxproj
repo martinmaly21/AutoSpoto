@@ -1202,6 +1202,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1218,6 +1219,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
