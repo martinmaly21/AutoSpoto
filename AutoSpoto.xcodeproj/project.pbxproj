@@ -1151,7 +1151,7 @@
 				INFOPLIST_FILE = AutoSpoto/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AutoSpoto;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to display the names of your iMessage chats.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to show your iMessage chats with the corresponding recipient name. Your contacts never leave your device, and will not be shared or uploaded.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1185,7 +1185,7 @@
 				INFOPLIST_FILE = AutoSpoto/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AutoSpoto;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to display the names of your iMessage chats.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "AutoSpoto uses your contacts to show your iMessage chats with the corresponding recipient name. Your contacts never leave your device, and will not be shared or uploaded.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
