@@ -167,10 +167,10 @@ extension DatabaseManager {
             }
             
             let chatsDataFrame: DataFrame = [
-                "MessageID": contactsRowsTuple.map { $0.chat_identifier },
-                "contactInfo": contactsRowsTuple.map { $0.contact_info },
-                "chatID": contactsRowsTuple.map { $0.chat_id },
-                "imageBlob": contactsRowsTuple.map {_ in nil}
+                "MessageID": contactsRowsTuple.map { $0.chat_identifier }.isEmpty ? [""] : contactsRowsTuple.map { $0.chat_identifier },
+                "contactInfo": contactsRowsTuple.map { $0.contact_info }.isEmpty ? [""] : contactsRowsTuple.map { $0.contact_info },
+                "chatID": contactsRowsTuple.map { $0.chat_id }.isEmpty ? [-1] : contactsRowsTuple.map { $0.chat_id },
+                "imageBlob": contactsRowsTuple.map { _ in nil }
             ]
             
             let contactDF = await fetchContacts()
