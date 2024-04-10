@@ -99,4 +99,21 @@ class DiskAccessManager {
             return
         }
     }
+    
+    public static func checkSharedGroupContainer() {
+        if UserDefaultsManager.sharedLibraryBookmarkData == nil {
+            guard let libraryBookmarkData = UserDefaultsManager.libraryBookmarkData else {
+                return
+            }
+            
+            do {
+                var isStale = false
+                let resolvedURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: [], relativeTo: nil, bookmarkDataIsStale: &isStale)
+                UserDefaultsManager.sharedLibraryBookmarkData = try resolvedURL.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
+            } catch {
+                print("Error creating app group container bookmark: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
 }

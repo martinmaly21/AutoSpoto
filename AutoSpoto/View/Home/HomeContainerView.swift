@@ -19,6 +19,7 @@ struct HomeContainerView: View {
         .environmentObject(homeViewModel)
         .onAppear {
             Task {
+                DiskAccessManager.checkSharedGroupContainer()
                 await homeViewModel.fetchChats()
                 PlaylistUpdaterManager.registerIfNeeded()
             }
