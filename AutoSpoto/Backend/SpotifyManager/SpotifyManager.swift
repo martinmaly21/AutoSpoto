@@ -131,9 +131,9 @@ class SpotifyManager {
             AutoSpotoConstants.HTTPParameter.refresh_token: expiredToken.refresh_token
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
-    
+        
         let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
-            
+        
         SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
         
         return JSONToken(spotifyToken: spotifyToken)
@@ -151,7 +151,6 @@ class SpotifyManager {
             let params: [String : Any] = [
                 AutoSpotoConstants.HTTPParameter.uris: filteredTracksChunk.map { "spotify:track:\($0.spotifyID)" }
             ]
-
             let _ = try await http(method: .post(data: params), path: "/playlists/\(spotifyPlaylistID)/tracks")
         }
         
@@ -189,8 +188,11 @@ class SpotifyManager {
     }
     
     public static func fetchTrackMetadata(for tracks: [Track]) async throws -> [Track] {
+        
+        let resolvedTracks = try await resolveLinks(for: tracks)
+
         let params = [
-            AutoSpotoConstants.HTTPParameter.ids: tracks.map { $0.spotifyID }.joined(separator: ","),
+            AutoSpotoConstants.HTTPParameter.ids: resolvedTracks.map { $0.spotifyID }.joined(separator: ","),
         ]
         
         let data = try await http(method: .get(queryParams: params), path: "/tracks")
@@ -204,4 +206,36 @@ class SpotifyManager {
         
         return tracksWithMetadata
     }
-}
+    
+    public static func resolveLinks(for tracks: [Track]) async throws ->  [Track]{
+        //iterate through tracks to find spotifyIDs that are links
+        for track in tracks {
+                    //link id and not track id
+                    if track.spotifyID.count == 11{
+                        let linkPrefix = "https://spotify.link/"
+                        guard let finalLink = URL(string:linkPrefix + track.spotifyID) else { fatalError("Cannot convert to URL") }
+                        
+                        let finalURL = await URLResolver().resolve(url: finalLink)
+                            if let url = finalURL {
+                                var fetchedUrl = (url.absoluteString)
+                                let start = fetchedUrl.index(fetchedUrl.startIndex, offsetBy: 31)
+                                let end = fetchedUrl.index(start, offsetBy: 22)
+                                
+                                track.spotifyID = String(fetchedUrl[start..<end])
+                                //if the url response changes do to updates we can identify error tracks this way
+                                if !track.spotifyID.isAlphanumeric{
+                                    track.spotifyID = AutoSpotoConstants.UserDefaults.default_track_id
+                                }
+                            }else{
+                                //if for some reason we get an error
+                                track.spotifyID = AutoSpotoConstants.UserDefaults.default_track_id
+                            }
+                    }
+                    }
+        
+        return tracks
+                }
+        
+
+    }
+

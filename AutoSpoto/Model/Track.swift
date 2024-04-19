@@ -8,7 +8,7 @@
 import Foundation
 
 class Track: Equatable, Identifiable, Comparable {
-    let spotifyID: String
+    var spotifyID: String
     let timeStamp: Date //time stamp for when song was sent
 
     var imageURL: URL?

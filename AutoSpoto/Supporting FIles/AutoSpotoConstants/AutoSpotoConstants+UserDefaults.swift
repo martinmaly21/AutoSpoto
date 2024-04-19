@@ -19,4 +19,5 @@ extension AutoSpotoConstants.UserDefaults {
     static let addressBookID = "addressBookID"
     static let libraryBookmarkData = "libraryBookmarkData"
     static let group_name = "TODO_UPDATE_TEAM_ID.app.autospoto.autospoto.preferences"
+    static let default_track_id = "1111111111111111111111"
 }

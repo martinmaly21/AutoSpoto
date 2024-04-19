@@ -250,14 +250,25 @@ class DatabaseManager {
     
     private func extractSpotifyTrackID(from url: String) -> String? {
         let pattern = #"https:\/\/open\.spotify\.com\/track\/(?![a-zA-Z0-9]{19}WHt)[a-zA-Z0-9]{22}"#
+        let linkPattern = #"https:\/\/spotify\.link\/[a-zA-Z0-9]{11}"#
         
         guard let regex = try? NSRegularExpression(pattern: pattern) else {
+            return nil
+        }
+        
+        guard let linkRegex = try? NSRegularExpression(pattern: linkPattern) else {
             return nil
         }
 
         let range = NSRange(location: 0, length: url.utf16.count)
         if let match = regex.firstMatch(in: url, options: [], range: range) {
             let trackIDRange = match.range(at: 0)
+            if let trackIDRange = Range(trackIDRange, in: url) {
+                return String(url[trackIDRange])
+            }
+        }
+        else if let matchLink = linkRegex.firstMatch(in: url, options: [], range: range) {
+            let trackIDRange = matchLink.range(at: 0)
             if let trackIDRange = Range(trackIDRange, in: url) {
                 return String(url[trackIDRange])
             }
@@ -279,8 +290,13 @@ class DatabaseManager {
     
     private func removeSpotifyPrefix(from url: String) -> String {
         let prefix = "https://open.spotify.com/track/"
+        let linkPrefix = "https://spotify.link/"
+        
         if url.hasPrefix(prefix) {
             let startIndex = url.index(url.startIndex, offsetBy: prefix.count)
+            return String(url[startIndex...])
+        }else if url.hasPrefix(linkPrefix){
+            let startIndex = url.index(url.startIndex, offsetBy: linkPrefix.count)
             return String(url[startIndex...])
         }
         return url

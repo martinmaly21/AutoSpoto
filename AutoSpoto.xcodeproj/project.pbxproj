@@ -162,7 +162,9 @@
 		924189F52B9FAE9400EEE946 /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
 		924189F62B9FAE9400EEE946 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
 		924189F92B9FB10400EEE946 /* testing_cli in Testing */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* testing_cli */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */; };
+		924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */; };
+		927FDA5D2BCEBE2D00581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
+		927FDA5E2BCEC8C300581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,14 +188,15 @@
 			name = "Embed Helper";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50A9864E2A695B86001C6FBD /* CopyFiles */ = {
+		50A9864E2A695B86001C6FBD /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LaunchAgents;
 			dstSubfolderSpec = 1;
 			files = (
-				924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in CopyFiles */,
+				924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		924189B72B9FABF500EEE946 /* CopyFiles */ = {
@@ -331,6 +334,7 @@
 		924189BB2B9FABF500EEE946 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		924189FC2B9FB25E00EEE946 /* testing_cli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testing_cli.entitlements; sourceTree = "<group>"; };
 		924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.autospoto.app.testing.plist; sourceTree = "<group>"; };
+		927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +422,7 @@
 				50F6D4822A6E6193009B8055 /* LicenseManager.swift */,
 				50E552452A6E69FC00EC3149 /* GumroadManager.swift */,
 				500AE0BC2A96E1B600BE6995 /* PlaylistUpdaterManager.swift */,
+				927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -720,7 +725,7 @@
 				50AA276A28C3FE69002FFC3F /* Frameworks */,
 				50AA276B28C3FE69002FFC3F /* Resources */,
 				50AC599A2A4690E700E473CF /* ShellScript */,
-				50A9864E2A695B86001C6FBD /* CopyFiles */,
+				50A9864E2A695B86001C6FBD /* Copy Files */,
 				505D3E752B80A25100529C2D /* Embed Helper */,
 				924189F72B9FB0D400EEE946 /* Testing */,
 			);
@@ -896,6 +901,7 @@
 				50FB02E52A35A49600D2CEB7 /* SyncButton.swift in Sources */,
 				509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */,
 				50F178932995EAFF002AFC1C /* HomeContainerView.swift in Sources */,
+				927FDA5D2BCEBE2D00581985 /* RedirectManager.swift in Sources */,
 				92357DE32A582F6900B4CFB4 /* SpotifyTokenManager.swift in Sources */,
 				50F34C6829765DC00059516B /* Font.swift in Sources */,
 				50CFCE2729896004009C3F4A /* GetStartedView.swift in Sources */,
@@ -987,6 +993,7 @@
 				924189E32B9FAE9400EEE946 /* AutoSpotoConstants+Limits.swift in Sources */,
 				924189E42B9FAE9400EEE946 /* AutoSpotoConstants+Gumroad.swift in Sources */,
 				924189E52B9FAE9400EEE946 /* Configuration.swift in Sources */,
+				927FDA5E2BCEC8C300581985 /* RedirectManager.swift in Sources */,
 				924189E72B9FAE9400EEE946 /* SpotifyToken.swift in Sources */,
 				924189E82B9FAE9400EEE946 /* JSONToken.swift in Sources */,
 				924189E92B9FAE9400EEE946 /* IndividualChatCodable.swift in Sources */,
