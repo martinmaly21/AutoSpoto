@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIIntrospect
 
 struct ChatsListView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -84,9 +85,9 @@ struct ChatsListView: View {
                     }
                 }
             }
-            .introspectScrollView { scrollView in
+            .introspect(.scrollView, on: .macOS(.v10_15), customize: { scrollView in
                 scrollView.scrollerInsets = NSEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-            }
+            })
 
             VStack(spacing: 20) {
                 HStack(alignment: .center) {
