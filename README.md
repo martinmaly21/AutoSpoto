@@ -27,3 +27,7 @@ At AutoSpoto, our story is rooted in the shared passion for music that binds us 
 [Product Hunt](https://www.producthunt.com/products/autospoto?utm_source=badge-featured&utm_medium=badge#autospoto)
 
 [Instagram](https://www.instagram.com/autospoto.official/)
+
+## License
+
+AutoSpoto is available under the MIT license. See the LICENSE file for more info.
