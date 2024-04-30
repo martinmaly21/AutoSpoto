@@ -31,5 +31,7 @@
 	<string>$(SPOTIFY_CLIENT_SECRET)</string>
 	<key>L_FILE</key>
 	<string>$(lFile)</string>
+	<key>DEVELOPMENT_TEAM</key>
+	<string>$(DEVELOPMENT_TEAM)</string>
 </dict>
 </plist>

@@ -23,7 +23,7 @@ class SpotifyTokenManager {
             DiskAccessManager.startAccessingSecurityScopedResource()
             let data = try Data(contentsOf: spotifyTokenURL)
             DiskAccessManager.stopAccessingSecurityScopedResource()
-            let decryptedData = try RNCryptor.decrypt(data: data, withPassword: lFile)
+            let decryptedData = try RNCryptor.decrypt(data: data, withPassword: AutoSpotoConstants.Config.lFile)
             let JSONToken = try decoder.decode(JSONToken.self, from: decryptedData)
             return JSONToken
         } catch let error {
@@ -38,7 +38,7 @@ class SpotifyTokenManager {
         
         do {
             let jsonData = try jsonEncoder.encode(jsonToken)
-            let encryptedData = RNCryptor.encrypt(data: jsonData, withPassword: lFile)
+            let encryptedData = RNCryptor.encrypt(data: jsonData, withPassword: AutoSpotoConstants.Config.lFile)
             
             if let groupContainerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: AutoSpotoConstants.UserDefaults.group_name){
                 let AutoSpotoDir = groupContainerUrl.appendingPathComponent("AutoSpoto")

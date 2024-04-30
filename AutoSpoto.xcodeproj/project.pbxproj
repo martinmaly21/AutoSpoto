@@ -45,6 +45,8 @@
 		509B086B2A32108A00917AAC /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086A2A32108A00917AAC /* SpotifyUser.swift */; };
 		509B086D2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */; };
 		509B08712A32F1FD00917AAC /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08702A32F1FD00917AAC /* Array.swift */; };
+		50A2FEEF2BE1706E00600510 /* AutoSpotoConstants+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2FEEE2BE1706E00600510 /* AutoSpotoConstants+Config.swift */; };
+		50A2FEF02BE1718600600510 /* AutoSpotoConstants+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2FEEE2BE1706E00600510 /* AutoSpotoConstants+Config.swift */; };
 		50A6922D2A371B6500E87BA2 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922C2A371B6500E87BA2 /* CreateButton.swift */; };
 		50A6922F2A371B6F00E87BA2 /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A6922E2A371B6F00E87BA2 /* CancelButton.swift */; };
 		50A692312A371B7900E87BA2 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A692302A371B7900E87BA2 /* DoneButton.swift */; };
@@ -266,6 +268,7 @@
 		509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift"; sourceTree = "<group>"; };
 		509B08702A32F1FD00917AAC /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		50A2FEED2BE1680C00600510 /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
+		50A2FEEE2BE1706E00600510 /* AutoSpotoConstants+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoSpotoConstants+Config.swift"; sourceTree = "<group>"; };
 		50A6922C2A371B6500E87BA2 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		50A6922E2A371B6F00E87BA2 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		50A692302A371B7900E87BA2 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
@@ -555,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				50F34C5C2976527D0059516B /* AutoSpotoConstants.swift */,
+				50A2FEEE2BE1706E00600510 /* AutoSpotoConstants+Config.swift */,
 				50F34C5E297652DF0059516B /* AutoSpotoConstants+Strings.swift */,
 				50CFCE2D29896EF6009C3F4A /* AutoSpotoConstants+Dimensions.swift */,
 				50CFCE2F2989D896009C3F4A /* AutoSpotoConstants+URL.swift */,
@@ -926,6 +930,7 @@
 				50CFCE2B29896C5D009C3F4A /* AnimationCompletionObserverModifier.swift in Sources */,
 				50E552572A6E914500EC3149 /* UpgradeToAutoSpotoProWebView.swift in Sources */,
 				50E5524D2A6E75D800EC3149 /* CreatePlaylistContainerView.swift in Sources */,
+				50A2FEEF2BE1706E00600510 /* AutoSpotoConstants+Config.swift in Sources */,
 				50F34C5F297652DF0059516B /* AutoSpotoConstants+Strings.swift in Sources */,
 				50E552462A6E69FC00EC3149 /* GumroadManager.swift in Sources */,
 				50AA277128C3FE69002FFC3F /* AutoSpotoApp.swift in Sources */,
@@ -1013,6 +1018,7 @@
 				924189ED2B9FAE9400EEE946 /* SpotifyPlaylist.swift in Sources */,
 				924189EE2B9FAE9400EEE946 /* GumroadVerification.swift in Sources */,
 				924189EF2B9FAE9400EEE946 /* Track.swift in Sources */,
+				50A2FEF02BE1718600600510 /* AutoSpotoConstants+Config.swift in Sources */,
 				924189F22B9FAE9400EEE946 /* ChatType.swift in Sources */,
 				924189F32B9FAE9400EEE946 /* FilterChatType.swift in Sources */,
 				924189F42B9FAE9400EEE946 /* HTTPMethodType.swift in Sources */,

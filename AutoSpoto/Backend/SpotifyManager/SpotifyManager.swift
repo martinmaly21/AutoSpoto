@@ -38,7 +38,7 @@ class SpotifyManager {
         ]
         
         guard !isTokenFetch else {
-            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Basic \((Data("\(clientID):\(clientSecret)".utf8).base64EncodedString()))"
+            headers[AutoSpotoConstants.HTTPHeaders.authorization] = "Basic \((Data("\(AutoSpotoConstants.Config.spotifyClientID):\(AutoSpotoConstants.Config.spotifyClientSecret)".utf8).base64EncodedString()))"
             return headers
         }
         

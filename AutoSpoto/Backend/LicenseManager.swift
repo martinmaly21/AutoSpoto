@@ -32,7 +32,7 @@ class LicenseManager {
                 return false
             }
             let data = try Data(contentsOf: licenseURL)
-            let encryptedData = try RNCryptor.decrypt(data: data, withPassword: lFile)
+            let encryptedData = try RNCryptor.decrypt(data: data, withPassword: AutoSpotoConstants.Config.lFile)
             guard let uniqueMachineID = String(data: encryptedData, encoding: .utf8) else {
                 return false
             }
@@ -45,7 +45,7 @@ class LicenseManager {
     
     public static func writeLicense() {
         let data = Data(uniqueMachineID.utf8)
-        let encryptedData = RNCryptor.encrypt(data: data, withPassword: lFile)
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: AutoSpotoConstants.Config.lFile)
         
         do {
             if let licenseURL = DiskAccessManager.licenseURL {
