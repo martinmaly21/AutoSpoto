@@ -7,7 +7,6 @@
 
 import AppKit
 import SwiftUI
-import FirebaseCore
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -20,8 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 AutoSpotoConstants.UserDefaults.userHasTrackedChats : false
             ]
         )
-        
-        FirebaseApp.configure()
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
