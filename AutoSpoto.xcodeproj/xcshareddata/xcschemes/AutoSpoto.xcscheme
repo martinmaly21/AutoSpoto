@@ -50,23 +50,6 @@
             ReferencedContainer = "container:AutoSpoto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "SPOTIPY_CLIENT_ID"
-            value = "REVOKED"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "SPOTIPY_CLIENT_SECRET"
-            value = "REVOKED"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "SPOTIPY_REDIRECT_URI"
-            value = "http://localhost:8888"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
