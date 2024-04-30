@@ -1,0 +1,19 @@
+//
+//  project.xcconfig
+//  AutoSpoto
+//
+//  Created by Martin Maly on 2024-04-30.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app
+DEVELOPMENT_TEAM =
+
+//spotify secrets
+SPOTIFY_CLIENT_ID =
+SPOTIFY_CLIENT_SECRET =
+
+//random string used to encrypt license file
+lFile =
