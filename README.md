@@ -4,7 +4,7 @@
 
 At AutoSpoto, our story is rooted in the shared passion for music that binds us together. We are a trio of friends whose love for discovering and sharing tunes has always been at the heart of our friendship. However, we felt that the experience of sharing music was inherently flawed. Tunes shared between each other would constantly be lost in the sea of messages. Out of this problem, AutoSpoto emerged as our collective dream project, a manifestation of our desire to make music sharing seamless, spontaneous, and deeply personal.
 
-How it works:
+### How it works:
 1. Connect your iMessages and Spotify to AutoSpoto on your Mac. AutoSpoto is fully local, and your messages will never leave your computer.
 2. Browse your iMessage chats in AutoSpoto. The iMessage chats will be reduced to only contain tracks sent in each chat.
 3. Connect an iMessage chat to a playlist. You will have the option to name the playlist.
@@ -18,3 +18,12 @@ How it works:
 
 ## Demo
 [![AutoSpoto](https://github.com/martinmaly21/AutoSpoto/assets/40171261/1f7a41da-db1e-4b0e-9838-1d7d1d6bdb12)](https://www.instagram.com/reel/C1sfJjKSWZl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA== "AutoSpoto")
+
+## Links
+[Website](https://autospoto.xyz) 
+
+[App Store](https://apps.apple.com/ca/app/autospoto/id6477784219?mt=12) 
+
+[Product Hunt](https://www.producthunt.com/products/autospoto?utm_source=badge-featured&utm_medium=badge#autospoto)
+
+[Instagram](https://www.instagram.com/autospoto.official/)
