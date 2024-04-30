@@ -14,7 +14,7 @@ extension SpotifyManager {
     public static func fetchAndSaveToken(code: String) async throws {
         let params = [
             AutoSpotoConstants.HTTPParameter.grant_type: "authorization_code",
-            AutoSpotoConstants.HTTPParameter.redirect_uri: redirectURI,
+            AutoSpotoConstants.HTTPParameter.redirect_uri: AutoSpotoConstants.URL.redirectURI,
             AutoSpotoConstants.HTTPParameter.code: code,
         ]
         let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)

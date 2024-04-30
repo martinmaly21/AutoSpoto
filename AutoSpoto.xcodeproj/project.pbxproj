@@ -21,7 +21,6 @@
 		5048A23D2A38C17B00790C36 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23C2A38C17B00790C36 /* Shake.swift */; };
 		5048A23F2A39AB9900790C36 /* DiskAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */; };
 		504C2EB82A24F93B00097F5F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB72A24F93B00097F5F /* DatabaseManager.swift */; };
-		504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		504C2EBD2A25BC9500097F5F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 504C2EBC2A25BC9500097F5F /* SQLite */; };
 		5069BF6629994BDF007F4037 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5069BF6529994BDF007F4037 /* Kingfisher */; };
 		5069BF68299994BC007F4037 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5069BF67299994BC007F4037 /* ChatType.swift */; };
@@ -147,7 +146,6 @@
 		924189E22B9FAE9400EEE946 /* AutoSpotoConstants+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08652A31FF1A00917AAC /* AutoSpotoConstants+UserDefaults.swift */; };
 		924189E32B9FAE9400EEE946 /* AutoSpotoConstants+Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB02DC2A34756200D2CEB7 /* AutoSpotoConstants+Limits.swift */; };
 		924189E42B9FAE9400EEE946 /* AutoSpotoConstants+Gumroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E552542A6E8DBC00EC3149 /* AutoSpotoConstants+Gumroad.swift */; };
-		924189E52B9FAE9400EEE946 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C2EB92A25BA9700097F5F /* Configuration.swift */; };
 		924189E72B9FAE9400EEE946 /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08592A31B36B00917AAC /* SpotifyToken.swift */; };
 		924189E82B9FAE9400EEE946 /* JSONToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B34022A5EA764002938D3 /* JSONToken.swift */; };
 		924189E92B9FAE9400EEE946 /* IndividualChatCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B19563299B4711002E7F65 /* IndividualChatCodable.swift */; };
@@ -246,7 +244,6 @@
 		5048A23C2A38C17B00790C36 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		5048A23E2A39AB9900790C36 /* DiskAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAccessManager.swift; sourceTree = "<group>"; };
 		504C2EB72A24F93B00097F5F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		504C2EB92A25BA9700097F5F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		5069BF67299994BC007F4037 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
 		5069BF6929999504007F4037 /* FilterChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChatType.swift; sourceTree = "<group>"; };
 		5069BF6B2999AB2D007F4037 /* SpotifyLoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginContainerView.swift; sourceTree = "<group>"; };
@@ -268,6 +265,7 @@
 		509B086A2A32108A00917AAC /* SpotifyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyUser.swift; sourceTree = "<group>"; };
 		509B086C2A32183300917AAC /* DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseManager+ExtractSpotifyTracksWithNoMetadata.swift"; sourceTree = "<group>"; };
 		509B08702A32F1FD00917AAC /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		50A2FEED2BE1680C00600510 /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
 		50A6922C2A371B6500E87BA2 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		50A6922E2A371B6F00E87BA2 /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		50A692302A371B7900E87BA2 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
@@ -460,6 +458,7 @@
 		50AA276428C3FE69002FFC3F = {
 			isa = PBXGroup;
 			children = (
+				50A2FEED2BE1680C00600510 /* project.xcconfig */,
 				50AA276F28C3FE69002FFC3F /* AutoSpoto */,
 				924189BA2B9FABF500EEE946 /* testing_cli */,
 				50AA276E28C3FE69002FFC3F /* Products */,
@@ -650,7 +649,6 @@
 				50F34C65297659950059516B /* Colors.xcassets */,
 				50F34C692976611E0059516B /* Font */,
 				50CFCE2C29896ED0009C3F4A /* AutoSpotoConstants */,
-				504C2EB92A25BA9700097F5F /* Configuration.swift */,
 				50AC59982A468F5800E473CF /* AppDelegate.swift */,
 			);
 			path = "Supporting FIles";
@@ -960,7 +958,6 @@
 				50ACE0412A61366000DE0344 /* SpotifyManager+App.swift in Sources */,
 				509B08522A31A82100917AAC /* SpotifyManager.swift in Sources */,
 				50F1789E2995F092002AFC1C /* HomeViewModel.swift in Sources */,
-				504C2EBA2A25BA9700097F5F /* Configuration.swift in Sources */,
 				50ACE0432A6136FA00DE0344 /* DataBaseManager+App.swift in Sources */,
 				503BC30129B3A83800743ED5 /* OnboardingButton.swift in Sources */,
 				50CFCE302989D896009C3F4A /* AutoSpotoConstants+URL.swift in Sources */,
@@ -1006,7 +1003,6 @@
 				924189E22B9FAE9400EEE946 /* AutoSpotoConstants+UserDefaults.swift in Sources */,
 				924189E32B9FAE9400EEE946 /* AutoSpotoConstants+Limits.swift in Sources */,
 				924189E42B9FAE9400EEE946 /* AutoSpotoConstants+Gumroad.swift in Sources */,
-				924189E52B9FAE9400EEE946 /* Configuration.swift in Sources */,
 				927FDA5E2BCEC8C300581985 /* RedirectManager.swift in Sources */,
 				924189E72B9FAE9400EEE946 /* SpotifyToken.swift in Sources */,
 				924189E82B9FAE9400EEE946 /* JSONToken.swift in Sources */,
@@ -1039,6 +1035,7 @@
 /* Begin XCBuildConfiguration section */
 		50AA277A28C3FE6A002FFC3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A2FEED2BE1680C00600510 /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1100,6 +1097,7 @@
 		};
 		50AA277B28C3FE6A002FFC3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A2FEED2BE1680C00600510 /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1165,7 +1163,6 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1179,7 +1176,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1199,7 +1195,6 @@
 				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1213,7 +1208,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1229,7 +1223,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				MARKETING_VERSION = 1.05;
@@ -1248,7 +1241,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
 				MARKETING_VERSION = 1.05;

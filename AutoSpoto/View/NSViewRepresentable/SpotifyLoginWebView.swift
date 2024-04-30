@@ -61,7 +61,7 @@ struct SpotifyLoginWebView: NSViewRepresentable {
                 return
             }
 
-            if requestURLString.hasPrefix(redirectURI) {
+            if requestURLString.hasPrefix(AutoSpotoConstants.URL.redirectURI) {
                 guard let code = requestURLString.getQueryStringParameter(param: "code"),
                       requestURLString.getQueryStringParameter(param: "error") == nil else {
                     throw AutoSpotoError.errorLoggingInToSpotify
