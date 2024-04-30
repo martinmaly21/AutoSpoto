@@ -2,9 +2,6 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## secrets
-project.xcconfig
-
 ## don't commit python cache files
 *.pyc
 
