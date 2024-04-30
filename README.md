@@ -17,5 +17,4 @@ How it works:
 <img width="1002" alt="Screenshot 2024-04-30 at 11 47 09 AM" src="https://github.com/martinmaly21/AutoSpoto/assets/40171261/ebe34087-ebb2-4671-8a15-f062b03e6a2d">
 
 ## Demo
-[![AutoSpoto](https://github.com/martinmaly21/AutoSpoto/assets/40171261/0e946c10-3c0b-4563-a9cb-1db60dc7bfe5)](https://www.instagram.com/reel/C1sfJjKSWZl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA== "AutoSpoto")
-
+[![AutoSpoto](https://github.com/martinmaly21/AutoSpoto/assets/40171261/1f7a41da-db1e-4b0e-9838-1d7d1d6bdb12)](https://www.instagram.com/reel/C1sfJjKSWZl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA== "AutoSpoto")
