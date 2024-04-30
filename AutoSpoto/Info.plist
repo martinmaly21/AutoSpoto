@@ -25,5 +25,11 @@
 		<string>JosefinSansThin.ttf</string>
 		<string>JosefinSansThinItalic.ttf</string>
 	</array>
+	<key>SPOTIFY_CLIENT_ID</key>
+	<string>$(SPOTIFY_CLIENT_ID)</string>
+	<key>SPOTIFY_CLIENT_SECRET</key>
+	<string>$(SPOTIFY_CLIENT_SECRET)</string>
+	<key>L_FILE</key>
+	<string>$(lFile)</string>
 </dict>
 </plist>
