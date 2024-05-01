@@ -160,7 +160,7 @@
 		924189F42B9FAE9400EEE946 /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
 		924189F52B9FAE9400EEE946 /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
 		924189F62B9FAE9400EEE946 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
-		924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in Testing */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in PlaylistUpdaterHelper Stuff */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		924189FE2B9FB56C00EEE946 /* com.autospoto.app.playlistupdaterhelper.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.playlistupdaterhelper.plist */; };
 		927FDA5D2BCEBE2D00581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
 		927FDA5E2BCEC8C300581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
@@ -217,15 +217,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		924189F72B9FB0D400EEE946 /* Testing */ = {
+		924189F72B9FB0D400EEE946 /* PlaylistUpdaterHelper Stuff */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in Testing */,
+				924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in PlaylistUpdaterHelper Stuff */,
 			);
-			name = Testing;
+			name = "PlaylistUpdaterHelper Stuff";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -735,7 +735,7 @@
 				50AA276B28C3FE69002FFC3F /* Resources */,
 				50A9864E2A695B86001C6FBD /* Copy Files */,
 				505D3E752B80A25100529C2D /* Embed Helper */,
-				924189F72B9FB0D400EEE946 /* Testing */,
+				924189F72B9FB0D400EEE946 /* PlaylistUpdaterHelper Stuff */,
 				50DB6E252BE15FA200DFE976 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -773,7 +773,7 @@
 				924189C02B9FAC1B00EEE946 /* RNCryptor */,
 				924189C22B9FAC2100EEE946 /* SQLite */,
 			);
-			productName = testing_cli;
+			productName = "AutoSpoto-PlaylistUpdaterHelper";
 			productReference = 924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */;
 			productType = "com.apple.product-type.tool";
 		};
