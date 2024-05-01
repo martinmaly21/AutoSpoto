@@ -217,7 +217,7 @@ class SpotifyManager {
                         
                         let finalURL = await URLResolver().resolve(url: finalLink)
                             if let url = finalURL {
-                                var fetchedUrl = (url.absoluteString)
+                                let fetchedUrl = (url.absoluteString)
                                 let start = fetchedUrl.index(fetchedUrl.startIndex, offsetBy: 31)
                                 let end = fetchedUrl.index(start, offsetBy: 22)
                                 

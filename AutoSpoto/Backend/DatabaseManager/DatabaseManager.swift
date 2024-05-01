@@ -14,7 +14,7 @@ class DatabaseManager {
     public static var shared: DatabaseManager!
     
     internal let database: Connection
-    //this closure is called when the "AutoSpoto-PlaylistUpdater" updates autospoto.db
+    //this closure is called when the "AutoSpoto-PlaylistUpdaterHelper" updates autospoto.db
     internal let onTrackedChatsDBUpdatedOutsideOfApp: (() -> Void)?
     //this flag prevents the 'onTrackedChatsDBUpdatedOutsideOfApp' closure from running from updates to autospoto.db via the app
     private var ignoreTrackedChatsUpdate = true
