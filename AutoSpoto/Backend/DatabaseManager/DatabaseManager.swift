@@ -134,10 +134,9 @@ class DatabaseManager {
     }
     
     internal func getGroupImageFilePaths() -> DataFrame {
-        var directories = [(DirPath:(String)?, ChatId: (String)?, image:(String)?)]()
-        do {
-            //temporarily disable group chat photos so sandbox is functional
-            directories = [("", "", "")]
+        let directories: [(DirPath:(String)?, ChatId: (String)?, image:(String)?)] = [("", "", "")]
+//        temporarily disable group chat photos so sandbox is functional
+//        do {
 //            if let imageFilePathsURL = DiskAccessManager.imageFilePathsURL {
 //                DiskAccessManager.startAccessingSecurityScopedResource()
 //                let contents = try FileManager.default.contentsOfDirectory(at: imageFilePathsURL, includingPropertiesForKeys: nil)
@@ -149,9 +148,9 @@ class DatabaseManager {
 //                    }
 //                }
 //            }
-        } catch {
-            print("Error reading directory: \(error)")
-        }
+//        } catch {
+//            print("Error reading directory: \(error)")
+//        }
         let directoryTB: DataFrame = [
             "directoryPath": directories.map {$0.DirPath},
             "MessageID": directories.map {$0.ChatId},

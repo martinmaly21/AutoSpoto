@@ -60,13 +60,13 @@ class UserDefaultsManager {
                 }
                 do {
                     var isStale = false
-                    let url = try URL(resolvingBookmarkData: libraryBookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
+                    _ = try URL(resolvingBookmarkData: libraryBookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
                     if isStale {
                         return nil
                     } else {
                         return libraryBookmarkData
                     }
-                } catch let error {
+                } catch {
                     return nil
                 }
             }
@@ -97,7 +97,7 @@ class UserDefaultsManager {
                 } else {
                     return libraryBookmarkData
                 }
-            } catch let error {
+            } catch {
                 return nil
             }
         }

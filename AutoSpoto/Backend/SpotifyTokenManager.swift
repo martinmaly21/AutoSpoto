@@ -26,7 +26,7 @@ class SpotifyTokenManager {
             let decryptedData = try RNCryptor.decrypt(data: data, withPassword: AutoSpotoConstants.Config.lFile)
             let JSONToken = try decoder.decode(JSONToken.self, from: decryptedData)
             return JSONToken
-        } catch let error {
+        } catch {
             return nil
         }
     }

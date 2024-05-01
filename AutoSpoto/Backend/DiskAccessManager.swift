@@ -80,7 +80,7 @@ class DiskAccessManager {
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             let _ = libraryBookmarkDataURL.startAccessingSecurityScopedResource()
-        } catch let error {
+        } catch {
             return
         }
     }
@@ -95,7 +95,7 @@ class DiskAccessManager {
             let libraryBookmarkDataURL = try URL(resolvingBookmarkData: libraryBookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             let _ = libraryBookmarkDataURL.stopAccessingSecurityScopedResource()
-        } catch let error {
+        } catch {
             return
         }
     }
