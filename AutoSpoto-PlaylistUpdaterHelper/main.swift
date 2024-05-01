@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  testing_cli
+//  AutoSpoto-PlaylistUpdaterHelper
 //
 //  Created by Andrew Caravaggio on 2024-03-11.
 //
@@ -29,9 +29,6 @@ if UserDefaultsManager.libraryBookmarkData==nil{
 guard let db = DatabaseManager() else {
     exit(1)
 }
-
-
-
 
 do {
     // Resolve library bookmark data to URL

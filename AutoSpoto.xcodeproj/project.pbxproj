@@ -160,8 +160,8 @@
 		924189F42B9FAE9400EEE946 /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08532A31AD1400917AAC /* HTTPMethodType.swift */; };
 		924189F52B9FAE9400EEE946 /* AutoSpotoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B08612A31C31400917AAC /* AutoSpotoError.swift */; };
 		924189F62B9FAE9400EEE946 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500215E22A57B64900978C20 /* ContactRow.swift */; };
-		924189F92B9FB10400EEE946 /* testing_cli in Testing */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* testing_cli */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */; };
+		924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in Testing */ = {isa = PBXBuildFile; fileRef = 924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		924189FE2B9FB56C00EEE946 /* com.autospoto.app.playlistupdaterhelper.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 924189FD2B9FB50500EEE946 /* com.autospoto.app.playlistupdaterhelper.plist */; };
 		927FDA5D2BCEBE2D00581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
 		927FDA5E2BCEC8C300581985 /* RedirectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */; };
 /* End PBXBuildFile section */
@@ -193,7 +193,7 @@
 			dstPath = Contents/Library/LaunchAgents;
 			dstSubfolderSpec = 1;
 			files = (
-				924189FE2B9FB56C00EEE946 /* com.autospoto.app.testing.plist in Copy Files */,
+				924189FE2B9FB56C00EEE946 /* com.autospoto.app.playlistupdaterhelper.plist in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +223,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				924189F92B9FB10400EEE946 /* testing_cli in Testing */,
+				924189F92B9FB10400EEE946 /* AutoSpoto-PlaylistUpdaterHelper in Testing */,
 			);
 			name = Testing;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,10 +339,10 @@
 		50FB02E02A34BBDC00D2CEB7 /* PlaylistSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSummaryView.swift; sourceTree = "<group>"; };
 		50FB02E42A35A49600D2CEB7 /* SyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncButton.swift; sourceTree = "<group>"; };
 		92357DE22A582F6900B4CFB4 /* SpotifyTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTokenManager.swift; sourceTree = "<group>"; };
-		924189B92B9FABF500EEE946 /* testing_cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testing_cli; sourceTree = BUILT_PRODUCTS_DIR; };
+		924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoSpoto-PlaylistUpdaterHelper"; sourceTree = BUILT_PRODUCTS_DIR; };
 		924189BB2B9FABF500EEE946 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		924189FC2B9FB25E00EEE946 /* testing_cli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testing_cli.entitlements; sourceTree = "<group>"; };
-		924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.autospoto.app.testing.plist; sourceTree = "<group>"; };
+		924189FC2B9FB25E00EEE946 /* AutoSpoto-PlaylistUpdaterHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AutoSpoto-PlaylistUpdaterHelper.entitlements"; sourceTree = "<group>"; };
+		924189FD2B9FB50500EEE946 /* com.autospoto.app.playlistupdaterhelper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.autospoto.app.playlistupdaterhelper.plist; sourceTree = "<group>"; };
 		927FDA5C2BCEBE2D00581985 /* RedirectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -459,7 +459,7 @@
 			children = (
 				50A2FEED2BE1680C00600510 /* project.xcconfig */,
 				50AA276F28C3FE69002FFC3F /* AutoSpoto */,
-				924189BA2B9FABF500EEE946 /* testing_cli */,
+				924189BA2B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */,
 				50AA276E28C3FE69002FFC3F /* Products */,
 				92F554A72A550895006E1CAA /* Frameworks */,
 			);
@@ -469,7 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				50AA276D28C3FE69002FFC3F /* AutoSpoto.app */,
-				924189B92B9FABF500EEE946 /* testing_cli */,
+				924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -706,14 +706,14 @@
 			path = "View Modifiers";
 			sourceTree = "<group>";
 		};
-		924189BA2B9FABF500EEE946 /* testing_cli */ = {
+		924189BA2B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */ = {
 			isa = PBXGroup;
 			children = (
-				924189FC2B9FB25E00EEE946 /* testing_cli.entitlements */,
+				924189FC2B9FB25E00EEE946 /* AutoSpoto-PlaylistUpdaterHelper.entitlements */,
 				924189BB2B9FABF500EEE946 /* main.swift */,
-				924189FD2B9FB50500EEE946 /* com.autospoto.app.testing.plist */,
+				924189FD2B9FB50500EEE946 /* com.autospoto.app.playlistupdaterhelper.plist */,
 			);
-			path = testing_cli;
+			path = "AutoSpoto-PlaylistUpdaterHelper";
 			sourceTree = "<group>";
 		};
 		92F554A72A550895006E1CAA /* Frameworks */ = {
@@ -756,9 +756,9 @@
 			productReference = 50AA276D28C3FE69002FFC3F /* AutoSpoto.app */;
 			productType = "com.apple.product-type.application";
 		};
-		924189B82B9FABF500EEE946 /* testing_cli */ = {
+		924189B82B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 924189BD2B9FABF500EEE946 /* Build configuration list for PBXNativeTarget "testing_cli" */;
+			buildConfigurationList = 924189BD2B9FABF500EEE946 /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdaterHelper" */;
 			buildPhases = (
 				924189B52B9FABF500EEE946 /* Sources */,
 				924189B62B9FABF500EEE946 /* Frameworks */,
@@ -768,13 +768,13 @@
 			);
 			dependencies = (
 			);
-			name = testing_cli;
+			name = "AutoSpoto-PlaylistUpdaterHelper";
 			packageProductDependencies = (
 				924189C02B9FAC1B00EEE946 /* RNCryptor */,
 				924189C22B9FAC2100EEE946 /* SQLite */,
 			);
 			productName = testing_cli;
-			productReference = 924189B92B9FABF500EEE946 /* testing_cli */;
+			productReference = 924189B92B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -820,7 +820,7 @@
 			projectRoot = "";
 			targets = (
 				50AA276C28C3FE69002FFC3F /* AutoSpoto */,
-				924189B82B9FABF500EEE946 /* testing_cli */,
+				924189B82B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -1002,7 +1002,7 @@
 /* Begin PBXTargetDependency section */
 		924189FB2B9FB16900EEE946 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 924189B82B9FABF500EEE946 /* testing_cli */;
+			target = 924189B82B9FABF500EEE946 /* AutoSpoto-PlaylistUpdaterHelper */;
 			targetProxy = 924189FA2B9FB16900EEE946 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1193,15 +1193,15 @@
 		924189BE2B9FABF500EEE946 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = testing_cli/testing_cli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdaterHelper/AutoSpoto-PlaylistUpdaterHelper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 12;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AutoSpoto-PlaylistUpdaterHelper/Info.plist";
 				MARKETING_VERSION = 1.05;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.playlistupdaterhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1211,15 +1211,15 @@
 		924189BF2B9FABF500EEE946 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = testing_cli/testing_cli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "AutoSpoto-PlaylistUpdaterHelper/AutoSpoto-PlaylistUpdaterHelper.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 12;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/testing_cli/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AutoSpoto-PlaylistUpdaterHelper/Info.plist";
 				MARKETING_VERSION = 1.05;
-				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.testing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.autospoto.app.playlistupdaterhelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1247,7 +1247,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		924189BD2B9FABF500EEE946 /* Build configuration list for PBXNativeTarget "testing_cli" */ = {
+		924189BD2B9FABF500EEE946 /* Build configuration list for PBXNativeTarget "AutoSpoto-PlaylistUpdaterHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				924189BE2B9FABF500EEE946 /* Debug */,
