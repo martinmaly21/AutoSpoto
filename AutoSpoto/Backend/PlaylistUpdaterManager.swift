@@ -11,7 +11,7 @@ import ServiceManagement
 class PlaylistUpdaterManager {
     public static func registerIfNeeded() {
         Task.detached(priority: .background) {
-            let service = SMAppService.agent(plistName: "com.autospoto.app.testing.plist")
+            let service = SMAppService.agent(plistName: "com.autospoto.app.playlistupdaterhelper.plist")
             
             if service.status == .notFound || service.status == .notRegistered {
                 do {
@@ -26,7 +26,7 @@ class PlaylistUpdaterManager {
     
     public static func deregisterIfNeeded() {
         Task.detached(priority: .background) {
-            let service = SMAppService.agent(plistName: "com.autospoto.app.playlistupdater.plist")
+            let service = SMAppService.agent(plistName: "com.autospoto.app.playlistupdaterhelper.plist")
             
             if service.status == .enabled {
                 do {
