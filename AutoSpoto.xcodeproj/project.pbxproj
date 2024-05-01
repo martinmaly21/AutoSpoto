@@ -172,7 +172,7 @@
 			containerPortal = 50AA276528C3FE69002FFC3F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 924189B82B9FABF500EEE946;
-			remoteInfo = testing_cli;
+			remoteInfo = AutoSpoto-PlaylistUpdaterHelper;
 		};
 /* End PBXContainerItemProxy section */
 
