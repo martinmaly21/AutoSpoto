@@ -20,4 +20,5 @@ extension AutoSpotoConstants.UserDefaults {
     static let libraryBookmarkData = "libraryBookmarkData"
     static let group_name = "\(AutoSpotoConstants.Config.developmentTeam).app.autospoto.autospoto.preferences"
     static let default_track_id = "1111111111111111111111"
+    static let lastSpotifyClientID = "lastSpotifyClientID"
 }

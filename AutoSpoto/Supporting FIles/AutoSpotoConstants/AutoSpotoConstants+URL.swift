@@ -37,5 +37,5 @@ extension AutoSpotoConstants.URL {
     static let autoSpotoProProductReceipt = URL(string: "https://app.gumroad.com/d/")!
     static let autoSpotoDisconnectSpotify = URL(string: "https://www.spotify.com/account/apps/")!
     
-    static let redirectURI = "spotify-api-example-app://" //this is the redirect URI we set in the Spotify developer dashboard
+    static let redirectURI = "https://autospoto.xyz/callback" //this is the redirect URI we set in the Spotify developer dashboard
 }

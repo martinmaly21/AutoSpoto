@@ -40,6 +40,14 @@ struct AutoSpotoApp: App {
             .onAppear {
                 PlaylistUpdaterManager.registerIfNeeded()
                 
+                // Force re-auth if the embedded Spotify client ID changed
+                let currentClientID = AutoSpotoConstants.Config.spotifyClientID
+                let lastClientID = UserDefaults.standard.string(forKey: AutoSpotoConstants.UserDefaults.lastSpotifyClientID)
+                if lastClientID != currentClientID {
+                    SpotifyTokenManager.deleteToken()
+                    UserDefaults.standard.set(currentClientID, forKey: AutoSpotoConstants.UserDefaults.lastSpotifyClientID)
+                }
+
                 //Make sure user has logged into Spotify and has given Disk Access before showing them home view
                 if SpotifyTokenManager.authenticationTokenExists && DiskAccessManager.userAuthorizedDiskAccess {
                     //user has previously logged in

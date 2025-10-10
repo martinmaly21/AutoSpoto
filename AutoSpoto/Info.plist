@@ -23,5 +23,16 @@
 	<string>$(lFile)</string>
 	<key>DEVELOPMENT_TEAM</key>
 	<string>$(DEVELOPMENT_TEAM)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>https://autospoto.xyz/callback</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://autospoto.xyz/callback</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
