@@ -24,40 +24,49 @@ struct HomeContainerView: View {
                 PlaylistUpdaterManager.registerIfNeeded()
             }
         }
-        .sheet(isPresented: $homeViewModel.allowlistRequiredAlertVisible) {
-            VStack(spacing: 16) {
-                Text(AutoSpotoConstants.Strings.ALLOWLIST_REQUIRED_TITLE)
-                    .font(.josefinSansRegular(20))
-                Text(AutoSpotoConstants.Strings.ALLOWLIST_REQUIRED_MESSAGE)
-                    .font(.josefinSansRegular(15))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
-                HStack(spacing: 12) {
-                    Button(AutoSpotoConstants.Strings.CONTACT_AUTOSPOTO) {
-                        let subject = "Allowlist Request for AutoSpoto"
-                        let body = "Hi AutoSpoto team,\n\nPlease add this Spotify email to your allowlist: <your-email>\n\nThanks!"
-                        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                        if let url = URL(string: "mailto:official.autospoto@gmail.com?subject=\(subjectEncoded)&body=\(bodyEncoded)") {
-                            NSWorkspace.shared.open(url)
+        .overlay(
+            Group {
+                if homeViewModel.allowlistRequiredAlertVisible {
+                    ZStack {
+                        Color.black.opacity(0.4)
+                            .ignoresSafeArea()
+                        VStack(spacing: 16) {
+                            Text(AutoSpotoConstants.Strings.ALLOWLIST_REQUIRED_TITLE)
+                                .font(.josefinSansRegular(20))
+                            Text(AutoSpotoConstants.Strings.ALLOWLIST_REQUIRED_MESSAGE)
+                                .font(.josefinSansRegular(15))
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 20)
+                            HStack(spacing: 12) {
+                                Button(AutoSpotoConstants.Strings.CONTACT_AUTOSPOTO) {
+                                    let subject = "Allowlist Request for AutoSpoto"
+                                    let body = "Hi AutoSpoto team,\n\nPlease add this Spotify email to your allowlist: <your-email>\n\nThanks!"
+                                    let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                                    let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                                    if let url = URL(string: "mailto:official.autospoto@gmail.com?subject=\(subjectEncoded)&body=\(bodyEncoded)") {
+                                        NSWorkspace.shared.open(url)
+                                    }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                if homeViewModel.isRetryingAllowlist {
+                                    ProgressView()
+                                        .controlSize(.small)
+                                        .padding(.horizontal, 8)
+                                } else {
+                                    Button(AutoSpotoConstants.Strings.TRY_AGAIN) {
+                                        Task { await homeViewModel.retryAfterAllowlist() }
+                                    }
+                                    .buttonStyle(.bordered)
+                                }
+                            }
                         }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    if homeViewModel.isRetryingAllowlist {
-                        ProgressView()
-                            .controlSize(.small)
-                            .padding(.horizontal, 8)
-                    } else {
-                        Button(AutoSpotoConstants.Strings.TRY_AGAIN) {
-                            Task { await homeViewModel.retryAfterAllowlist() }
-                        }
-                        .buttonStyle(.bordered)
+                        .padding(24)
+                        .frame(minWidth: 420)
+                        .background(.regularMaterial)
+                        .cornerRadius(12)
                     }
                 }
             }
-            .padding(24)
-            .frame(minWidth: 420)
-            .interactiveDismissDisabled(true)
-        }
+        )
     }
 }
