@@ -27,6 +27,8 @@ class LicenseManager {
     }
     
     public static var userHasValidLicense: Bool {
+        return true //give everyone Pro for free 🎉
+        
         do {
             guard let licenseURL = DiskAccessManager.licenseURL else {
                 return false
