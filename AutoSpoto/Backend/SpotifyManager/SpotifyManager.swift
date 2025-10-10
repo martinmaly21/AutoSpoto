@@ -111,8 +111,12 @@ class SpotifyManager {
                 let parsedData = String(decoding: data, as: UTF8.self)
                 let statusCode = (response as? HTTPURLResponse)?.statusCode
                 
-                //Is there a better way of handling this?? What if another non-chat update http request returns a 403?
-                if parsedData.contains("\"status\" : 403") {
+                // Detect 403 from Spotify
+                if parsedData.contains("\"status\" : 403") || statusCode == 403 {
+                    // If 403 contains dashboard hint, treat as allowlist required
+                    if parsedData.localizedCaseInsensitiveContains("developer.spotify.com/dashboard") || parsedData.localizedCaseInsensitiveContains("user may not be registered") {
+                        throw AutoSpotoError.userNotAllowlisted
+                    }
                     throw AutoSpotoError.chatWasDeleted
                 } else if isTokenFetch, parsedData.contains("invalid_client") {
                     // Credentials changed or are invalid; clear token so user is forced to re-auth

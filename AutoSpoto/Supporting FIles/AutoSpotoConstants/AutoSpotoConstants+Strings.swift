@@ -686,5 +686,21 @@ extension AutoSpotoConstants.Strings {
         value: "Please reach out to us if you have any questions, comments, or concerns. We love to hear your feedback.",
         comment: "Contact us body text."
     )
+
+    static let ALLOWLIST_REQUIRED_TITLE = NSLocalizedString(
+        "ALLOWLIST_REQUIRED_TITLE",
+        value: "Access requires approval",
+        comment: "Title for allowlist required message"
+    )
+    static let ALLOWLIST_REQUIRED_MESSAGE = NSLocalizedString(
+        "ALLOWLIST_REQUIRED_MESSAGE",
+        value: "Spotify updated policies in 2025. AutoSpoto is currently in development mode, so only allowlisted accounts can use the API. Email official.autospoto@gmail.com from your Spotify account email and we’ll add you. Then click ‘Try again’.",
+        comment: "Body for allowlist required message"
+    )
+    static let TRY_AGAIN = NSLocalizedString(
+        "TRY_AGAIN",
+        value: "Try again",
+        comment: "Retry button"
+    )
 }
 

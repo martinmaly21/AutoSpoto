@@ -13,6 +13,7 @@ enum AutoSpotoError: LocalizedError {
     case chatHasNoValidIDs
     case errorGettingAutoSpotoDB
     case chatWasDeleted
+    case userNotAllowlisted
     
     var errorDescription: String? {
         switch self {
@@ -26,6 +27,8 @@ enum AutoSpotoError: LocalizedError {
             return AutoSpotoConstants.Strings.ERROR_GETTING_AUTOSPOTO_DB
         case .chatWasDeleted:
             return AutoSpotoConstants.Strings.CHAT_WAS_DELETED
+        case .userNotAllowlisted:
+            return AutoSpotoConstants.Strings.ALLOWLIST_REQUIRED_MESSAGE
         }
     }
 }

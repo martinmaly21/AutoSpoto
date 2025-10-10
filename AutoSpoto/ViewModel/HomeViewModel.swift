@@ -52,6 +52,8 @@ class HomeViewModel: ObservableObject {
     
     //
     @Published var isAutoSpotoPro: Bool
+    @Published var allowlistRequiredAlertVisible = false
+    @Published var isRetryingAllowlist = false
 
     init() {
         isAutoSpotoPro = LicenseManager.userHasValidLicense
@@ -101,7 +103,16 @@ class HomeViewModel: ObservableObject {
         
         let tracksMetadataToFetch = chat.getTracks(for: page)
         
-        let fetchedTracksMetadata = (try? await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)) ?? []
+        var fetchedTracksMetadata: [Track] = []
+        do {
+            fetchedTracksMetadata = try await SpotifyManager.fetchTrackMetadata(for: tracksMetadataToFetch)
+        } catch let error as AutoSpotoError {
+            if error == .userNotAllowlisted {
+                allowlistRequiredAlertVisible = true
+            }
+        } catch {
+            // no-op; retain empty
+        }
         
         for (index, track) in fetchedTracksMetadata.enumerated() {
             chat.tracksPages[page][index] = track
@@ -167,11 +178,52 @@ class HomeViewModel: ObservableObject {
         }
         do {
             chat.spotifyPlaylist = try await SpotifyManager.fetchPlaylist(for: spotifyPlaylistID)
+            // Successfully fetched – clear any prior allowlist alert
+            allowlistRequiredAlertVisible = false
+        } catch let error as AutoSpotoError {
+            if error == .userNotAllowlisted {
+                allowlistRequiredAlertVisible = true
+            }
         } catch let error {
             assertionFailure("Error: \(error.localizedDescription)")
         }
         
         self.objectWillChange.send()
+    }
+
+    func retryAfterAllowlist() async {
+        isRetryingAllowlist = true
+        defer { isRetryingAllowlist = false }
+        await fetchChats()
+        var success = false
+        if let selectedChat = selectedChat {
+            if let spotifyPlaylistID = selectedChat.spotifyPlaylistID {
+                do {
+                    let exists = try await SpotifyManager.checkIfPlaylistExists(for: spotifyPlaylistID)
+                    if exists {
+                        success = true
+                        await fetchPlaylist(for: selectedChat)
+                    }
+                } catch let error as AutoSpotoError {
+                    if error == .userNotAllowlisted { success = false }
+                } catch {
+                    success = false
+                }
+            } else {
+                // Probe with a lightweight metadata fetch to validate access
+                do {
+                    _ = try await SpotifyManager.fetchTrackMetadata(for: Array(selectedChat.tracks.prefix(1)))
+                    success = true
+                } catch let error as AutoSpotoError {
+                    if error == .userNotAllowlisted { success = false }
+                } catch {
+                    success = false
+                }
+            }
+        }
+        if success {
+            allowlistRequiredAlertVisible = false
+        }
     }
     
     func disconnectPlaylist(
