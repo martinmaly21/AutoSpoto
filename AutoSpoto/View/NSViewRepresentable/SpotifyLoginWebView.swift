@@ -39,13 +39,19 @@ struct SpotifyLoginWebView: NSViewRepresentable {
             Task {
                 do {
                     try await requestForCallbackURL(request: navigationAction.request)
-                } catch let error {
-                    //delete keychain item if it exists
+                } catch let error as AutoSpotoError {
+                    if error == .userNotAllowlisted {
+                        // Keep token if already saved, close web view and move forward; Home will show allowlist overlay
+                        self.parent.isVisible = false
+                        withAnimation { self.parent.userAuthorizedSpotify = true }
+                    } else {
+                        // Delete token on other failures
+                        SpotifyTokenManager.deleteToken()
+                        self.parent.isVisible = false
+                    }
+                } catch {
                     SpotifyTokenManager.deleteToken()
-                    
                     self.parent.isVisible = false
-                    
-                    assertionFailure("Error authenticating Spotify: \(error.localizedDescription)")
                 }
             }
             

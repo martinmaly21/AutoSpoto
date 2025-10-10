@@ -17,11 +17,13 @@ extension SpotifyManager {
             AutoSpotoConstants.HTTPParameter.redirect_uri: AutoSpotoConstants.URL.redirectURI,
             AutoSpotoConstants.HTTPParameter.code: code,
         ]
-        let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
-        
-        let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
-        
-        SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
+        do {
+            let data = try await http(method: .post(data: params), path: "/token", isTokenFetch: true)
+            let spotifyToken = try JSONDecoder().decode(SpotifyToken.self, from: data)
+            SpotifyTokenManager.writeToken(spotifyToken: spotifyToken)
+        } catch {
+            throw error
+        }
     }
     
     public static func fetchAndSaveUserSpotifyID() async throws {
